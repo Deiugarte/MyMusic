@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 29, 2016 3:56:57 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="myfan.models.Ubications" table="ubications" catalog="myfan" optimistic-lock="version">
+        <id name="ubicationId" type="int">
+            <column name="UbicationId" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="Name" length="45" not-null="true" />
+        </property>
+        <set name="eventses" table="events" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Ubication" not-null="true" />
+            </key>
+            <one-to-many class="myfan.models.Events" />
+        </set>
+        <set name="userses" table="users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Ubication" not-null="true" />
+            </key>
+            <one-to-many class="myfan.models.Users" />
+        </set>
+    </class>
+</hibernate-mapping>

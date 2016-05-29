@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="myfan.models.Members" table="members" catalog="myfan" optimistic-lock="version">
+        <id name="memberId" type="int">
+            <column name="MemberId" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="artists" class="myfan.models.Artists" fetch="select">
+            <column name="Artist" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="Name" length="45" not-null="true" />
+        </property>
+        <property name="instrument" type="string">
+            <column name="Instrument" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="myfan.models.FanaticsGenres" table="fanatics_genres" catalog="myfan" optimistic-lock="version">
+        <id name="fanaticGenreId" type="int">
+            <column name="FanaticGenreId" />
+            <generator class="foreign">
+                <param name="property">genres</param>
+            </generator>
+        </id>
+        <many-to-one name="fanatics" class="myfan.models.Fanatics" fetch="select">
+            <column name="idFanatic" not-null="true" />
+        </many-to-one>
+        <one-to-one name="genres" class="myfan.models.Genres" constrained="true"></one-to-one>
+        <property name="idGenre" type="int">
+            <column name="idGenre" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="myfan.models.EventsCalifications" table="events_califications" catalog="myfan" optimistic-lock="version">
+        <id name="eventCalificationId" type="int">
+            <column name="EventCalificationId" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="events" class="myfan.models.Events" fetch="select">
+            <column name="Event" not-null="true" />
+        </many-to-one>
+        <property name="calification" type="int">
+            <column name="Calification" not-null="true" />
+        </property>
+        <property name="comment" type="string">
+            <column name="Comment" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>
