@@ -4,12 +4,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
-import myfan.dao.AdministratorsDao;
-import myfan.dao.AdministratorsHome;
-import myfan.dao.FanaticsDao;
-import myfan.models.Administrators;
-
+import myfan.dao.UsersDao;
 /**
  * Root resource (exposed at "myresource" path)
  */
@@ -25,17 +20,9 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-      AdministratorsDao asd= new AdministratorsDao();
-      Administrators meh = new Administrators();
-      meh.setLogin("Deivid");
-      meh.setPassword("asd");
-      try {
-        asd.save(meh);
-      } catch (Exception e) {
-        // TODO: handle exception
-        System.out.println(e);
-      }
+      UsersDao mef = new UsersDao();
+      return mef.findByusername("Blaken").getPassword();
       
-        return "Hola Valeria";
+        //return "Hola Valeria";
     }
 }

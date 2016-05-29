@@ -1,5 +1,5 @@
 package myfan.dao;
-// Generated May 28, 2016 11:43:27 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated May 29, 2016 3:19:22 PM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -91,7 +91,7 @@ public class EventsCalificationsHome {
     log.debug("getting EventsCalifications instance with id: " + id);
     try {
       EventsCalifications instance = (EventsCalifications) sessionFactory.getCurrentSession()
-          .get("myfan.dao.EventsCalifications", id);
+          .get("myfan.dao.temp.EventsCalifications", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -107,7 +107,7 @@ public class EventsCalificationsHome {
   public List findByExample(EventsCalifications instance) {
     log.debug("finding EventsCalifications instance by example");
     try {
-      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.EventsCalifications")
+      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.EventsCalifications")
           .add(Example.create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;

@@ -4,12 +4,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import myfan.models.Administrators;
+import myfan.models.UsersRoles;
 import myfan.resources.util.HibernateUtil;
 
-public class AdministratorsDao extends AdministratorsHome {
+public class UsersRolesDao extends UsersRolesHome {
 
-  private static final Log log = LogFactory.getLog(AdministratorsDao.class);
+  private static final Log log = LogFactory.getLog(UsersRolesDao.class);
   private final SessionFactory sessionFactory = getSessionFactory();
 
   @Override
@@ -22,25 +22,25 @@ public class AdministratorsDao extends AdministratorsHome {
       }
   }
   
-  public void save(Administrators Administrators){
+  public void save(UsersRoles UsersRoles){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      persist(Administrators);
+      persist(UsersRoles);
       trans.commit();
   }
 
-  public Administrators getAdministratorsById(int id) {
+  public UsersRoles getUsersRolesById(int id) {
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      Administrators instance = findById(id);
+      UsersRoles instance = findById(id);
       trans.commit();
       return instance;
   }
 
-  public void deleteAdministrators(Administrators Administrators) {
+  public void deleteUsersRoles(UsersRoles UsersRoles) {
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      delete(Administrators);
+      delete(UsersRoles);
       trans.commit();
   }
 }

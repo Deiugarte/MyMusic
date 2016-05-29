@@ -1,5 +1,5 @@
 package myfan.dao;
-// Generated May 28, 2016 11:43:27 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated May 29, 2016 3:56:58 PM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -90,7 +90,7 @@ public class UbicationsHome {
   public Ubications findById(int id) {
     log.debug("getting Ubications instance with id: " + id);
     try {
-      Ubications instance = (Ubications) sessionFactory.getCurrentSession().get("myfan.dao.Ubications", id);
+      Ubications instance = (Ubications) sessionFactory.getCurrentSession().get("myfan.dao.temp.Ubications", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -106,7 +106,7 @@ public class UbicationsHome {
   public List findByExample(Ubications instance) {
     log.debug("finding Ubications instance by example");
     try {
-      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.Ubications")
+      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.Ubications")
           .add(Example.create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;

@@ -17,25 +17,29 @@
              'create-drop'  -> drop the schema at the end of the session 
              'update'       -> update the schema, 
              'validate'     -> validates the schema, no changes on DB -->
-        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
         <property name="hibernate.hbm2ddl.import_files">initializeDB.sql</property>
         
         
         <property name="hibernate.search.autoregister_listeners">false</property>
         <property name="hibernate.validator.apply_to_ddl">false</property>
+        
+        
+        
+         <mapping resource="Users.hbm.xml" />
+        <mapping resource="Ubications.hbm.xml" />
+        <mapping resource="EventsCalifications.hbm.xml" />
+        <mapping resource="FanaticsGenres.hbm.xml" />
+        <mapping resource="News.hbm.xml" />
+        <mapping resource="Artists.hbm.xml" />
+        <mapping resource="Events.hbm.xml" />
+        <mapping resource="Songs.hbm.xml" />
+        <mapping resource="ArtistsCalifications.hbm.xml" />
+        <mapping resource="Discs.hbm.xml" />
+        <mapping resource="UsersRoles.hbm.xml" />
+        <mapping resource="Fanatics.hbm.xml" />
+        <mapping resource="Members.hbm.xml" />
         <mapping resource="DiscsCalifications.hbm.xml" />
         <mapping resource="Genres.hbm.xml" />
-        <mapping resource="News.hbm.xml" />
-        <mapping resource="Administrators.hbm.xml" />
-        <mapping resource="Songs.hbm.xml" />
-        <mapping resource="Artists.hbm.xml" />
-        <mapping resource="Discs.hbm.xml" />
-        <mapping resource="Fanatics.hbm.xml" />
-        <mapping resource="FanaticsGenres.hbm.xml" />
-        <mapping resource="Members.hbm.xml" />
-        <mapping resource="Events.hbm.xml" />
-        <mapping resource="EventsCalifications.hbm.xml" />
-        <mapping resource="ArtistsCalifications.hbm.xml" />
-        <mapping resource="Ubications.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

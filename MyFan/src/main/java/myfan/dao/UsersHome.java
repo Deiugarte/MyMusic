@@ -1,5 +1,5 @@
 package myfan.dao;
-// Generated May 28, 2016 11:43:27 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated May 29, 2016 3:56:58 PM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -9,16 +9,16 @@ import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
-import myfan.models.Administrators;
+import myfan.models.Users;
 
 /**
- * Home object for domain model class Administrators.
- * @see myfan.models.Administrators
+ * Home object for domain model class Users.
+ * @see myfan.models.Users
  * @author Hibernate Tools
  */
-public class AdministratorsHome {
+public class UsersHome {
 
-  private static final Log log = LogFactory.getLog(AdministratorsHome.class);
+  private static final Log log = LogFactory.getLog(UsersHome.class);
 
   private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -31,8 +31,8 @@ public class AdministratorsHome {
     }
   }
 
-  public void persist(Administrators transientInstance) {
-    log.debug("persisting Administrators instance");
+  public void persist(Users transientInstance) {
+    log.debug("persisting Users instance");
     try {
       sessionFactory.getCurrentSession().persist(transientInstance);
       log.debug("persist successful");
@@ -42,8 +42,8 @@ public class AdministratorsHome {
     }
   }
 
-  public void attachDirty(Administrators instance) {
-    log.debug("attaching dirty Administrators instance");
+  public void attachDirty(Users instance) {
+    log.debug("attaching dirty Users instance");
     try {
       sessionFactory.getCurrentSession().saveOrUpdate(instance);
       log.debug("attach successful");
@@ -53,8 +53,8 @@ public class AdministratorsHome {
     }
   }
 
-  public void attachClean(Administrators instance) {
-    log.debug("attaching clean Administrators instance");
+  public void attachClean(Users instance) {
+    log.debug("attaching clean Users instance");
     try {
       sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
       log.debug("attach successful");
@@ -64,8 +64,8 @@ public class AdministratorsHome {
     }
   }
 
-  public void delete(Administrators persistentInstance) {
-    log.debug("deleting Administrators instance");
+  public void delete(Users persistentInstance) {
+    log.debug("deleting Users instance");
     try {
       sessionFactory.getCurrentSession().delete(persistentInstance);
       log.debug("delete successful");
@@ -75,10 +75,10 @@ public class AdministratorsHome {
     }
   }
 
-  public Administrators merge(Administrators detachedInstance) {
-    log.debug("merging Administrators instance");
+  public Users merge(Users detachedInstance) {
+    log.debug("merging Users instance");
     try {
-      Administrators result = (Administrators) sessionFactory.getCurrentSession().merge(detachedInstance);
+      Users result = (Users) sessionFactory.getCurrentSession().merge(detachedInstance);
       log.debug("merge successful");
       return result;
     } catch (RuntimeException re) {
@@ -87,10 +87,10 @@ public class AdministratorsHome {
     }
   }
 
-  public Administrators findById(int id) {
-    log.debug("getting Administrators instance with id: " + id);
+  public Users findById(java.lang.Integer id) {
+    log.debug("getting Users instance with id: " + id);
     try {
-      Administrators instance = (Administrators) sessionFactory.getCurrentSession().get("myfan.dao.Administrators", id);
+      Users instance = (Users) sessionFactory.getCurrentSession().get("myfan.dao.temp.Users", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -103,10 +103,10 @@ public class AdministratorsHome {
     }
   }
 
-  public List findByExample(Administrators instance) {
-    log.debug("finding Administrators instance by example");
+  public List findByExample(Users instance) {
+    log.debug("finding Users instance by example");
     try {
-      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.Administrators")
+      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.Users")
           .add(Example.create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;

@@ -1,5 +1,5 @@
 package myfan.dao;
-// Generated May 28, 2016 11:43:27 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated May 29, 2016 3:19:22 PM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -90,7 +90,8 @@ public class FanaticsGenresHome {
   public FanaticsGenres findById(int id) {
     log.debug("getting FanaticsGenres instance with id: " + id);
     try {
-      FanaticsGenres instance = (FanaticsGenres) sessionFactory.getCurrentSession().get("myfan.dao.FanaticsGenres", id);
+      FanaticsGenres instance = (FanaticsGenres) sessionFactory.getCurrentSession().get("myfan.dao.temp.FanaticsGenres",
+          id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -106,7 +107,7 @@ public class FanaticsGenresHome {
   public List findByExample(FanaticsGenres instance) {
     log.debug("finding FanaticsGenres instance by example");
     try {
-      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.FanaticsGenres")
+      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.FanaticsGenres")
           .add(Example.create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;

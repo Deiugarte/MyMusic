@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 28, 2016 11:43:27 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<!-- Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
     <class name="myfan.models.News" table="news" catalog="myfan" optimistic-lock="version">
         <id name="newsId" type="int">
             <column name="NewsId" />
-            <generator class="increment" />
+            <generator class="assigned" />
         </id>
         <many-to-one name="artists" class="myfan.models.Artists" fetch="select">
             <column name="Artist" not-null="true" />

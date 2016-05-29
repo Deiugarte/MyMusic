@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 29, 2016 3:56:57 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="myfan.models.Users" table="users" catalog="myfan" optimistic-lock="version">
+        <id name="userId" type="java.lang.Integer">
+            <column name="UserId" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="ubications" class="myfan.models.Ubications" fetch="select">
+            <column name="Ubication" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usersRoles" class="myfan.models.UsersRoles" fetch="select">
+            <column name="Role" not-null="true" />
+        </many-to-one>
+        <property name="username" type="string">
+            <column name="Username" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" length="45" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="45" not-null="true" />
+        </property>
+        <property name="image" type="string">
+            <column name="Image" length="45" not-null="false" />
+        </property>
+        <property name="creationDate" type="date">
+            <column name="CreationDate" length="10" not-null="true" />
+        </property>
+        <set name="artistses" table="artists" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserId" not-null="true" />
+            </key>
+            <one-to-many class="myfan.models.Artists" />
+        </set>
+        <set name="fanaticses" table="fanatics" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserId" not-null="true" />
+            </key>
+            <one-to-many class="myfan.models.Fanatics" />
+        </set>
+    </class>
+</hibernate-mapping>

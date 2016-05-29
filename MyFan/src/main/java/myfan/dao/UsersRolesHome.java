@@ -9,16 +9,16 @@ import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
-import myfan.models.Events;
+import myfan.models.UsersRoles;
 
 /**
- * Home object for domain model class Events.
- * @see myfan.models.Events
+ * Home object for domain model class UsersRoles.
+ * @see myfan.models.UsersRoles
  * @author Hibernate Tools
  */
-public class EventsHome {
+public class UsersRolesHome {
 
-  private static final Log log = LogFactory.getLog(EventsHome.class);
+  private static final Log log = LogFactory.getLog(UsersRolesHome.class);
 
   private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -31,8 +31,8 @@ public class EventsHome {
     }
   }
 
-  public void persist(Events transientInstance) {
-    log.debug("persisting Events instance");
+  public void persist(UsersRoles transientInstance) {
+    log.debug("persisting UsersRoles instance");
     try {
       sessionFactory.getCurrentSession().persist(transientInstance);
       log.debug("persist successful");
@@ -42,8 +42,8 @@ public class EventsHome {
     }
   }
 
-  public void attachDirty(Events instance) {
-    log.debug("attaching dirty Events instance");
+  public void attachDirty(UsersRoles instance) {
+    log.debug("attaching dirty UsersRoles instance");
     try {
       sessionFactory.getCurrentSession().saveOrUpdate(instance);
       log.debug("attach successful");
@@ -53,8 +53,8 @@ public class EventsHome {
     }
   }
 
-  public void attachClean(Events instance) {
-    log.debug("attaching clean Events instance");
+  public void attachClean(UsersRoles instance) {
+    log.debug("attaching clean UsersRoles instance");
     try {
       sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
       log.debug("attach successful");
@@ -64,8 +64,8 @@ public class EventsHome {
     }
   }
 
-  public void delete(Events persistentInstance) {
-    log.debug("deleting Events instance");
+  public void delete(UsersRoles persistentInstance) {
+    log.debug("deleting UsersRoles instance");
     try {
       sessionFactory.getCurrentSession().delete(persistentInstance);
       log.debug("delete successful");
@@ -75,10 +75,10 @@ public class EventsHome {
     }
   }
 
-  public Events merge(Events detachedInstance) {
-    log.debug("merging Events instance");
+  public UsersRoles merge(UsersRoles detachedInstance) {
+    log.debug("merging UsersRoles instance");
     try {
-      Events result = (Events) sessionFactory.getCurrentSession().merge(detachedInstance);
+      UsersRoles result = (UsersRoles) sessionFactory.getCurrentSession().merge(detachedInstance);
       log.debug("merge successful");
       return result;
     } catch (RuntimeException re) {
@@ -87,10 +87,10 @@ public class EventsHome {
     }
   }
 
-  public Events findById(int id) {
-    log.debug("getting Events instance with id: " + id);
+  public UsersRoles findById(java.lang.Integer id) {
+    log.debug("getting UsersRoles instance with id: " + id);
     try {
-      Events instance = (Events) sessionFactory.getCurrentSession().get("myfan.dao.temp.Events", id);
+      UsersRoles instance = (UsersRoles) sessionFactory.getCurrentSession().get("myfan.dao.temp.UsersRoles", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -103,10 +103,10 @@ public class EventsHome {
     }
   }
 
-  public List findByExample(Events instance) {
-    log.debug("finding Events instance by example");
+  public List findByExample(UsersRoles instance) {
+    log.debug("finding UsersRoles instance by example");
     try {
-      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.Events")
+      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.UsersRoles")
           .add(Example.create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;

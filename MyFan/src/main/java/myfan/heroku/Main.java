@@ -3,8 +3,6 @@ package myfan.heroku;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-import myfan.dao.AdministratorsHome;
-import myfan.models.Administrators;
 
 /**
  * This class launches the web application in an embedded Jetty container. This is the entry point to your application. The Java

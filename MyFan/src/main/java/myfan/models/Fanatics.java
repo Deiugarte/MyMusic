@@ -1,5 +1,5 @@
 package myfan.models;
-// Generated May 28, 2016 11:43:26 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -11,42 +11,26 @@ import java.util.Set;
 public class Fanatics implements java.io.Serializable {
 
   private int fanaticId;
-  private Ubications ubications;
-  private String name;
+  private Users users;
   private Date birthday;
   private boolean sex;
-  private String username;
-  private String password;
-  private Date creationDate;
-  private String image;
   private Set fanaticsGenreses = new HashSet(0);
 
   public Fanatics() {
   }
 
-  public Fanatics(int fanaticId, Ubications ubications, String name, Date birthday, boolean sex, String username,
-      String password, Date creationDate) {
+  public Fanatics(int fanaticId, Users users, Date birthday, boolean sex) {
     this.fanaticId = fanaticId;
-    this.ubications = ubications;
-    this.name = name;
+    this.users = users;
     this.birthday = birthday;
     this.sex = sex;
-    this.username = username;
-    this.password = password;
-    this.creationDate = creationDate;
   }
 
-  public Fanatics(int fanaticId, Ubications ubications, String name, Date birthday, boolean sex, String username,
-      String password, Date creationDate, String image, Set fanaticsGenreses) {
+  public Fanatics(int fanaticId, Users users, Date birthday, boolean sex, Set fanaticsGenreses) {
     this.fanaticId = fanaticId;
-    this.ubications = ubications;
-    this.name = name;
+    this.users = users;
     this.birthday = birthday;
     this.sex = sex;
-    this.username = username;
-    this.password = password;
-    this.creationDate = creationDate;
-    this.image = image;
     this.fanaticsGenreses = fanaticsGenreses;
   }
 
@@ -58,20 +42,12 @@ public class Fanatics implements java.io.Serializable {
     this.fanaticId = fanaticId;
   }
 
-  public Ubications getUbications() {
-    return this.ubications;
+  public Users getUsers() {
+    return this.users;
   }
 
-  public void setUbications(Ubications ubications) {
-    this.ubications = ubications;
-  }
-
-  public String getName() {
-    return this.name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
+  public void setUsers(Users users) {
+    this.users = users;
   }
 
   public Date getBirthday() {
@@ -88,38 +64,6 @@ public class Fanatics implements java.io.Serializable {
 
   public void setSex(boolean sex) {
     this.sex = sex;
-  }
-
-  public String getUsername() {
-    return this.username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public String getPassword() {
-    return this.password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public Date getCreationDate() {
-    return this.creationDate;
-  }
-
-  public void setCreationDate(Date creationDate) {
-    this.creationDate = creationDate;
-  }
-
-  public String getImage() {
-    return this.image;
-  }
-
-  public void setImage(String image) {
-    this.image = image;
   }
 
   public Set getFanaticsGenreses() {

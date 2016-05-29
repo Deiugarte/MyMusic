@@ -1,5 +1,5 @@
 package myfan.models;
-// Generated May 28, 2016 11:43:26 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,11 +11,7 @@ public class Artists implements java.io.Serializable {
 
   private int artistId;
   private Genres genres;
-  private Ubications ubications;
-  private String name;
-  private String login;
-  private String password;
-  private String image;
+  private Users users;
   private int followers;
   private Set artistsCalificationses = new HashSet(0);
   private Set newses = new HashSet(0);
@@ -25,26 +21,18 @@ public class Artists implements java.io.Serializable {
   public Artists() {
   }
 
-  public Artists(int artistId, Genres genres, Ubications ubications, String name, String login, String password,
-      int followers) {
+  public Artists(int artistId, Genres genres, Users users, int followers) {
     this.artistId = artistId;
     this.genres = genres;
-    this.ubications = ubications;
-    this.name = name;
-    this.login = login;
-    this.password = password;
+    this.users = users;
     this.followers = followers;
   }
 
-  public Artists(int artistId, Genres genres, Ubications ubications, String name, String login, String password,
-      String image, int followers, Set artistsCalificationses, Set newses, Set memberses, Set eventses) {
+  public Artists(int artistId, Genres genres, Users users, int followers, Set artistsCalificationses, Set newses,
+      Set memberses, Set eventses) {
     this.artistId = artistId;
     this.genres = genres;
-    this.ubications = ubications;
-    this.name = name;
-    this.login = login;
-    this.password = password;
-    this.image = image;
+    this.users = users;
     this.followers = followers;
     this.artistsCalificationses = artistsCalificationses;
     this.newses = newses;
@@ -68,44 +56,12 @@ public class Artists implements java.io.Serializable {
     this.genres = genres;
   }
 
-  public Ubications getUbications() {
-    return this.ubications;
+  public Users getUsers() {
+    return this.users;
   }
 
-  public void setUbications(Ubications ubications) {
-    this.ubications = ubications;
-  }
-
-  public String getName() {
-    return this.name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getLogin() {
-    return this.login;
-  }
-
-  public void setLogin(String login) {
-    this.login = login;
-  }
-
-  public String getPassword() {
-    return this.password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public String getImage() {
-    return this.image;
-  }
-
-  public void setImage(String image) {
-    this.image = image;
+  public void setUsers(Users users) {
+    this.users = users;
   }
 
   public int getFollowers() {

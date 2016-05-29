@@ -1,5 +1,5 @@
 package myfan.dao;
-// Generated May 28, 2016 11:43:27 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated May 29, 2016 3:19:22 PM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -90,7 +90,7 @@ public class SongsHome {
   public Songs findById(int id) {
     log.debug("getting Songs instance with id: " + id);
     try {
-      Songs instance = (Songs) sessionFactory.getCurrentSession().get("myfan.dao.Songs", id);
+      Songs instance = (Songs) sessionFactory.getCurrentSession().get("myfan.dao.temp.Songs", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -106,8 +106,8 @@ public class SongsHome {
   public List findByExample(Songs instance) {
     log.debug("finding Songs instance by example");
     try {
-      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.Songs").add(Example.create(instance))
-          .list();
+      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.Songs")
+          .add(Example.create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;
     } catch (RuntimeException re) {

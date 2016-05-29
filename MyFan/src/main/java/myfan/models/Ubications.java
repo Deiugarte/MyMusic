@@ -1,5 +1,5 @@
 package myfan.models;
-// Generated May 28, 2016 11:43:26 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated May 29, 2016 3:56:57 PM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,9 +11,8 @@ public class Ubications implements java.io.Serializable {
 
   private int ubicationId;
   private String name;
-  private Set artistses = new HashSet(0);
-  private Set fanaticses = new HashSet(0);
   private Set eventses = new HashSet(0);
+  private Set userses = new HashSet(0);
 
   public Ubications() {
   }
@@ -23,12 +22,11 @@ public class Ubications implements java.io.Serializable {
     this.name = name;
   }
 
-  public Ubications(int ubicationId, String name, Set artistses, Set fanaticses, Set eventses) {
+  public Ubications(int ubicationId, String name, Set eventses, Set userses) {
     this.ubicationId = ubicationId;
     this.name = name;
-    this.artistses = artistses;
-    this.fanaticses = fanaticses;
     this.eventses = eventses;
+    this.userses = userses;
   }
 
   public int getUbicationId() {
@@ -47,28 +45,20 @@ public class Ubications implements java.io.Serializable {
     this.name = name;
   }
 
-  public Set getArtistses() {
-    return this.artistses;
-  }
-
-  public void setArtistses(Set artistses) {
-    this.artistses = artistses;
-  }
-
-  public Set getFanaticses() {
-    return this.fanaticses;
-  }
-
-  public void setFanaticses(Set fanaticses) {
-    this.fanaticses = fanaticses;
-  }
-
   public Set getEventses() {
     return this.eventses;
   }
 
   public void setEventses(Set eventses) {
     this.eventses = eventses;
+  }
+
+  public Set getUserses() {
+    return this.userses;
+  }
+
+  public void setUserses(Set userses) {
+    this.userses = userses;
   }
 
 }
