@@ -27,7 +27,7 @@ public class MyResource {
     public String getIt() {
       AdministratorsDao asd= new AdministratorsDao();
       Administrators meh = new Administrators();
-      meh.setLogin("Deiviadasd");
+      meh.setLogin("Deivid");
       meh.setPassword("asd");
       try {
         asd.save(meh);
