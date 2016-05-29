@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 28, 2016 11:43:27 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="myfan.models.Discs" table="discs" catalog="myfan" optimistic-lock="version">
+        <id name="discId" type="int">
+            <column name="DiscId" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="genres" class="myfan.models.Genres" fetch="select">
+            <column name="Genre" not-null="true" />
+        </many-to-one>
+        <property name="artist" type="int">
+            <column name="Artist" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="Name" length="45" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="Description" length="45" not-null="true" />
+        </property>
+        <property name="releaseYear" type="date">
+            <column name="ReleaseYear" length="0" not-null="true" />
+        </property>
+        <property name="label" type="string">
+            <column name="Label" length="45" />
+        </property>
+        <set name="discsCalificationses" table="discs_califications" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Disc" not-null="true" />
+            </key>
+            <one-to-many class="myfan.models.DiscsCalifications" />
+        </set>
+        <set name="songses" table="songs" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Disc" not-null="true" />
+            </key>
+            <one-to-many class="myfan.models.Songs" />
+        </set>
+    </class>
+</hibernate-mapping>

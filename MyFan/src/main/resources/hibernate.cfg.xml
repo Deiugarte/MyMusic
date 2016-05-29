@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">myfan</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/myfan</property>
+        <property name="hibernate.connection.username">myfan</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.search.autoregister_listeners">false</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping resource="dao/DiscsCalifications.hbm.xml" />
+        <mapping resource="dao/Genres.hbm.xml" />
+        <mapping resource="dao/News.hbm.xml" />
+        <mapping resource="dao/Administrators.hbm.xml" />
+        <mapping resource="dao/Songs.hbm.xml" />
+        <mapping resource="dao/Artists.hbm.xml" />
+        <mapping resource="dao/Discs.hbm.xml" />
+        <mapping resource="dao/Fanatics.hbm.xml" />
+        <mapping resource="dao/FanaticsGenres.hbm.xml" />
+        <mapping resource="dao/Members.hbm.xml" />
+        <mapping resource="dao/Events.hbm.xml" />
+        <mapping resource="dao/EventsCalifications.hbm.xml" />
+        <mapping resource="dao/ArtistsCalifications.hbm.xml" />
+        <mapping resource="dao/Ubications.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

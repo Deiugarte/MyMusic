@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 28, 2016 11:43:27 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="myfan.models.Events" table="events" catalog="myfan" optimistic-lock="version">
+        <id name="eventId" type="int">
+            <column name="EventId" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="artists" class="myfan.models.Artists" fetch="select">
+            <column name="Artist" not-null="true" />
+        </many-to-one>
+        <many-to-one name="ubications" class="myfan.models.Ubications" fetch="select">
+            <column name="Ubication" not-null="true" />
+        </many-to-one>
+        <property name="tittle" type="string">
+            <column name="Tittle" length="45" not-null="true" />
+        </property>
+        <property name="eventDate" type="date">
+            <column name="EventDate" length="10" not-null="true" />
+        </property>
+        <property name="content" type="string">
+            <column name="Content" length="45" />
+        </property>
+        <property name="type" type="boolean">
+            <column name="Type" not-null="true" />
+        </property>
+        <set name="eventsCalificationses" table="events_califications" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Event" not-null="true" />
+            </key>
+            <one-to-many class="myfan.models.EventsCalifications" />
+        </set>
+    </class>
+</hibernate-mapping>

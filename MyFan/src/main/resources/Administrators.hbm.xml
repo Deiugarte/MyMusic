@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 28, 2016 11:43:27 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="myfan.models.Administrators" table="administrators" catalog="myfan" optimistic-lock="version">
+        <id name="administratorId" type="int">
+            <column name="AdministratorId" />
+            <generator class="increment" />
+        </id>
+        <property name="login" type="string">
+            <column name="Login" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

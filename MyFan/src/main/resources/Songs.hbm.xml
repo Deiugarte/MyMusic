@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 28, 2016 11:43:27 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="myfan.models.Songs" table="songs" catalog="myfan" optimistic-lock="version">
+        <id name="songId" type="int">
+            <column name="SongId" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="discs" class="myfan.models.Discs" fetch="select">
+            <column name="Disc" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="Name" length="45" not-null="true" />
+        </property>
+        <property name="duration" type="string">
+            <column name="Duration" length="10" not-null="true" />
+        </property>
+        <property name="state" type="boolean">
+            <column name="State" not-null="true" />
+        </property>
+        <property name="videoLink" type="string">
+            <column name="VideoLink" length="45" />
+        </property>
+        <property name="limitation" type="string">
+            <column name="Limitation" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

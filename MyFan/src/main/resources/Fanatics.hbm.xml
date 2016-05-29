@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 28, 2016 11:43:27 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="myfan.models.Fanatics" table="fanatics" catalog="myfan" optimistic-lock="version">
+        <id name="fanaticId" type="int">
+            <column name="FanaticId" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="ubications" class="myfan.models.Ubications" fetch="select">
+            <column name="Ubication" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="Name" length="45" not-null="true" />
+        </property>
+        <property name="birthday" type="date">
+            <column name="Birthday" length="10" not-null="true" />
+        </property>
+        <property name="sex" type="boolean">
+            <column name="Sex" not-null="true" />
+        </property>
+        <property name="username" type="string">
+            <column name="Username" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" length="45" not-null="true" />
+        </property>
+        <property name="creationDate" type="date">
+            <column name="CreationDate" length="10" not-null="true" />
+        </property>
+        <property name="image" type="string">
+            <column name="Image" length="45" />
+        </property>
+        <set name="fanaticsGenreses" table="fanatics_genres" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idFanatic" not-null="true" />
+            </key>
+            <one-to-many class="myfan.models.FanaticsGenres" />
+        </set>
+    </class>
+</hibernate-mapping>

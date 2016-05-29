@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 28, 2016 11:43:27 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+ <class catalog="myfan" name="myfan.models.ArtistsCalifications" table="artists_califications">
+  <id name="artistCalificationId" type="int">
+   <column name="ArtistCalificationId"/>
+   <generator class="increment" />
+  </id>
+  <many-to-one class="myfan.models.Artists" fetch="select" name="artists">
+   <column name="Artist" not-null="true"/>
+  </many-to-one>
+  <property generated="never" lazy="false" name="calification" type="int">
+   <column name="Calification" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="comment" type="string">
+   <column length="45" name="Comment"/>
+  </property>
+ </class>
+</hibernate-mapping>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 28, 2016 11:43:27 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="myfan.models.Artists" table="artists" catalog="myfan" optimistic-lock="version">
+        <id name="artistId" type="int">
+            <column name="ArtistId" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="genres" class="myfan.models.Genres" fetch="select">
+            <column name="Genre" not-null="true" />
+        </many-to-one>
+        <many-to-one name="ubications" class="myfan.models.Ubications" fetch="select">
+            <column name="Ubication" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="Name" length="45" not-null="true" />
+        </property>
+        <property name="login" type="string">
+            <column name="Login" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" length="45" not-null="true" />
+        </property>
+        <property name="image" type="string">
+            <column name="Image" length="45" />
+        </property>
+        <property name="followers" type="int">
+            <column name="Followers" not-null="true" />
+        </property>
+        <set name="artistsCalificationses" table="artists_califications" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Artist" not-null="true" />
+            </key>
+            <one-to-many class="myfan.models.ArtistsCalifications" />
+        </set>
+        <set name="newses" table="news" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Artist" not-null="true" />
+            </key>
+            <one-to-many class="myfan.models.News" />
+        </set>
+        <set name="memberses" table="members" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Artist" not-null="true" />
+            </key>
+            <one-to-many class="myfan.models.Members" />
+        </set>
+        <set name="eventses" table="events" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Artist" not-null="true" />
+            </key>
+            <one-to-many class="myfan.models.Events" />
+        </set>
+    </class>
+</hibernate-mapping>
