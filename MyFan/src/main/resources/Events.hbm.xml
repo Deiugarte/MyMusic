@@ -3,15 +3,15 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
-    <class name="myfan.models.Events" table="events" catalog="myfan" optimistic-lock="version">
+    <class name="myfan.data.models.Events" table="events" catalog="myfan" optimistic-lock="version">
         <id name="eventId" type="int">
             <column name="EventId" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="artists" class="myfan.models.Artists" fetch="select">
+        <many-to-one name="artists" class="myfan.data.models.Artists" fetch="select">
             <column name="Artist" not-null="true" />
         </many-to-one>
-        <many-to-one name="ubications" class="myfan.models.Ubications" fetch="select">
+        <many-to-one name="ubications" class="myfan.data.models.Ubications" fetch="select">
             <column name="Ubication" not-null="true" />
         </many-to-one>
         <property name="tittle" type="string">
@@ -30,7 +30,7 @@
             <key>
                 <column name="Event" not-null="true" />
             </key>
-            <one-to-many class="myfan.models.EventsCalifications" />
+            <one-to-many class="myfan.data.models.EventsCalifications" />
         </set>
     </class>
 </hibernate-mapping>

@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
-    <class name="myfan.models.UsersRoles" table="users_roles" catalog="myfan" optimistic-lock="version">
+    <class name="myfan.data.models.UsersRoles" table="users_roles" catalog="myfan" optimistic-lock="version">
         <id name="userRoleId" type="java.lang.Integer">
             <column name="UserRoleId" />
             <generator class="identity" />
@@ -15,7 +15,7 @@
             <key>
                 <column name="Role" not-null="true" />
             </key>
-            <one-to-many class="myfan.models.Users" />
+            <one-to-many class="myfan.data.models.Users" />
         </set>
     </class>
 </hibernate-mapping>

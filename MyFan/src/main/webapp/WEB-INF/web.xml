@@ -15,4 +15,12 @@
         <servlet-name>Jersey Web Application</servlet-name>
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>myfan.resources.filter.AuthenticationFilter</filter-class>
+        <init-param>
+            <param-name>excludedPaths</param-name>
+            <param-value>/rest/v1/</param-value>
+        </init-param>
+    </filter>
 </web-app>

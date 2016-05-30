@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
-    <class name="myfan.models.Genres" table="genres" catalog="myfan" optimistic-lock="version">
+    <class name="myfan.data.models.Genres" table="genres" catalog="myfan" optimistic-lock="version">
         <id name="genreId" type="int">
             <column name="GenreId" />
             <generator class="assigned" />
@@ -11,18 +11,18 @@
         <property name="name" type="string">
             <column name="Name" length="45" not-null="true" />
         </property>
-        <one-to-one name="fanaticsGenres" class="myfan.models.FanaticsGenres"></one-to-one>
+        <one-to-one name="fanaticsGenres" class="myfan.data.models.FanaticsGenres"></one-to-one>
         <set name="discses" table="discs" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="Genre" not-null="true" />
             </key>
-            <one-to-many class="myfan.models.Discs" />
+            <one-to-many class="myfan.data.models.Discs" />
         </set>
         <set name="artistses" table="artists" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="Genre" not-null="true" />
             </key>
-            <one-to-many class="myfan.models.Artists" />
+            <one-to-many class="myfan.data.models.Artists" />
         </set>
     </class>
 </hibernate-mapping>

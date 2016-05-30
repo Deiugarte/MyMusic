@@ -8,9 +8,8 @@ import org.hibernate.type.descriptor.java.JavaTypeDescriptorRegistry.FallbackJav
 
 import com.google.common.io.BaseEncoding;
 
-import myfan.dao.UsersDao;
-import myfan.dao.UsersDao;
-import myfan.models.Users;
+import myfan.data.dao.UsersDao;
+import myfan.data.models.Users;
 
 
 public class AuthenticationService {
