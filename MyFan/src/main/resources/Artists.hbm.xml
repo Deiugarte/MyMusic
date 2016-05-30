@@ -3,15 +3,15 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
-    <class name="myfan.models.Artists" table="artists" catalog="myfan" optimistic-lock="version">
+    <class name="myfan.data.models.Artists" table="artists" catalog="myfan" optimistic-lock="version">
         <id name="artistId" type="int">
             <column name="ArtistId" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="genres" class="myfan.models.Genres" fetch="select">
+        <many-to-one name="genres" class="myfan.data.models.Genres" fetch="select">
             <column name="Genre" not-null="true" />
         </many-to-one>
-        <many-to-one name="users" class="myfan.models.Users" fetch="select">
+        <many-to-one name="users" class="myfan.data.models.Users" fetch="select">
             <column name="UserId" not-null="true" />
         </many-to-one>
         <property name="followers" type="int">
@@ -21,25 +21,25 @@
             <key>
                 <column name="Artist" not-null="true" />
             </key>
-            <one-to-many class="myfan.models.ArtistsCalifications" />
+            <one-to-many class="myfan.data.models.ArtistsCalifications" />
         </set>
         <set name="newses" table="news" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="Artist" not-null="true" />
             </key>
-            <one-to-many class="myfan.models.News" />
+            <one-to-many class="myfan.data.models.News" />
         </set>
         <set name="memberses" table="members" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="Artist" not-null="true" />
             </key>
-            <one-to-many class="myfan.models.Members" />
+            <one-to-many class="myfan.data.models.Members" />
         </set>
         <set name="eventses" table="events" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="Artist" not-null="true" />
             </key>
-            <one-to-many class="myfan.models.Events" />
+            <one-to-many class="myfan.data.models.Events" />
         </set>
     </class>
 </hibernate-mapping>

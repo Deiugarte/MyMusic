@@ -3,15 +3,15 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated May 29, 2016 3:56:57 PM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
-    <class name="myfan.models.Users" table="users" catalog="myfan" optimistic-lock="version">
+    <class name="myfan.data.models.Users" table="users" catalog="myfan" optimistic-lock="version">
         <id name="userId" type="java.lang.Integer">
             <column name="UserId" />
             <generator class="identity" />
         </id>
-        <many-to-one name="ubications" class="myfan.models.Ubications" fetch="select">
+        <many-to-one name="ubications" class="myfan.data.models.Ubications" fetch="select">
             <column name="Ubication" not-null="true" />
         </many-to-one>
-        <many-to-one name="usersRoles" class="myfan.models.UsersRoles" fetch="select">
+        <many-to-one name="usersRoles" class="myfan.data.models.UsersRoles" fetch="select">
             <column name="Role" not-null="true" />
         </many-to-one>
         <property name="username" type="string">
@@ -33,13 +33,13 @@
             <key>
                 <column name="UserId" not-null="true" />
             </key>
-            <one-to-many class="myfan.models.Artists" />
+            <one-to-many class="myfan.data.models.Artists" />
         </set>
         <set name="fanaticses" table="fanatics" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="UserId" not-null="true" />
             </key>
-            <one-to-many class="myfan.models.Fanatics" />
+            <one-to-many class="myfan.data.models.Fanatics" />
         </set>
     </class>
 </hibernate-mapping>

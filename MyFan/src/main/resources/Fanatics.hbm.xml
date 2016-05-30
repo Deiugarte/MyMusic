@@ -3,12 +3,12 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
-    <class name="myfan.models.Fanatics" table="fanatics" catalog="myfan" optimistic-lock="version">
+    <class name="myfan.data.models.Fanatics" table="fanatics" catalog="myfan" optimistic-lock="version">
         <id name="fanaticId" type="int">
             <column name="FanaticId" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="users" class="myfan.models.Users" fetch="select">
+        <many-to-one name="users" class="myfan.data.models.Users" fetch="select">
             <column name="UserId" not-null="true" />
         </many-to-one>
         <property name="birthday" type="date">
@@ -21,7 +21,7 @@
             <key>
                 <column name="idFanatic" not-null="true" />
             </key>
-            <one-to-many class="myfan.models.FanaticsGenres" />
+            <one-to-many class="myfan.data.models.FanaticsGenres" />
         </set>
     </class>
 </hibernate-mapping>
