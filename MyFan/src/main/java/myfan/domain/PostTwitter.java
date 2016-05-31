@@ -39,11 +39,15 @@ public class PostTwitter implements IConstansts {
 	        	switch(typeInstruction){
 	        		case STATUS_RATE: 
 	        			finalStatusTwitter= "El usuario "+nameUser+" publico un nuevo comentario en el perfil del artista "+nameArtist;
+	        			break;
 	        		case STATUS_FOLLOW:
 	        			finalStatusTwitter= "El usuario "+nameUser+" comenzó a seguir el perfil del artista "+nameArtist;
+	        			break;
 	        		case STATUS_RATE_AND_COMMENT:
 	        			finalStatusTwitter= "El usuario "+nameUser+" comentó y calificó  el perfil del artista "+nameArtist;
-	        		}		
+	        			break;
+	        	}		
 	        	postTwitter(finalStatusTwitter);
 	        }
+	
 }
