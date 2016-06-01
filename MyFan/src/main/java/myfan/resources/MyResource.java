@@ -1,11 +1,14 @@
 package myfan.resources;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import myfan.data.dao.UsersDao;
+import myfan.resources.base.LoginRequest;
 /**
  * Root resource (exposed at "myresource" path)
  */
@@ -18,11 +21,11 @@ public class MyResource {
      *
      * @return String that will be returned as a text/plain response.
      */
-    @GET
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-      UsersDao mef = new UsersDao();
-      return mef.findByusername("Blaken").getPassword();
+      return "ased";
       
         //return "Hola Valeria";
     }

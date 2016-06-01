@@ -63,11 +63,7 @@ public class UsersDao extends UsersHome {
         UsersRoles roles = instance.getUsersRoles();
         System.out.println("UserRoles: " + roles.getRoleName());
         trans.commit();
-        if (instance == null) {
-            log.debug("get successful, no instance found");
-        } else {
-            log.debug("get successful, instance found");
-        }
+        log.debug("get successful, instance found");
         return instance;
     } catch (RuntimeException re) {
         log.error("get failed", re);
