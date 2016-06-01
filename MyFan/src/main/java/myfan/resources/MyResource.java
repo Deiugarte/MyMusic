@@ -24,8 +24,8 @@ public class MyResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public String getIt() {
-      return "ased";
+    public String getIt(LoginRequest login) {
+      return login.getLogin();
       
         //return "Hola Valeria";
     }
