@@ -19,7 +19,7 @@ public class LoadFileProperties {
         LoadFile(nameFile);
     }
 
-    private InputStream abrirArchivo(String nameFile) {
+    private InputStream openFile(String nameFile) {
         InputStream fileInputStream =  ClassLoader.getSystemResourceAsStream("TwitterConfiguration.properties");
         return fileInputStream;
     }
@@ -28,7 +28,7 @@ public class LoadFileProperties {
 
         twitterPropertiesFile = new Properties();
         try {
-        	InputStream fileProperties=abrirArchivo(nameFileProperties);
+        	InputStream fileProperties=openFile(nameFileProperties);
             twitterPropertiesFile.load(fileProperties);
         } catch (IOException ex) {
             Logger.getLogger(LoadFileProperties.class.getName()).log(Level.SEVERE, null, ex);
