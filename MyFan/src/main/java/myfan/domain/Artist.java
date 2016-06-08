@@ -3,7 +3,7 @@ package myfan.domain;
 import java.awt.Image;
 import java.util.ArrayList;
 
-public class Artist  extends User{
+public class Artist  extends User {
 
 	private String biographyArtist;
 	private ArrayList <String> members;

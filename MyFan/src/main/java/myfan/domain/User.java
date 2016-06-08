@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class User {
+public abstract class User  {
 	protected String nameUser;
 	protected String birthDate;
 	protected String gender;
