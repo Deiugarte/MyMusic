@@ -39,7 +39,7 @@ public class AuthenticationFilter implements javax.servlet.Filter {
             HttpServletRequest httpServletRequest = (HttpServletRequest) request;
             String authCredentials = httpServletRequest
                     .getHeader(AUTHENTICATION_HEADER);
-
+            LOGGER.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             // better injected
             AuthenticationService authenticationService = new AuthenticationService();
 

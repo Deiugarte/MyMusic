@@ -53,5 +53,6 @@ public class AuthenticationService {
     }
 
     private boolean checkPassword(String password, String password2) {
+      System.out.println("base:"+password+"ingresada:"+password2);
         return password.equals(password2);
     }}
