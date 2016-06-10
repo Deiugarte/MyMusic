@@ -11,25 +11,27 @@ public class SHA2 {
 		stringBuffer = new StringBuffer();
 	}
 	
-	public void beginEncryption(String password){
-		initMD(password);
+	public String beginEncryption(String password){
+		return beginProcess(password);
 	}
 	
-	private void initMD(String password){
+	private String beginProcess(String password){
 		try {
 			messageDigest = messageDigest.getInstance("SHA-256");
 			messageDigest.update(password.getBytes());
 			byteData = messageDigest.digest();
-			processEncryption();
+			return processEncryption();
 		} catch (NoSuchAlgorithmException e) {
 			System.out.println("No se pudo inicializar el MD");
-			}
+			return "";
+			}		
 		}
-	private void processEncryption(){
+	
+	private String processEncryption(){
 		for (int i = 0; i < byteData.length; i++) { 
 			stringBuffer.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-			} 
-		System.out.println("Encrypt: " + stringBuffer.toString()); 
+			}
+		return stringBuffer.toString();
 		}
 	
 }
