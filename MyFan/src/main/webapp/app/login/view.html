@@ -1,16 +1,21 @@
 <section id="top" class="header_ladingpage">
+  <div class="col-xs-2 col-sm-4 col-md-4"></div>
+  <div class="col-xs-10 col-sm-8 col-md-8">
+    <h1>Bienvenido a Myfan</h1>
+  </div>
     <div class="text-vertical-center">
-      <div class="col-xs-1 col-sm-3 col-md-3"></div>
-      <div class="col-xs-10 col-sm-6 col-md-6">
+      <div class="col-xs-2 col-sm-4 col-md-4"></div>
+      <div class="col-xs-4 col-sm-4 col-md-4">
         <form name="loginInputs">
-          <img src="images/refiere_logo.png" class="image-display" alt="Refiere logo">
-          <input type="text" class="form-control"
-                              name="userName"
-                              id="exampleInputEmail1"
-                              ng-model="vm.loginData.login"
-                              placeholder="Nombre de Usuario"
-                              required>
-          <h1>{{myForm.myInput.$valid}}</h1>
+          <div class="form-group" ng-class="{ 'has-error' : loginInputs.name.$invalid && !loginInputs.name.$pristine }">
+            <label>Por favor ingrese sus credenciales</label>
+            <input type="text"
+            name="name"
+            class="form-control"
+            ng-model="vm.loginData.login"  placeholder="Nombre de Usuario" required>
+            <p ng-show="loginInputs.name.$invalid && !loginInputs.name.$pristine" class="help-block">Ingrese su nombre de usuario</p>
+          </div>
+
           <input type="password" class="form-control"
                                  name="password"
                                  id="exampleInputPassword1"
@@ -20,7 +25,6 @@
           <h3 ng-hide="loginInputs.password.$valid
                        && loginInputs.userName.$valid"
                        class="text-center">
-          Por favor ingrese sus credenciales
           </h3>
           <br>
           <button ng-click="vm.login()" type="btn btn-primary btn-block button-block"
@@ -38,28 +42,22 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1 text-center">
-                <h4><strong>Refiere.co</strong>
+                <h4><strong>Myfan</strong>
                 </h4>
                 <p>San Jos&eacute; <br>Costa Rica</p>
                 <ul class="list-unstyled">
-                    <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-                    <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
+                    <li><i class="fa fa-phone fa-fw"></i> (506) 8821-1482</li>
+                    <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">grupo2espe@gmail.com</a>
                     </li>
                 </ul>
                 <br>
                 <ul class="list-inline">
                     <li>
-                        <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                        <a href="https://twitter.com/myMusic_myFan"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
                     </li>
                 </ul>
                 <hr class="small">
-                <p class="text-muted">Copyright &copy; Refiere.co 2016</p>
+                <p class="text-muted">Copyright &copy; MyMusic 2016</p>
             </div>
         </div>
     </div>

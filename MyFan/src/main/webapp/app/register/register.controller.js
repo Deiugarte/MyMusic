@@ -5,12 +5,11 @@
     .module('refiereApp.register')
     .controller('RegisterCtrl', RegisterCtrl);
 
-  RegisterCtrl.$inject = ['RegisterSrv', '$state', '$window'];
+  RegisterCtrl.$inject = ['RegisterSrv', '$state', '$window','$scope'];
 
   /* @ngInject */
-  function RegisterCtrl(RegisterSrv, $state, $window) {
+  function RegisterCtrl(RegisterSrv, $state, $window,$scope) {
     var vm = this;
-
     vm.newCompanyData = {};
     vm.saveNewCompany = saveNewCompany;
     vm.plans = {};
