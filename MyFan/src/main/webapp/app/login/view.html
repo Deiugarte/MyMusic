@@ -1,37 +1,36 @@
 <section id="top" class="header_ladingpage">
-  <div class="col-xs-2 col-sm-4 col-md-4"></div>
-  <div class="col-xs-10 col-sm-8 col-md-8">
+  <div class="col-xs-2 col-sm-4 col-md-4 col-lg-4" ></div>
+  <div class="col-xs-10 col-sm-8 col-md-8 col-lg-8">
     <h1>Bienvenido a Myfan</h1>
   </div>
     <div class="text-vertical-center">
-      <div class="col-xs-2 col-sm-4 col-md-4"></div>
-      <div class="col-xs-4 col-sm-4 col-md-4">
+      <div class="col-xs-2 col-sm-4 col-md-4 col-lg-4" ></div>
+      <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
         <form name="loginInputs">
           <div class="form-group" ng-class="{ 'has-error' : loginInputs.name.$invalid && !loginInputs.name.$pristine }">
             <label>Por favor ingrese sus credenciales</label>
-            <input type="text"
-            name="name"
-            class="form-control"
-            ng-model="vm.loginData.login"  placeholder="Nombre de Usuario" required>
-            <p ng-show="loginInputs.name.$invalid && !loginInputs.name.$pristine" class="help-block">Ingrese su nombre de usuario</p>
+            <input type="text" name="name"
+                              class="form-control"
+                              ng-model="vm.loginData.login"
+                              placeholder="Nombre de Usuario"
+                    required>
+            <p ng-show="loginInputs.name.$invalid && !loginInputs.name.$pristine" class="help-block ">Ingrese su nombre de usuario</p>
+            <input type="password" class="form-control "
+                                   name="password"
+                                   id="exampleInputPassword1"
+                                   ng-model="vm.loginData.password"
+                                   placeholder="Password"
+                                   required>
+            <p ng-show="loginInputs.password.$invalid && !loginInputs.password.$pristine" class="help-block ">Ingrese su contraseña</p>
           </div>
-
-          <input type="password" class="form-control"
-                                 name="password"
-                                 id="exampleInputPassword1"
-                                 ng-model="vm.loginData.password"
-                                 placeholder="Password"
-                                 required>
-          <h3 ng-hide="loginInputs.password.$valid
-                       && loginInputs.userName.$valid"
-                       class="text-center">
-          </h3>
           <br>
           <button ng-click="vm.login()" type="btn btn-primary btn-block button-block"
                                    class="btn btn-primary btn-block"
                                    ng-disabled="loginInputs.$invalid">
             Iniciar Sesi&oacute;n
           </button>
+          <br>
+          <a ui-sref="register" type="button" class="btn btn-primary btn-block">Registrarse</a>
         </form>
       </div>
       <div class="col-xs-1 col-sm-3 col-md-3"></div>
@@ -47,7 +46,7 @@
                 <p>San Jos&eacute; <br>Costa Rica</p>
                 <ul class="list-unstyled">
                     <li><i class="fa fa-phone fa-fw"></i> (506) 8821-1482</li>
-                    <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">grupo2espe@gmail.com</a>
+                    <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:grupo2espe@gmail.com">grupo2espe@gmail.com</a>
                     </li>
                 </ul>
                 <br>

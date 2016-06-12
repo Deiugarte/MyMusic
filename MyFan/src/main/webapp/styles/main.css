@@ -57,7 +57,9 @@ input.ng-invalid.ng-touched{
   border: 3px solid #FA787E;
   }
 
-
+.error-font{
+   color: red;
+}
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
