@@ -1,0 +1,97 @@
+<!-- Header -->
+<section id="top" class="header_ladingpage">
+    <div class="text-vertical-center">
+      <div class="col-xs-1 col-sm-3 col-md-3 col-lg-3"></div>
+      <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6">
+        <label>Click me to toggle: <input type="checkbox" ng-model="checked"></label><br/>
+        <form submit="vm.saveNewCompany()" name="newCompanyForm" ng-show="checked" ng-controller="RegisterCtrl">
+          <input type="text" class="form-control" name="username"
+                             ng-model="vm.newCompanyData.UserRequest.login"
+                             placeholder="Nombre"
+                             ng-minlength="3" ng-maxlength="8"
+                             required>
+          <p ng-show="newCompanyForm.username.$error.minlength" class="help-block">Nombre de usuario muy corto</p>
+          <p ng-show="newCompanyForm.username.$error.maxlength" class="help-block">Nombre de usuario muy largo</p>
+        <input type="password" placeholder="Introduzca su contraseña"
+                          class="form-control"
+                          name="newPassword"
+                          ng-model="vm.newCompanyData.password"
+                          ng-minlength="3" ng-maxlength="8"
+                          required/>
+          <p ng-show="newCompanyForm.password.$error.minlength" class="help-block">Contraseña muy corta</p>
+          <p ng-show="newCompanyForm.password.$error.maxlength" class="help-block">Contraseña  muy larga</p>
+          <div class="clearfix">
+            <div ng-messages="newCompanyForm.newPassword.$error" ng-if="newCompanyForm.$submitted || newCompanyForm.newPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                <div ng-message="required" class="message slide-left">No se han introducido datos</div>
+                <div ng-message="passwordMatch" class="message slide-left">Las contraseñas no coinciden</div>
+            </div>
+          </div>
+    <input type="password" placeholder="Confirme su contraseña"
+              class="form-control"
+              name="confirmPassword"
+              ng-model="password.confirm"
+              match-password="newPassword"
+              required/>
+    <div class="clearfix">
+      <div ng-messages="newCompanyForm.confirmPassword.$error" ng-if="newCompanyForm.$submitted || newCompanyForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+        <div ng-message="required" class="message slide-left">No se han introducido datos</div>
+        <div ng-message="passwordMatch" class="message slide-left">Las contraseñas no coinciden</div>
+      </div>
+    </div>
+          <input type="text" class="form-control"
+                             ng-model="vm.newCompanyData.name"
+                             placeholder="Nombre de la compañía"
+                             required>
+          <input type="text" class="form-control"
+                             ng-model="vm.newCompanyData.address"
+                             placeholder="Dirección física"
+                             required>
+          <div class="form-group" ng-class="{ 'has-error' : newCompanyForm.email.$invalid && !newCompanyForm.email.$pristine }">
+          <input type="email" class="form-control"
+                              name="email"
+                              ng-model="vm.newCompanyData.email"
+                              placeholder="Correo Electrónico"
+                              required>
+          <p ng-show="newCompanyForm.email.$invalid && !newCompanyForm.email.$pristine" class="help-block">Introduzca un correo valido</p>
+          </div>
+          <input type="text" class="form-control"
+                             ng-model="vm.newCompanyData.telephone"
+                             placeholder="Teléfono"
+                             required>
+
+          <button type="button" class="btn btn-primary btn-block button-block btn-margin"
+                                ng-click="vm.saveNewCompany()"
+                                ng-disabled="newCompanyForm.$invalid ">
+          Register Company
+          </button>
+        </form>
+      </div>
+      <div class="col-xs-1 col-sm-3 col-md-3"></div>
+   </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 text-center">
+                <h4><strong>Myfan</strong>
+                </h4>
+                <p>San Jos&eacute; <br>Costa Rica</p>
+                <ul class="list-unstyled">
+                    <li><i class="fa fa-phone fa-fw"></i> (506) 8821-1482</li>
+                    <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">grupo2espe@gmail.com</a>
+                    </li>
+                </ul>
+                <br>
+                <ul class="list-inline">
+                    <li>
+                        <a href="https://twitter.com/myMusic_myFan"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                    </li>
+                </ul>
+                <hr class="small">
+                <p class="text-muted">Copyright &copy; MyMusic 2016</p>
+            </div>
+        </div>
+    </div>
+</footer>

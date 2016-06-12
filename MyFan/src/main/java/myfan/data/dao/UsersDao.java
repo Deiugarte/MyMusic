@@ -60,14 +60,8 @@ public class UsersDao extends UsersHome {
         java.util.List results = query.list();
         System.out.println("Result list: " + results.size());
         Users instance = (results != null && results.size() == 1) ? (Users) results.get(0) : null;
-        UsersRoles roles = instance.getUsersRoles();
-        System.out.println("UserRoles: " + roles.getRoleName());
         trans.commit();
-        if (instance == null) {
-            log.debug("get successful, no instance found");
-        } else {
-            log.debug("get successful, instance found");
-        }
+        log.debug("get successful, instance found");
         return instance;
     } catch (RuntimeException re) {
         log.error("get failed", re);

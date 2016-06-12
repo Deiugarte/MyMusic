@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 import org.eclipse.jetty.util.StringUtil;
-import org.hibernate.type.descriptor.java.JavaTypeDescriptorRegistry.FallbackJavaTypeDescriptor;
 
 import com.google.common.io.BaseEncoding;
 
 import myfan.data.dao.UsersDao;
 import myfan.data.models.Users;
+
 
 
 public class AuthenticationService {
@@ -53,5 +53,6 @@ public class AuthenticationService {
     }
 
     private boolean checkPassword(String password, String password2) {
+      System.out.println("base:"+password+"ingresada:"+password2);
         return password.equals(password2);
     }}
