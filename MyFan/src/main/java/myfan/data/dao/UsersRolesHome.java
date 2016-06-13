@@ -11,6 +11,8 @@ import org.hibernate.criterion.Example;
 
 import myfan.data.models.UsersRoles;
 
+
+
 /**
  * Home object for domain model class UsersRoles.
  * @see myfan.data.models.UsersRoles
@@ -87,7 +89,7 @@ public class UsersRolesHome {
     }
   }
 
-  public UsersRoles findById(java.lang.Integer id) {
+  public UsersRoles findById(int id) {
     log.debug("getting UsersRoles instance with id: " + id);
     try {
       UsersRoles instance = (UsersRoles) sessionFactory.getCurrentSession().get("myfan.dao.temp.UsersRoles", id);
