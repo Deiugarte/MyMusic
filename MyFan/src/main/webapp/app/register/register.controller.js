@@ -13,8 +13,36 @@
     vm.newCompanyData = {};
     vm.saveNewCompany = saveNewCompany;
     vm.plans = {};
+    vm.data = {
+    repeatSelect: null,
+    availableOptions: [
+      {id: '1', name: 'Costa Rica'},
+      {id: '2', name: 'Panama'},
+      {id: '3', name: 'Nicaragua'}
+    ],
+   };
+
+
+     $scope.dateOptions = {
+       showWeeks: false,
+       datepickerMode:"year"
+     };
+     $scope.open1 = function() {
+        $scope.popup1.opened = true;
+      };
+
+      $scope.popup1 = {
+        opened: false
+      };
+
+
+
+
+
+
 
     getPlans();
+
 
     function getPlans() {
       RegisterSrv.getPlansFromServer()
