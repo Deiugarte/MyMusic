@@ -1,5 +1,5 @@
 package myfan.data.dao;
-// Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -10,7 +10,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
 import myfan.data.models.UsersGenres;
-import myfan.data.models.UsersGenresId;
 
 /**
  * Home object for domain model class UsersGenres.
@@ -88,7 +87,7 @@ public class UsersGenresHome {
     }
   }
 
-  public UsersGenres findById(myfan.data.models.UsersGenresId id) {
+  public UsersGenres findById(int id) {
     log.debug("getting UsersGenres instance with id: " + id);
     try {
       UsersGenres instance = (UsersGenres) sessionFactory.getCurrentSession().get("myfan.dao.temp.UsersGenres", id);

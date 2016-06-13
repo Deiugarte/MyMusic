@@ -1,5 +1,5 @@
 package myfan.data.models;
-// Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -27,13 +27,12 @@ public class Users implements java.io.Serializable {
   }
 
   public Users(Ubications ubications, UsersRoles usersRoles, String username, String password, String name,
-      String image, Date creationDate, Date birthday) {
+      Date creationDate, Date birthday) {
     this.ubications = ubications;
     this.usersRoles = usersRoles;
     this.username = username;
     this.password = password;
     this.name = name;
-    this.image = image;
     this.creationDate = creationDate;
     this.birthday = birthday;
   }

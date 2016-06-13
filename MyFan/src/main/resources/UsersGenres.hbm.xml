@@ -1,22 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1 -->
+<!-- Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
     <class name="myfan.data.models.UsersGenres" table="users_genres" catalog="myfan" optimistic-lock="version">
-        <composite-id name="id" class="myfan.data.models.UsersGenresId">
-            <key-property name="idUser" type="int">
-                <column name="idUser" />
-            </key-property>
-            <key-property name="idGenre" type="int">
-                <column name="idGenre" />
-            </key-property>
-        </composite-id>
-        <many-to-one name="genres" class="myfan.data.models.Genres" update="false" insert="false" fetch="select">
-            <column name="idGenre" not-null="true" unique="true" />
+        <id name="usersGenresId" type="int">
+            <column name="UsersGenresId" />
+            <generator class="identity"/>
+        </id>
+        <many-to-one name="genres" class="myfan.data.models.Genres" fetch="select">
+            <column name="idGenre" not-null="true" />
         </many-to-one>
-        <many-to-one name="users" class="myfan.data.models.Users" update="false" insert="false" fetch="select">
-            <column name="idUser" not-null="true" unique="true" />
+        <many-to-one name="users" class="myfan.data.models.Users" fetch="select">
+            <column name="idUser" not-null="true" />
         </many-to-one>
     </class>
 </hibernate-mapping>

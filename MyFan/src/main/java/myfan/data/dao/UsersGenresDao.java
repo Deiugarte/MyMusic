@@ -5,12 +5,12 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import myfan.data.models.Members;
+import myfan.data.models.UsersGenres;
 import myfan.resources.util.HibernateUtil;
 
-public class MembersDao extends MembersHome {
+public class UsersGenresDao extends UsersGenresHome{
 
-  private static final Log log = LogFactory.getLog(MembersDao.class);
+  private static final Log log = LogFactory.getLog(UsersGenresDao.class);
   private final SessionFactory sessionFactory = getSessionFactory();
 
   @Override
@@ -23,25 +23,18 @@ public class MembersDao extends MembersHome {
       }
   }
   
-  public void save(Members Members){
+  public void save(UsersGenres UsersGenres){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      persist(Members);
+      merge(UsersGenres);
       trans.commit();
   }
 
-  public Members getMembersById(int id) {
-      Session session = sessionFactory.getCurrentSession();
-      org.hibernate.Transaction trans= session.beginTransaction();
-      Members instance = findById(id);
-      trans.commit();
-      return instance;
-  }
 
-  public void deleteMembers(Members Members) {
+  public void deleteUsersGenres(UsersGenres UsersGenres) {
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      delete(Members);
+      delete(UsersGenres);
       trans.commit();
   }
 }

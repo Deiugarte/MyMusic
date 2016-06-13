@@ -25,9 +25,7 @@
         <property name="hibernate.validator.apply_to_ddl">false</property>
         
         
-        
-        
-        <mapping resource="Ubications.hbm.xml" />
+        <mapping resource="Users.hbm.xml" />
         <mapping resource="EventsCalifications.hbm.xml" />
         <mapping resource="News.hbm.xml" />
         <mapping resource="Artists.hbm.xml" />
@@ -39,8 +37,8 @@
         <mapping resource="Fanatics.hbm.xml" />
         <mapping resource="Members.hbm.xml" />
         <mapping resource="DiscsCalifications.hbm.xml" />
-        <mapping resource="Users.hbm.xml" />
         <mapping resource="Genres.hbm.xml" />
         <mapping resource="UsersGenres.hbm.xml" />
+        <mapping resource="Ubications.hbm.xml" />
     </session-factory>
 </hibernate-configuration>
