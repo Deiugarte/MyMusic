@@ -26,7 +26,7 @@ public class FanaticsGenresDao extends FanaticsGenresHome {
   public void save(FanaticsGenres FanaticsGenres){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      persist(FanaticsGenres);
+      merge(FanaticsGenres);
       trans.commit();
   }
 

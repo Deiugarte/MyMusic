@@ -29,7 +29,7 @@ public class UsersDao extends UsersHome {
   public void save(Users Users){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      persist(Users);
+      merge(Users);
       trans.commit();
   }
 

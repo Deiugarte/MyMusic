@@ -3,7 +3,7 @@ package myfan.domain;
 import java.awt.Image;
 import java.util.ArrayList;
 
-public class Artist  extends User {
+public class Artist  {
 
 	private String biographyArtist;
 	private ArrayList <String> members;
@@ -18,7 +18,7 @@ public class Artist  extends User {
 	public Artist(String nameUser, String birthDate, String gender, String login, String password,
 			String countryLocation, Image profilePicture, ArrayList<MusicalGenre> musisicalGenres, 
 			String biographyArtist,  ArrayList<String> members) {
-		super(nameUser, birthDate, gender, login, password, countryLocation, profilePicture, musisicalGenres);
+		
 		// TODO Auto-generated constructor stub
 		this.biographyArtist=biographyArtist;
 		this.members=members;

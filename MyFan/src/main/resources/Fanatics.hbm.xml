@@ -6,7 +6,7 @@
     <class name="myfan.data.models.Fanatics" table="fanatics" catalog="myfan" optimistic-lock="version">
         <id name="fanaticId" type="int">
             <column name="FanaticId" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="users" class="myfan.data.models.Users" fetch="select">
             <column name="UserId" not-null="true" />

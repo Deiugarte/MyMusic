@@ -2,9 +2,12 @@ package myfan.data.dao;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
+import myfan.data.models.Users;
 import myfan.data.models.UsersRoles;
 import myfan.resources.util.HibernateUtil;
 
@@ -43,5 +46,26 @@ public class UsersRolesDao extends UsersRolesHome {
       org.hibernate.Transaction trans= session.beginTransaction();
       delete(UsersRoles);
       trans.commit();
+  }
+  
+  public UsersRoles findByRoleName(String roleName) {
+	    log.debug("getting RefiereUser instance with username: " + roleName);
+	    try {
+	        Session session = sessionFactory.openSession();
+	        org.hibernate.Transaction trans= session.beginTransaction();
+	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+	            log.debug(" >>> Transaction close.");
+	        Query query = session.createQuery("from UsersRoles where rolename = :rolename");
+	        query.setParameter("rolename", roleName);
+	        java.util.List results = query.list();
+	        System.out.println("Result list: " + results.size());
+	        UsersRoles instance = (results != null && results.size() == 1) ? (UsersRoles) results.get(0) : null;
+	        trans.commit();
+	        log.debug("get successful, instance found");
+	        return instance;
+	    } catch (RuntimeException re) {
+	        log.error("get failed", re);
+	        throw re;
+	    }
   }
 }
