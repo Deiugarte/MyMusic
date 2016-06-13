@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<!-- Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
     <class name="myfan.data.models.Artists" table="artists" catalog="myfan" optimistic-lock="version">
-        <id name="artistId" type="int">
+        <id name="artistId" type="java.lang.Integer">
             <column name="ArtistId" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
-        <many-to-one name="genres" class="myfan.data.models.Genres" fetch="select">
-            <column name="Genre" not-null="true" />
-        </many-to-one>
         <many-to-one name="users" class="myfan.data.models.Users" fetch="select">
             <column name="UserId" not-null="true" />
         </many-to-one>
@@ -40,6 +37,12 @@
                 <column name="Artist" not-null="true" />
             </key>
             <one-to-many class="myfan.data.models.Events" />
+        </set>
+        <set name="discses" table="discs" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Artist" not-null="true" />
+            </key>
+            <one-to-many class="myfan.data.models.Discs" />
         </set>
     </class>
 </hibernate-mapping>

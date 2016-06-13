@@ -50,6 +50,9 @@ button {
     -o-background-size: cover;
 }
 
+.form-inline{
+  display: inline-block;
+}
 .about {
   padding: 5% 0 5% 0;
 }

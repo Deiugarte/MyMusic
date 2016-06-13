@@ -5,18 +5,51 @@
       <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6">
         <label>Click me to toggle: <input type="checkbox" ng-model="checked"></label><br/>
         <form submit="vm.saveNewCompany()" name="newCompanyForm" ng-show="checked" ng-controller="RegisterCtrl">
+          <strong> Ingrese su nombre completo: </strong>
+          <input type="text" class="form-control" name="name"
+                             ng-model="vm.newCompanyData.UserRequest.name"
+                             placeholder="Nombre completo"
+                             ng-minlength="1" ng-maxlength="30"
+                             required>
+          <p ng-show="newCompanyForm.name.$error.minlength" class="help-block">Nombre muy corto</p>
+          <p ng-show="newCompanyForm.name.$error.maxlength" class="help-block">Nombre muy largo</p>
+          <div >
+          <strong> Introduzca su fecha de nacimiento: </strong>
+              <p class="input-group">
+                <input type="text" class="form-control" name=date placeholder="Fecha de Nacimiento" uib-datepicker-popup="dd-MM-yyyy" ng-model="vm.date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Cerrar" alt-input-formats="altInputFormats" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="fa fa-calendar"></i></button>
+                  </span>
+              </p>
+              <div ng-messages="newCompanyForm.date.$error" ng-if="newCompanyForm.date.$submitted || newCompanyForm.date.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                  <div ng-message="required" class="message slide-left">No se han introducido datos</div>
+              </div>
+             </div>
+          <label class="radio-inline">
+          <strong>Seleccione su genero: </strong>
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="genderRadio" id="genderMen" ng-model= "vm.gender"value="men"> Hombre
+          </label>
+          <label class="radio-inline">
+            <input type="radio" name="genderRadio" id="genderWomen" ng-model= "vm.gender" value="women"> Mujer
+          </label>
+          <br>
+
+          <strong>Ingrese su nombre de usuario: </strong>
           <input type="text" class="form-control" name="username"
                              ng-model="vm.newCompanyData.UserRequest.login"
                              placeholder="Nombre"
-                             ng-minlength="3" ng-maxlength="8"
+                             ng-minlength="4" ng-maxlength="12"
                              required>
           <p ng-show="newCompanyForm.username.$error.minlength" class="help-block">Nombre de usuario muy corto</p>
           <p ng-show="newCompanyForm.username.$error.maxlength" class="help-block">Nombre de usuario muy largo</p>
+        <strong>Ingrese su contraseña: </strong>
         <input type="password" placeholder="Introduzca su contraseña"
                           class="form-control"
                           name="newPassword"
                           ng-model="vm.newCompanyData.password"
-                          ng-minlength="3" ng-maxlength="8"
+                          ng-minlength="4" ng-maxlength="8"
                           required/>
           <p ng-show="newCompanyForm.password.$error.minlength" class="help-block">Contraseña muy corta</p>
           <p ng-show="newCompanyForm.password.$error.maxlength" class="help-block">Contraseña  muy larga</p>
@@ -25,6 +58,7 @@
                 <div ng-message="required" class="message slide-left">No se han introducido datos</div>
                 <div ng-message="passwordMatch" class="message slide-left">Las contraseñas no coinciden</div>
             </div>
+          <strong>Confirme su contraseña: </strong>
           </div>
     <input type="password" placeholder="Confirme su contraseña"
               class="form-control"
@@ -38,6 +72,14 @@
         <div ng-message="passwordMatch" class="message slide-left">Las contraseñas no coinciden</div>
       </div>
     </div>
+    <label for="countrySelect"> Seleccione su pais: </label>
+    <select name="countrySelect" id="countrySelect" ng-model="vm.data.repeatSelect" required>
+      <option ng-repeat="option in vm.data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+    </select>
+    <div ng-messages="newCompanyForm.countrySelect.$error" ng-if="newCompanyForm.$submitted || newCompanyForm.countrySelect.$pristine" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+      <div ng-message="required" class="message slide-left">No se ha introducido el pais</div>
+    </div>
+
           <input type="text" class="form-control"
                              ng-model="vm.newCompanyData.name"
                              placeholder="Nombre de la compañía"

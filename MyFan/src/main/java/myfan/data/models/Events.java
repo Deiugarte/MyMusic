@@ -1,5 +1,5 @@
 package myfan.data.models;
-// Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -10,7 +10,7 @@ import java.util.Set;
  */
 public class Events implements java.io.Serializable {
 
-  private int eventId;
+  private Integer eventId;
   private Artists artists;
   private Ubications ubications;
   private String tittle;
@@ -22,8 +22,7 @@ public class Events implements java.io.Serializable {
   public Events() {
   }
 
-  public Events(int eventId, Artists artists, Ubications ubications, String tittle, Date eventDate, boolean type) {
-    this.eventId = eventId;
+  public Events(Artists artists, Ubications ubications, String tittle, Date eventDate, boolean type) {
     this.artists = artists;
     this.ubications = ubications;
     this.tittle = tittle;
@@ -31,9 +30,8 @@ public class Events implements java.io.Serializable {
     this.type = type;
   }
 
-  public Events(int eventId, Artists artists, Ubications ubications, String tittle, Date eventDate, String content,
-      boolean type, Set eventsCalificationses) {
-    this.eventId = eventId;
+  public Events(Artists artists, Ubications ubications, String tittle, Date eventDate, String content, boolean type,
+      Set eventsCalificationses) {
     this.artists = artists;
     this.ubications = ubications;
     this.tittle = tittle;
@@ -43,11 +41,11 @@ public class Events implements java.io.Serializable {
     this.eventsCalificationses = eventsCalificationses;
   }
 
-  public int getEventId() {
+  public Integer getEventId() {
     return this.eventId;
   }
 
-  public void setEventId(int eventId) {
+  public void setEventId(Integer eventId) {
     this.eventId = eventId;
   }
 

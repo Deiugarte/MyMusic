@@ -1,5 +1,5 @@
 package myfan.data.dao;
-// Generated May 29, 2016 3:19:22 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -9,16 +9,17 @@ import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
-import myfan.data.models.FanaticsGenres;
+import myfan.data.models.UsersGenres;
+import myfan.data.models.UsersGenresId;
 
 /**
- * Home object for domain model class FanaticsGenres.
- * @see myfan.data.models.FanaticsGenres
+ * Home object for domain model class UsersGenres.
+ * @see myfan.data.models.UsersGenres
  * @author Hibernate Tools
  */
-public class FanaticsGenresHome {
+public class UsersGenresHome {
 
-  private static final Log log = LogFactory.getLog(FanaticsGenresHome.class);
+  private static final Log log = LogFactory.getLog(UsersGenresHome.class);
 
   private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -31,8 +32,8 @@ public class FanaticsGenresHome {
     }
   }
 
-  public void persist(FanaticsGenres transientInstance) {
-    log.debug("persisting FanaticsGenres instance");
+  public void persist(UsersGenres transientInstance) {
+    log.debug("persisting UsersGenres instance");
     try {
       sessionFactory.getCurrentSession().persist(transientInstance);
       log.debug("persist successful");
@@ -42,8 +43,8 @@ public class FanaticsGenresHome {
     }
   }
 
-  public void attachDirty(FanaticsGenres instance) {
-    log.debug("attaching dirty FanaticsGenres instance");
+  public void attachDirty(UsersGenres instance) {
+    log.debug("attaching dirty UsersGenres instance");
     try {
       sessionFactory.getCurrentSession().saveOrUpdate(instance);
       log.debug("attach successful");
@@ -53,8 +54,8 @@ public class FanaticsGenresHome {
     }
   }
 
-  public void attachClean(FanaticsGenres instance) {
-    log.debug("attaching clean FanaticsGenres instance");
+  public void attachClean(UsersGenres instance) {
+    log.debug("attaching clean UsersGenres instance");
     try {
       sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
       log.debug("attach successful");
@@ -64,8 +65,8 @@ public class FanaticsGenresHome {
     }
   }
 
-  public void delete(FanaticsGenres persistentInstance) {
-    log.debug("deleting FanaticsGenres instance");
+  public void delete(UsersGenres persistentInstance) {
+    log.debug("deleting UsersGenres instance");
     try {
       sessionFactory.getCurrentSession().delete(persistentInstance);
       log.debug("delete successful");
@@ -75,10 +76,10 @@ public class FanaticsGenresHome {
     }
   }
 
-  public FanaticsGenres merge(FanaticsGenres detachedInstance) {
-    log.debug("merging FanaticsGenres instance");
+  public UsersGenres merge(UsersGenres detachedInstance) {
+    log.debug("merging UsersGenres instance");
     try {
-      FanaticsGenres result = (FanaticsGenres) sessionFactory.getCurrentSession().merge(detachedInstance);
+      UsersGenres result = (UsersGenres) sessionFactory.getCurrentSession().merge(detachedInstance);
       log.debug("merge successful");
       return result;
     } catch (RuntimeException re) {
@@ -87,11 +88,10 @@ public class FanaticsGenresHome {
     }
   }
 
-  public FanaticsGenres findById(int id) {
-    log.debug("getting FanaticsGenres instance with id: " + id);
+  public UsersGenres findById(myfan.data.models.UsersGenresId id) {
+    log.debug("getting UsersGenres instance with id: " + id);
     try {
-      FanaticsGenres instance = (FanaticsGenres) sessionFactory.getCurrentSession().get("myfan.dao.temp.FanaticsGenres",
-          id);
+      UsersGenres instance = (UsersGenres) sessionFactory.getCurrentSession().get("myfan.dao.temp.UsersGenres", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -104,10 +104,10 @@ public class FanaticsGenresHome {
     }
   }
 
-  public List findByExample(FanaticsGenres instance) {
-    log.debug("finding FanaticsGenres instance by example");
+  public List findByExample(UsersGenres instance) {
+    log.debug("finding UsersGenres instance by example");
     try {
-      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.FanaticsGenres")
+      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.UsersGenres")
           .add(Example.create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;

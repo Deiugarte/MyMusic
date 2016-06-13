@@ -26,10 +26,9 @@
         
         
         
-         <mapping resource="Users.hbm.xml" />
+        
         <mapping resource="Ubications.hbm.xml" />
         <mapping resource="EventsCalifications.hbm.xml" />
-        <mapping resource="FanaticsGenres.hbm.xml" />
         <mapping resource="News.hbm.xml" />
         <mapping resource="Artists.hbm.xml" />
         <mapping resource="Events.hbm.xml" />
@@ -40,6 +39,8 @@
         <mapping resource="Fanatics.hbm.xml" />
         <mapping resource="Members.hbm.xml" />
         <mapping resource="DiscsCalifications.hbm.xml" />
+        <mapping resource="Users.hbm.xml" />
         <mapping resource="Genres.hbm.xml" />
+        <mapping resource="UsersGenres.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

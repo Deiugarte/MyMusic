@@ -1,5 +1,5 @@
 package myfan.data.models;
-// Generated May 29, 2016 3:56:57 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import java.util.Set;
  */
 public class Ubications implements java.io.Serializable {
 
-  private int ubicationId;
+  private Integer ubicationId;
   private String name;
   private Set eventses = new HashSet(0);
   private Set userses = new HashSet(0);
@@ -17,23 +17,21 @@ public class Ubications implements java.io.Serializable {
   public Ubications() {
   }
 
-  public Ubications(int ubicationId, String name) {
-    this.ubicationId = ubicationId;
+  public Ubications(String name) {
     this.name = name;
   }
 
-  public Ubications(int ubicationId, String name, Set eventses, Set userses) {
-    this.ubicationId = ubicationId;
+  public Ubications(String name, Set eventses, Set userses) {
     this.name = name;
     this.eventses = eventses;
     this.userses = userses;
   }
 
-  public int getUbicationId() {
+  public Integer getUbicationId() {
     return this.ubicationId;
   }
 
-  public void setUbicationId(int ubicationId) {
+  public void setUbicationId(Integer ubicationId) {
     this.ubicationId = ubicationId;
   }
 

@@ -21,6 +21,7 @@ public class AuthenticationResource {
   @Path("/login")
   public Response authenticate(LoginRequest credentials) {
 	  return  facadeLogic.logIn(credentials);
+
   }
 
 }

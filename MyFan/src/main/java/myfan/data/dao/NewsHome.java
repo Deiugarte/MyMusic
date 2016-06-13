@@ -1,5 +1,5 @@
 package myfan.data.dao;
-// Generated May 29, 2016 3:19:22 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -87,7 +87,7 @@ public class NewsHome {
     }
   }
 
-  public News findById(int id) {
+  public News findById(java.lang.Integer id) {
     log.debug("getting News instance with id: " + id);
     try {
       News instance = (News) sessionFactory.getCurrentSession().get("myfan.dao.temp.News", id);
