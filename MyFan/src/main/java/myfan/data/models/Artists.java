@@ -1,5 +1,5 @@
 package myfan.data.models;
-// Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,51 +9,40 @@ import java.util.Set;
  */
 public class Artists implements java.io.Serializable {
 
-  private int artistId;
-  private Genres genres;
+  private Integer artistId;
   private Users users;
   private int followers;
   private Set artistsCalificationses = new HashSet(0);
   private Set newses = new HashSet(0);
   private Set memberses = new HashSet(0);
   private Set eventses = new HashSet(0);
+  private Set discses = new HashSet(0);
 
   public Artists() {
   }
 
-  public Artists(int artistId, Genres genres, Users users, int followers) {
-    this.artistId = artistId;
-    this.genres = genres;
+  public Artists(Users users, int followers) {
     this.users = users;
     this.followers = followers;
   }
 
-  public Artists(int artistId, Genres genres, Users users, int followers, Set artistsCalificationses, Set newses,
-      Set memberses, Set eventses) {
-    this.artistId = artistId;
-    this.genres = genres;
+  public Artists(Users users, int followers, Set artistsCalificationses, Set newses, Set memberses, Set eventses,
+      Set discses) {
     this.users = users;
     this.followers = followers;
     this.artistsCalificationses = artistsCalificationses;
     this.newses = newses;
     this.memberses = memberses;
     this.eventses = eventses;
+    this.discses = discses;
   }
 
-  public int getArtistId() {
+  public Integer getArtistId() {
     return this.artistId;
   }
 
-  public void setArtistId(int artistId) {
+  public void setArtistId(Integer artistId) {
     this.artistId = artistId;
-  }
-
-  public Genres getGenres() {
-    return this.genres;
-  }
-
-  public void setGenres(Genres genres) {
-    this.genres = genres;
   }
 
   public Users getUsers() {
@@ -102,6 +91,14 @@ public class Artists implements java.io.Serializable {
 
   public void setEventses(Set eventses) {
     this.eventses = eventses;
+  }
+
+  public Set getDiscses() {
+    return this.discses;
+  }
+
+  public void setDiscses(Set discses) {
+    this.discses = discses;
   }
 
 }

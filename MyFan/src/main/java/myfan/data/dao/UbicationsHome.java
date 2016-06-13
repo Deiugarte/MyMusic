@@ -1,5 +1,5 @@
 package myfan.data.dao;
-// Generated May 29, 2016 3:56:58 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -87,7 +87,7 @@ public class UbicationsHome {
     }
   }
 
-  public Ubications findById(int id) {
+  public Ubications findById(java.lang.Integer id) {
     log.debug("getting Ubications instance with id: " + id);
     try {
       Ubications instance = (Ubications) sessionFactory.getCurrentSession().get("myfan.dao.temp.Ubications", id);

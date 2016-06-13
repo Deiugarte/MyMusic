@@ -1,15 +1,18 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<!-- Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
     <class name="myfan.data.models.ArtistsCalifications" table="artists_califications" catalog="myfan" optimistic-lock="version">
-        <id name="artistCalificationId" type="int">
+        <id name="artistCalificationId" type="java.lang.Integer">
             <column name="ArtistCalificationId" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="artists" class="myfan.data.models.Artists" fetch="select">
             <column name="Artist" not-null="true" />
+        </many-to-one>
+        <many-to-one name="fanatics" class="myfan.data.models.Fanatics" fetch="select">
+            <column name="Reviewer" not-null="true" />
         </many-to-one>
         <property name="calification" type="int">
             <column name="Calification" not-null="true" />

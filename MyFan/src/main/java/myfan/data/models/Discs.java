@@ -1,5 +1,5 @@
 package myfan.data.models;
-// Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -10,9 +10,9 @@ import java.util.Set;
  */
 public class Discs implements java.io.Serializable {
 
-  private int discId;
+  private Integer discId;
+  private Artists artists;
   private Genres genres;
-  private int artist;
   private String name;
   private String description;
   private Date releaseYear;
@@ -23,20 +23,18 @@ public class Discs implements java.io.Serializable {
   public Discs() {
   }
 
-  public Discs(int discId, Genres genres, int artist, String name, String description, Date releaseYear) {
-    this.discId = discId;
+  public Discs(Artists artists, Genres genres, String name, String description, Date releaseYear) {
+    this.artists = artists;
     this.genres = genres;
-    this.artist = artist;
     this.name = name;
     this.description = description;
     this.releaseYear = releaseYear;
   }
 
-  public Discs(int discId, Genres genres, int artist, String name, String description, Date releaseYear, String label,
+  public Discs(Artists artists, Genres genres, String name, String description, Date releaseYear, String label,
       Set discsCalificationses, Set songses) {
-    this.discId = discId;
+    this.artists = artists;
     this.genres = genres;
-    this.artist = artist;
     this.name = name;
     this.description = description;
     this.releaseYear = releaseYear;
@@ -45,12 +43,20 @@ public class Discs implements java.io.Serializable {
     this.songses = songses;
   }
 
-  public int getDiscId() {
+  public Integer getDiscId() {
     return this.discId;
   }
 
-  public void setDiscId(int discId) {
+  public void setDiscId(Integer discId) {
     this.discId = discId;
+  }
+
+  public Artists getArtists() {
+    return this.artists;
+  }
+
+  public void setArtists(Artists artists) {
+    this.artists = artists;
   }
 
   public Genres getGenres() {
@@ -59,14 +65,6 @@ public class Discs implements java.io.Serializable {
 
   public void setGenres(Genres genres) {
     this.genres = genres;
-  }
-
-  public int getArtist() {
-    return this.artist;
-  }
-
-  public void setArtist(int artist) {
-    this.artist = artist;
   }
 
   public String getName() {

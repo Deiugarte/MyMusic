@@ -1,27 +1,36 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<!-- Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
     <class name="myfan.data.models.Fanatics" table="fanatics" catalog="myfan" optimistic-lock="version">
-        <id name="fanaticId" type="int">
+        <id name="fanaticId" type="java.lang.Integer">
             <column name="FanaticId" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="users" class="myfan.data.models.Users" fetch="select">
             <column name="UserId" not-null="true" />
         </many-to-one>
-        <property name="birthday" type="date">
-            <column name="Birthday" length="10" not-null="true" />
-        </property>
         <property name="sex" type="boolean">
             <column name="Sex" not-null="true" />
         </property>
-        <set name="fanaticsGenreses" table="fanatics_genres" inverse="true" lazy="true" fetch="select">
+        <set name="eventsCalificationses" table="events_califications" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="idFanatic" not-null="true" />
+                <column name="Reviewer" not-null="true" />
             </key>
-            <one-to-many class="myfan.data.models.FanaticsGenres" />
+            <one-to-many class="myfan.data.models.EventsCalifications" />
+        </set>
+        <set name="artistsCalificationses" table="artists_califications" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Reviewer" not-null="true" />
+            </key>
+            <one-to-many class="myfan.data.models.ArtistsCalifications" />
+        </set>
+        <set name="discsCalificationses" table="discs_califications" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Reviewer" />
+            </key>
+            <one-to-many class="myfan.data.models.DiscsCalifications" />
         </set>
     </class>
 </hibernate-mapping>

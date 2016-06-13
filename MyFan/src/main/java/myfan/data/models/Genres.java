@@ -1,5 +1,5 @@
 package myfan.data.models;
-// Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,33 +9,29 @@ import java.util.Set;
  */
 public class Genres implements java.io.Serializable {
 
-  private int genreId;
+  private Integer genreId;
   private String name;
-  private FanaticsGenres fanaticsGenres;
+  private Set usersGenreses = new HashSet(0);
   private Set discses = new HashSet(0);
-  private Set artistses = new HashSet(0);
 
   public Genres() {
   }
 
-  public Genres(int genreId, String name) {
-    this.genreId = genreId;
+  public Genres(String name) {
     this.name = name;
   }
 
-  public Genres(int genreId, String name, FanaticsGenres fanaticsGenres, Set discses, Set artistses) {
-    this.genreId = genreId;
+  public Genres(String name, Set usersGenreses, Set discses) {
     this.name = name;
-    this.fanaticsGenres = fanaticsGenres;
+    this.usersGenreses = usersGenreses;
     this.discses = discses;
-    this.artistses = artistses;
   }
 
-  public int getGenreId() {
+  public Integer getGenreId() {
     return this.genreId;
   }
 
-  public void setGenreId(int genreId) {
+  public void setGenreId(Integer genreId) {
     this.genreId = genreId;
   }
 
@@ -47,12 +43,12 @@ public class Genres implements java.io.Serializable {
     this.name = name;
   }
 
-  public FanaticsGenres getFanaticsGenres() {
-    return this.fanaticsGenres;
+  public Set getUsersGenreses() {
+    return this.usersGenreses;
   }
 
-  public void setFanaticsGenres(FanaticsGenres fanaticsGenres) {
-    this.fanaticsGenres = fanaticsGenres;
+  public void setUsersGenreses(Set usersGenreses) {
+    this.usersGenreses = usersGenreses;
   }
 
   public Set getDiscses() {
@@ -61,14 +57,6 @@ public class Genres implements java.io.Serializable {
 
   public void setDiscses(Set discses) {
     this.discses = discses;
-  }
-
-  public Set getArtistses() {
-    return this.artistses;
-  }
-
-  public void setArtistses(Set artistses) {
-    this.artistses = artistses;
   }
 
 }
