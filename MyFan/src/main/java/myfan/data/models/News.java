@@ -1,5 +1,5 @@
 package myfan.data.models;
-// Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class News implements java.io.Serializable {
 
-  private int newsId;
+  private Integer newsId;
   private Artists artists;
   private String tittle;
   private String content;
@@ -17,19 +17,18 @@ public class News implements java.io.Serializable {
   public News() {
   }
 
-  public News(int newsId, Artists artists, String tittle, String content, Date date) {
-    this.newsId = newsId;
+  public News(Artists artists, String tittle, String content, Date date) {
     this.artists = artists;
     this.tittle = tittle;
     this.content = content;
     this.date = date;
   }
 
-  public int getNewsId() {
+  public Integer getNewsId() {
     return this.newsId;
   }
 
-  public void setNewsId(int newsId) {
+  public void setNewsId(Integer newsId) {
     this.newsId = newsId;
   }
 

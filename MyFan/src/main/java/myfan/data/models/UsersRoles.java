@@ -1,5 +1,5 @@
 package myfan.data.models;
-// Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import java.util.Set;
  */
 public class UsersRoles implements java.io.Serializable {
 
-  private Integer userRoleId;
+  private Integer usersRolesId;
   private String roleName;
   private Set userses = new HashSet(0);
 
@@ -25,12 +25,12 @@ public class UsersRoles implements java.io.Serializable {
     this.userses = userses;
   }
 
-  public Integer getUserRoleId() {
-    return this.userRoleId;
+  public Integer getUsersRolesId() {
+    return this.usersRolesId;
   }
 
-  public void setUserRoleId(Integer usersRolesId) {
-    this.userRoleId = usersRolesId;
+  public void setUsersRolesId(Integer usersRolesId) {
+    this.usersRolesId = usersRolesId;
   }
 
   public String getRoleName() {

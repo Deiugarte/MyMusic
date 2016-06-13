@@ -53,19 +53,19 @@ public class AuthenticationResource {
       return Response.status(Status.UNAUTHORIZED).entity(response).build();
     }
     
-    switch (userRole.getUserRoleId()) {
+    switch (userRole.getUsersRolesId()) {
 
     case ADMIN:
-      response = String.format(response, userRole.getUserRoleId(), "OK");
+      response = String.format(response, userRole.getUsersRolesId(), "OK");
       break;
     case FANATIC:
-      response = String.format(response, userRole.getUserRoleId(), "OK");
+      response = String.format(response, userRole.getUsersRolesId(), "OK");
       break;
     case BAND:
-      response = String.format(response, userRole.getUserRoleId(), "OK");
+      response = String.format(response, userRole.getUsersRolesId(), "OK");
       break;
     }
-    response = String.format(response, user.getUsersRoles().getUserRoleId(), "OK");
+    response = String.format(response, user.getUsersRoles().getUsersRolesId(), "OK");
     return Response.status(200).entity(response).build();
   }
 

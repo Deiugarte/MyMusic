@@ -1,7 +1,6 @@
 package myfan.data.models;
-// Generated May 29, 2016 3:37:51 PM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,35 +9,35 @@ import java.util.Set;
  */
 public class Fanatics implements java.io.Serializable {
 
-  private int fanaticId;
+  private Integer fanaticId;
   private Users users;
-  private Date birthday;
   private boolean sex;
-  private Set fanaticsGenreses = new HashSet(0);
+  private Set eventsCalificationses = new HashSet(0);
+  private Set artistsCalificationses = new HashSet(0);
+  private Set discsCalificationses = new HashSet(0);
 
   public Fanatics() {
   }
 
-  public Fanatics(int fanaticId, Users users, Date birthday, boolean sex) {
-    this.fanaticId = fanaticId;
+  public Fanatics(Users users, boolean sex) {
     this.users = users;
-    this.birthday = birthday;
     this.sex = sex;
   }
 
-  public Fanatics(int fanaticId, Users users, Date birthday, boolean sex, Set fanaticsGenreses) {
-    this.fanaticId = fanaticId;
+  public Fanatics(Users users, boolean sex, Set eventsCalificationses, Set artistsCalificationses,
+      Set discsCalificationses) {
     this.users = users;
-    this.birthday = birthday;
     this.sex = sex;
-    this.fanaticsGenreses = fanaticsGenreses;
+    this.eventsCalificationses = eventsCalificationses;
+    this.artistsCalificationses = artistsCalificationses;
+    this.discsCalificationses = discsCalificationses;
   }
 
-  public int getFanaticId() {
+  public Integer getFanaticId() {
     return this.fanaticId;
   }
 
-  public void setFanaticId(int fanaticId) {
+  public void setFanaticId(Integer fanaticId) {
     this.fanaticId = fanaticId;
   }
 
@@ -50,14 +49,6 @@ public class Fanatics implements java.io.Serializable {
     this.users = users;
   }
 
-  public Date getBirthday() {
-    return this.birthday;
-  }
-
-  public void setBirthday(Date birthday) {
-    this.birthday = birthday;
-  }
-
   public boolean isSex() {
     return this.sex;
   }
@@ -66,12 +57,28 @@ public class Fanatics implements java.io.Serializable {
     this.sex = sex;
   }
 
-  public Set getFanaticsGenreses() {
-    return this.fanaticsGenreses;
+  public Set getEventsCalificationses() {
+    return this.eventsCalificationses;
   }
 
-  public void setFanaticsGenreses(Set fanaticsGenreses) {
-    this.fanaticsGenreses = fanaticsGenreses;
+  public void setEventsCalificationses(Set eventsCalificationses) {
+    this.eventsCalificationses = eventsCalificationses;
+  }
+
+  public Set getArtistsCalificationses() {
+    return this.artistsCalificationses;
+  }
+
+  public void setArtistsCalificationses(Set artistsCalificationses) {
+    this.artistsCalificationses = artistsCalificationses;
+  }
+
+  public Set getDiscsCalificationses() {
+    return this.discsCalificationses;
+  }
+
+  public void setDiscsCalificationses(Set discsCalificationses) {
+    this.discsCalificationses = discsCalificationses;
   }
 
 }

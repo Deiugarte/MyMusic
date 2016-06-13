@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 29, 2016 3:56:57 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<!-- Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
     <class name="myfan.data.models.Users" table="users" catalog="myfan" optimistic-lock="version">
         <id name="userId" type="java.lang.Integer">
@@ -29,6 +29,15 @@
         <property name="creationDate" type="date">
             <column name="CreationDate" length="10" not-null="true" />
         </property>
+        <property name="birthday" type="date">
+            <column name="Birthday" length="10" not-null="true" />
+        </property>
+        <set name="usersGenreses" table="users_genres" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idUser" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="myfan.data.models.UsersGenres" />
+        </set>
         <set name="artistses" table="artists" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="UserId" not-null="true" />

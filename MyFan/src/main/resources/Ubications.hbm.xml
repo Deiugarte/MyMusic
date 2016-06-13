@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 29, 2016 3:56:57 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<!-- Generated Jun 13, 2016 12:10:00 AM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
     <class name="myfan.data.models.Ubications" table="ubications" catalog="myfan" optimistic-lock="version">
-        <id name="ubicationId" type="int">
+        <id name="ubicationId" type="java.lang.Integer">
             <column name="UbicationId" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="name" type="string">
             <column name="Name" length="45" not-null="true" />
