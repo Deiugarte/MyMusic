@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 14, 2016 9:46:17 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="myfest.models.Discsscores" table="discsscores" catalog="myfest" optimistic-lock="version">
+        <id name="discsScoresId" type="int">
+            <column name="DiscsScoresId" />
+            <generator class="assigned" />
+        </id>
+        <property name="score" type="int">
+            <column name="Score" not-null="true" />
+        </property>
+        <property name="voters" type="int">
+            <column name="Voters" not-null="true" />
+        </property>
+        <property name="commentAmount" type="int">
+            <column name="CommentAmount" not-null="true" />
+        </property>
+        <set name="artistses" table="artists" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="DiscScoreId" not-null="true" />
+            </key>
+            <one-to-many class="myfest.models.Artists" />
+        </set>
+    </class>
+</hibernate-mapping>
