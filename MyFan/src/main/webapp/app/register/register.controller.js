@@ -10,7 +10,7 @@
   /* @ngInject */
   function RegisterCtrl(RegisterSrv, $state, $window,$scope) {
     var vm = this;
-    vm.newCompanyData = {};
+    vm.newUserData = {};
     vm.saveNewCompany = saveNewCompany;
     vm.plans = {};
     vm.data = {
@@ -34,7 +34,13 @@
       $scope.popup1 = {
         opened: false
       };
-      
+
+
+
+
+
+
+
     getPlans();
 
 
