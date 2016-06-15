@@ -3,27 +3,25 @@ package myfan.resources.base;
 import java.util.ArrayList;
 import java.util.Date;
 
+import myfan.resources.base.util.Member;
 
-
-public class RegisterNewFanaticRequest {
+public class RegisterNewArtistRequest {
 	private String nameUser;
-	private Date birthDate; /*verificar*/
-	private boolean gender;
+	private Date   birthDate; /*verificar*/
 	private String login;     /*verificar*/
 	private String password;
 	private String countryLocation; 
 	private ArrayList<String> musisicalGenres; /*opcional*/
 	private String identificationNumber;
 	private String currentDate;
+	private String biographyArtist;
+	private ArrayList <Member> members;
 	
 	public String getNameUser() {
 		return nameUser;
 	}
 	public Date getBirthDate() {
 		return birthDate;
-	}
-	public boolean getGender() {
-		return gender;
 	}
 	public String getLogin() {
 		return login;
@@ -34,7 +32,6 @@ public class RegisterNewFanaticRequest {
 	public String getCountryLocation() {
 		return countryLocation;
 	}
-
 	public ArrayList<String> getMusisicalGenres() {
 		return musisicalGenres;
 	}
@@ -44,14 +41,17 @@ public class RegisterNewFanaticRequest {
 	public String getCurrentDate() {
 		return currentDate;
 	}
+	public String getBiographyArtist() {
+		return biographyArtist;
+	}
+	public ArrayList<Member> getMembers() {
+		return members;
+	}
 	public void setNameUser(String nameUser) {
 		this.nameUser = nameUser;
 	}
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
-	}
-	public void setGender(boolean gender) {
-		this.gender = gender;
 	}
 	public void setLogin(String login) {
 		this.login = login;
@@ -62,7 +62,6 @@ public class RegisterNewFanaticRequest {
 	public void setCountryLocation(String countryLocation) {
 		this.countryLocation = countryLocation;
 	}
-
 	public void setMusisicalGenres(ArrayList<String> musisicalGenres) {
 		this.musisicalGenres = musisicalGenres;
 	}
@@ -72,10 +71,10 @@ public class RegisterNewFanaticRequest {
 	public void setCurrentDate(String currentDate) {
 		this.currentDate = currentDate;
 	}
-	
-	
-	
-	
-	
-	
+	public void setBiographyArtist(String biographyArtist) {
+		this.biographyArtist = biographyArtist;
+	}
+	public void setMembers(ArrayList<Member> members) {
+		this.members = members;
+	}
 }
