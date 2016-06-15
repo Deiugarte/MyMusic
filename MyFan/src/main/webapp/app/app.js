@@ -9,5 +9,8 @@
       'refiereApp.register',
       'refiereApp.services',
       'refiereApp.campaign',
-      'ui.router']);
+      'refiereApp.fanProfile',
+      'ui.router',
+
+    ]);
 })();
