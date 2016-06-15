@@ -34,13 +34,7 @@
       $scope.popup1 = {
         opened: false
       };
-
-
-
-
-
-
-
+      
     getPlans();
 
 

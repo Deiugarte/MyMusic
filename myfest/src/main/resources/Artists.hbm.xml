@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 14, 2016 9:46:17 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="myfest.models.Artists" table="artists" catalog="myfest" optimistic-lock="version">
+        <id name="artistId" type="int">
+            <column name="ArtistId" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="artistsscores" class="myfest.models.Artistsscores" fetch="select">
+            <column name="ArtistScore" not-null="true" />
+        </many-to-one>
+        <many-to-one name="concertsscores" class="myfest.models.Concertsscores" fetch="select">
+            <column name="ConcertScore" not-null="true" />
+        </many-to-one>
+        <many-to-one name="discsscores" class="myfest.models.Discsscores" fetch="select">
+            <column name="DiscScoreId" not-null="true" />
+        </many-to-one>
+        <property name="artistName" type="string">
+            <column name="ArtistName" length="45" not-null="true" />
+        </property>
+        <property name="followersAmount" type="int">
+            <column name="FollowersAmount" not-null="true" />
+        </property>
+        <property name="ubication" type="string">
+            <column name="Ubication" length="30" not-null="true" />
+        </property>
+        <property name="image" type="string">
+            <column name="Image" length="45" />
+        </property>
+        <set name="artistsgenreses" table="artistsgenres" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ArtistId" not-null="true" />
+            </key>
+            <one-to-many class="myfest.models.Artistsgenres" />
+        </set>
+        <set name="twittermentionses" table="twittermentions" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ArtistID" not-null="true" />
+            </key>
+            <one-to-many class="myfest.models.Twittermentions" />
+        </set>
+    </class>
+</hibernate-mapping>
