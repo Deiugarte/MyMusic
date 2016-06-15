@@ -29,16 +29,15 @@
           <strong>Seleccione su genero: </strong>
           </label>
           <label class="radio-inline">
-            <input type="radio" name="genderRadio" id="genderMen" ng-model= "vm.newUser.gender"value="men"> Hombre
+            <input type="radio" name="genderRadio" id="genderMen" ng-model= "vm.newUserData.gender"value="men"> Hombre
           </label>
           <label class="radio-inline">
-            <input type="radio" name="genderRadio" id="genderWomen" ng-model= "vm.newUser.gender" value="women"> Mujer
+            <input type="radio" name="genderRadio" id="genderWomen" ng-model= "vm.newUserData.gender" value="women"> Mujer
           </label>
           <br>
-          {{vm.gender}}
           <strong>Ingrese su nombre de usuario: </strong>
           <input type="text" class="form-control" name="username"
-                             ng-model="vm.newCompanyData.UserRequest.login"
+                             ng-model="vm.newUserData.login"
                              placeholder="Nombre"
                              ng-minlength="4" ng-maxlength="12"
                              required>
@@ -48,7 +47,7 @@
         <input type="password" placeholder="Introduzca su contraseña"
                           class="form-control"
                           name="newPassword"
-                          ng-model="vm.newCompanyData.password"
+                          ng-model="vm.newUserData.password"
                           ng-minlength="4" ng-maxlength="8"
                           required/>
           <p ng-show="newUserForm.password.$error.minlength" class="help-block">Contraseña muy corta</p>
@@ -73,12 +72,29 @@
       </div>
     </div>
     <label for="countrySelect"> Seleccione su pais: </label>
-    <select name="countrySelect" id="countrySelect" ng-model="vm.data.repeatSelect" required>
-      <option ng-repeat="option in vm.data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+    <select name="countrySelect" id="countrySelect" ng-model="vm.newUserData.country" required>
+      <option ng-repeat="option in vm.data.availableOptions"  value="{{option.name}}">{{option.name}}</option>
     </select>
     <div ng-messages="newUserForm.countrySelect.$error" ng-if="newUserForm.$submitted || newUserForm.countrySelect.$pristine" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
       <div ng-message="required" class="message slide-left">No se ha introducido el pais</div>
     </div>
+
+    <ui-select multiple ng-model="vm.multipleDemo.selectedPeopleSimple" limit="3"  close-on-select="true"  title="Elige tus generos musicales" required>
+        <ui-select-match placeholder="Elige tus generos...">{{$item.name}} </ui-select-match>
+        <ui-select-choices repeat="person.name as person in vm.people | filter: {name: $select.search}">
+          <div ng-bind-html="person.name | highlight: $select.search"></div>
+          <small>
+            {{person.name}}
+          </small>
+        </ui-select-choices>
+      </ui-select>
+
+
+
+
+
+
+
 
           <input type="text" class="form-control"
                              ng-model="vm.newCompanyData.name"
@@ -100,7 +116,7 @@
                              ng-model="vm.newCompanyData.telephone"
                              placeholder="Teléfono"
                              required>
-
+            {{vm.newUserData}}
           <button type="button" class="btn btn-primary btn-block button-block btn-margin"
                                 ng-click="vm.saveNewCompany()"
                                 ng-disabled="newUserForm.$invalid ">

@@ -21,6 +21,21 @@
       {id: '3', name: 'Nicaragua'}
     ],
    };
+   vm.multipleDemo={};
+   vm.multipleDemo.selectedPeopleSimple = [];
+   vm.people = [
+  { name: 'Adam' },
+  { name: 'Amalie'},
+  { name: 'Estefanía' },
+  { name: 'Adrian' },
+  { name: 'Wladimir'},
+  { name: 'Samantha'},
+  { name: 'Nicole', },
+  { name: 'Natasha', },
+  { name: 'Michael',  },
+  { name: 'Nicolás',  }
+];
+
 
 
      $scope.dateOptions = {
