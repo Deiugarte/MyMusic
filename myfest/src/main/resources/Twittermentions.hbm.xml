@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 14, 2016 9:46:17 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="myfest.models.Twittermentions" table="twittermentions" catalog="myfest" optimistic-lock="version">
+        <id name="twitterMentionId" type="int">
+            <column name="TwitterMentionId" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="artists" class="myfest.models.Artists" fetch="select">
+            <column name="ArtistID" not-null="true" />
+        </many-to-one>
+        <property name="dateTime" type="timestamp">
+            <column name="DateTime" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

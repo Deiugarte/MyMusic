@@ -18,7 +18,7 @@
               <p class="input-group">
                 <input type="text" class="form-control" name=date placeholder="Fecha de Nacimiento" uib-datepicker-popup="dd-MM-yyyy" ng-model="vm.date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Cerrar" alt-input-formats="altInputFormats" />
                   <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="open1()"><i class="fa fa-calendar"></i></button>
+                    <button type="button" class="btn btn-default margin-calendar-button" ng-click="open1()"><i class="fa fa-calendar"></i></button>
                   </span>
               </p>
               <div ng-messages="newCompanyForm.date.$error" ng-if="newCompanyForm.date.$submitted || newCompanyForm.date.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">

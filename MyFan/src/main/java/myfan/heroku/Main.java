@@ -1,53 +1,44 @@
 package myfan.heroku;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-import myfan.domain.FacadeLogic;
-import myfan.resources.base.RegisterNewFanaticRequest;
-
 
 /**
- * This class launches the web application in an embedded Jetty container. This is the entry point to your application. The Java
- * command that is used for launching should fire this main method.
+ * This class launches the web application in an embedded Jetty container. This
+ * is the entry point to your application. The Java command that is used for
+ * launching should fire this main method.
  */
 public class Main {
 
-    public static void main(String[] args) throws Exception{
-    	RegisterNewFanaticRequest newFanaticRequest= new RegisterNewFanaticRequest();
-    	 SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
-    	 String strFecha = "2007-12-25";
-    	 Date fecha = null;
-    	 try {
-
-    	     fecha = formatoDelTexto.parse(strFecha);
-
-    	 } catch (ParseException ex) {
-
-    	     ex.printStackTrace();
-
-    	 }
-    	 
-    	 ArrayList<String> generos = new ArrayList<>();
-    	 generos.add("Pop");
-    	 generos.add("Rock");
-		newFanaticRequest.setBirthDate(fecha);
-		newFanaticRequest.setCountryLocation("Costa Rica");
-		newFanaticRequest.setGender(true);
-		newFanaticRequest.setLogin("Vale1");
-		newFanaticRequest.setMusisicalGenres(generos);
-		newFanaticRequest.setNameUser("Valeria");
-		newFanaticRequest.setPassword("algo");
-		newFanaticRequest.setProfilePicture(null);
-		
-		FacadeLogic facadeLogic= new FacadeLogic();
-		facadeLogic.registerNewFanatic(newFanaticRequest);
-		System.out.println("Soy un puto amo");
+  public static void main(String[] args) throws Exception {
+    // The port that we should run on can be set into an environment variable
+    // Look for that variable and default to 8080 if it isn't there.
+    String webPort = System.getenv("PORT");
+    if (webPort == null || webPort.isEmpty()) {
+      webPort = "8000";
     }
-    
+
+    final Server server = new Server(Integer.valueOf(webPort));
+    final WebAppContext root = new WebAppContext();
+
+    root.setContextPath("/");
+    // Parent loader priority is a class loader setting that Jetty accepts.
+    // By default Jetty will behave like most web containers in that it will
+    // allow your application to replace non-server libraries that are part of
+    // the
+    // container. Setting parent loader priority to true changes this behavior.
+    // Read more here:
+    // http://wiki.eclipse.org/Jetty/Reference/Jetty_Classloading
+    root.setParentLoaderPriority(true);
+
+    final String webappDirLocation = "src/main/webapp/";
+    root.setDescriptor(webappDirLocation + "/WEB-INF/web.xml");
+    root.setResourceBase(webappDirLocation);
+
+    server.setHandler(root);
+
+    server.start();
+    server.join();
+  }
 }
