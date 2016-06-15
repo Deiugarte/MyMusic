@@ -4,24 +4,24 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
-import Objects.ObjectGUI;
-import myfest.logic.Dashboard;
+import Objects.GUISearchGeneral;
+import myfest.logic.SearchResults;
 import myfest.logic.ListGenres;
 import myfest.logic.ListUbications;
 import myfest.models.Musicalgenres;
 
 public class FacadeGUI {
-	private Dashboard dashboard;
+	private SearchResults dashboard;
 	private ListGenres listGenres;
 	private ListUbications listUbications;
 	
 	public FacadeGUI(){
-		dashboard      = new Dashboard();
+		dashboard      = new SearchResults();
 		listGenres     = new ListGenres();
 		listUbications = new ListUbications();
 	}
 	
-	public void getSearchArtistData(ObjectGUI facadeRequest){
+	public void getSearchArtistData(GUISearchGeneral objectGUI){
 		// return dashboard.
 	}
 	

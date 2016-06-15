@@ -1,14 +1,14 @@
 package Objects;
 
-public class ObjectGUI {
+public class GUISearchGeneral {
 	private String searchType;
-	private String filterType;
+	private String resultsAmount;
 	private String value;
 	
-	public ObjectGUI(){
-		searchType = "";
-		filterType = "";
-		value = "";
+	public GUISearchGeneral(){
+		searchType    = "";
+		resultsAmount = "";
+		value         = "";
 	}
 
 	public String getSearchType() {
@@ -19,12 +19,12 @@ public class ObjectGUI {
 		this.searchType = searchType;
 	}
 
-	public String getFilterType() {
-		return filterType;
+	public String getResultsAmount() {
+		return resultsAmount;
 	}
 
 	public void setFilterType(String filterType) {
-		this.filterType = filterType;
+		this.resultsAmount = filterType;
 	}
 
 	public String getValue() {
