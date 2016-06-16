@@ -56,7 +56,13 @@
 
 
     getPlans();
-
+    getGenresList();
+    function getGenresList() {
+      RegisterSrv.getGenresList()
+        .then(function(genresData){
+          vm.people = genresData.data;
+        })
+    }
 
     function getPlans() {
       RegisterSrv.getPlansFromServer()
