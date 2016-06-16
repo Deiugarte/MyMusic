@@ -26,7 +26,7 @@ import myfan.resources.base.UpdateProfileUserRequest;
 
 public class UserLogic {
 
-  private final String DATE_FORMAT = "dd/MM/yyyy";
+  private final String DATE_FORMAT = "yyyy-MM-dd";
   protected final String USER_IDENTIFIER_STATUS = "{\"UserId\": \"%s\", \"status\":\"%s\"}";
   protected final String DISABLE_ACCOUNT_STATUS = "{\"UserId\": \"%s\", \"status\":\"%s\"}";
   protected final String ERROR_USER_FOUND = "{\"Error \": \"User found \"}";
