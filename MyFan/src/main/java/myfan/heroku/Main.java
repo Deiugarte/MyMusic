@@ -17,46 +17,6 @@ import myfan.resources.base.util.Member;
 public class Main {
 
   public static void main(String[] args) throws Exception {
-    // RegisterNewArtistRequest newArtistRequest= new
-    // RegisterNewArtistRequest();
-    // SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
-    // String strFecha = "2007-12-25";
-    // Date fecha = null;
-    // try {
-    //
-    // fecha = formatoDelTexto.parse(strFecha);
-    //
-    // } catch (ParseException ex) {
-    //
-    // ex.printStackTrace();
-    //
-    // }
-    //
-    // ArrayList<String> generos = new ArrayList<>();
-    // generos.add("Pop");
-    // generos.add("Rock");
-    //
-    // ArrayList<Member> members = new ArrayList<>();
-    // Member member1= new Member();
-    // member1.setName("Jean Paul");
-    // member1.setInstrument("guitarra");
-    //
-    // newArtistRequest.setBirthDate(fecha);
-    // newArtistRequest.setCountryLocation("Costa Rica");
-    // newArtistRequest.setLogin("Vale1");
-    // newArtistRequest.setMusisicalGenres(generos);
-    // newArtistRequest.setNameUser("Valeriass");
-    // newArtistRequest.setPassword("algo");
-    // newArtistRequest.setMembers(members);
-    //
-    //
-    //
-    // FacadeLogic facadeLogic= new FacadeLogic();
-    // facadeLogic.registerNewArtist(newArtistRequest,null,null);
-    //
-    //
-    // System.out.println("Soy un puto amo");
-
     // The port that we should run on can be set into an environment variable
     // Look for that variable and default to 8080 if it isn't there.
     String webPort = System.getenv("PORT");
