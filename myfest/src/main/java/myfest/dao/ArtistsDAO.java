@@ -31,26 +31,6 @@ public class ArtistsDAO extends ArtistsHome {
       }
   }
   
-  public List<String> getArtistNameByCountry(DBObject dbObject){
-	  String resultsAmount = dbObject.getResultsAmount();
-	  String value = dbObject.getValue();	  
-	  try {
-	        Session session = sessionFactory.openSession();
-	        org.hibernate.Transaction trans= session.beginTransaction();
-	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
-	            log.debug(" >>> Transaction close.");
-	        Query query = session.createQuery("SELECT A.artistname FROM artists A WHERE A.ubication = '"+value+"' LIMIT "+resultsAmount);
-	        java.util.List results = query.list();
-	        System.out.println("Result list: " + results.size());
-	        trans.commit();
-	        log.debug("get successful, instance found");
-	        return results;
-	    } catch (RuntimeException re) {
-	        log.error("get failed", re);
-	        throw re;
-	    }
-  }
-  
   //revisar query
   public List<String> getArtistData(GUISearchSpecific guiObject){
 	  String name = guiObject.getArtistName();
@@ -71,16 +51,18 @@ public class ArtistsDAO extends ArtistsHome {
 	    }
   }
   
-  // falta query
   public List<String> getArtisNameByName(DBObject dbObject){
 	  String resultsAmount = dbObject.getResultsAmount();
-	  String value = dbObject.getValue();	  
+	  String valueUper  = dbObject.getValue().toUpperCase();
+	  String valueLower = dbObject.getValue().toLowerCase();
+	  String queryName  = "SELECT A.artistname FROM artists A WHERE ( (UPPER(A.artistname) like '%"+valueUper+"%') OR "
+	  		+ "(LOWER(A.artistname) LIKE '%"+valueLower+"%') ) LIMIT "+resultsAmount;
 	  try {
 	        Session session = sessionFactory.openSession();
 	        org.hibernate.Transaction trans= session.beginTransaction();
 	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
 	            log.debug(" >>> Transaction close.");
-	        Query query = session.createQuery("SELECT A.artistname FROM artists A join artistgenres AG join musicalgenres MA WHERE MA.genrename = '"+value+"' LIMIT "+resultsAmount);
+	        Query query = session.createQuery(queryName);
 	        java.util.List results = query.list();
 	        System.out.println("Result list: " + results.size());
 	        trans.commit();
@@ -92,16 +74,38 @@ public class ArtistsDAO extends ArtistsHome {
 	    }
   }
   
-  // falta query
   public List<String> getArtistNameByGenre(DBObject dbObject){
 	  String resultsAmount = dbObject.getResultsAmount();
-	  String value = dbObject.getValue();	  
+	  String value = dbObject.getValue();	
+	  String queryGenre = "SELECT A.artistname FROM artists A LEFT JOIN artistsgenres AG ON A.artistid = AG.artistid WHERE AG.gendeid = "
+		  		+ "(SELECT MG.musicalgenreid FROM musicalgenres MG WHERE MG.genrename = '"+value+"') LIMIT "+resultsAmount;
 	  try {
 	        Session session = sessionFactory.openSession();
 	        org.hibernate.Transaction trans= session.beginTransaction();
 	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
 	            log.debug(" >>> Transaction close.");
-	        Query query = session.createQuery("SELECT A.artistname FROM artists A join artistgenres AG join musicalgenres MA WHERE MA.genrename = '"+value+"' LIMIT "+resultsAmount);
+	        Query query = session.createQuery(queryGenre);
+	        java.util.List results = query.list();
+	        System.out.println("Result list: " + results.size());
+	        trans.commit();
+	        log.debug("get successful, instance found");
+	        return results;
+	    } catch (RuntimeException re) {
+	        log.error("get failed", re);
+	        throw re;
+	    }
+  }
+  
+  public List<String> getArtistNameByCountry(DBObject dbObject){
+	  String resultsAmount = dbObject.getResultsAmount();
+	  String value = dbObject.getValue();	
+	  String queryCountry = "SELECT A.artistname FROM artists A WHERE A.ubication = '"+value+"' LIMIT "+resultsAmount;
+	  try {
+	        Session session = sessionFactory.openSession();
+	        org.hibernate.Transaction trans= session.beginTransaction();
+	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+	            log.debug(" >>> Transaction close.");
+	        Query query = session.createQuery(queryCountry);
 	        java.util.List results = query.list();
 	        System.out.println("Result list: " + results.size());
 	        trans.commit();

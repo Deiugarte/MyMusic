@@ -35,6 +35,10 @@ public class Main {
     for (int j=0; j < ubications.size(); j++){
     	System.out.println(ubications.get(j).toString());
     }
+    
+    String WaGnEr = "WaGnEr";
+    System.out.println(WaGnEr.toLowerCase());
+    System.out.println(WaGnEr.toUpperCase());
   }
 
 }
