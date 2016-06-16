@@ -4,59 +4,53 @@ import java.util.List;
 
 import Objects.DBObject;
 import Objects.GUISearchGeneral;
-import Objects.GUISearchGeneralCountryGender;
 import Objects.GUISearchSpecific;
 import myfest.dao.ArtistsDAO;
+import myfest.dao.ArtistsGenresDAO;
 import myfest.dao.MusicalGenresDAO;
 import myfest.models.Musicalgenres;
 import myfest.models.Artists;
+import myfest.models.Artistsgenres;
 
 public class FacadeDB {
 	private MusicalGenresDAO musicalGenresDAO;
+	private ArtistsGenresDAO artistsGenresDAO;
 	private ArtistsDAO       artistsDAO;
-	private DBObject dbObject;
-	private String searchType;
 	
 	public FacadeDB(){
 		musicalGenresDAO = new MusicalGenresDAO();
+		artistsGenresDAO = new ArtistsGenresDAO();
 		artistsDAO       = new ArtistsDAO();
-		dbObject         = new DBObject();
-		searchType       = "";
 	}
-	
-	//revisar este metodo creo que no se usa...
-	public List<Artists> getArtists(){
-		return artistsDAO.findAll();
-	}
-	
+		
 	public List<String> getSearchSpecific(GUISearchSpecific guiObject){
 		return artistsDAO.getArtistData(guiObject);
 	}
 	
-	
-	public List<String> getSearchCountry_Genre(GUISearchGeneralCountryGender guiObject){
-		searchType = guiObject.getSearchType();
-		dbObject.setValue(guiObject.getValueSearch());
-		dbObject.setResultsAmount(guiObject.getResultsAmount());
-		switch (searchType) {
-		case "Country":
-			return artistsDAO.getArtistNameByCountry(dbObject);
-		case "Genre":
-			return artistsDAO.getArtistNameByGenre(dbObject);
-		default:
-			break;
-		}
-	return null;
+	// country search
+	public List<String> getSearchCountry_Genre(String country){
+		return artistsDAO.getArtistNameByCountry(country);
 	}
 	
-	public List<String> getSearchName(GUISearchGeneral guiobject){
-		dbObject.setValue(guiobject.getValueSearch());
-		dbObject.setResultsAmount(guiobject.getResultsAmount());
-		return artistsDAO.getArtistNameByName(dbObject);
+	// name search
+	public List<String> getSearchName(String name){
+		return artistsDAO.getArtistNameByName(name);
 	}
 
+	// genre search
+	public Object getIdGenre(String genreName){
+		return musicalGenresDAO.getGenreId(genreName);
+	}
 	
+	public Artists getArtistById(int id){
+		return artistsDAO.getArtistsById(id);
+	}
 	
+	public List<Artistsgenres> getArtistId(String id){
+		return artistsGenresDAO.getArtistId(id);
+	}
+	
+	// initial petitions
 	public List<Musicalgenres> getGenres(){
 		return musicalGenresDAO.findAll();
 	}

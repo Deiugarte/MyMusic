@@ -2,6 +2,7 @@ package myfest.heroku;
 
 import java.util.List;
 
+import Objects.GUISearchGeneral;
 import myfest.dao.ArtistsDAO;
 import myfest.dao.ArtistsScoresDAO;
 import myfest.dao.MusicalGenresDAO;
@@ -23,8 +24,15 @@ public class Main {
     artistsScoresDAO.save(artistsscores);
     
     FacadeGUI facade = new FacadeGUI();
+    GUISearchGeneral general = new GUISearchGeneral("WaG", "3");
+    GUISearchGeneral country = new GUISearchGeneral("Cartago", "10");
+    GUISearchGeneral genre   = new GUISearchGeneral("Bolero", "3");
+    
     List<Musicalgenres> genres = facade.getListGenres();
-    List<String> ubications =  facade.getArtistUbication();
+    List<String> ubications =  facade.getListUbication();
+    List<String> namesSearched = facade.getSearchNames(general);
+    List<String> countriesSearched = facade.getSearchCountries(country);
+    List<String> genresSearched = facade.getSearchGenders(genre);
     
     System.out.println("Generos");
     for (int i=0; i < genres.size(); i++){
@@ -36,9 +44,21 @@ public class Main {
     	System.out.println(ubications.get(j).toString());
     }
     
-    String WaGnEr = "WaGnEr";
-    System.out.println(WaGnEr.toLowerCase());
-    System.out.println(WaGnEr.toUpperCase());
+    System.out.println("Busqueda por nombre");
+    for (int m =0; m < namesSearched.size(); m++){
+    	System.out.println(namesSearched.get(m));
+    }
+    
+    System.out.println("Busqueda por países");
+    for (int c =0; c < countriesSearched.size(); c++){
+    	System.out.println(countriesSearched.get(c));
+    }
+    
+    System.out.println("Busqueda por géneros");
+    for (int c =0; c < genresSearched.size(); c++){
+    	System.out.println(genresSearched.get(c));
+    }
+    
   }
 
 }

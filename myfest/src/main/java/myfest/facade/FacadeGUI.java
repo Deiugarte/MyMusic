@@ -3,38 +3,45 @@ package myfest.facade;
 import java.util.List;
 
 import Objects.GUISearchGeneral;
+import Objects.GUISearchSpecific;
 import myfest.logic.Dashboard;
-import myfest.logic.ListGenres;
-import myfest.logic.ListNames;
-import myfest.logic.ListUbications;
+import myfest.logic.GetListGenresUbications;
+import myfest.logic.GetSearchData;
 import myfest.models.Musicalgenres;
 
 public class FacadeGUI {
 	private Dashboard  dashboard;
-	private ListGenres     listGenres;
-	private ListUbications listUbications;
-	private ListNames      listNames;
+	private GetListGenresUbications listData;
+	private GetSearchData searchData;
 	
 	public FacadeGUI(){
-		dashboard      = new Dashboard();
-		listGenres     = new ListGenres();
-		listUbications = new ListUbications();
+		dashboard  = new Dashboard();
+		listData   = new GetListGenresUbications();
+		searchData = new GetSearchData();
 	}
 	
-	public void getSearchArtistData(GUISearchGeneral objectGUI){
-		// return dashboard.
+	public List<String> getSearchArtistData(GUISearchSpecific objectGUI){
+		return dashboard.getDataArtist(objectGUI);
 	}
 	
 	public List<Musicalgenres> getListGenres(){
-		return listGenres.getListGenres();
+		return listData.getListGenres();
 	}
 	
-	public List<String> getArtistUbication(){
-		return listUbications.getListUbications();
+	public List<String> getListUbication(){
+		return listData.getListUbications();
 	}
 	
-	public List<String> getArtistNames(GUISearchGeneral objectGUI){
-		return listNames.getListNames(objectGUI);
+	public List<String> getSearchNames(GUISearchGeneral objectGUI){
+		return searchData.getSearchNames(objectGUI);
+	}
+	
+	public List<String> getSearchGenders(GUISearchGeneral objectGUI){
+		return searchData.getSearchGenres(objectGUI);
+	}
+	
+	public List<String> getSearchCountries(GUISearchGeneral objectGUI){
+		return searchData.getSearchCountry(objectGUI);
 	}
 	
 	public void getQualitySearch(){

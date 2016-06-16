@@ -33,7 +33,7 @@ public class ArtistsDAO extends ArtistsHome {
   
   //revisar query
   public List<String> getArtistData(GUISearchSpecific guiObject){
-	  String name = guiObject.getArtistName();
+	  String name = guiObject.getValueSearch();
 	  try {
 	        Session session = sessionFactory.openSession();
 	        org.hibernate.Transaction trans= session.beginTransaction();
@@ -51,12 +51,12 @@ public class ArtistsDAO extends ArtistsHome {
 	    }
   }
   
-  public List<String> getArtistNameByName(DBObject dbObject){
-	  String resultsAmount = dbObject.getResultsAmount();
-	  String valueUper  = dbObject.getValue().toUpperCase();
-	  String valueLower = dbObject.getValue().toLowerCase();
-	  String queryName  = "SELECT A.artistname FROM artists A WHERE ( (UPPER(A.artistname) like '%"+valueUper+"%') OR "
-	  		+ "(LOWER(A.artistname) LIKE '%"+valueLower+"%') ) LIMIT "+resultsAmount;
+  public List<String> getArtistNameByName(String name){
+	  String valueUper  = name.toUpperCase();
+	  String valueLower = name.toLowerCase();
+	  
+	  String queryName  = "SELECT A.artistName FROM Artists A WHERE ((UPPER(A.artistName) LIKE '%"+valueUper+"%') OR "
+	  		+ "(LOWER(A.artistName) LIKE '%"+valueLower+"%')) ORDER BY artistName DESC";
 	  try {
 	        Session session = sessionFactory.openSession();
 	        org.hibernate.Transaction trans= session.beginTransaction();
@@ -74,11 +74,11 @@ public class ArtistsDAO extends ArtistsHome {
 	    }
   }
   
+  //Esta consulta no funciona por el join que el protocolo no lo admite
   public List<String> getArtistNameByGenre(DBObject dbObject){
-	  String resultsAmount = dbObject.getResultsAmount();
 	  String value = dbObject.getValue();	
-	  String queryGenre = "SELECT A.artistname FROM artists A LEFT JOIN artistsgenres AG ON A.artistid = AG.artistid WHERE AG.gendeid = "
-		  		+ "(SELECT MG.musicalgenreid FROM musicalgenres MG WHERE MG.genrename = '"+value+"') LIMIT "+resultsAmount;
+	  String queryGenre = "SELECT A.artistName FROM Artists A LEFT OUTER JOIN ArtistsGenres AG ON A.artistId = AG.artistId WHERE AG.gendeId = "
+		  		+ "(SELECT MG.musicalGenreId FROM MusicalGenres MG WHERE MG.genreName = '"+value+"') ORDER BY artistName DESC";
 	  try {
 	        Session session = sessionFactory.openSession();
 	        org.hibernate.Transaction trans= session.beginTransaction();
@@ -96,10 +96,8 @@ public class ArtistsDAO extends ArtistsHome {
 	    }
   }
   
-  public List<String> getArtistNameByCountry(DBObject dbObject){
-	  String resultsAmount = dbObject.getResultsAmount();
-	  String value = dbObject.getValue();	
-	  String queryCountry = "SELECT A.artistname FROM artists A WHERE A.ubication = '"+value+"' LIMIT "+resultsAmount;
+  public List<String> getArtistNameByCountry(String country){	
+	  String queryCountry = "SELECT A.artistName FROM Artists A WHERE A.ubication = '"+country+"' ORDER BY artistName DESC";
 	  try {
 	        Session session = sessionFactory.openSession();
 	        org.hibernate.Transaction trans= session.beginTransaction();

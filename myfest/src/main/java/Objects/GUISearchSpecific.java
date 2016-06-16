@@ -1,19 +1,13 @@
 package Objects;
 
 public class GUISearchSpecific {
-	private String artistName;
+	private String valueSearch;
 	
-	public GUISearchSpecific(){
-		artistName = "";
+	public GUISearchSpecific(String valueData){
+		valueSearch = valueData;
 	}
 
-	public String getArtistName() {
-		return artistName;
-	}
-
-	public void setArtistName(String artistName) {
-		this.artistName = artistName;
-	}
-	
-	
+	public String getValueSearch() {
+		return valueSearch;
+	}	
 }
