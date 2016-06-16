@@ -3,16 +3,17 @@
  */
 package myfan.domain;
 
-import java.io.File;
 import java.io.InputStream;
 
 import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
+import myfan.resources.base.DisableAccountRequest;
 import myfan.resources.base.LoginRequest;
 import myfan.resources.base.RegisterNewArtistRequest;
 import myfan.resources.base.RegisterNewFanaticRequest;
+import myfan.resources.base.UpdateProfileUserRequest;
 
 /**
  * @author Javier
@@ -44,12 +45,20 @@ public class FacadeLogic {
 		
 	}
 
-	public void disableProfile(Object userProfile) {
+	public Response disableProfile(DisableAccountRequest userProfile) {
+		return userLogic.disableAccount(userProfile);
 	}
 
-	public void modifyDataProfile(Object user) {
+	public Response modifyDataFanatic(UpdateProfileUserRequest modifiedDataUsers, InputStream profilePicture,FormDataContentDisposition fileDetail) {
+		String pathProfilePicture=userLogic.saveProfilePictureFile(profilePicture, fileDetail);
+		return fanaticLogic.updateFanatic(modifiedDataUsers, pathProfilePicture);
 	}
 
+	public Response modifyDataArtist(UpdateProfileUserRequest modifiedDataUsers, InputStream profilePicture,FormDataContentDisposition fileDetail) {
+		String pathProfilePicture=userLogic.saveProfilePictureFile(profilePicture, fileDetail);
+		return artistLogic.updateFanatic(modifiedDataUsers, pathProfilePicture);
+	}
+	
 	public void addGenre(Object genre) {
 	}
 

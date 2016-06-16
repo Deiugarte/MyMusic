@@ -7,6 +7,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import myfan.data.models.Artists;
+import myfan.data.models.Fanatics;
 import myfan.data.models.Genres;
 import myfan.data.models.Members;
 import myfan.data.models.Ubications;
@@ -14,6 +15,7 @@ import myfan.data.models.Users;
 import myfan.data.models.UsersGenres;
 import myfan.data.models.UsersRoles;
 import myfan.resources.base.RegisterNewArtistRequest;
+import myfan.resources.base.UpdateProfileUserRequest;
 import myfan.resources.base.util.Member;
 
 public class ArtistLogic extends UserLogic {
@@ -44,6 +46,14 @@ public class ArtistLogic extends UserLogic {
     response = String.format(response, user.getUserId().toString(), "OK");
     return Response.status(Status.OK).entity(response).build();
   }
+  
+	public Response updateFanatic(UpdateProfileUserRequest dataArtist, String pathProfilePicture ){
+		String response = USER_IDENTIFIER_STATUS;
+		updateUser(dataArtist, pathProfilePicture);
+		response = String.format(response, dataArtist.getIdentificationNumber(), "OK");
+		return Response.status(Status.OK).entity(response).build();
+		
+	}
 
   private void saveMembers(Artists artist, ArrayList<Member> membersList) {
     Members members = new Members();
