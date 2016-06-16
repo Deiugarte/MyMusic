@@ -3,8 +3,14 @@
     <div class="text-vertical-center">
       <div class="col-xs-1 col-sm-3 col-md-3 col-lg-3"></div>
       <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6">
-        <label>Click me to toggle: <input type="checkbox" ng-model="checked"></label><br/>
-        <form submit="vm.registerUser()" name="newUserForm" ng-show="checked" ng-controller="RegisterCtrl">
+        <strong>Seleccione su tipo de cuenta:</strong>
+        <label class="radio-inline">
+          <input type="radio" name="typeRadio" id="fanatic" ng-model= "checked"value="fanatic"> Fanatico
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="typeRadio" id="artist" ng-model= "checked" value="artist"> Artista
+        </label>
+        <form submit="vm.registerUser()" name="newUserForm" ng-show="checked=='fanatic'" ng-controller="RegisterCtrl">
           <strong> Ingrese su nombre completo: </strong>
           <input type="text" class="form-control" name="name"
                              ng-model="vm.newUserData.name"
@@ -25,8 +31,8 @@
                   <div ng-message="required" class="message slide-left">No se han introducido datos</div>
               </div>
              </div>
-          <label class="radio-inline">
-          <strong>Seleccione su genero: </strong>
+          <label style="padding-left:0%" class="radio-inline">
+          <strong >Seleccione su genero: </strong>
           </label>
           <label class="radio-inline">
             <input type="radio" name="genderRadio" id="genderMen" ng-model= "vm.newUserData.gender"value="men"> Hombre
@@ -79,8 +85,8 @@
       <div ng-message="required" class="message slide-left">No se ha introducido el pais</div>
     </div>
 
-    <ui-select multiple ng-model="vm.multipleDemo.selectedPeopleSimple" limit="3"  close-on-select="true"  title="Elige tus generos musicales" required>
-        <ui-select-match placeholder="Elige tus generos...">{{$item.name}} </ui-select-match>
+    <ui-select multiple ng-model="vm.newUserData.genres" limit="3"  close-on-select="true"  title="Elige tus generos musicales" required>
+        <ui-select-match placeholder="Elige tus generos musicales">{{$item.name}} </ui-select-match>
         <ui-select-choices repeat="person.name as person in vm.people | filter: {name: $select.search}">
           <div ng-bind-html="person.name | highlight: $select.search"></div>
           <small>
@@ -88,34 +94,14 @@
           </small>
         </ui-select-choices>
       </ui-select>
+      <strong>Foto de Perfil:</strong>
+      <input type="file" ngf-select="" ng-model="vm.picfile" name="file" ngf-accept="'image/*'">
+                   <img ngf-src="vm.picfile" class="thumb">
+                   <span class="progress" ng-show="vm.picfile.progress >= 0">
+                       <div style="width:{{vm.picfile.progress}}%" ng-bind="vm.picfile.progress + '%'" class="ng-binding"></div>
+                   </span>
+                   <span ng-show="vm.picfile.result">Imagen actualizada</span>
 
-
-
-
-
-
-
-
-          <input type="text" class="form-control"
-                             ng-model="vm.newCompanyData.name"
-                             placeholder="Nombre de la compañía"
-                             required>
-          <input type="text" class="form-control"
-                             ng-model="vm.newCompanyData.address"
-                             placeholder="Dirección física"
-                             required>
-          <div class="form-group" ng-class="{ 'has-error' : newUserForm.email.$invalid && !newUserForm.email.$pristine }">
-          <input type="email" class="form-control"
-                              name="email"
-                              ng-model="vm.newCompanyData.email"
-                              placeholder="Correo Electrónico"
-                              required>
-          <p ng-show="newUserForm.email.$invalid && !newUserForm.email.$pristine" class="help-block">Introduzca un correo valido</p>
-          </div>
-          <input type="text" class="form-control"
-                             ng-model="vm.newCompanyData.telephone"
-                             placeholder="Teléfono"
-                             required>
             {{vm.newUserData}}
           <button type="button" class="btn btn-primary btn-block button-block btn-margin"
                                 ng-click="vm.saveNewCompany()"

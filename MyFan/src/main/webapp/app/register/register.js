@@ -3,6 +3,6 @@
 
   angular
     .module('refiereApp.register', [
-      'refiereApp.chore','ngMessages','ngPassword','ui.bootstrap','ui.select'
+      'refiereApp.chore','ngMessages','ngPassword','ui.bootstrap','ui.select','ngFileUpload'
     ]);
 })();
