@@ -7,7 +7,7 @@ import myfan.resources.base.util.Member;
 
 public class RegisterNewArtistRequest {
 	private String nameUser;
-	private Date   birthDate; /*verificar*/
+	private String   birthDate; /*verificar*/
 	private String login;     /*verificar*/
 	private String password;
 	private String countryLocation; 
@@ -20,7 +20,7 @@ public class RegisterNewArtistRequest {
 	public String getNameUser() {
 		return nameUser;
 	}
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 	public String getLogin() {
@@ -50,7 +50,7 @@ public class RegisterNewArtistRequest {
 	public void setNameUser(String nameUser) {
 		this.nameUser = nameUser;
 	}
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 	public void setLogin(String login) {
