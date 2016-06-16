@@ -27,6 +27,5 @@ public class MyResource {
     public String getIt(LoginRequest login) {
       return login.getLogin();
       
-        //return "Hola Valeria";
     }
 }

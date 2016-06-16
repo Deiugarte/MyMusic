@@ -23,13 +23,19 @@ public class FacadeLogic {
   private UserLogic userLogic;
   private FanaticLogic fanaticLogic;
   private ArtistLogic artistLogic;
+  private UtilsLogic utilsLogic;
 
   public FacadeLogic() {
     userLogic = new UserLogic();
     fanaticLogic = new FanaticLogic();
     artistLogic = new ArtistLogic();
+    utilsLogic= new UtilsLogic();
   }
-
+ 
+  public String getAllGenders() {
+    return utilsLogic.getAllGenres();
+    
+  }
   public Response logIn(LoginRequest credentials) {
     return userLogic.logIn(credentials);
   }

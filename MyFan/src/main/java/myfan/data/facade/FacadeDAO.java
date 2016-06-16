@@ -21,98 +21,101 @@ import myfan.data.models.UsersGenres;
 import myfan.data.models.UsersRoles;
 
 public class FacadeDAO {
-	private final String FANATIC_ROLE_NAME = "Fanatic";
-	private final String ARTIST_ROLE_NAME = "Band";
-	private final String DISABLE_ROLE_NAME = "Disable";
-	private UsersDao usersDao;
-	private UbicationsDao ubicationsDao;
-	private GenresDao gendersDao;
-	private FanaticsDao fanaticsDao;
-	private UsersRolesDao usersRolesDao;
-	private UsersGenresDao usersGenresDao;
-	private ArtistsDao artistsDao;
-	private MembersDao memberDao;
+  private final String FANATIC_ROLE_NAME = "Fanatic";
+  private final String ARTIST_ROLE_NAME = "Band";
+  private final String DISABLE_ROLE_NAME = "Disable";
+  private UsersDao usersDao;
+  private UbicationsDao ubicationsDao;
+  private GenresDao genresDao;
+  private FanaticsDao fanaticsDao;
+  private UsersRolesDao usersRolesDao;
+  private UsersGenresDao usersGenresDao;
+  private ArtistsDao artistsDao;
+  private MembersDao memberDao;
 
-	public FacadeDAO() {
-		usersDao = new UsersDao();
-		ubicationsDao = new UbicationsDao();
-		gendersDao = new GenresDao();
-		fanaticsDao = new FanaticsDao();
-		usersRolesDao = new UsersRolesDao();
-		usersGenresDao = new UsersGenresDao();
-		artistsDao = new ArtistsDao();
-		memberDao = new MembersDao();
-	}
+  public FacadeDAO() {
+    usersDao = new UsersDao();
+    ubicationsDao = new UbicationsDao();
+    genresDao = new GenresDao();
+    fanaticsDao = new FanaticsDao();
+    usersRolesDao = new UsersRolesDao();
+    usersGenresDao = new UsersGenresDao();
+    artistsDao = new ArtistsDao();
+    memberDao = new MembersDao();
+  }
 
-	
-	/*-----------------------------------------FIND-------------------------------------*/
-	/*-----------------------------------------FIND-------------------------------------*/
-	
-	public Users findUserByLogin(String userName) {
-		return usersDao.findByusername(userName);
-	}
-	
-	public Users findUserById(int idUserName) {
-		return usersDao.findById(idUserName);
-	}
+  /*-----------------------------------------FIND-------------------------------------*/
+  /*-----------------------------------------FIND-------------------------------------*/
 
-	public Ubications findUbicationsById(String ubicationName) {
-		return ubicationsDao.findByName(ubicationName);
+  public Users findUserByLogin(String userName) {
+    return usersDao.findByusername(userName);
+  }
 
-	}
+  public Users findUserById(int idUserName) {
+    return usersDao.findById(idUserName);
+  }
 
-	public Genres findGenderByName(String genderName) {
-		return gendersDao.findByName(genderName);
-	}
+  public Ubications findUbicationsById(String ubicationName) {
+    return ubicationsDao.findByName(ubicationName);
 
-	public List<Ubications> findAllUbications() {
-		return ubicationsDao.findAll();
-	}
-	
-	public Artists findArtistById(int idUser){
-		return artistsDao.getArtistsById(idUser);
-	}
-	public Fanatics findFanaticById(int idUser){
-		return fanaticsDao.getFanaticsById(idUser);
-	}
-	
-	/*-----------------------------------------GET-------------------------------------*/
-	/*-----------------------------------------GET-------------------------------------*/
+  }
 
-	public UsersRoles getFanaticRole() {
-		return usersRolesDao.findByRoleName(FANATIC_ROLE_NAME);
-	}
+  public Genres findGenderByName(String genderName) {
+    return genresDao.findByName(genderName);
+  }
 
-	public UsersRoles getArtistRole() {
-		return usersRolesDao.findByRoleName(ARTIST_ROLE_NAME);
-	}
+  public List<Ubications> findAllUbications() {
+    return ubicationsDao.findAll();
+  }
 
-	public UsersRoles getDisableRole() {
-		return usersRolesDao.findByRoleName(DISABLE_ROLE_NAME);
-	}
-	
-	/*-----------------------------------------SAVE-------------------------------------*/
-	/*-----------------------------------------SAVE-------------------------------------*/
-	
-	public void saveUsersGenres(UsersGenres usersGenres) {
-		usersGenresDao.save(usersGenres);
+  public Artists findArtistById(int idUser) {
+    return artistsDao.getArtistsById(idUser);
+  }
 
-	}
+  public Fanatics findFanaticById(int idUser) {
+    return fanaticsDao.getFanaticsById(idUser);
+  }
+  public List<Genres> findAllGenres(){
+    return genresDao.findAll();
+  }
 
-	public void saveMembersArtist(Members member) {
-		memberDao.save(member);
-	}
+  /*-----------------------------------------GET-------------------------------------*/
+  /*-----------------------------------------GET-------------------------------------*/
 
-	public void saveUser(Users user) {
-		usersDao.save(user);
-	}
+  public UsersRoles getFanaticRole() {
+    return usersRolesDao.findByRoleName(FANATIC_ROLE_NAME);
+  }
 
-	public void saveArtist(Artists artist) {
-		artistsDao.save(artist);
-	}
+  public UsersRoles getArtistRole() {
+    return usersRolesDao.findByRoleName(ARTIST_ROLE_NAME);
+  }
 
-	public void saveFanatic(Fanatics fanatic) {
-		fanaticsDao.save(fanatic);
-	}
+  public UsersRoles getDisableRole() {
+    return usersRolesDao.findByRoleName(DISABLE_ROLE_NAME);
+  }
+
+  /*-----------------------------------------SAVE-------------------------------------*/
+  /*-----------------------------------------SAVE-------------------------------------*/
+
+  public void saveUsersGenres(UsersGenres usersGenres) {
+    usersGenresDao.save(usersGenres);
+
+  }
+
+  public void saveMembersArtist(Members member) {
+    memberDao.save(member);
+  }
+
+  public void saveUser(Users user) {
+    usersDao.save(user);
+  }
+
+  public void saveArtist(Artists artist) {
+    artistsDao.save(artist);
+  }
+
+  public void saveFanatic(Fanatics fanatic) {
+    fanaticsDao.save(fanatic);
+  }
 
 }
