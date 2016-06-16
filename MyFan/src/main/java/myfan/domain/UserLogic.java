@@ -30,7 +30,7 @@ import myfan.resources.base.LoginRequest;
 
 public class UserLogic {
 
-  private final String DATE_FORMAT = "dd/MM/yyyy";
+  private final String DATE_FORMAT = "yyyy-MM-dd";
   protected final String USER_IDENTIFIER_STATUS = "{\"UserId\": \"%s\", \"status\":\"%s\"}";
   protected final String ERROR_USER_FOUND = "{\"Error \": \"User found \"}";
   protected final String ROLE_IDENTIFIER_STATUS = "{\"RoleIdentifier\": \"%s\", \"status\":\"%s\"}";
@@ -102,6 +102,17 @@ public class UserLogic {
     return response;
   }
 
+  protected Date getDateFromString(String date) {
+    Date returnDate = null;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
+    try {
+      returnDate = simpleDateFormat.parse(date);
+    } catch (ParseException ex) {
+      ex.printStackTrace();
+    }
+    return returnDate;
+  }
+
   protected Response responseBuilder(String response) {
     return Response.status(Status.UNAUTHORIZED).entity(response).build();
   }
@@ -142,7 +153,7 @@ public class UserLogic {
   }
 
   protected void createUser(String pathProfilePicture, Ubications ubication, UsersRoles usersRoles, String nameUser,
-      String password, String login, Date birthday) {
+      String password, String login, String birthday) {
     Users user;
     user = new Users();
     user.setUsersRoles(usersRoles);
@@ -152,7 +163,7 @@ public class UserLogic {
     user.setImage(pathProfilePicture);
     user.setCreationDate(calculateCurrentDate());
     user.setUsername(login);
-    user.setBirthday(birthday);
+    user.setBirthday(getDateFromString(birthday));
     facadeDAO.saveUser(user);
   }
 

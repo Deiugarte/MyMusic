@@ -36,6 +36,6 @@
     </filter>
     <filter-mapping>
         <filter-name>AuthenticationFilter</filter-name>
-        <url-pattern>/rest/*</url-pattern>
+        <url-pattern>/rest/me/*</url-pattern>
     </filter-mapping>
 </web-app>

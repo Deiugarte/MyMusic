@@ -11,8 +11,9 @@
   function RegisterCtrl(RegisterSrv, $state, $window,$scope,Upload) {
     var vm = this;
     vm.newUserData = {};
-    vm.newUserData.genres = [];
+    vm.newUserData.musicalGenres = [];
     vm.saveNewCompany = saveNewCompany;
+    vm.registerNewUser = registerNewUser;
     vm.plans = {};
     vm.data = {
     repeatSelect: null,
@@ -23,8 +24,8 @@
     ],
    };
    vm.people = [
-  { name: 'Adam' },
-  { name: 'Amalie'},
+  { name: 'Rock' },
+  { name: 'Pop'},
   { name: 'Estefanía' },
   { name: 'Adrian' },
   { name: 'Wladimir'},
@@ -35,26 +36,6 @@
   { name: 'Nicolás',  }
 ];
 
-  $scope.submit = function() {
-     if ($scope.form.file.$valid && $scope.file) {
-       $scope.upload($scope.file);
-     }
-   };
-
-   // upload on file select or drop
-   $scope.upload = function (file) {
-       Upload.upload({
-           url: 'upload/url',
-           data: {file: file, 'username': $scope.username}
-       }).then(function (resp) {
-           console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
-       }, function (resp) {
-           console.log('Error status: ' + resp.status);
-       }, function (evt) {
-           var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-           console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-       });
-   };
 
      $scope.dateOptions = {
        showWeeks: false,
@@ -82,6 +63,29 @@
         .then(function(plansData){
           vm.plans = plansData.data;
         })
+    }
+    function registerNewUser(){
+      RegisterSrv.postNewFanatic(vm.newUserData,vm.picfile)
+        .then(function(data) {
+          // console.log(data.status);
+          if (data.status === 200){
+            $window.alert('Bienvenido' );
+            $state.go('app.dashboard');
+          }
+          else if (data.status === 404){
+            $window.alert('Por favor ingrese los datos correctos.');
+          }
+          else if (data.status === -1){
+            $window.alert('¡El usuario ya existe!');
+          }
+          else{
+            $window.alert('Ocurrió un error con la conexión');
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+          $window.alert('¡El usuario ya existe, intentelo con otro usuario!');
+        });
     }
 
     function saveNewCompany() {
