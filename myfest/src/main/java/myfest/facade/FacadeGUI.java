@@ -2,21 +2,21 @@ package myfest.facade;
 
 import java.util.List;
 
-import javax.ws.rs.core.Response;
-
 import Objects.GUISearchGeneral;
-import myfest.logic.SearchResults;
+import myfest.logic.Dashboard;
 import myfest.logic.ListGenres;
+import myfest.logic.ListNames;
 import myfest.logic.ListUbications;
 import myfest.models.Musicalgenres;
 
 public class FacadeGUI {
-	private SearchResults dashboard;
-	private ListGenres listGenres;
+	private Dashboard  dashboard;
+	private ListGenres     listGenres;
 	private ListUbications listUbications;
+	private ListNames      listNames;
 	
 	public FacadeGUI(){
-		dashboard      = new SearchResults();
+		dashboard      = new Dashboard();
 		listGenres     = new ListGenres();
 		listUbications = new ListUbications();
 	}
@@ -33,6 +33,9 @@ public class FacadeGUI {
 		return listUbications.getListUbications();
 	}
 	
+	public List<String> getArtistNames(GUISearchGeneral objectGUI){
+		return listNames.getListNames(objectGUI);
+	}
 	
 	public void getQualitySearch(){
 		

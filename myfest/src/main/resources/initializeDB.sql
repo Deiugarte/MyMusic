@@ -13,10 +13,10 @@ insert into ConcertsScores(Score,Voters,CommentAmount) values (100, 200, 300)
 insert into ConcertsScores(Score,Voters,CommentAmount) values (400, 500, 600)
 insert into ConcertsScores(Score,Voters,CommentAmount) values (700, 800, 900)
 
-insert into Artists (ArtistName, FollowersAmount, Ubication, Image, DiscScoreId, ArtistScore, ConcertScore) values ('A', 15, 'AB', 'ABC', 1, 1, 1)
-insert into Artists (ArtistName, FollowersAmount, Ubication, Image, DiscScoreId, ArtistScore, ConcertScore) values ('B', 15, 'BC', 'BCD', 2, 2, 2)
+insert into Artists (ArtistName, FollowersAmount, Ubication, Image, DiscScoreId, ArtistScore, ConcertScore) values ('WAGNER', 15, 'AB', 'ABC', 1, 1, 1)
+insert into Artists (ArtistName, FollowersAmount, Ubication, Image, DiscScoreId, ArtistScore, ConcertScore) values ('wagner', 15, 'BC', 'BCD', 2, 2, 2)
 insert into Artists (ArtistName, FollowersAmount, Ubication, Image, DiscScoreId, ArtistScore, ConcertScore) values ('C', 15, 'AB', 'CDE', 3, 3, 3)
-insert into Artists (ArtistName, FollowersAmount, Ubication, Image, DiscScoreId, ArtistScore, ConcertScore) values ('D', 15, 'AB', 'CDE', 3, 3, 3)
+insert into Artists (ArtistName, FollowersAmount, Ubication, Image, DiscScoreId, ArtistScore, ConcertScore) values ('WaGnEr', 15, 'AB', 'CDE', 3, 3, 3)
 
 insert into MusicalGenres (GenreName) values ('Bachata')
 insert into MusicalGenres (GenreName) values ('Bolero')

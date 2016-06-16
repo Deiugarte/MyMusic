@@ -51,7 +51,7 @@ public class ArtistsDAO extends ArtistsHome {
 	    }
   }
   
-  public List<String> getArtisNameByName(DBObject dbObject){
+  public List<String> getArtistNameByName(DBObject dbObject){
 	  String resultsAmount = dbObject.getResultsAmount();
 	  String valueUper  = dbObject.getValue().toUpperCase();
 	  String valueLower = dbObject.getValue().toLowerCase();

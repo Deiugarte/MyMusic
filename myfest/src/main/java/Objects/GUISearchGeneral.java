@@ -1,38 +1,19 @@
 package Objects;
 
 public class GUISearchGeneral {
-	private String searchType;
-	private String resultsAmount;
-	private String value;
+	private String pValue;
+	private String pResultsAmount;
 	
-	public GUISearchGeneral(){
-		searchType    = "";
-		resultsAmount = "";
-		value         = "";
+	public GUISearchGeneral(String valueSearch, String resultsAmount){
+		pValue 		   = valueSearch;
+		pResultsAmount = resultsAmount;
 	}
 
-	public String getSearchType() {
-		return searchType;
-	}
-
-	public void setSearchType(String searchType) {
-		this.searchType = searchType;
-	}
-
+	public String getValueSearch() {
+		return pValue;
+	}	
+	
 	public String getResultsAmount() {
-		return resultsAmount;
+		return pResultsAmount;
 	}
-
-	public void setFilterType(String filterType) {
-		this.resultsAmount = filterType;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-	
 }
