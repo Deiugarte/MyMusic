@@ -11,13 +11,22 @@ import myfan.resources.base.LoginRequest;
 @Path("v1/resources")
 public class UtilitiesResource {
 
-      @GET
-      @Path("/genreslist")
-      @Produces(MediaType.APPLICATION_JSON)
-      public String getGenresList(LoginRequest login) {
-        FacadeLogic facadeLogic = new FacadeLogic();
-        return facadeLogic.getAllGenders();
-        
-      }
+  @GET
+  @Path("/genreslist")
+  @Produces(MediaType.APPLICATION_JSON)
+  public String getGenresList() {
+    FacadeLogic facadeLogic = new FacadeLogic();
+    return facadeLogic.getAllGenders();
+
+  }
+
+  @GET
+  @Path("/ubicationslist")
+  @Produces(MediaType.APPLICATION_JSON)
+  public String getUbicationsList() {
+    FacadeLogic facadeLogic = new FacadeLogic();
+    return facadeLogic.getAllUbications();
+
+  }
 
 }
