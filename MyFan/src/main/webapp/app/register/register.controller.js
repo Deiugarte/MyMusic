@@ -5,12 +5,13 @@
     .module('refiereApp.register')
     .controller('RegisterCtrl', RegisterCtrl);
 
-  RegisterCtrl.$inject = ['RegisterSrv', '$state', '$window','$scope'];
+  RegisterCtrl.$inject = ['RegisterSrv', '$state', '$window','$scope','Upload'];
 
   /* @ngInject */
-  function RegisterCtrl(RegisterSrv, $state, $window,$scope) {
+  function RegisterCtrl(RegisterSrv, $state, $window,$scope,Upload) {
     var vm = this;
-    vm.newCompanyData = {};
+    vm.newUserData = {};
+    vm.newUserData.genres = [];
     vm.saveNewCompany = saveNewCompany;
     vm.plans = {};
     vm.data = {
@@ -21,7 +22,39 @@
       {id: '3', name: 'Nicaragua'}
     ],
    };
+   vm.people = [
+  { name: 'Adam' },
+  { name: 'Amalie'},
+  { name: 'Estefanía' },
+  { name: 'Adrian' },
+  { name: 'Wladimir'},
+  { name: 'Samantha'},
+  { name: 'Nicole', },
+  { name: 'Natasha', },
+  { name: 'Michael',  },
+  { name: 'Nicolás',  }
+];
 
+  $scope.submit = function() {
+     if ($scope.form.file.$valid && $scope.file) {
+       $scope.upload($scope.file);
+     }
+   };
+
+   // upload on file select or drop
+   $scope.upload = function (file) {
+       Upload.upload({
+           url: 'upload/url',
+           data: {file: file, 'username': $scope.username}
+       }).then(function (resp) {
+           console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+       }, function (resp) {
+           console.log('Error status: ' + resp.status);
+       }, function (evt) {
+           var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+           console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+       });
+   };
 
      $scope.dateOptions = {
        showWeeks: false,
@@ -34,7 +67,13 @@
       $scope.popup1 = {
         opened: false
       };
-      
+
+
+
+
+
+
+
     getPlans();
 
 
