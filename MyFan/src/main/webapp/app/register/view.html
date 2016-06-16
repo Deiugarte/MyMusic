@@ -10,10 +10,10 @@
         <label class="radio-inline">
           <input type="radio" name="typeRadio" id="artist" ng-model= "checked" value="artist"> Artista
         </label>
-        <form submit="vm.registerUser()" name="newUserForm" ng-show="checked=='fanatic'" ng-controller="RegisterCtrl">
+        <form submit="vm.registerNewUser()" name="newUserForm" ng-show="checked=='fanatic'" ng-controller="RegisterCtrl">
           <strong> Ingrese su nombre completo: </strong>
           <input type="text" class="form-control" name="name"
-                             ng-model="vm.newUserData.name"
+                             ng-model="vm.newUserData.nameUser"
                              placeholder="Nombre completo"
                              ng-minlength="1" ng-maxlength="30"
                              required>
@@ -22,7 +22,7 @@
           <div >
           <strong> Introduzca su fecha de nacimiento: </strong>
               <p class="input-group">
-                <input type="text" class="form-control" name=date placeholder="Fecha de Nacimiento" uib-datepicker-popup="dd-MM-yyyy" ng-model="vm.newUserData.date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Cerrar" alt-input-formats="altInputFormats" />
+                <input type="text" class="form-control" name=date placeholder="Fecha de Nacimiento" uib-datepicker-popup="dd-MM-yyyy" ng-model="vm.newUserData.birthDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Cerrar" alt-input-formats="altInputFormats" />
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default margin-calendar-button" ng-click="open1()"><i class="fa fa-calendar"></i></button>
                   </span>
@@ -35,10 +35,10 @@
           <strong >Seleccione su genero: </strong>
           </label>
           <label class="radio-inline">
-            <input type="radio" name="genderRadio" id="genderMen" ng-model= "vm.newUserData.gender"value="men"> Hombre
+            <input type="radio" name="genderRadio" id="genderMen" ng-model= "vm.newUserData.gender"value="false"> Hombre
           </label>
           <label class="radio-inline">
-            <input type="radio" name="genderRadio" id="genderWomen" ng-model= "vm.newUserData.gender" value="women"> Mujer
+            <input type="radio" name="genderRadio" id="genderWomen" ng-model= "vm.newUserData.gender" value="true"> Mujer
           </label>
           <br>
           <strong>Ingrese su nombre de usuario: </strong>
@@ -78,14 +78,14 @@
       </div>
     </div>
     <label for="countrySelect"> Seleccione su pais: </label>
-    <select name="countrySelect" id="countrySelect" ng-model="vm.newUserData.country" required>
+    <select name="countrySelect" id="countrySelect" ng-model="vm.newUserData.countryLocation" required>
       <option ng-repeat="option in vm.data.availableOptions"  value="{{option.name}}">{{option.name}}</option>
     </select>
     <div ng-messages="newUserForm.countrySelect.$error" ng-if="newUserForm.$submitted || newUserForm.countrySelect.$pristine" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
       <div ng-message="required" class="message slide-left">No se ha introducido el pais</div>
     </div>
 
-    <ui-select multiple ng-model="vm.newUserData.genres" limit="3"  close-on-select="true"  title="Elige tus generos musicales" required>
+    <ui-select multiple ng-model="vm.newUserData.musicalGenres" limit="3"  close-on-select="true"  title="Elige tus generos musicales" required>
         <ui-select-match placeholder="Elige tus generos musicales">{{$item.name}} </ui-select-match>
         <ui-select-choices repeat="person.name as person in vm.people | filter: {name: $select.search}">
           <div ng-bind-html="person.name | highlight: $select.search"></div>
@@ -104,7 +104,7 @@
 
             {{vm.newUserData}}
           <button type="button" class="btn btn-primary btn-block button-block btn-margin"
-                                ng-click="vm.saveNewCompany()"
+                                ng-click="vm.registerNewUser()"
                                 ng-disabled="newUserForm.$invalid ">
           Register Company
           </button>
