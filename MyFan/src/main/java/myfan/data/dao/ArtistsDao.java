@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import myfan.data.models.Artists;
+import myfan.data.models.Ubications;
 import myfan.resources.util.HibernateUtil;
 
 public class ArtistsDao extends ArtistsHome {
@@ -37,6 +38,8 @@ public class ArtistsDao extends ArtistsHome {
       trans.commit();
       return instance;
   }
+  
+
 
   public void deleteArtists(Artists Artists) {
       Session session = sessionFactory.getCurrentSession();

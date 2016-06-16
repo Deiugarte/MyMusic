@@ -90,7 +90,7 @@ public class UsersHome {
   public Users findById(java.lang.Integer id) {
     log.debug("getting Users instance with id: " + id);
     try {
-      Users instance = (Users) sessionFactory.getCurrentSession().get("myfan.dao.temp.Users", id);
+      Users instance = (Users) sessionFactory.getCurrentSession().get("myfan.data.models.Users", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -106,7 +106,7 @@ public class UsersHome {
   public List findByExample(Users instance) {
     log.debug("finding Users instance by example");
     try {
-      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.Users")
+      List results = sessionFactory.getCurrentSession().createCriteria("myfan.data.models.Users")
           .add(Example.create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;

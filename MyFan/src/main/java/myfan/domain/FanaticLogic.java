@@ -11,6 +11,7 @@ import myfan.data.models.Ubications;
 import myfan.data.models.Users;
 import myfan.data.models.UsersRoles;
 import myfan.resources.base.RegisterNewFanaticRequest;
+import myfan.resources.base.UpdateProfileUserRequest;
 
 public class FanaticLogic extends UserLogic {
 
@@ -38,6 +39,17 @@ public class FanaticLogic extends UserLogic {
 
     response = String.format(response, user.getUserId().toString(), "OK");
     return Response.status(Status.OK).entity(response).build();
+  }
+
+  public Response updateFanatic(UpdateProfileUserRequest dataFanatic, String pathProfilePicture) {
+    String response = USER_IDENTIFIER_STATUS;
+    updateUser(dataFanatic, pathProfilePicture);
+    Fanatics fanatic = facadeDAO.findFanaticById(dataFanatic.getIdentificationNumber());
+    fanatic.setSex(dataFanatic.isGender());
+    facadeDAO.saveFanatic(fanatic);
+    response = String.format(response, fanatic.getFanaticId().toString(), "OK");
+    return Response.status(Status.OK).entity(response).build();
+
   }
 
 }

@@ -90,7 +90,7 @@ public class FanaticsHome {
   public Fanatics findById(java.lang.Integer id) {
     log.debug("getting Fanatics instance with id: " + id);
     try {
-      Fanatics instance = (Fanatics) sessionFactory.getCurrentSession().get("myfan.dao.temp.Fanatics", id);
+      Fanatics instance = (Fanatics) sessionFactory.getCurrentSession().get("myfan.models.Fanatics", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -106,7 +106,7 @@ public class FanaticsHome {
   public List findByExample(Fanatics instance) {
     log.debug("finding Fanatics instance by example");
     try {
-      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.Fanatics")
+      List results = sessionFactory.getCurrentSession().createCriteria("myfan.models.Fanatics")
           .add(Example.create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;

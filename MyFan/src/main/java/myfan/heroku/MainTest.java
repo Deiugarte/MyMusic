@@ -6,14 +6,15 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import myfan.domain.FacadeLogic;
+import myfan.resources.base.DisableAccountRequest;
+import myfan.resources.base.LoginRequest;
 import myfan.resources.base.RegisterNewArtistRequest;
 import myfan.resources.base.util.Member;
 
 public class MainTest {
 
   public static void main(String[] args) {
-  RegisterNewArtistRequest newArtistRequest= new
-     RegisterNewArtistRequest();
+	  RegisterNewArtistRequest newArtistRequest= new RegisterNewArtistRequest();
      SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
      String strFecha = "2007-12-25";
      Date fecha = null;
@@ -38,17 +39,23 @@ public class MainTest {
      members.add(member1);
      newArtistRequest.setBirthDate(strFecha);
      newArtistRequest.setCountryLocation("Costa Rica");
-     newArtistRequest.setLogin("Vale1");
+     newArtistRequest.setLogin("Vale");
      newArtistRequest.setMusisicalGenres(generos);
      newArtistRequest.setNameUser("Valeriass");
      newArtistRequest.setPassword("algo");
      newArtistRequest.setMembers(members);
     
-    
-    
      FacadeLogic facadeLogic= new FacadeLogic();
      facadeLogic.registerNewArtist(newArtistRequest,null,null);
     
+    DisableAccountRequest prueba = new DisableAccountRequest();
+    prueba.setLogin("Vale");
+    facadeLogic.disableProfile(prueba);
+    
+    LoginRequest login = new LoginRequest();
+    login.setLogin("Vale");
+    login.setPassword("algo");
+    facadeLogic.logIn(login);
     
      System.out.println("Soy un puto amo");
 
