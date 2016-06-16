@@ -3,58 +3,63 @@
     <div class="text-vertical-center">
       <div class="col-xs-1 col-sm-3 col-md-3 col-lg-3"></div>
       <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6">
-        <label>Click me to toggle: <input type="checkbox" ng-model="checked"></label><br/>
-        <form submit="vm.saveNewCompany()" name="newCompanyForm" ng-show="checked" ng-controller="RegisterCtrl">
+        <strong>Seleccione su tipo de cuenta:</strong>
+        <label class="radio-inline">
+          <input type="radio" name="typeRadio" id="fanatic" ng-model= "checked"value="fanatic"> Fanatico
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="typeRadio" id="artist" ng-model= "checked" value="artist"> Artista
+        </label>
+        <form submit="vm.registerNewUser()" name="newUserForm" ng-show="checked=='fanatic'" ng-controller="RegisterCtrl">
           <strong> Ingrese su nombre completo: </strong>
           <input type="text" class="form-control" name="name"
-                             ng-model="vm.newCompanyData.UserRequest.name"
+                             ng-model="vm.newUserData.nameUser"
                              placeholder="Nombre completo"
                              ng-minlength="1" ng-maxlength="30"
                              required>
-          <p ng-show="newCompanyForm.name.$error.minlength" class="help-block">Nombre muy corto</p>
-          <p ng-show="newCompanyForm.name.$error.maxlength" class="help-block">Nombre muy largo</p>
+          <p ng-show="newUserForm.name.$error.minlength" class="help-block">Nombre muy corto</p>
+          <p ng-show="newUserForm.name.$error.maxlength" class="help-block">Nombre muy largo</p>
           <div >
           <strong> Introduzca su fecha de nacimiento: </strong>
               <p class="input-group">
-                <input type="text" class="form-control" name=date placeholder="Fecha de Nacimiento" uib-datepicker-popup="dd-MM-yyyy" ng-model="vm.date" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Cerrar" alt-input-formats="altInputFormats" />
+                <input type="text" class="form-control" name=date placeholder="Fecha de Nacimiento" uib-datepicker-popup="dd-MM-yyyy" ng-model="vm.newUserData.birthDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Cerrar" alt-input-formats="altInputFormats" />
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default margin-calendar-button" ng-click="open1()"><i class="fa fa-calendar"></i></button>
                   </span>
               </p>
-              <div ng-messages="newCompanyForm.date.$error" ng-if="newCompanyForm.date.$submitted || newCompanyForm.date.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+              <div ng-messages="newUserForm.date.$error" ng-if="newUserForm.date.$submitted || newUserForm.date.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
                   <div ng-message="required" class="message slide-left">No se han introducido datos</div>
               </div>
              </div>
-          <label class="radio-inline">
-          <strong>Seleccione su genero: </strong>
+          <label style="padding-left:0%" class="radio-inline">
+          <strong >Seleccione su genero: </strong>
           </label>
           <label class="radio-inline">
-            <input type="radio" name="genderRadio" id="genderMen" ng-model= "vm.gender"value="men"> Hombre
+            <input type="radio" name="genderRadio" id="genderMen" ng-model= "vm.newUserData.gender"value="false"> Hombre
           </label>
           <label class="radio-inline">
-            <input type="radio" name="genderRadio" id="genderWomen" ng-model= "vm.gender" value="women"> Mujer
+            <input type="radio" name="genderRadio" id="genderWomen" ng-model= "vm.newUserData.gender" value="true"> Mujer
           </label>
           <br>
-
           <strong>Ingrese su nombre de usuario: </strong>
           <input type="text" class="form-control" name="username"
-                             ng-model="vm.newCompanyData.UserRequest.login"
+                             ng-model="vm.newUserData.login"
                              placeholder="Nombre"
                              ng-minlength="4" ng-maxlength="12"
                              required>
-          <p ng-show="newCompanyForm.username.$error.minlength" class="help-block">Nombre de usuario muy corto</p>
-          <p ng-show="newCompanyForm.username.$error.maxlength" class="help-block">Nombre de usuario muy largo</p>
+          <p ng-show="newUserForm.username.$error.minlength" class="help-block">Nombre de usuario muy corto</p>
+          <p ng-show="newUserForm.username.$error.maxlength" class="help-block">Nombre de usuario muy largo</p>
         <strong>Ingrese su contraseña: </strong>
         <input type="password" placeholder="Introduzca su contraseña"
                           class="form-control"
                           name="newPassword"
-                          ng-model="vm.newCompanyData.password"
+                          ng-model="vm.newUserData.password"
                           ng-minlength="4" ng-maxlength="8"
                           required/>
-          <p ng-show="newCompanyForm.password.$error.minlength" class="help-block">Contraseña muy corta</p>
-          <p ng-show="newCompanyForm.password.$error.maxlength" class="help-block">Contraseña  muy larga</p>
+          <p ng-show="newUserForm.password.$error.minlength" class="help-block">Contraseña muy corta</p>
+          <p ng-show="newUserForm.password.$error.maxlength" class="help-block">Contraseña  muy larga</p>
           <div class="clearfix">
-            <div ng-messages="newCompanyForm.newPassword.$error" ng-if="newCompanyForm.$submitted || newCompanyForm.newPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+            <div ng-messages="newUserForm.newPassword.$error" ng-if="newUserForm.$submitted || newUserForm.newPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
                 <div ng-message="required" class="message slide-left">No se han introducido datos</div>
                 <div ng-message="passwordMatch" class="message slide-left">Las contraseñas no coinciden</div>
             </div>
@@ -67,43 +72,40 @@
               match-password="newPassword"
               required/>
     <div class="clearfix">
-      <div ng-messages="newCompanyForm.confirmPassword.$error" ng-if="newCompanyForm.$submitted || newCompanyForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+      <div ng-messages="newUserForm.confirmPassword.$error" ng-if="newUserForm.$submitted || newUserForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
         <div ng-message="required" class="message slide-left">No se han introducido datos</div>
         <div ng-message="passwordMatch" class="message slide-left">Las contraseñas no coinciden</div>
       </div>
     </div>
     <label for="countrySelect"> Seleccione su pais: </label>
-    <select name="countrySelect" id="countrySelect" ng-model="vm.data.repeatSelect" required>
-      <option ng-repeat="option in vm.data.availableOptions" value="{{option.id}}">{{option.name}}</option>
+    <select name="countrySelect" id="countrySelect" ng-model="vm.newUserData.countryLocation" required>
+      <option ng-repeat="option in vm.data.availableOptions"  value="{{option.name}}">{{option.name}}</option>
     </select>
-    <div ng-messages="newCompanyForm.countrySelect.$error" ng-if="newCompanyForm.$submitted || newCompanyForm.countrySelect.$pristine" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+    <div ng-messages="newUserForm.countrySelect.$error" ng-if="newUserForm.$submitted || newUserForm.countrySelect.$pristine" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
       <div ng-message="required" class="message slide-left">No se ha introducido el pais</div>
     </div>
 
-          <input type="text" class="form-control"
-                             ng-model="vm.newCompanyData.name"
-                             placeholder="Nombre de la compañía"
-                             required>
-          <input type="text" class="form-control"
-                             ng-model="vm.newCompanyData.address"
-                             placeholder="Dirección física"
-                             required>
-          <div class="form-group" ng-class="{ 'has-error' : newCompanyForm.email.$invalid && !newCompanyForm.email.$pristine }">
-          <input type="email" class="form-control"
-                              name="email"
-                              ng-model="vm.newCompanyData.email"
-                              placeholder="Correo Electrónico"
-                              required>
-          <p ng-show="newCompanyForm.email.$invalid && !newCompanyForm.email.$pristine" class="help-block">Introduzca un correo valido</p>
-          </div>
-          <input type="text" class="form-control"
-                             ng-model="vm.newCompanyData.telephone"
-                             placeholder="Teléfono"
-                             required>
+    <ui-select multiple ng-model="vm.newUserData.musicalGenres" limit="3"  close-on-select="true"  title="Elige tus generos musicales" required>
+        <ui-select-match placeholder="Elige tus generos musicales">{{$item.name}} </ui-select-match>
+        <ui-select-choices repeat="person.name as person in vm.people | filter: {name: $select.search}">
+          <div ng-bind-html="person.name | highlight: $select.search"></div>
+          <small>
+            {{person.name}}
+          </small>
+        </ui-select-choices>
+      </ui-select>
+      <strong>Foto de Perfil:</strong>
+      <input type="file" ngf-select="" ng-model="vm.picfile" name="file" ngf-accept="'image/*'">
+                   <img ngf-src="vm.picfile" class="thumb">
+                   <span class="progress" ng-show="vm.picfile.progress >= 0">
+                       <div style="width:{{vm.picfile.progress}}%" ng-bind="vm.picfile.progress + '%'" class="ng-binding"></div>
+                   </span>
+                   <span ng-show="vm.picfile.result">Imagen actualizada</span>
 
+            {{vm.newUserData}}
           <button type="button" class="btn btn-primary btn-block button-block btn-margin"
-                                ng-click="vm.saveNewCompany()"
-                                ng-disabled="newCompanyForm.$invalid ">
+                                ng-click="vm.registerNewUser()"
+                                ng-disabled="newUserForm.$invalid ">
           Register Company
           </button>
         </form>

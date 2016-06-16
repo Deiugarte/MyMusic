@@ -37,7 +37,7 @@ public class MainTest {
      member1.setName("Jean Paul");
      member1.setInstrument("guitarra");
      members.add(member1);
-     newArtistRequest.setBirthDate(fecha);
+     newArtistRequest.setBirthDate(strFecha);
      newArtistRequest.setCountryLocation("Costa Rica");
      newArtistRequest.setLogin("Vale");
      newArtistRequest.setMusisicalGenres(generos);

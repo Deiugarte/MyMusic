@@ -7,20 +7,20 @@ import java.util.Date;
 
 public class RegisterNewFanaticRequest {
 	private String nameUser;
-	private Date birthday;    /*verificar*/
+	private String birthDate; /*verificar*/
 	private boolean gender;
 	private String login;     /*verificar*/
 	private String password;
 	private String countryLocation; 
-	private ArrayList<String> musisicalGenres; /*opcional*/
+	private ArrayList<String> musicalGenres; /*opcional*/
 	private String identificationNumber;
 	private String currentDate;
 	
 	public String getNameUser() {
 		return nameUser;
 	}
-	public Date getBirthDate() {
-		return birthday;
+	public String getBirthDate() {
+		return birthDate;
 	}
 	public boolean getGender() {
 		return gender;
@@ -35,8 +35,8 @@ public class RegisterNewFanaticRequest {
 		return countryLocation;
 	}
 
-	public ArrayList<String> getMusisicalGenres() {
-		return musisicalGenres;
+	public ArrayList<String> getMusicalGenres() {
+		return musicalGenres;
 	}
 	public String getIdentificationNumber() {
 		return identificationNumber;
@@ -47,8 +47,8 @@ public class RegisterNewFanaticRequest {
 	public void setNameUser(String nameUser) {
 		this.nameUser = nameUser;
 	}
-	public void setBirthDate(Date birthDate) {
-		this.birthday = birthDate;
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
 	}
 	public void setGender(boolean gender) {
 		this.gender = gender;
@@ -63,8 +63,8 @@ public class RegisterNewFanaticRequest {
 		this.countryLocation = countryLocation;
 	}
 
-	public void setMusisicalGenres(ArrayList<String> musisicalGenres) {
-		this.musisicalGenres = musisicalGenres;
+	public void setMusicalGenres(ArrayList<String> musisicalGenres) {
+		this.musicalGenres = musisicalGenres;
 	}
 	public void setIdentificationNumber(String identificationNumber) {
 		this.identificationNumber = identificationNumber;
