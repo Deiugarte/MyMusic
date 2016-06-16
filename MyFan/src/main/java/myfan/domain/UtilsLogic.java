@@ -10,13 +10,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import myfan.data.facade.FacadeDAO;
 import myfan.data.models.Genres;
+import myfan.data.models.Ubications;
 import myfan.resources.base.GenresResponse;
+import myfan.resources.base.UbicationsResponse;
 
 public class UtilsLogic {
   private FacadeDAO facadeDAO;
+  private JSON json;
 
   public UtilsLogic() {
     facadeDAO = new FacadeDAO();
+    json= new JSON();
   }
   
   public String getAllGenres(){
@@ -27,25 +31,20 @@ public class UtilsLogic {
       genre.setName(genres.get(i).getName());
       genresResponse.add(genre);
     }
-    return jsonConverter(genresResponse);
+    return json.jsonConverter(genresResponse);
   }
   
+  public String getAllUbications(){
+	    List<Ubications> ubicationsList = facadeDAO.findAllUbications();
+	    ArrayList<UbicationsResponse> ubicationResponse = new ArrayList<UbicationsResponse>();
+	    for (int i = 0; i < ubicationsList.size(); i++) {
+	    	UbicationsResponse ubication = new UbicationsResponse();
+	    	ubication.setName(ubicationsList.get(i).getName());
+	      ubicationResponse.add(ubication);
+	    }
+	    return json.jsonConverter(ubicationResponse);
+	  }
   
-  public String jsonConverter(Object source) {
-    ObjectMapper mapper = new ObjectMapper();
-    String jsonInString= "{}";
-    try {
-      jsonInString = mapper.writeValueAsString(source);
-      jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(source);
 
-    } catch (JsonGenerationException e) {
-      e.printStackTrace();
-    } catch (JsonMappingException e) {
-      e.printStackTrace();
-    } catch (JsonProcessingException e) {
-      e.printStackTrace();
-    } 
-    return jsonInString;
-  }
 
 }

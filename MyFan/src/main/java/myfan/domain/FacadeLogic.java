@@ -36,6 +36,11 @@ public class FacadeLogic {
     return utilsLogic.getAllGenres();
     
   }
+  
+  public String getAllUbications() {
+	    return utilsLogic.getAllUbications();
+	    
+	  }
   public Response logIn(LoginRequest credentials) {
     return userLogic.logIn(credentials);
   }
