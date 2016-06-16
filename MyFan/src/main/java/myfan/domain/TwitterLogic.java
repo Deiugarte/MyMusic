@@ -7,14 +7,17 @@ import myfan.services.twitter.TwitterConnection;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
-public class PostTwitter implements IConstansts {
+public class TwitterLogic  {
 	private Twitter twitter;
+	private final int STATUS_RATE = 0;
+	private final int STATUS_FOLLOW  = 1;
+	private final int STATUS_RATE_AND_COMMENT   = 2;
 
 	/**
 	 * Contructor de la clase que crea una nueva instancia de la conexion de
 	 * twitter
 	 */
-	public PostTwitter() {
+	public TwitterLogic() {
 		TwitterConnection twitterConnection = new TwitterConnection();
 		twitter = twitterConnection.getTwitter();
 
@@ -30,7 +33,7 @@ public class PostTwitter implements IConstansts {
 		try {
 			twitter.updateStatus(statusTwitter);
 		} catch (TwitterException ex) {
-			Logger.getLogger(PostTwitter.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(TwitterLogic.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
