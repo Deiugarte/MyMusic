@@ -10,6 +10,7 @@
       'refiereApp.services',
       'refiereApp.campaign',
       'refiereApp.fanProfile',
+      'refiereApp.artistProfile',
       'ui.router',
 
     ]);

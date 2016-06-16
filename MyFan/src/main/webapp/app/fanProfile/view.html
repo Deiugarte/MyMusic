@@ -48,7 +48,7 @@
                                            <div class="timeline-heading">
                                                <h4 class="timeline-title">{{publication.title}}
                                                <div ng-if="publication.type=='evento'" class="eventReview pull-right">
-                                                 <uib-rating style="font-size: 1.2vw; color:#f9f014;" class="star pull-left" ng-model="publication.stars"  max="publication.stars"  on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
+                                                 <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="publication.stars"  max="publication.stars"  on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
                                                        <span class="eventComment">({{publication.commentsAmount}})</span>
                                                    </div>
                                                    </h4>
@@ -66,45 +66,40 @@
                         <div id="myArtistsListContainer">
                             <div id="myArtistsListHeader">
                                 <div id="myArtistsFollowsCounter">¡Sigues a X artistas!</div>
-                                <div id="myArtistsFilter"><input class="form-control input-sm"  type="text" placeholder="filtrar mis artistas" ng-model="artistsFilter"></div>
+                                <div id="myArtistsFilter"><input class="form-control input-sm inputClass"  type="text" placeholder="filtrar mis artistas" ng-model="artistsFilter"></div>
                             </div>
                             <div id="myArtistsListMainContent">
-                                <div class="artistShortProfile">
+                                <div ng-repeat="artist in vm.artistList.artists" class="artistShortProfile">
                                     <div class="artistLeftContent">
                                         <div class="artistImageContainer">
                                             <img src="assets/images/userProfile.jpg" class="artistProfileImage" alt="artist Profile Image"/>
                                         </div>
-                                        <p class="artistName">Bob Marley</p>
                                     </div>
                                     <div class="artistRightContent">
                                         <div class="artistProfileHeader">
-                                            <div class="artistProfileTitle">Solista</div>
+                                            <div class="artistProfileTitle">{{artist.name}}</div>
                                             <div class="artistProfileQuitFollow">
                                                 <button class="btn btn-default btn-xs  btn-block">Dejar de seguir</button>
                                             </div>
                                         </div>
                                         <div class="artistProfileLeftInfo">
-                                            <p> Jamaica </p>
-                                            <p> 20 Discos </p>
-                                            <p><span class="star fa fa-star" style="font-size: 1vw; color:#f9f014;" ></span>
-                                                <span class="star fa fa-star" style="font-size: 1vw; color:#f9f014;" ></span>
-                                                <span class="star fa fa-star" style="font-size: 1vw; color:#f9f014;" ></span>
-                                                <span class="star fa fa-star" style="font-size: 1vw; color:#f9f014;" ></span>
-                                                <span class="star fa fa-star" style="font-size: 1vw; color:#f9f014;" ></span>
+                                            <p>{{artist.country}} </p>
+                                            <p> {{artist.albumsAmount}}  Discos</p>
+                                            <p>
+                                              <uib-rating style="font-size: 1.2vw; color:#f9f014;"
+                                              read-only="true" class="star" ng-model="artist.stars"
+                                               max="artist.stars"  aria-labelledby="default-rating"></uib-rating>
                                             </p>
                                         </div>
                                         <div class="artistProfileCenterInfo">
                                             <div class="centerInfoTitle">Géneros Musicales</div>
                                             <div class="centerInfoContent">
-                                                <span>Ska</span>
-                                                <span>Roots</span>
-                                                <span>Reggae</span>
-                                                <span>Dub</span>
+                                              <span ng-repeat="genre in artist.genres">{{genre}}</span>
                                             </div>
                                         </div>
                                         <div class="artistProfileRightInfo">
                                             <div class="rightInfoTitle">Próximo evento</div>
-                                            <div class="rightInfoContent">Este artista no tiene eventos próximos</div>
+                                            <div class="rightInfoContent">{{artist.nextEvent}}</div>
                                         </div>
 
                                     </div>
@@ -119,7 +114,7 @@
         <div  class="col-xs-3 col-md-3" style="height: 100%">
             <div  id="fanSearchArtistContainer" class="row contentArea center-blocks">
                 <div id="searchInputContainer">
-                    <input type="search" ng-model="vm.searchArtistValue" class="form-control input-sm" id="searchBox" placeholder="Búsqueda de artistas..."/>
+                    <input type="search" ng-model="vm.searchArtistValue" class="form-control input-sm inputClass" id="searchBox" placeholder="Búsqueda de artistas..."/>
                 </div>
                 <div id="searchButtonsContainer" class="text-center">
                     <button class="b btn btn-primary btn-sm btn-block">Buscar</button>
@@ -131,12 +126,12 @@
                         <p class="descriptionText">País: </p>
                     </div>
                     <div id="hiddenFiltersInputs" class="col-xs-3 col-md-8">
-                        <select class="form-control input-sm comboBox">
-                            <option  value="rock">Rock</option>
+                        <select class=" input-sm form-control comboBox">
+                            <option ng-repeat="genre in vm.genresList" value="{{genre}">{{genre}}</option>
                             <!--  <option ng-repeat="x in genres" value="{{x.genreValue}">{{x.genreName}}</option>  -->
                         </select> <br/>
-                        <select class=" form-control input-sm comboBox">
-                            <option value="costarica">Costa Rica</option>
+                        <select class="input-sm form-control comboBox">
+                            <option ng-repeat="country in vm.countriesList" value="{{country}">{{country}}</option>
                             <!--  <option ng-repeat="x in countries" value="{{x.countryValue}">{{x.countryName}}</option>  -->
                         </select> <br/>
                     </div>

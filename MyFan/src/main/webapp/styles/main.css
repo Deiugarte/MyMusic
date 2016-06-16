@@ -982,7 +982,7 @@ html, body{
 
 
 .artistImageContainer{
-    height: 80%;
+    height: 100%;
     width: 100%;
 }
 
@@ -1024,7 +1024,7 @@ html, body{
     width : 78%;
     float: left;
     text-align: center;
-    font-size: 22px;
+    font-size: 1.8vw;
     font-weight: bold;
 
 }
@@ -1047,7 +1047,7 @@ html, body{
     width: 30%;
     vertical-align: top;
     text-align: center;
-    font-size: 16px;
+    font-size: 1.4vw;
     font-weight: bold;
     border-left: none;
     border-bottom: none;
@@ -1055,6 +1055,8 @@ html, body{
 
 .artistProfileLeftInfo > p{
     margin-bottom: 3%;
+    height: 33%;
+
 }
 
 .artistProfileCenterInfo{
@@ -1064,7 +1066,7 @@ html, body{
 
 .centerInfoTitle{
     font-weight: bold;
-    font-size: 1.4vw;
+    font-size: 1.3vw;
     border-bottom: 1px solid #d4d4d4;
     text-align: center;
     width: 100%;
@@ -1079,7 +1081,7 @@ html, body{
 .centerInfoContent > span{
     height: auto;
     width: 50%;
-    font-size: 14px;
+    font-size: 1.0vw;
     float: left;
     text-align: center;
     padding: 3px;
@@ -1092,7 +1094,7 @@ html, body{
 
 .rightInfoTitle{
     font-weight: bold;
-    font-size: 1.4vw;
+    font-size: 1.3vw;
     border-bottom: 1px solid #d4d4d4;
     text-align: center;
     width: 100%;
@@ -1102,7 +1104,8 @@ html, body{
     width: 100%;
     height: 75%;
     text-align: center;
-    padding-top: 10px;
+    padding: 3.5% 5%;
+    font-size: 1.0vw;
 }
 
 
@@ -1155,7 +1158,15 @@ html, body{
 }
 .comboBox{
      font-size: 1vw;
-     height: 1vh;
+     margin: 0 6%;
+     width: auto;
+     padding: 0;
+}
+
+.inputClass{
+  margin: 0 1%;
+  padding: 0;
+  width: auto;
 }
 
 @media only screen and (max-width: 768px) {
@@ -1181,12 +1192,6 @@ html, body{
         top: 50px;
 
     }
-
-}
-
-
-.comboBox{
-    font-size: 1vw;
 
 }
 
