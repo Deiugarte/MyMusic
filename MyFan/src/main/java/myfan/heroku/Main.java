@@ -2,12 +2,6 @@ package myfan.heroku;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
-import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
-
-import myfan.domain.FacadeLogic;
-import myfan.resources.base.RegisterNewArtistRequest;
-import myfan.resources.base.RegisterNewFanaticRequest;
-import myfan.resources.base.util.Member;
 
 /**
  * This class launches the web application in an embedded Jetty container. This
@@ -22,6 +16,7 @@ public class Main {
     String webPort = System.getenv("PORT");
     if (webPort == null || webPort.isEmpty()) {
       webPort = "8000";
+
 
       final Server server = new Server(Integer.valueOf(webPort));
       final WebAppContext root = new WebAppContext();
