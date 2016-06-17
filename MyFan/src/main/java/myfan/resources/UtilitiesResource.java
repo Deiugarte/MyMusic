@@ -2,6 +2,7 @@ package myfan.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -26,7 +27,13 @@ public class UtilitiesResource {
   public String getUbicationsList() {
     FacadeLogic facadeLogic = new FacadeLogic();
     return facadeLogic.getAllUbications();
-
   }
 
+  @GET
+  @Path("/userdata/{username}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public String getUserData(@PathParam("username") int username) {
+    FacadeLogic facadeLogic = new FacadeLogic();
+    return facadeLogic.getPersonalInformationOfUser(username);
+  }
 }
