@@ -6,19 +6,30 @@
 
     fanProfileCtrl.$inject = ['FanaticSrv', '$state', '$window', '$scope'];
 
-    function fanProfileCtrl($FanaticSrv, $state, $window, $scope) {
+    function fanProfileCtrl(FanaticSrv, $state, $window, $scope) {
         var vm = this;
-        vm.newUser = {
-            name: 'Dei',
-            age: 20,
-            sex: 'Masculino',
-            genres: ['Rock',
-                'Reggae',
-                'Pop'
-            ],
-            country: 'Costa Rica'
-        };
-
+        vm.newUser = {};
+        vm.genresList = {};
+        vm.countriesList = {};
+        getUserData();
+        function getUserData(data){
+          FanaticSrv.getUserData()
+          .then(function(info){
+            vm.newUser = info.data;
+          })
+        }
+        function getGenresData(data){
+          FanaticSrv.getGenresData()
+          .then(function(info){
+            vm.genresList = info.data;
+          })
+        }
+        function getUbicationsList() {
+          FanaticSrv.getUbicationsList()
+            .then(function(ubicationData){
+              vm.countriesList = ubicationData.data;
+            })
+        }
         vm.timeline = {
             publications: [{
                 type: "noticia",
@@ -36,6 +47,7 @@
                 body: "Un dia de estos tocas Ki MA ni marly",
                 date: "25/12/2011",
                 stars: 3,
+                id: "ass",
                 commentsAmount: 100
             }, {
                 type: "evento",
@@ -92,8 +104,7 @@
             }, ]
         };
 
-        vm.genresList = ["Rock", "Reggae", "Pop", "Funk", "Dub", "Alternativo", "Electrónica"];
-        vm.countriesList = ["Costa Rica", "Panama", "Paraguay", "Brazil", "Guatemla", "El Salvador", "Nicaragua"];
+
 
 
 
@@ -101,9 +112,12 @@
         $scope.showFilters = function() {
             if ($scope.filtersInvisible) {
                 $scope.filtersInvisible = false;
+                  getGenresData();
+                  getUbicationsList();
             } else {
                 $scope.filtersInvisible = true;
             }
+
         };
     }
 })();

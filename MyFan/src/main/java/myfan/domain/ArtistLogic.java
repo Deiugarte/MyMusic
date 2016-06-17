@@ -32,7 +32,7 @@ public class ArtistLogic extends UserLogic {
 
     Artists artist = new Artists();
     user = facadeDAO.findUserByLogin(dataArtist.getLogin());
-    // artist.setBiographyArtist(dataArtist.getBiographyArtist());
+    artist.setBio(dataArtist.getBiographyArtist());
     artist.setUsers(user);
 
     facadeDAO.saveArtist(artist);

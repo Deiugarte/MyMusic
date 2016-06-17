@@ -1,5 +1,5 @@
 package myfan.data.models;
-// Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,24 +12,30 @@ public class Artists implements java.io.Serializable {
   private Integer artistId;
   private Users users;
   private int followers;
-  private Set artistsCalificationses = new HashSet(0);
-  private Set newses = new HashSet(0);
-  private Set memberses = new HashSet(0);
-  private Set eventses = new HashSet(0);
-  private Set discses = new HashSet(0);
+  private String bio;
+  private Set<FanaticsArtists> fanaticsArtistses = new HashSet<FanaticsArtists>(0);
+  private Set<ArtistsCalifications> artistsCalificationses = new HashSet<ArtistsCalifications>(0);
+  private Set<News> newses = new HashSet<News>(0);
+  private Set<Members> memberses = new HashSet<Members>(0);
+  private Set<Events> eventses = new HashSet<Events>(0);
+  private Set<Discs> discses = new HashSet<Discs>(0);
 
   public Artists() {
   }
 
-  public Artists(Users users, int followers) {
+  public Artists(Users users, int followers, String bio) {
     this.users = users;
     this.followers = followers;
+    this.bio = bio;
   }
 
-  public Artists(Users users, int followers, Set artistsCalificationses, Set newses, Set memberses, Set eventses,
-      Set discses) {
+  public Artists(Users users, int followers, String bio, Set<FanaticsArtists> fanaticsArtistses,
+      Set<ArtistsCalifications> artistsCalificationses, Set<News> newses, Set<Members> memberses, Set<Events> eventses,
+      Set<Discs> discses) {
     this.users = users;
     this.followers = followers;
+    this.bio = bio;
+    this.fanaticsArtistses = fanaticsArtistses;
     this.artistsCalificationses = artistsCalificationses;
     this.newses = newses;
     this.memberses = memberses;
@@ -61,43 +67,59 @@ public class Artists implements java.io.Serializable {
     this.followers = followers;
   }
 
-  public Set getArtistsCalificationses() {
+  public String getBio() {
+    return this.bio;
+  }
+
+  public void setBio(String bio) {
+    this.bio = bio;
+  }
+
+  public Set<FanaticsArtists> getFanaticsArtistses() {
+    return this.fanaticsArtistses;
+  }
+
+  public void setFanaticsArtistses(Set<FanaticsArtists> fanaticsArtistses) {
+    this.fanaticsArtistses = fanaticsArtistses;
+  }
+
+  public Set<ArtistsCalifications> getArtistsCalificationses() {
     return this.artistsCalificationses;
   }
 
-  public void setArtistsCalificationses(Set artistsCalificationses) {
+  public void setArtistsCalificationses(Set<ArtistsCalifications> artistsCalificationses) {
     this.artistsCalificationses = artistsCalificationses;
   }
 
-  public Set getNewses() {
+  public Set<News> getNewses() {
     return this.newses;
   }
 
-  public void setNewses(Set newses) {
+  public void setNewses(Set<News> newses) {
     this.newses = newses;
   }
 
-  public Set getMemberses() {
+  public Set<Members> getMemberses() {
     return this.memberses;
   }
 
-  public void setMemberses(Set memberses) {
+  public void setMemberses(Set<Members> memberses) {
     this.memberses = memberses;
   }
 
-  public Set getEventses() {
+  public Set<Events> getEventses() {
     return this.eventses;
   }
 
-  public void setEventses(Set eventses) {
+  public void setEventses(Set<Events> eventses) {
     this.eventses = eventses;
   }
 
-  public Set getDiscses() {
+  public Set<Discs> getDiscses() {
     return this.discses;
   }
 
-  public void setDiscses(Set discses) {
+  public void setDiscses(Set<Discs> discses) {
     this.discses = discses;
   }
 

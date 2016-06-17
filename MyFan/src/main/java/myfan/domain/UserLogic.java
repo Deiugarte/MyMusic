@@ -29,6 +29,7 @@ import myfan.resources.base.UserProfileResponse;
 
 public class UserLogic {
 
+
 	private final String DATE_FORMAT = "yyyy-MM-dd";
 	protected final String USER_IDENTIFIER_STATUS = "{\"UserId\": \"%s\", \"status\":\"%s\"}";
 	protected final String DISABLE_ACCOUNT_STATUS = "{\"UserId\": \"%s\", \"status\":\"%s\"}";
@@ -146,14 +147,11 @@ public class UserLogic {
 
 	private ArrayList<GenresResponse> getGenresByUser(int idUser) {
 		List<UsersGenres> usersGenresList = facadeDAO.findGenresByUsersId(idUser);
-		List<UsersGenres> genresOfUserList = new ArrayList<UsersGenres>();
-		for (int i = 0; i < usersGenresList.size(); i++) {
-			genresOfUserList.add(facadeDAO.findGenresByUserGenressId(usersGenresList.get(i).getUsersGenresId()));
-		}
+		
 		ArrayList<GenresResponse> genresResponse = new ArrayList<GenresResponse>();
 		for (int i = 0; i < usersGenresList.size(); i++) {
 			GenresResponse genre = new GenresResponse();
-			genre.setName(genresOfUserList.get(i).getGenres().getName());
+			genre.setName(usersGenresList.get(i).getGenres().getName());
 			genresResponse.add(genre);
 		}
 		return genresResponse;
@@ -392,5 +390,4 @@ public class UserLogic {
 		saveGenres(user, genders);
 
 	}
-
 }
