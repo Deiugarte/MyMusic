@@ -126,11 +126,11 @@
                     </div>
                     <div id="hiddenFiltersInputs" class="col-xs-3 col-md-8">
                         <select class=" input-sm form-control comboBox">
-                            <option ng-repeat="genre in vm.genresList" value="{{genre}">{{genre}}</option>
+                            <option ng-repeat="genre in vm.genresList" value="{{genre.name}">{{genre.name}}</option>
                             <!--  <option ng-repeat="x in genres" value="{{x.genreValue}">{{x.genreName}}</option>  -->
                         </select> <br/>
                         <select class="input-sm form-control comboBox">
-                            <option ng-repeat="country in vm.countriesList" value="{{country}">{{country}}</option>
+                            <option ng-repeat="country in vm.countriesList" value="{{country.name}">{{country.name}}</option>
                             <!--  <option ng-repeat="x in countries" value="{{x.countryValue}">{{x.countryName}}</option>  -->
                         </select> <br/>
                     </div>

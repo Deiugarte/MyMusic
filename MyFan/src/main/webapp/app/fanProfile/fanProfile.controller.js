@@ -9,12 +9,26 @@
     function fanProfileCtrl(FanaticSrv, $state, $window, $scope) {
         var vm = this;
         vm.newUser = {};
+        vm.genresList = {};
+        vm.countriesList = {};
         getUserData();
         function getUserData(data){
           FanaticSrv.getUserData()
           .then(function(info){
             vm.newUser = info.data;
           })
+        }
+        function getGenresData(data){
+          FanaticSrv.getGenresData()
+          .then(function(info){
+            vm.genresList = info.data;
+          })
+        }
+        function getUbicationsList() {
+          FanaticSrv.getUbicationsList()
+            .then(function(ubicationData){
+              vm.countriesList = ubicationData.data;
+            })
         }
         vm.timeline = {
             publications: [{
@@ -90,8 +104,7 @@
             }, ]
         };
 
-        vm.genresList = ["Rock", "Reggae", "Pop", "Funk", "Dub", "Alternativo", "Electrónica"];
-        vm.countriesList = ["Costa Rica", "Panama", "Paraguay", "Brazil", "Guatemla", "El Salvador", "Nicaragua"];
+
 
 
 
@@ -99,9 +112,12 @@
         $scope.showFilters = function() {
             if ($scope.filtersInvisible) {
                 $scope.filtersInvisible = false;
+                  getGenresData();
+                  getUbicationsList();
             } else {
                 $scope.filtersInvisible = true;
             }
+
         };
     }
 })();
