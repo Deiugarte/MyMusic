@@ -2,8 +2,10 @@ package myfan.data.dao;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import myfan.data.models.Artists;
 import myfan.data.models.Ubications;
@@ -39,7 +41,24 @@ public class ArtistsDao extends ArtistsHome {
       return instance;
   }
   
-
+  public Artists getArtistsByUserId(int idUser) {
+	    try {
+	        Session session = sessionFactory.openSession();
+	        org.hibernate.Transaction trans= session.beginTransaction();
+	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+	            log.debug(" >>> Transaction close.");
+	        Query query = session.createQuery("from Artists where userid = :idUser");
+	        query.setParameter("idUser", idUser);
+	        java.util.List<Artists> results = query.list();
+	        System.out.println("Result list: " + results.size());
+	        trans.commit();
+	        log.debug("get successful, instance found");
+	        return results.get(0);
+	    } catch (RuntimeException re) {
+	        log.error("get failed", re);
+	        throw re;
+	    }
+	}
 
   public void deleteArtists(Artists Artists) {
       Session session = sessionFactory.getCurrentSession();

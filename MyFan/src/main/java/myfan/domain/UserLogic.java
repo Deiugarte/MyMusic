@@ -179,8 +179,7 @@ public class UserLogic {
 	 * @return
 	 */
 	private UsersRoles enableAccount(int idUser) {
-		System.out.println("Soy un puto amo" + idUser);
-		if (facadeDAO.findArtistById(idUser) != null) {
+		if (facadeDAO.findArtistByUserId(idUser) != null) {
 			return facadeDAO.getArtistRole();
 		} else {
 			return facadeDAO.getFanaticRole();
