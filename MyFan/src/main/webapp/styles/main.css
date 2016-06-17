@@ -5,6 +5,14 @@
   padding: 0.2em 0;
 }
 
+.separate-bottom{
+  margin-bottom: 2%;
+}
+
+.remove{
+  margin-top: 2%;
+}
+
 body {
   padding: 0;
 }
