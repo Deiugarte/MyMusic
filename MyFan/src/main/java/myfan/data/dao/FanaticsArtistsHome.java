@@ -8,18 +8,19 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
 
-import myfan.data.models.Users;
+import myfan.data.models.FanaticsArtists;
+import myfan.data.models.FanaticsArtistsId;
 
 import static org.hibernate.criterion.Example.create;
 
 /**
- * Home object for domain model class Users.
- * @see myfan.data..Users
+ * Home object for domain model class FanaticsArtists.
+ * @see myfan.data.models.FanaticsArtists
  * @author Hibernate Tools
  */
-public class UsersHome {
+public class FanaticsArtistsHome {
 
-  private static final Log log = LogFactory.getLog(UsersHome.class);
+  private static final Log log = LogFactory.getLog(FanaticsArtistsHome.class);
 
   private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -32,8 +33,8 @@ public class UsersHome {
     }
   }
 
-  public void persist(Users transientInstance) {
-    log.debug("persisting Users instance");
+  public void persist(FanaticsArtists transientInstance) {
+    log.debug("persisting FanaticsArtists instance");
     try {
       sessionFactory.getCurrentSession().persist(transientInstance);
       log.debug("persist successful");
@@ -43,8 +44,8 @@ public class UsersHome {
     }
   }
 
-  public void attachDirty(Users instance) {
-    log.debug("attaching dirty Users instance");
+  public void attachDirty(FanaticsArtists instance) {
+    log.debug("attaching dirty FanaticsArtists instance");
     try {
       sessionFactory.getCurrentSession().saveOrUpdate(instance);
       log.debug("attach successful");
@@ -54,8 +55,8 @@ public class UsersHome {
     }
   }
 
-  public void attachClean(Users instance) {
-    log.debug("attaching clean Users instance");
+  public void attachClean(FanaticsArtists instance) {
+    log.debug("attaching clean FanaticsArtists instance");
     try {
       sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
       log.debug("attach successful");
@@ -65,8 +66,8 @@ public class UsersHome {
     }
   }
 
-  public void delete(Users persistentInstance) {
-    log.debug("deleting Users instance");
+  public void delete(FanaticsArtists persistentInstance) {
+    log.debug("deleting FanaticsArtists instance");
     try {
       sessionFactory.getCurrentSession().delete(persistentInstance);
       log.debug("delete successful");
@@ -76,10 +77,10 @@ public class UsersHome {
     }
   }
 
-  public Users merge(Users detachedInstance) {
-    log.debug("merging Users instance");
+  public FanaticsArtists merge(FanaticsArtists detachedInstance) {
+    log.debug("merging FanaticsArtists instance");
     try {
-      Users result = (Users) sessionFactory.getCurrentSession().merge(detachedInstance);
+      FanaticsArtists result = (FanaticsArtists) sessionFactory.getCurrentSession().merge(detachedInstance);
       log.debug("merge successful");
       return result;
     } catch (RuntimeException re) {
@@ -88,10 +89,11 @@ public class UsersHome {
     }
   }
 
-  public Users findById(java.lang.Integer id) {
-    log.debug("getting Users instance with id: " + id);
+  public FanaticsArtists findById(myfan.data.models.FanaticsArtistsId id) {
+    log.debug("getting FanaticsArtists instance with id: " + id);
     try {
-      Users instance = (Users) sessionFactory.getCurrentSession().get("myfan.data.models.Users", id);
+      FanaticsArtists instance = (FanaticsArtists) sessionFactory.getCurrentSession()
+          .get("myfan.dao.temp.FanaticsArtists", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -104,11 +106,11 @@ public class UsersHome {
     }
   }
 
-  public List<Users> findByExample(Users instance) {
-    log.debug("finding Users instance by example");
+  public List<FanaticsArtists> findByExample(FanaticsArtists instance) {
+    log.debug("finding FanaticsArtists instance by example");
     try {
-      List<Users> results = (List<Users>) sessionFactory.getCurrentSession().createCriteria("myfan.data.models.Users")
-          .add(create(instance)).list();
+      List<FanaticsArtists> results = (List<FanaticsArtists>) sessionFactory.getCurrentSession()
+          .createCriteria("myfan.dao.temp.FanaticsArtists").add(create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;
     } catch (RuntimeException re) {

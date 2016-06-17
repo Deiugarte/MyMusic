@@ -1,5 +1,5 @@
 package myfan.data.dao;
-// Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -7,17 +7,16 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Example;
 
 import myfan.data.models.UsersGenres;
+
+import static org.hibernate.criterion.Example.create;
 
 /**
  * Home object for domain model class UsersGenres.
  * @see myfan.data.models.UsersGenres
  * @author Hibernate Tools
  */
-
-
 public class UsersGenresHome {
 
   private static final Log log = LogFactory.getLog(UsersGenresHome.class);
@@ -105,11 +104,11 @@ public class UsersGenresHome {
     }
   }
 
-  public List findByExample(UsersGenres instance) {
+  public List<UsersGenres> findByExample(UsersGenres instance) {
     log.debug("finding UsersGenres instance by example");
     try {
-      List results = sessionFactory.getCurrentSession().createCriteria("myfan.data.models.UsersGenres")
-          .add(Example.create(instance)).list();
+      List<UsersGenres> results = (List<UsersGenres>) sessionFactory.getCurrentSession()
+          .createCriteria("myfan.data.models.UsersGenres").add(create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;
     } catch (RuntimeException re) {
