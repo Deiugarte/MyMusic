@@ -1,8 +1,6 @@
 package myfan.resources.base;
 
 import java.util.ArrayList;
-import java.util.Date;
-
 import myfan.resources.base.util.Member;
 
 public class RegisterNewArtistRequest {

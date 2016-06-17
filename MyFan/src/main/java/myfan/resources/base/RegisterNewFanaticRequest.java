@@ -1,9 +1,6 @@
 package myfan.resources.base;
 
 import java.util.ArrayList;
-import java.util.Date;
-
-
 
 public class RegisterNewFanaticRequest {
 	private String nameUser;

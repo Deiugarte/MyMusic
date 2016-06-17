@@ -8,10 +8,10 @@
             <column name="UsersGenresId" />
             <generator class="identity"/>
         </id>
-        <many-to-one name="genres" class="myfan.data.models.Genres" fetch="select">
+        <many-to-one name="genres" class="myfan.data.models.Genres" fetch="join">
             <column name="idGenre" not-null="true" />
         </many-to-one>
-        <many-to-one name="users" class="myfan.data.models.Users" fetch="select">
+        <many-to-one name="users" class="myfan.data.models.Users" fetch="join">
             <column name="idUser" not-null="true" />
         </many-to-one>
     </class>

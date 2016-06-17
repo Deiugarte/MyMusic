@@ -1,18 +1,14 @@
 package myfan.domain;
 
-import java.awt.Image;
 import java.util.ArrayList;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
 import myfan.data.models.Artists;
-import myfan.data.models.Fanatics;
 import myfan.data.models.Genres;
 import myfan.data.models.Members;
 import myfan.data.models.Ubications;
 import myfan.data.models.Users;
-import myfan.data.models.UsersGenres;
 import myfan.data.models.UsersRoles;
 import myfan.resources.base.RegisterNewArtistRequest;
 import myfan.resources.base.UpdateProfileUserRequest;

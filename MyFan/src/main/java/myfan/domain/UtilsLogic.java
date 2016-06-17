@@ -2,12 +2,6 @@ package myfan.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import myfan.data.facade.FacadeDAO;
 import myfan.data.models.Genres;
 import myfan.data.models.Ubications;
