@@ -9,13 +9,30 @@
 
   /* @ngInject */
   function RegisterSrv($http) {
-
-    this.postCompanyInfo = postCompanyInfo;
-    this.getPlansFromServer = getPlansFromServer;
+    var vm=this;
+    vm.postCompanyInfo = postCompanyInfo;
+    vm.getPlansFromServer = getPlansFromServer;
+    vm.postNewFanatic= postNewFanatic;
 
     function postCompanyInfo(data) {
       return $http.post('http://localhost:8000/rest/v1/company/register', data);
     }
+
+    function postNewFanatic(data,file){
+      var jsonData = JSON.stringify(data);
+      console.log(jsonData);
+      var fd = new FormData();
+        fd.append('file', file);
+        fd.append('data',jsonData);
+     var url = 'http://localhost:8000/rest/v1/register/fanatic';
+     return $http.post(url, fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        });
+
+    }
+
+
 
     function getPlansFromServer(data) {
       return $http.get('http://localhost:8000/rest/v1/plan/all', data);

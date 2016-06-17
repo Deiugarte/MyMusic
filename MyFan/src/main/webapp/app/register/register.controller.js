@@ -5,13 +5,15 @@
     .module('refiereApp.register')
     .controller('RegisterCtrl', RegisterCtrl);
 
-  RegisterCtrl.$inject = ['RegisterSrv', '$state', '$window','$scope'];
+  RegisterCtrl.$inject = ['RegisterSrv', '$state', '$window','$scope','Upload'];
 
   /* @ngInject */
-  function RegisterCtrl(RegisterSrv, $state, $window,$scope) {
+  function RegisterCtrl(RegisterSrv, $state, $window,$scope,Upload) {
     var vm = this;
-    vm.newCompanyData = {};
+    vm.newUserData = {};
+    vm.newUserData.musicalGenres = [];
     vm.saveNewCompany = saveNewCompany;
+    vm.registerNewUser = registerNewUser;
     vm.plans = {};
     vm.data = {
     repeatSelect: null,
@@ -21,6 +23,18 @@
       {id: '3', name: 'Nicaragua'}
     ],
    };
+   vm.people = [
+  { name: 'Rock' },
+  { name: 'Pop'},
+  { name: 'Estefanía' },
+  { name: 'Adrian' },
+  { name: 'Wladimir'},
+  { name: 'Samantha'},
+  { name: 'Nicole', },
+  { name: 'Natasha', },
+  { name: 'Michael',  },
+  { name: 'Nicolás',  }
+];
 
 
      $scope.dateOptions = {
@@ -49,6 +63,29 @@
         .then(function(plansData){
           vm.plans = plansData.data;
         })
+    }
+    function registerNewUser(){
+      RegisterSrv.postNewFanatic(vm.newUserData,vm.picfile)
+        .then(function(data) {
+          // console.log(data.status);
+          if (data.status === 200){
+            $window.alert('Bienvenido' );
+            $state.go('app.dashboard');
+          }
+          else if (data.status === 404){
+            $window.alert('Por favor ingrese los datos correctos.');
+          }
+          else if (data.status === -1){
+            $window.alert('¡El usuario ya existe!');
+          }
+          else{
+            $window.alert('Ocurrió un error con la conexión');
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+          $window.alert('¡El usuario ya existe, intentelo con otro usuario!');
+        });
     }
 
     function saveNewCompany() {

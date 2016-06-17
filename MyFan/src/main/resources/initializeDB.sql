@@ -2,6 +2,7 @@
 insert into users_roles(usersrolesid, rolename) values (10, 'System administrator')
 insert into users_roles(usersrolesid, rolename) values (11,'Band')
 insert into users_roles(usersrolesid, rolename) values (12, 'Fanatic')
+insert into users_roles(usersrolesid, rolename) values (13, 'Disable')
 
 insert into ubications(ubicationid,name) values (10, 'Costa Rica')
 insert into ubications(ubicationid,name) values (11, 'Panama')

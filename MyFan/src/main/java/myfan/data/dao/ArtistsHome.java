@@ -13,7 +13,7 @@ import myfan.data.models.Artists;
 
 /**
  * Home object for domain model class Artists.
- * @see myfan.data.models.Artists
+ * @see myfan.data.data.models.Artists
  * @author Hibernate Tools
  */
 public class ArtistsHome {
@@ -90,7 +90,7 @@ public class ArtistsHome {
   public Artists findById(java.lang.Integer id) {
     log.debug("getting Artists instance with id: " + id);
     try {
-      Artists instance = (Artists) sessionFactory.getCurrentSession().get("myfan.dao.temp.Artists", id);
+      Artists instance = (Artists) sessionFactory.getCurrentSession().get("myfan.data.models.Artists", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -106,7 +106,7 @@ public class ArtistsHome {
   public List findByExample(Artists instance) {
     log.debug("finding Artists instance by example");
     try {
-      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.Artists")
+      List results = sessionFactory.getCurrentSession().createCriteria("myfan.data.models.Artists")
           .add(Example.create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;
