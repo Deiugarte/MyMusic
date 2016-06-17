@@ -12,7 +12,7 @@ import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
-import myfan.domain.FacadeLogic;
+import myfan.domain.facade.FacadeLogic;
 import myfan.resources.base.RegisterNewFanaticRequest;
 
 

@@ -32,7 +32,7 @@
         <property name="birthday" type="date">
             <column name="Birthday" length="10" not-null="true" />
         </property>
-        <set name="usersGenreses" table="users_genres" inverse="true" lazy="true" fetch="select">
+        <set name="usersGenreses" table="users_genres" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="idUser" not-null="true" />
             </key>

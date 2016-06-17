@@ -1,6 +1,6 @@
 package myfan.heroku;
 
-import myfan.domain.FacadeLogic;
+import myfan.domain.facade.FacadeLogic;
 
 public class MainTest {
 
