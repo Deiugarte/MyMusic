@@ -1,64 +1,33 @@
 package myfan.heroku;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.eclipse.persistence.internal.oxm.schema.model.List;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import myfan.data.dao.GenresDao;
+import myfan.data.models.Genres;
 import myfan.domain.FacadeLogic;
 import myfan.resources.base.DisableAccountRequest;
+import myfan.resources.base.GenresResponse;
 import myfan.resources.base.LoginRequest;
 import myfan.resources.base.RegisterNewArtistRequest;
 import myfan.resources.base.util.Member;
 
 public class MainTest {
 
-  public static void main(String[] args) {
-	  RegisterNewArtistRequest newArtistRequest= new RegisterNewArtistRequest();
-     SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
-     String strFecha = "2007-12-25";
-     Date fecha = null;
-     try {
-    
-     fecha = formatoDelTexto.parse(strFecha);
-    
-     } catch (ParseException ex) {
-    
-     ex.printStackTrace();
-    
-     }
-    
-     ArrayList<String> generos = new ArrayList<>();
-     generos.add("Pop");
-     generos.add("Rock");
-    
-     ArrayList<Member> members = new ArrayList<>();
-     Member member1= new Member();
-     member1.setName("Jean Paul");
-     member1.setInstrument("guitarra");
-     members.add(member1);
-     newArtistRequest.setBirthDate(strFecha);
-     newArtistRequest.setCountryLocation("Costa Rica");
-     newArtistRequest.setLogin("Vale");
-     newArtistRequest.setMusisicalGenres(generos);
-     newArtistRequest.setNameUser("Valeriass");
-     newArtistRequest.setPassword("algo");
-     newArtistRequest.setMembers(members);
-    
-     FacadeLogic facadeLogic= new FacadeLogic();
-     facadeLogic.registerNewArtist(newArtistRequest,null,null);
-    
-    DisableAccountRequest prueba = new DisableAccountRequest();
-    prueba.setLogin("Vale");
-    facadeLogic.disableProfile(prueba);
-    
-    LoginRequest login = new LoginRequest();
-    login.setLogin("Vale");
-    login.setPassword("algo");
-    facadeLogic.logIn(login);
-    
-     System.out.println("Soy un puto amo");
-
+  public static void main(String[] args) throws JsonProcessingException {
+    FacadeLogic facadeLogic = new FacadeLogic();
+    System.out.println(facadeLogic.getAllGenders());
   }
-
 }
+
+

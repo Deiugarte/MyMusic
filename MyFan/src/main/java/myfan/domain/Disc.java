@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class Disc {
 	private String discName;
 	private String discDescription;
-	private MusicalGenre musicalGenre; 
+	private String musicalGenre; 
 	private int yearReleased;
 	private String recordLabel;
 	private ArrayList <String> songs;
 	private ArrayList <String> comments;
 	private ArrayList <Integer> scores;
 	
-	public Disc(String discName, String discDescription, MusicalGenre musicalGenre, int yearReleased, 
+	public Disc(String discName, String discDescription, String musicalGenre, int yearReleased, 
 			String recordLabel, ArrayList <String> songs){
 		this.discName=discName;
 		this.discDescription=discDescription;

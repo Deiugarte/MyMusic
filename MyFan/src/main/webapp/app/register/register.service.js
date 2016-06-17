@@ -13,9 +13,15 @@
     vm.postCompanyInfo = postCompanyInfo;
     vm.getPlansFromServer = getPlansFromServer;
     vm.postNewFanatic= postNewFanatic;
+    vm.getGenresList = getGenresList;
 
     function postCompanyInfo(data) {
       return $http.post('http://localhost:8000/rest/v1/company/register', data);
+    }
+
+    function getGenresList(data) {
+      var url = 'http://localhost:8000/rest/v1/resources/genreslist';
+      return $http.get(url, data);
     }
 
     function postNewFanatic(data,file){

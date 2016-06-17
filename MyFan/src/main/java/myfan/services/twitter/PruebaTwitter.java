@@ -2,15 +2,14 @@ package myfan.services.twitter;
 
 
 
-import myfan.domain.IConstansts;
-import myfan.domain.PostTwitter;
+import myfan.domain.TwitterLogic;
 
 
-public class PruebaTwitter implements IConstansts {
+public class PruebaTwitter {
 
 	public static void main(String[] args)  {
 		// TODO Auto-generated method stub
-		 PostTwitter twitter1 =new PostTwitter();
+		 TwitterLogic twitter1 =new TwitterLogic();
 	
 		 
 		// twitter1.postStatusTwitter("Javier", "The Beatles",STATUS_FOLLOW);
