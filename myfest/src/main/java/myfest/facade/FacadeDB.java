@@ -2,9 +2,6 @@ package myfest.facade;
 
 import java.util.List;
 
-import Objects.DBObject;
-import Objects.GUISearchGeneral;
-import Objects.GUISearchSpecific;
 import myfest.dao.ArtistsDAO;
 import myfest.dao.ArtistsGenresDAO;
 import myfest.dao.ArtistsScoresDAO;
@@ -39,7 +36,7 @@ public class FacadeDB {
 	}
 			
 	// country search
-	public List<Artists> getSearchCountry_Genre(String country){
+	public List<Artists> getSearchCountry(String country){
 		return artistsDAO.getArtistNameByCountry(country);
 	}
 	

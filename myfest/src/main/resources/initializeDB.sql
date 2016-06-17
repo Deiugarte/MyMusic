@@ -17,6 +17,7 @@ insert into Artists (ArtistName, FollowersAmount, Ubication, Image, DiscScoreId,
 insert into Artists (ArtistName, FollowersAmount, Ubication, Image, DiscScoreId, ArtistScore, ConcertScore) values ('wagner', 15, 'Venezuela', 'BCD', 2, 2, 2)
 insert into Artists (ArtistName, FollowersAmount, Ubication, Image, DiscScoreId, ArtistScore, ConcertScore) values ('C', 15, 'Cartago', 'CDE', 3, 3, 3)
 insert into Artists (ArtistName, FollowersAmount, Ubication, Image, DiscScoreId, ArtistScore, ConcertScore) values ('WaGnEr', 15, 'Francia', 'CDE', 3, 3, 3)
+insert into Artists (ArtistName, FollowersAmount, Ubication, Image, DiscScoreId, ArtistScore, ConcertScore) values ('Wag', 25, 'Venezuela', 'EFG', 1, 2, 3)
 
 insert into MusicalGenres (GenreName) values ('Bachata')
 insert into MusicalGenres (GenreName) values ('Bolero')

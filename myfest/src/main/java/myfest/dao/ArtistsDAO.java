@@ -9,10 +9,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-import Objects.DBObject;
-import Objects.GUISearchSpecific;
 import myfest.models.Artists;
 import myfest.models.Musicalgenres;
+import myfest.objects.delivery.DeliverySpecific;
 import myfest.utils.HibernateUtil;
 
 
@@ -32,7 +31,7 @@ public class ArtistsDAO extends ArtistsHome {
   }
 
   //revisar query
-  public List<String> getArtistData(GUISearchSpecific guiObject){
+  public List<String> getArtistData(DeliverySpecific guiObject){
 	  String name = guiObject.getValueSearch();
 	  try {
 	        Session session = sessionFactory.openSession();
@@ -75,8 +74,7 @@ public class ArtistsDAO extends ArtistsHome {
   }
 
   //Esta consulta no funciona por el join que el protocolo no lo admite
-  public List<String> getArtistNameByGenre(DBObject dbObject){
-	  String value = dbObject.getValue();
+  public List<String> getArtistNameByGenre(String value){
 	  String queryGenre = "SELECT A.artistName FROM Artists A LEFT OUTER JOIN ArtistsGenres AG ON A.artistId = AG.artistId WHERE AG.gendeId = "
 		  		+ "(SELECT MG.musicalGenreId FROM MusicalGenres MG WHERE MG.genreName = '"+value+"') ORDER BY artistName DESC";
 	  try {
@@ -95,7 +93,7 @@ public class ArtistsDAO extends ArtistsHome {
 	        throw re;
 	    }
   }
-
+  
   public List<Artists> getArtistNameByCountry(String country){
 	  String queryCountry = "FROM Artists A WHERE A.ubication = '"+country+"' ORDER BY artistName DESC";
 	  try {

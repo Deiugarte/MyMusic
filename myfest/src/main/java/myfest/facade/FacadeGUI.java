@@ -1,14 +1,10 @@
 package myfest.facade;
 
-import java.util.List;
-
-import Objects.GUISearchGeneral;
-import Objects.GUISearchSpecific;
 import myfest.logic.Dashboard;
 import myfest.logic.GetListGenresUbications;
 import myfest.logic.GetSearchData;
-import myfest.models.Musicalgenres;
-import myfest.models.Artists;
+import myfest.objects.delivery.DeliveryGeneral;
+import myfest.objects.delivery.DeliverySpecific;
 
 public class FacadeGUI {
 	private Dashboard  dashboard;
@@ -21,38 +17,36 @@ public class FacadeGUI {
 		searchData = new GetSearchData();
 	}
 	
+	// ****************** DASHBOARD ***************
 	// Dashboard
-	public List<Object> getSearchArtistData(int artistID){
-		return dashboard.getDataArtist(artistID);
+	public String getSearchArtistData(DeliverySpecific searchValue){
+		return dashboard.getDataArtist(searchValue);
 	}
 	
-	// Initial
-	public List<Musicalgenres> getListGenres(){
+	// ****************** INITIAL ****************
+	// Initial Genres
+	public String getListGenres(){
 		return listData.getListGenres();
 	}
 	
-	public List<String> getListUbication(){
+	// Initial Ubications
+	public String getListUbications(){
 		return listData.getListUbications();
 	}
 	
-	// Search
-	public List<Artists> getSearchNames(GUISearchGeneral objectGUI){
-		return searchData.getSearchNames(objectGUI);
+	// ******************** SEARCH *****************
+	// Search Names
+	public String getSearchNames(DeliveryGeneral searchValue){
+		return searchData.getSearchNames(searchValue);
 	}
 	
-	public List<Artists> getSearchGenders(GUISearchGeneral objectGUI){
-		return searchData.getSearchGenres(objectGUI);
+	// Search Genders
+	public String getSearchGenders(DeliveryGeneral searchValue){
+		return searchData.getSearchGenres(searchValue);
 	}
 	
-	public List<Artists> getSearchCountries(GUISearchGeneral objectGUI){
-		return searchData.getSearchCountry(objectGUI);
-	}
-	
-	public void getQualitySearch(){
-		
-	}
-	
-	public void getSocialSearch(){
-		
+	// Search Countries
+	public String getSearchCountries(DeliveryGeneral searchValue){
+		return searchData.getSearchCountry(searchValue);
 	}
 }
