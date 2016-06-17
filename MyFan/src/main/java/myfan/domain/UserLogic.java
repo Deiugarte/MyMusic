@@ -29,369 +29,369 @@ import myfan.resources.base.UserProfileResponse;
 
 public class UserLogic {
 
-	private final String DATE_FORMAT = "yyyy-MM-dd";
-	protected final String USER_IDENTIFIER_STATUS = "{\"UserId\": \"%s\", \"status\":\"%s\"}";
-	protected final String DISABLE_ACCOUNT_STATUS = "{\"UserId\": \"%s\", \"status\":\"%s\"}";
-	protected final String ERROR_USER_FOUND = "{\"Error \": \"User found \"}";
-	protected final String ERROR_USER_ROLE_NOT_FOUND = "{\"Error \": \"UserRole not found \"}";
-	protected final String ERROR_WRONG_PASSWORD = "{\"Error \": \"Wrong Password \"}";
-	protected final String ERROR_USER_NOT_FOUND = "{\"Error \": \"User not found \"}";
-	protected final String ROLE_IDENTIFIER_STATUS = "{\"RoleIdentifier\": \"%s\", \"status\":\"%s\"}";
-	private final int ADMIN = 10;
-	private final int FANATIC = 12;
-	private final int BAND = 11;
-	private final int DISABLE = 13;
-	private Image image;
-	private JSON json;
+  private final String DATE_FORMAT = "yyyy-MM-dd";
+  protected final String USER_IDENTIFIER_STATUS = "{\"UserId\": \"%s\", \"status\":\"%s\"}";
+  protected final String DISABLE_ACCOUNT_STATUS = "{\"UserId\": \"%s\", \"status\":\"%s\"}";
+  protected final String ERROR_USER_FOUND = "{\"Error \": \"User found \"}";
+  protected final String ERROR_USER_ROLE_NOT_FOUND = "{\"Error \": \"UserRole not found \"}";
+  protected final String ERROR_WRONG_PASSWORD = "{\"Error \": \"Wrong Password \"}";
+  protected final String ERROR_USER_NOT_FOUND = "{\"Error \": \"User not found \"}";
+  protected final String ROLE_IDENTIFIER_STATUS = "{\"RoleIdentifier\": \"%s\", \"status\":\"%s\"}";
+  private final int ADMIN = 10;
+  private final int FANATIC = 12;
+  private final int BAND = 11;
+  private final int DISABLE = 13;
+  private Image image;
+  private JSON json;
 
-	protected FacadeDAO facadeDAO;
+  protected FacadeDAO facadeDAO;
 
-	/**
-	 * Contructor de la clase
-	 */
-	public UserLogic() {
-		facadeDAO = new FacadeDAO();
-		image = new Image();
-		json = new JSON();
+  /**
+   * Contructor de la clase
+   */
+  public UserLogic() {
+    facadeDAO = new FacadeDAO();
+    image = new Image();
+    json = new JSON();
 
-	}
+  }
 
-	/**
-	 * Verifica que el usuario este registrado y auntentifica la cuenta
-	 * 
-	 * @param credentials
-	 *            Objeto con password y username del usuario
-	 * @return
-	 */
-	public Response logIn(LoginRequest credentials) {
-		String response = ROLE_IDENTIFIER_STATUS;
+  /**
+   * Verifica que el usuario este registrado y auntentifica la cuenta
+   * 
+   * @param credentials
+   *          Objeto con password y username del usuario
+   * @return
+   */
+  public Response logIn(LoginRequest credentials) {
+    String response = ROLE_IDENTIFIER_STATUS;
 
-		Users user = facadeDAO.findUserByLogin(credentials.getLogin());
+    Users user = facadeDAO.findUserByLogin(credentials.getLogin());
 
-		if (!existUser(user)) {
-			return responseBuilder(ERROR_USER_NOT_FOUND);
-		}
+    if (!existUser(user)) {
+      return responseBuilder(ERROR_USER_NOT_FOUND);
+    }
 
-		if (!isValidPassword(credentials.getPassword(), user)) {
-			return responseBuilder(ERROR_WRONG_PASSWORD);
-		}
+    if (!isValidPassword(credentials.getPassword(), user)) {
+      return responseBuilder(ERROR_WRONG_PASSWORD);
+    }
 
-		UsersRoles userRole = user.getUsersRoles();
-		if (userRole.getUsersRolesId() == DISABLE) {
-			user.setUsersRoles(enableAccount(user.getUserId()));
-			facadeDAO.saveUser(user);
-		}
+    UsersRoles userRole = user.getUsersRoles();
+    if (userRole.getUsersRolesId() == DISABLE) {
+      user.setUsersRoles(enableAccount(user.getUserId()));
+      facadeDAO.saveUser(user);
+    }
 
-		if (!existRole(userRole)) {
-			return responseBuilder(ERROR_USER_ROLE_NOT_FOUND);
-		}
-		response = determiningRole(response, userRole);
-		response = String.format(response, user.getUsersRoles().getUsersRolesId(), "OK");
-		return Response.status(Status.OK).entity(response).build();
+    if (!existRole(userRole)) {
+      return responseBuilder(ERROR_USER_ROLE_NOT_FOUND);
+    }
+    response = determiningRole(response, userRole);
+    response = String.format(response, user.getUsersRoles().getUsersRolesId(), "OK");
+    return Response.status(Status.OK).entity(response).build();
 
-	}
+  }
 
-	/**
-	 * Desabilita la cuenta del Usuario
-	 * 
-	 * @param userProfile
-	 *            objeto con el userName del usuario, de la cuetna desactivar
-	 * @return
-	 */
-	public Response disableAccount(DisableAccountRequest userProfile) {
-		String response = DISABLE_ACCOUNT_STATUS;
-		Users user = facadeDAO.findUserByLogin(userProfile.getLogin());
-		if (!existUser(user)) {
-			return responseBuilder(ERROR_USER_NOT_FOUND);
-		}
-		user.setUsersRoles(facadeDAO.getDisableRole());
-		facadeDAO.saveUser(user);
-		response = String.format(response, user.getUserId(), "OK");
-		return Response.status(Status.OK).entity(response).build();
-	}
+  /**
+   * Desabilita la cuenta del Usuario
+   * 
+   * @param userProfile
+   *          objeto con el userName del usuario, de la cuetna desactivar
+   * @return
+   */
+  public Response disableAccount(DisableAccountRequest userProfile) {
+    String response = DISABLE_ACCOUNT_STATUS;
+    Users user = facadeDAO.findUserByLogin(userProfile.getLogin());
+    if (!existUser(user)) {
+      return responseBuilder(ERROR_USER_NOT_FOUND);
+    }
+    user.setUsersRoles(facadeDAO.getDisableRole());
+    facadeDAO.saveUser(user);
+    response = String.format(response, user.getUserId(), "OK");
+    return Response.status(Status.OK).entity(response).build();
+  }
 
-	/**
-	 * Convierte y guarda de un InputStream a un tipo de imagen png o jpg en la
-	 * carpeta del sistema
-	 * 
-	 * @param profilePicture
-	 *            Imagen del usuario
-	 * @param fileDetail
-	 *            Extension de la imagen
-	 * @return
-	 */
-	public String saveProfilePictureFile(InputStream profilePicture, FormDataContentDisposition fileDetail) {
-		return image.saveFile(profilePicture, fileDetail);
+  /**
+   * Convierte y guarda de un InputStream a un tipo de imagen png o jpg en la
+   * carpeta del sistema
+   * 
+   * @param profilePicture
+   *          Imagen del usuario
+   * @param fileDetail
+   *          Extension de la imagen
+   * @return
+   */
+  public String saveProfilePictureFile(InputStream profilePicture, FormDataContentDisposition fileDetail) {
+    return image.saveFile(profilePicture, fileDetail);
 
-	}
+  }
 
-	/**
-	 * Obtiene la informacion personal del usuario
-	 * 
-	 * @param idUser
-	 * @return
-	 */
-	public String getPersonalInformationOfUser(int idUser) {
-		UserProfileResponse userProfileResponse = new UserProfileResponse();
-		Users user = facadeDAO.findUserById(idUser);
-		userProfileResponse.setAgeUser(calculadeAge(user.getBirthday()));
-		Ubications ubications = user.getUbications();
-		ubications=facadeDAO.findUbicationsById(ubications.getUbicationId());
-		userProfileResponse.setCountryLocation(ubications.getName());
-		userProfileResponse.setLoginUser(user.getUsername());
-		userProfileResponse.setNameUser(user.getName());
-		userProfileResponse.setMusisicalGenres(getGenresByUser(idUser));
-		return json.jsonConverter(userProfileResponse);
-	}
+  /**
+   * Obtiene la informacion personal del usuario
+   * 
+   * @param idUser
+   * @return
+   */
+  public String getPersonalInformationOfUser(int idUser) {
+    UserProfileResponse userProfileResponse = new UserProfileResponse();
+    Users user = facadeDAO.findUserById(idUser);
+    userProfileResponse.setAgeUser(calculadeAge(user.getBirthday()));
+    Ubications ubications = user.getUbications();
+    ubications = facadeDAO.findUbicationsById(ubications.getUbicationId());
+    userProfileResponse.setCountryLocation(ubications.getName());
+    userProfileResponse.setLoginUser(user.getUsername());
+    userProfileResponse.setNameUser(user.getName());
+    userProfileResponse.setMusisicalGenres(getGenresByUser(idUser));
+    return json.jsonConverter(userProfileResponse);
+  }
 
-	public ArrayList<GenresResponse> getGenresByUser(int idUser) {
-		List<UsersGenres> usersGenres = facadeDAO.findGenresByUsersId(idUser);
-		List<UsersGenres> A = new ArrayList<UsersGenres>();
-				for (int i = 0; i < usersGenres.size(); i++) {
-					A.add(facadeDAO.findGenresByUserGenressId(usersGenres.get(i).getUsersGenresId()));
-				}
-				
-		ArrayList<GenresResponse> genresResponse = new ArrayList<GenresResponse>();
-		for (int i = 0; i < usersGenres.size(); i++) {
-			GenresResponse genre = new GenresResponse();
-			genre.setName(A.get(i).getGenres().getName());
-			genresResponse.add(genre);
-		}
-		return genresResponse;
-	}
+  public ArrayList<GenresResponse> getGenresByUser(int idUser) {
+    List<UsersGenres> usersGenres = facadeDAO.findGenresByUsersId(idUser);
+    List<UsersGenres> A = new ArrayList<UsersGenres>();
+    for (int i = 0; i < usersGenres.size(); i++) {
+      A.add(facadeDAO.findGenresByUserGenressId(usersGenres.get(i).getUsersGenresId()));
+    }
 
-	/**
-	 * Calcula la edad del usuario
-	 * 
-	 * @param birthday
-	 * @return
-	 */
-	private String calculadeAge(Date birthday) {
-		SimpleDateFormat formatNowYear = new SimpleDateFormat("yyyy");
-		String birthdayYear = formatNowYear.format(birthday);
-		String currentYear = formatNowYear.format(calculateCurrentDate());
-		Integer age = Integer.parseInt(currentYear) - Integer.parseInt(birthdayYear);
-		return age.toString();
-	}
+    ArrayList<GenresResponse> genresResponse = new ArrayList<GenresResponse>();
+    for (int i = 0; i < usersGenres.size(); i++) {
+      GenresResponse genre = new GenresResponse();
+      genre.setName(A.get(i).getGenres().getName());
+      genresResponse.add(genre);
+    }
+    return genresResponse;
+  }
 
-	/**
-	 * Habilita la cuenta del usuario
-	 * 
-	 * @param idUser
-	 *            identificador de la cuenta a habilitar
-	 * @return
-	 */
-	private UsersRoles enableAccount(int idUser) {
-		System.out.println("Soy un puto amo" + idUser);
-		if (facadeDAO.findArtistById(idUser) != null) {
-			return facadeDAO.getArtistRole();
-		} else {
-			return facadeDAO.getFanaticRole();
-		}
-	}
+  /**
+   * Calcula la edad del usuario
+   * 
+   * @param birthday
+   * @return
+   */
+  private String calculadeAge(Date birthday) {
+    SimpleDateFormat formatNowYear = new SimpleDateFormat("yyyy");
+    String birthdayYear = formatNowYear.format(birthday);
+    String currentYear = formatNowYear.format(calculateCurrentDate());
+    Integer age = Integer.parseInt(currentYear) - Integer.parseInt(birthdayYear);
+    return age.toString();
+  }
 
-	/**
-	 * Verifica que existe un role determinado
-	 * 
-	 * @param userRole
-	 *            tipo de role a verificar
-	 * @return
-	 */
-	private boolean existRole(UsersRoles userRole) {
-		return userRole != null;
-	}
+  /**
+   * Habilita la cuenta del usuario
+   * 
+   * @param idUser
+   *          identificador de la cuenta a habilitar
+   * @return
+   */
+  private UsersRoles enableAccount(int idUser) {
+    System.out.println("Soy un puto amo" + idUser);
+    if (facadeDAO.findArtistById(idUser) != null) {
+      return facadeDAO.getArtistRole();
+    } else {
+      return facadeDAO.getFanaticRole();
+    }
+  }
 
-	/**
-	 * Verifica la clave del usuario de acuerdo al username
-	 * 
-	 * @param password
-	 *            contraseña del usuario
-	 * @param user
-	 *            username del usuario
-	 * @return
-	 */
-	private boolean isValidPassword(String password, Users user) {
-		return user.getPassword().equals(password);
-	}
+  /**
+   * Verifica que existe un role determinado
+   * 
+   * @param userRole
+   *          tipo de role a verificar
+   * @return
+   */
+  private boolean existRole(UsersRoles userRole) {
+    return userRole != null;
+  }
 
-	/**
-	 * Determina el tipo de Role, con el que se esta iniciando sesion
-	 * 
-	 * @param response
-	 * @param userRole
-	 * @return
-	 */
-	private String determiningRole(String response, UsersRoles userRole) {
-		switch (userRole.getUsersRolesId()) {
-		case ADMIN:
-			response = String.format(response, userRole.getUsersRolesId(), "OK");
-			break;
-		case FANATIC:
-			response = String.format(response, userRole.getUsersRolesId(), "OK");
-			break;
-		case BAND:
-			response = String.format(response, userRole.getUsersRolesId(), "OK");
-			break;
-		}
-		return response;
-	}
+  /**
+   * Verifica la clave del usuario de acuerdo al username
+   * 
+   * @param password
+   *          contraseña del usuario
+   * @param user
+   *          username del usuario
+   * @return
+   */
+  private boolean isValidPassword(String password, Users user) {
+    return user.getPassword().equals(password);
+  }
 
-	/**
-	 * Covierte un tipo Date a un String con la Fecha
-	 * 
-	 * @param date
-	 * @return
-	 */
-	private Date getDateFromString(String date) {
-		Date returnDate = null;
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
-		try {
-			returnDate = simpleDateFormat.parse(date);
-		} catch (ParseException ex) {
-			ex.printStackTrace();
-		}
-		return returnDate;
-	}
+  /**
+   * Determina el tipo de Role, con el que se esta iniciando sesion
+   * 
+   * @param response
+   * @param userRole
+   * @return
+   */
+  private String determiningRole(String response, UsersRoles userRole) {
+    switch (userRole.getUsersRolesId()) {
+    case ADMIN:
+      response = String.format(response, userRole.getUsersRolesId(), "OK");
+      break;
+    case FANATIC:
+      response = String.format(response, userRole.getUsersRolesId(), "OK");
+      break;
+    case BAND:
+      response = String.format(response, userRole.getUsersRolesId(), "OK");
+      break;
+    }
+    return response;
+  }
 
-	/**
-	 * Calcula la fecha actual del sistema
-	 * 
-	 * @return un tipo de fecha Date
-	 */
-	private Date calculateCurrentDate() {
-		String currentDate;
-		Date date = null;
-		Calendar currentDateComputer = Calendar.getInstance();
-		DateFormat dateFormatter = new SimpleDateFormat(DATE_FORMAT);
-		currentDate = dateFormatter.format(currentDateComputer.getTime());
-		try {
-			date = dateFormatter.parse(currentDate);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return date;
-	}
+  /**
+   * Covierte un tipo Date a un String con la Fecha
+   * 
+   * @param date
+   * @return
+   */
+  private Date getDateFromString(String date) {
+    Date returnDate = null;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
+    try {
+      returnDate = simpleDateFormat.parse(date);
+    } catch (ParseException ex) {
+      ex.printStackTrace();
+    }
+    return returnDate;
+  }
 
-	/**
-	 * Determina el tipo de Response
-	 * 
-	 * @param response
-	 * @return
-	 */
-	protected Response responseBuilder(String response) {
-		return Response.status(Status.UNAUTHORIZED).entity(response).build();
-	}
+  /**
+   * Calcula la fecha actual del sistema
+   * 
+   * @return un tipo de fecha Date
+   */
+  private Date calculateCurrentDate() {
+    String currentDate;
+    Date date = null;
+    Calendar currentDateComputer = Calendar.getInstance();
+    DateFormat dateFormatter = new SimpleDateFormat(DATE_FORMAT);
+    currentDate = dateFormatter.format(currentDateComputer.getTime());
+    try {
+      date = dateFormatter.parse(currentDate);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    return date;
+  }
 
-	/**
-	 * Determina si existe el usuario
-	 * 
-	 * @param user
-	 *            usuario
-	 * @return
-	 */
-	protected boolean existUser(Users user) {
-		return user != null;
-	}
+  /**
+   * Determina el tipo de Response
+   * 
+   * @param response
+   * @return
+   */
+  protected Response responseBuilder(String response) {
+    return Response.status(Status.UNAUTHORIZED).entity(response).build();
+  }
 
-	/**
-	 * Determina y convierte a tipo Ubication la ubicacion proveniente en forma
-	 * de String
-	 * 
-	 * @param userUbication
-	 * @return
-	 */
-	protected Ubications checkUbication(String userUbication) {
-		Ubications ubication = facadeDAO.findUbicationsByName(userUbication);
-		return ubication;
-	}
+  /**
+   * Determina si existe el usuario
+   * 
+   * @param user
+   *          usuario
+   * @return
+   */
+  protected boolean existUser(Users user) {
+    return user != null;
+  }
 
-	/**
-	 * Determina y convierte a tipo Genre los generos musicales proveniente en
-	 * forma de String
-	 * 
-	 * @param genresList
-	 * @return
-	 */
-	protected ArrayList<Genres> checkGenres(ArrayList<String> genresList) {
-		if (genresList != null) {
-			ArrayList<Genres> genders = new ArrayList<>();
-			for (int i = 0; i < genresList.size(); i++) {
-				genders.add(facadeDAO.findGenderByName(genresList.get(i)));
-			}
-			return genders;
-		} else {
-			return null;
-		}
-	}
+  /**
+   * Determina y convierte a tipo Ubication la ubicacion proveniente en forma de
+   * String
+   * 
+   * @param userUbication
+   * @return
+   */
+  protected Ubications checkUbication(String userUbication) {
+    Ubications ubication = facadeDAO.findUbicationsByName(userUbication);
+    return ubication;
+  }
 
-	/**
-	 * Crea un nuevo Usuario
-	 * 
-	 * @param pathProfilePicture
-	 *            foto de perfil
-	 * @param ubication
-	 *            pais de procedencia
-	 * @param usersRoles
-	 *            role efectuado
-	 * @param nameUser
-	 *            nombre del usario
-	 * @param password
-	 *            contraseña del usuario
-	 * @param login
-	 *            username del usuario
-	 * @param birthday
-	 *            fecha de cumpleaños
-	 */
-	protected void createUser(String pathProfilePicture, Ubications ubication, UsersRoles usersRoles, String nameUser,
-			String password, String login, String birthday) {
-		Users user;
-		user = new Users();
-		user.setUsersRoles(usersRoles);
-		user.setName(nameUser);
-		user.setUbications(ubication);
-		user.setPassword(password);
-		user.setImage(pathProfilePicture);
-		user.setCreationDate(calculateCurrentDate());
-		user.setUsername(login);
-		user.setBirthday(getDateFromString(birthday));
-		facadeDAO.saveUser(user);
-	}
+  /**
+   * Determina y convierte a tipo Genre los generos musicales proveniente en
+   * forma de String
+   * 
+   * @param genresList
+   * @return
+   */
+  protected ArrayList<Genres> checkGenres(ArrayList<String> genresList) {
+    if (genresList != null) {
+      ArrayList<Genres> genders = new ArrayList<>();
+      for (int i = 0; i < genresList.size(); i++) {
+        genders.add(facadeDAO.findGenderByName(genresList.get(i)));
+      }
+      return genders;
+    } else {
+      return null;
+    }
+  }
 
-	/**
-	 * Relacion los generos musicales con cada usuario
-	 * 
-	 * @param user
-	 * @param gendersList
-	 */
-	protected void saveGenres(Users user, ArrayList<Genres> gendersList) {
-		UsersGenres usersGenres = new UsersGenres();
-		usersGenres.setUsers(user);
-		if (gendersList != null) {
-			for (int i = 0; i < gendersList.size(); i++) {
-				usersGenres.setGenres(gendersList.get(i));
-				facadeDAO.saveUsersGenres(usersGenres);
-			}
-		} else {
-			facadeDAO.saveUsersGenres(null);
+  /**
+   * Crea un nuevo Usuario
+   * 
+   * @param pathProfilePicture
+   *          foto de perfil
+   * @param ubication
+   *          pais de procedencia
+   * @param usersRoles
+   *          role efectuado
+   * @param nameUser
+   *          nombre del usario
+   * @param password
+   *          contraseña del usuario
+   * @param login
+   *          username del usuario
+   * @param birthday
+   *          fecha de cumpleaños
+   */
+  protected void createUser(String pathProfilePicture, Ubications ubication, UsersRoles usersRoles, String nameUser,
+      String password, String login, String birthday) {
+    Users user;
+    user = new Users();
+    user.setUsersRoles(usersRoles);
+    user.setName(nameUser);
+    user.setUbications(ubication);
+    user.setPassword(password);
+    user.setImage(pathProfilePicture);
+    user.setCreationDate(calculateCurrentDate());
+    user.setUsername(login);
+    user.setBirthday(getDateFromString(birthday));
+    facadeDAO.saveUser(user);
+  }
 
-		}
-	}
+  /**
+   * Relacion los generos musicales con cada usuario
+   * 
+   * @param user
+   * @param gendersList
+   */
+  protected void saveGenres(Users user, ArrayList<Genres> gendersList) {
+    UsersGenres usersGenres = new UsersGenres();
+    usersGenres.setUsers(user);
+    if (gendersList != null) {
+      for (int i = 0; i < gendersList.size(); i++) {
+        usersGenres.setGenres(gendersList.get(i));
+        facadeDAO.saveUsersGenres(usersGenres);
+      }
+    } else {
+      facadeDAO.saveUsersGenres(null);
 
-	/**
-	 * Actualiza los datos del perfil de un usuario
-	 */
-	protected void updateUser(UpdateProfileUserRequest dataUser, String pathProfilePicture) {
-		Users user = facadeDAO.findUserById(dataUser.getIdentificationNumber());
-		user.setName(dataUser.getNameUser());
-		user.setBirthday(getDateFromString(dataUser.getBirthday()));
-		user.setPassword(dataUser.getPassword());
-		Ubications ubication = checkUbication(dataUser.getCountryLocation());
-		user.setUbications(ubication);
-		user.setImage(pathProfilePicture);
-		facadeDAO.saveUser(user);
-		ArrayList<Genres> genders = checkGenres(dataUser.getMusisicalGenres());
-		saveGenres(user, genders);
+    }
+  }
 
-	}
+  /**
+   * Actualiza los datos del perfil de un usuario
+   */
+  protected void updateUser(UpdateProfileUserRequest dataUser, String pathProfilePicture) {
+    Users user = facadeDAO.findUserById(dataUser.getIdentificationNumber());
+    user.setName(dataUser.getNameUser());
+    user.setBirthday(getDateFromString(dataUser.getBirthday()));
+    user.setPassword(dataUser.getPassword());
+    Ubications ubication = checkUbication(dataUser.getCountryLocation());
+    user.setUbications(ubication);
+    user.setImage(pathProfilePicture);
+    facadeDAO.saveUser(user);
+    ArrayList<Genres> genders = checkGenres(dataUser.getMusisicalGenres());
+    saveGenres(user, genders);
+
+  }
 
 }
