@@ -3,12 +3,12 @@
 
   angular
     .module('refiereApp.artistProfile')
-    .service('RegisterSrv', RegisterSrv);
+    .service('ArtistSrv', ArtistSrv);
 
-  RegisterSrv.$inject = ['$http'];
+  ArtistSrv.$inject = ['$http'];
 
   /* @ngInject */
-  function RegisterSrv($http) {
+  function ArtistSrv($http) {
 
     this.postCompanyInfo = postCompanyInfo;
     this.getPlansFromServer = getPlansFromServer;
