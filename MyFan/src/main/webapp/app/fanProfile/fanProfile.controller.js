@@ -4,9 +4,9 @@
         .module('refiereApp.fanProfile')
         .controller('fanProfileCtrl', fanProfileCtrl);
 
-    fanProfileCtrl.$inject = ['RegisterSrv', '$state', '$window', '$scope'];
+    fanProfileCtrl.$inject = ['FanaticSrv', '$state', '$window', '$scope'];
 
-    function fanProfileCtrl($RegisterSrv, $state, $window, $scope) {
+    function fanProfileCtrl($FanaticSrv, $state, $window, $scope) {
         var vm = this;
         vm.newUser = {
             name: 'Dei',

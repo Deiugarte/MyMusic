@@ -1,0 +1,742 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    height: 100%;
+}
+
+.contentArea{
+    background-color: white;
+    padding: 2% 2%;
+    -webkit-box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.4);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:    3px 3px 5px 6px rgba(0, 0, 0, 0.4);  /* Firefox 3.5 - 3.6 */
+    box-shadow:         3px 3px 5px 6px rgba(0, 0, 0, 0.4);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+#fanProfileContainer{
+    background-color: #DDEEEE;
+    min-height: 100%
+}
+
+#fanInfoContainer{
+    margin-right: 1%;
+    position: relative;
+    top: 100px;
+}
+#mainContentFanProfile{
+    width: 53%;
+    height: auto;
+    border-color: red;
+    left: 20px;
+    top: 12px;
+
+}
+
+
+#fanImageContainer{
+    position: relative;
+    width: 100%;
+    height: 40%;
+
+}
+
+#fanImageFrame{
+    float:left;
+    vertical-align: top;
+    width: 80%;
+    height: 80%;
+}
+
+#userProfileImage{
+    width: 100%;
+    height: 100%;
+}
+
+#fanCogContainer{
+    float:left;
+    padding-left: 2%;
+    position: relative;
+    vertical-align: top;
+    width: 20%;
+    height: 80%;
+    z-index: 4;
+    cursor: pointer;
+}
+
+
+#cogImage{
+    width:100%;
+    height: auto;
+}
+
+#fanWelcomeMsgContainer{
+    position: relative;
+    width : 100%;
+    height : 19%;
+    font-size: 1vw;
+    padding-top: 3px;
+    text-align: center;
+}
+
+#fanDataContainer{
+    padding: 7% 4%;
+    text-align: center;
+    font-size: 1vw;
+}
+
+/*-------------------------Main Content Fan Profile--------------------------------------------------------*/
+
+#buttonNavContainer{
+    height: auto;
+    width: 98%;
+    margin: 1% 1%;
+}
+
+#publicationsContainer{
+    width: 100%;
+    height: auto;
+}
+
+.timeline {
+    list-style: none;
+    padding: 20px 0 20px;
+    position: relative;
+}
+
+.timeline:before {
+    top: 20px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 3px;
+    background-color: #eeeeee;
+    left: 25px;
+    margin-right: -1.5px;
+}
+
+.timeline > li {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.timeline > li:before,
+.timeline > li:after {
+    content: " ";
+    display: table;
+}
+
+.timeline > li:after {
+    clear: both;
+}
+
+.timeline > li > .timeline-panel {
+    width: calc( 100% - 75px );
+    float: right;
+    border: 1px solid #d4d4d4;
+    background-color: white;
+    border-radius: 2px;
+    padding: 20px;
+    position: relative;
+    -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+}
+
+.timeline > li > .timeline-panel:before {
+    position: absolute;
+    top: 26px;
+    left: -15px;
+    display: inline-block;
+    border-top: 15px solid transparent;
+    border-right: 15px solid #ccc;
+    border-left: 0 solid #ccc;
+    border-bottom: 15px solid transparent;
+    content: " ";
+}
+
+.timeline > li > .timeline-panel:after {
+    position: absolute;
+    top: 27px;
+    left: -14px;
+    display: inline-block;
+    border-top: 14px solid transparent;
+    border-right: 14px solid #fff;
+    border-left: 0 solid #fff;
+    border-bottom: 14px solid transparent;
+    content: " ";
+}
+
+.timeline > li > .timeline-badge {
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.4em;
+    text-align: center;
+    position: absolute;
+    top: 16px;
+    left: 0px;
+    margin-right: -25px;
+    background-color: #999999;
+    z-index: 3;
+    border-top-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+
+.timeline-badge.primary {
+    background-color: #2e6da4 !important;
+}
+
+.timeline-badge.success {
+    background-color: #3f903f !important;
+}
+
+.timeline-badge.warning {
+    background-color: #f0ad4e !important;
+}
+
+.timeline-badge.danger {
+    background-color: #d9534f !important;
+}
+
+.timeline-badge.info {
+    background-color: #5bc0de !important;
+}
+
+.timeline-body{
+    text-align: justify;
+    font-size: 1vw;
+}
+.timeline-title{
+    font-size: 1.5vw;
+}
+.timeline-panel{
+    font-size: 0.8vw;
+}
+
+.eventComment{
+    position: relative;
+    vertical-align: top;
+    font-size: 1.5vw;
+}
+.eventReview{
+    cursor: pointer;
+}
+.createReview{
+    text-decoration: underline;
+}
+
+/*-------------------------------------- Sección Lista de Artistas ------------------------------------------*/
+
+
+
+#myArtistsListContainer{
+    width: 100%;
+    height: auto;
+    padding-bottom: 2%;
+
+}
+
+#myArtistsListHeader{
+    width: 98%;
+    min-height: 40px;
+    margin: 0.5% 1%;
+    overflow: hidden;
+
+}
+
+#myArtistsFollowsCounter{
+    float:left;
+    height: 100%;
+    width: 65%;
+    font-size: 1.8vw;
+    padding-left: 15px;
+    padding-top: 5px;
+}
+
+#myArtistsFilter{
+    float:left;
+    height: 100%;
+    width: 35%;
+    padding-top: 5px;
+    padding-left: 23px;
+}
+
+#artistFilterBox{
+    font-size: 20px;
+}
+
+#myArtistsListMainContent{
+    width: 98%;
+    height: auto;
+    margin: 0.5% 1%;
+
+}
+/*-------------------------------------- Perfil de artista pequeño -------------------------------*/
+
+.artistShortProfile{
+    position: relative;
+    height: 115px;
+    min-width: 100%;
+    border: 1px solid #d4d4d4;
+    overflow: hidden;
+    margin-top: 2%;
+    border-radius: 2px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    background-color: white;
+    border: 1px solid #d4d4d4;
+}
+
+.artistLeftContent{
+    position:relative;
+    vertical-align: top;
+    float:left;
+    width: 20%;
+    height: 100%;
+    border: 1px solid #d4d4d4;
+}
+
+
+
+.artistImageContainer{
+    height: 100%;
+    width: 100%;
+}
+
+.artistProfileImage{
+    width: 100%;
+    height: 100%;
+}
+
+.artistName{
+    text-align: center;
+    font-size: 1.2vw;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+/******************** Short Artist Profile Right Section **************************/
+
+
+.artistRightContent{
+    position:relative;
+    vertical-align: top;
+    float:left;
+    width: 80%;
+    height: 100%;
+    border: 1px solid #d4d4d4;
+    overflow: hidden;
+}
+
+.artistProfileHeader{
+    height: 25%;
+    width: 100%;
+    border-bottom: 1px solid #d4d4d4;
+    overflow: hidden;
+
+}
+
+.artistProfileTitle{
+    height: 100%;
+    width : 78%;
+    float: left;
+    text-align: center;
+    font-size: 1.8vw;
+    font-weight: bold;
+
+}
+.artistProfileQuitFollow{
+    height: 100%;
+    width : 22%;
+    float: right;
+    padding-top: 2px;
+    padding-right: 2%;
+}
+
+.artistProfileLeftInfo, .artistProfileRightInfo, .artistProfileCenterInfo{
+    height: 75%;
+    float: left;
+    border: 1px solid #d4d4d4;
+}
+
+
+.artistProfileLeftInfo{
+    width: 30%;
+    vertical-align: top;
+    text-align: center;
+    font-size: 1.4vw;
+    font-weight: bold;
+    border-left: none;
+    border-bottom: none;
+}
+
+.artistProfileLeftInfo > p{
+    margin-bottom: 3%;
+    height: 33%;
+
+}
+
+.artistProfileCenterInfo{
+    width: 35%;
+    border-bottom: none;
+}
+
+.centerInfoTitle{
+    font-weight: bold;
+    font-size: 1.3vw;
+    border-bottom: 1px solid #d4d4d4;
+    text-align: center;
+    width: 100%;
+    height: 25%;
+}
+
+.centerInfoContent{
+    width: 100%;
+    height: 80%;
+}
+
+.centerInfoContent > span{
+    height: auto;
+    width: 50%;
+    font-size: 1.0vw;
+    float: left;
+    text-align: center;
+    padding: 3px;
+}
+.artistProfileRightInfo{
+    width: 35%;
+    border-bottom: none;
+    border-right: none;
+}
+
+.rightInfoTitle{
+    font-weight: bold;
+    font-size: 1.3vw;
+    border-bottom: 1px solid #d4d4d4;
+    text-align: center;
+    width: 100%;
+    height: 25%;
+}
+.rightInfoContent{
+    width: 100%;
+    height: 75%;
+    text-align: center;
+    padding: 3.5% 5%;
+    font-size: 1.0vw;
+}
+
+
+/*-------------------------------------- Busqueda de artistas ------------------------------------------*/
+
+#searchInputContainer, #searchButtonsContainer{
+    float:left;
+
+}
+#fanSearchArtistContainer{
+    margin-left: 1%;
+    position: relative;
+    top: 100px;
+}
+
+#searchInputContainer{
+    width: 63%;
+    padding: 2% 2%;
+}
+
+#searchButtonsContainer{
+    position: relative;
+    top: -4px;
+    width: 37%;
+    padding: 2% 2%;
+
+}
+.b{
+    font-size: 1vw !important;
+    white-space: normal !important;
+}
+
+#searchBox{
+    font-size: 1vw;
+    max-width: 100%;
+
+
+}
+#searchHiddenFiltersContainer{
+    display: block;
+    width: 63%;
+    height: auto;
+}
+#hiddenFiltersInputs{
+    padding-left: 10%;
+}
+
+#hiddenFiltersDescription{
+    padding-left: 26px;
+}
+.comboBox{
+     font-size: 1vw;
+     margin: 0 6%;
+     width: auto;
+     padding: 0;
+}
+
+.inputClass{
+  margin: 0 1%;
+  padding: 0;
+  width: auto;
+}
+
+@media only screen and (max-width: 768px) {
+    .comboBox{
+        font-size: 1vw;
+        height: 1vh;
+        width: 90%;
+    }
+
+    #searchHiddenFiltersContainer{
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+    #hiddenFiltersInputs{
+        padding-left: 6%;
+    }
+
+    #hiddenFiltersDescription{
+        padding-left: 18px;
+    }
+    #fanInfoContainer, #fanSearchArtistContainer{
+        top: 50px;
+
+    }
+
+}
+
+#hiddenFiltersInputs, #hiddenFiltersDescription{
+    float:left;
+    font-size: 16px;
+    font-family: "Times New Roman", Georgia, Serif;
+}
+
+#hiddenFiltersInputs{
+    position: relative;
+}
+
+.descriptionText{
+    margin-bottom: 40px;
+    font-size: 1vw;
+}
+
+.button {
+    width: 50%;
+    height: 100%;
+    background-color: #4CAF50; /* Green */
+    border: 1px solid green;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 4vmin;
+    cursor: pointer;
+    float: left;
+}
+
+.button:hover {
+    background-color: #3e8e41;
+}
+
+
+
+.tabsdemoDynamicHeight md-content {
+    background-color: transparent !important; }
+.tabsdemoDynamicHeight md-content md-tabs {
+    background: #f6f6f6;
+    border: 1px solid #e1e1e1; }
+.tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
+    background: white; }
+.tabsdemoDynamicHeight md-content h1:first-child {
+    margin-top: 0; }
+
+
+form.tab-form-demo .tab-pane {
+    margin: 20px 20px;
+}
+
+
+
+ /****************************************Calificaciones**********************************************/
+ #artistRatingFormContainer{
+     width: 100%;
+     height: 200px;
+     position: relative;
+ }
+
+
+
+
+ #descriptionTextCol, #ratingInputsCol, #reviewBtnCol{
+     padding: 2% 4%;
+ }
+ #descriptionTextCol{
+     padding-top: 3%;
+ }
+
+ #descriptionText{
+     padding-bottom: 6%;
+     text-align: center;
+     font-size: 1.5vw;
+ }
+
+  #ratingInputsCol > b{
+     font-size: 2vw;
+ }
+
+ .ratingStar{
+     color: #f9f014;
+     font-size: 2.4vw;
+     vertical-align: middle;
+     cursor: pointer;
+ }
+
+ #artistCommentReview{
+     margin-top: 6%;
+ }
+
+ #sendReviewBtn{
+     font-size: 1.3vw;
+ }
+
+
+
+ /***************************************Comentarios***********************************************/
+
+
+  #artistCommentsContainer{
+     width: 100%;
+     height: auto;
+     position: relative;
+ }
+
+ #artistComments{
+     width: 75%;
+     margin: 0 auto;
+  background-color: #fff;
+  color: #000;
+  font-size: 16px;
+  font-family: sans-serif;
+  text-align: left;
+  line-height: 1.4;
+  z-index: 0;
+  cursor: default;
+  background: #eee;
+  font-weight: 300;
+  font-family: Ubuntu, sans-serif;
+ }
+
+
+ #commentSectionHeader{
+     background-color: white;
+     height: auto;
+     padding: 1% 2%;
+     margin: -3%;
+     font-size: 1.7vw;
+     border-bottom: 2px solid black;
+ }
+.commentsList {
+ border: 2px solid black;
+  padding: 3%;
+  list-style: none;
+}
+
+.commentContainer {
+  background: #fff;
+  border-radius: 2px;
+  height: 80px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  margin: 2% 3%;
+
+}
+.commentContainer:not(:first-child) {
+  margin-top: 20px;
+}
+
+.commentContainer:before {
+  content: "";
+  border-width: 10px 10px 10px 0;
+  border-style: solid;
+  border-color: transparent #fff;
+  position: absolute;
+  top: 10px;
+  left: -10px;
+}
+.commentHeader{
+  border-bottom: 1px solid #e5e5e5;
+  height: 33%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+
+.commentHeader * {
+  display: block;
+}
+
+.commentAuthor {
+  padding: 0.5% 4%;
+  font-size: 1.5vw;
+  font-weight: normal;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+
+.commentBody {
+  padding: 1% 4%;
+  font-size: 1vw;
+  text-align: justify;
+  height: 67%;
+  white-space: pre-line;
+  overflow-x: hidden;
+}
+
+.commentBody  strong {
+  font-weight: 500;
+}
+.commentBody em {
+  font-style: italic;
+}
+.commentBody a {
+  text-decoration: underline;
+}
+.commentsList li article a:hover {
+  text-decoration: none;
+}
+.commentsList li article code {
+  font-family: "Source Code Pro", monospace;
+}
+
+@media (max-width: 440px) {
+  .commentsList {
+    padding: 0;
+  }
+  .commentsList li:before {
+    content: none;
+  }
+  .commentsList li header img {
+    clip: rect(0, 0, 0, 0);
+  }
+  .commentsList li header h1.author:after {
+    content: none;
+  }
+}

@@ -4,9 +4,9 @@
         .module('refiereApp.artistProfile')
         .controller('artistProfileCtrl', artistProfileCtrl);
 
-    artistProfileCtrl.$inject = ['RegisterSrv', '$state', '$window', '$scope'];
+    artistProfileCtrl.$inject = ['ArtistSrv', '$state', '$window', '$scope'];
 
-    function artistProfileCtrl($RegisterSrv, $state, $window, $scope) {
+    function artistProfileCtrl($ArtistSrv, $state, $window, $scope) {
         var vm = this;
         vm.artistProfile = {
             name: 'Bob Maryley',

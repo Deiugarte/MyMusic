@@ -3,12 +3,12 @@
 
   angular
     .module('refiereApp.fanProfile')
-    .service('RegisterSrv', RegisterSrv);
+    .service('FanaticSrv', FanaticSrv);
 
-  RegisterSrv.$inject = ['$http'];
+  FanaticSrv.$inject = ['$http'];
 
   /* @ngInject */
-  function RegisterSrv($http) {
+  function FanaticSrv($http) {
 
     this.postCompanyInfo = postCompanyInfo;
     this.getPlansFromServer = getPlansFromServer;
