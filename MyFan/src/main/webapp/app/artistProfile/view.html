@@ -5,10 +5,7 @@
                         <div id="artistFollowers"> <p>¡2101 seguidores!</p></div>
                         <div id="artistReview" >
                             <p style="vertical-align: baseline;">
-                                <span class="s fa fa-star" ></span>
-                                <span class="s fa fa-star" ></span>
-                                <span class="s fa fa-star"></span>
-                                <span class="s fa fa-star"></span>
+                              <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="vm.artistProfile.stars"  max="vm.artistProfile.stars" aria-labelledby="default-rating"></uib-rating>
                                 <span id="artistReviewComment">(0)</span>
                             </p>
                         </div>
@@ -18,15 +15,16 @@
                             <img src="assets/images/userProfile.jpg" id="userProfileImage" alt="artist Profile Image"/>
                         </div>
                         <div id="artistName">
-                            <strong> ¡Bob Marley! </strong>
+                            <strong> {{vm.artistProfile.name}} </strong>
                         </div>
 
                     </div>
                     <div id="artistDataContainer">
-                        <span> Géneros: {{user.genres}} </span> <br /> <!-- usar ng-repeat aquí con <br/> para el salto de linea -->
-                        <span> Integrantes: {{user.sex}} </span> <br />
-                        <span> Jamaica </span> <br />
-                        <span> 1980 </span>
+                        <span> Géneros:</span>
+                        <span ng-repeat="genre in vm.artistProfile.genres">genre <br /> </span> <!-- usar ng-repeat aquí con <br/> para el salto de linea -->
+                        <span> Integrantes:</span> <br />
+                        <span> {{vm.artistProfile.country}}</span> <br />
+                        <span> {{vm.artistProfile.year}} </span>
                     </div>
                 </div>
             </div>

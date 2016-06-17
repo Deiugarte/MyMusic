@@ -10,6 +10,7 @@
         var vm = this;
         vm.artistProfile = {
             name: 'Bob Maryley',
+            followers: 2001,
             members: [
                 "Solista"
             ],
@@ -19,7 +20,8 @@
                 'Ska'
             ],
             country: 'Costa Rica',
-            year: 1980
+            year: 1980,
+            stars: 5,
         };
         vm.timeline = {
             publications: [{
@@ -114,11 +116,11 @@
         vm.artistCommentsList = {
             comments: [{
                     author: "Alejandro",
-                    comment: "Para mi es un objecto de culto. Su voz y su musica son una pura expresion de fe. con el te lleva casi al más alla. es uno de los padre del movimiento hippie, uno de los mas carismaticos.",
+                    body: "Para mi es un objecto de culto. Su voz y su musica son una pura expresion de fe. con el te lleva casi al más alla. es uno de los padre del movimiento hippie, uno de los mas carismaticos.",
                     stars: 3
                 }, {
                     author: "RastaGirl201",
-                    comment: "Aunque esté muerto su estilo perdurará por siempre y es el rey del regge y de África. - Ventajas: Puro Regge, Aún vive su espíritu - Desventajas: Por desgracia para todos no está presente :(",
+                    body: "Aunque esté muerto su estilo perdurará por siempre y es el rey del regge y de África. - Ventajas: Puro Regge, Aún vive su espíritu - Desventajas: Por desgracia para todos no está presente :(",
                     stars: 5
                 }
 
