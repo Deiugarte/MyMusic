@@ -9,14 +9,16 @@
     function fanProfileCtrl($FanaticSrv, $state, $window, $scope) {
         var vm = this;
         vm.newUser = {
-            name: 'Dei',
-            age: 20,
-            sex: 'Masculino',
-            genres: ['Rock',
-                'Reggae',
-                'Pop'
+            nameUser: 'Dei',
+            loginUser: 'Deivid22',
+            ageUser: 20,
+            musisicalGenres: [
+              {name:'Rock'},
+              {name: 'Reggae'},
+              {name: 'Pop'}
             ],
-            country: 'Costa Rica'
+            countryLocation: 'Costa Rica',
+            identificationNumber: 23,
         };
 
         vm.timeline = {
