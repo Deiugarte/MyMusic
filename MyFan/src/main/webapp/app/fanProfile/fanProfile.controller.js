@@ -4,31 +4,62 @@
         .module('refiereApp.fanProfile')
         .controller('fanProfileCtrl', fanProfileCtrl);
 
-    fanProfileCtrl.$inject = ['FanaticSrv', '$state', '$window', '$scope'];
+    fanProfileCtrl.$inject = ['FanaticSrv', '$log', '$uibModal', '$state', '$window', '$scope'];
 
-    function fanProfileCtrl(FanaticSrv, $state, $window, $scope) {
+    function fanProfileCtrl(FanaticSrv, $log, $uibModal, $state, $window, $scope) {
         var vm = this;
+        vm.currentEvent = {};
         vm.newUser = {};
         vm.genresList = {};
         vm.countriesList = {};
+        vm.open = function(size, title, body, stars, commentsAmount) {
+            vm.currentEvent.title = title;
+            vm.currentEvent.body = body;
+            vm.currentEvent.stars = stars;
+            vm.currentEvent.commentsAmount = commentsAmount;
+            console.log(vm.currentEvent);
+            var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: '/templates/modalEvent/view.html',
+                controller: 'ModalInstanceCtrl',
+                size: size,
+                resolve: {
+                    currentEvent: function() {
+                        return vm.currentEvent;
+                    }
+                }
+
+            });
+            modalInstance.result.then(function(selectedItem) {
+                $scope.selected = selectedItem;
+            }, function() {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
+
+        };
+
         getUserData();
-        function getUserData(data){
-          FanaticSrv.getUserData()
-          .then(function(info){
-            vm.newUser = info.data;
-          })
+
+        function getUserData(data) {
+            FanaticSrv.getUserData()
+                .then(function(info) {
+                    vm.newUser = info.data;
+                })
         }
-        function getGenresData(data){
-          FanaticSrv.getGenresData()
-          .then(function(info){
-            vm.genresList = info.data;
-          })
+
+        function getGenresData(data) {
+            FanaticSrv.getGenresData()
+                .then(function(info) {
+                    vm.genresList = info.data;
+                })
         }
+
         function getUbicationsList() {
-          FanaticSrv.getUbicationsList()
-            .then(function(ubicationData){
-              vm.countriesList = ubicationData.data;
-            })
+            FanaticSrv.getUbicationsList()
+                .then(function(ubicationData) {
+                    vm.countriesList = ubicationData.data;
+                })
         }
         vm.timeline = {
             publications: [{
@@ -47,7 +78,7 @@
                 body: "Un dia de estos tocas Ki MA ni marly",
                 date: "25/12/2011",
                 stars: 3,
-                id: "ass",
+                id: "12",
                 commentsAmount: 100
             }, {
                 type: "evento",
@@ -55,6 +86,7 @@
                 body: "Un dia de estos tocas Ki MA ni marly",
                 date: "25/12/2011",
                 stars: 5,
+                id: "50",
                 commentsAmount: 20
             }]
         };
@@ -112,8 +144,8 @@
         $scope.showFilters = function() {
             if ($scope.filtersInvisible) {
                 $scope.filtersInvisible = false;
-                  getGenresData();
-                  getUbicationsList();
+                getGenresData();
+                getUbicationsList();
             } else {
                 $scope.filtersInvisible = true;
             }
