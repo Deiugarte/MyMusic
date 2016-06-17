@@ -2,6 +2,9 @@ package myfan.data.facade;
 
 import java.util.List;
 
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
 import myfan.data.dao.ArtistsDao;
 import myfan.data.dao.FanaticsDao;
 import myfan.data.dao.GenresDao;
@@ -20,102 +23,125 @@ import myfan.data.models.Users;
 import myfan.data.models.UsersGenres;
 import myfan.data.models.UsersRoles;
 
+
+
 public class FacadeDAO {
-  private final String FANATIC_ROLE_NAME = "Fanatic";
-  private final String ARTIST_ROLE_NAME = "Band";
-  private final String DISABLE_ROLE_NAME = "Disable";
-  private UsersDao usersDao;
-  private UbicationsDao ubicationsDao;
-  private GenresDao genresDao;
-  private FanaticsDao fanaticsDao;
-  private UsersRolesDao usersRolesDao;
-  private UsersGenresDao usersGenresDao;
-  private ArtistsDao artistsDao;
-  private MembersDao memberDao;
+	
+	
+	 
+	private final String FANATIC_ROLE_NAME = "Fanatic";
+	private final String ARTIST_ROLE_NAME = "Band";
+	private final String DISABLE_ROLE_NAME = "Disable";
+	private UsersDao usersDao;
+	private UbicationsDao ubicationsDao;
+	private GenresDao genresDao;
+	private FanaticsDao fanaticsDao;
+	private UsersRolesDao usersRolesDao;
+	private UsersGenresDao usersGenresDao;
+	private ArtistsDao artistsDao;
+	private MembersDao memberDao;
 
-  public FacadeDAO() {
-    usersDao = new UsersDao();
-    ubicationsDao = new UbicationsDao();
-    genresDao = new GenresDao();
-    fanaticsDao = new FanaticsDao();
-    usersRolesDao = new UsersRolesDao();
-    usersGenresDao = new UsersGenresDao();
-    artistsDao = new ArtistsDao();
-    memberDao = new MembersDao();
-  }
+	public FacadeDAO() {
+		usersDao = new UsersDao();
+		ubicationsDao = new UbicationsDao();
+		genresDao = new GenresDao();
+		fanaticsDao = new FanaticsDao();
+		usersRolesDao = new UsersRolesDao();
+		usersGenresDao = new UsersGenresDao();
+		artistsDao = new ArtistsDao();
+		memberDao = new MembersDao();
+	}
 
-  /*-----------------------------------------FIND-------------------------------------*/
-  /*-----------------------------------------FIND-------------------------------------*/
+	/*-----------------------------------------FIND-------------------------------------*/
+	/*-----------------------------------------FIND-------------------------------------*/
 
-  public Users findUserByLogin(String userName) {
-    return usersDao.findByusername(userName);
-  }
+	public Users findUserByLogin(String userName) {
+		return usersDao.findByusername(userName);
+	}
 
-  public Users findUserById(int idUserName) {
-    return usersDao.findById(idUserName);
-  }
+	public Users findUserById(int idUserName) {
+		return usersDao.getUsersById(idUserName);
+	}
 
-  public Ubications findUbicationsById(String ubicationName) {
-    return ubicationsDao.findByName(ubicationName);
+	public Ubications findUbicationsById(int ubicationName) {
+		return ubicationsDao.getUbicationsById(ubicationName);
 
-  }
+	}
 
-  public Genres findGenderByName(String genderName) {
-    return genresDao.findByName(genderName);
-  }
+	public Genres findGenderByName(String genderName) {
+		return genresDao.findByName(genderName);
+	}
 
-  public List<Ubications> findAllUbications() {
-    return ubicationsDao.findAll();
-  }
+	public Genres findGenderById(int idGenero) {
+		return genresDao.getGenresById(idGenero);
+	}
+	
+	public UsersGenres findGenresByUserGenressId(int idUserGenre) {
+		return usersGenresDao.findGenresByUserGenressId(idUserGenre);
+	}
+	
+	public List <UsersGenres> findGenresByUsersId(int idUser) {
+		return usersGenresDao.findGenresByUsersId(idUser);
+	}
+	
+	public List<Ubications> findAllUbications() {
+		return ubicationsDao.findAll();
+	}
 
-  public Artists findArtistById(int idUser) {
-    return artistsDao.getArtistsById(idUser);
-  }
+	public Artists findArtistById(int idUser) {
+		return artistsDao.getArtistsById(idUser);
+	}
 
-  public Fanatics findFanaticById(int idUser) {
-    return fanaticsDao.getFanaticsById(idUser);
-  }
-  public List<Genres> findAllGenres(){
-    return genresDao.findAll();
-  }
+	public Fanatics findFanaticById(int idUser) {
+		return fanaticsDao.getFanaticsById(idUser);
+	}
 
-  /*-----------------------------------------GET-------------------------------------*/
-  /*-----------------------------------------GET-------------------------------------*/
+	public List<Genres> findAllGenres() {
+		return genresDao.findAll();
+	}
+	public Ubications findUbicationsByName(String nameUbication) {
+		return ubicationsDao.findByName(nameUbication);
+	}
 
-  public UsersRoles getFanaticRole() {
-    return usersRolesDao.findByRoleName(FANATIC_ROLE_NAME);
-  }
 
-  public UsersRoles getArtistRole() {
-    return usersRolesDao.findByRoleName(ARTIST_ROLE_NAME);
-  }
+	/*-----------------------------------------GET-------------------------------------*/
+	/*-----------------------------------------GET-------------------------------------*/
 
-  public UsersRoles getDisableRole() {
-    return usersRolesDao.findByRoleName(DISABLE_ROLE_NAME);
-  }
+	public UsersRoles getFanaticRole() {
+		return usersRolesDao.findByRoleName(FANATIC_ROLE_NAME);
+	}
 
-  /*-----------------------------------------SAVE-------------------------------------*/
-  /*-----------------------------------------SAVE-------------------------------------*/
+	public UsersRoles getArtistRole() {
+		return usersRolesDao.findByRoleName(ARTIST_ROLE_NAME);
+	}
 
-  public void saveUsersGenres(UsersGenres usersGenres) {
-    usersGenresDao.save(usersGenres);
+	public UsersRoles getDisableRole() {
+		return usersRolesDao.findByRoleName(DISABLE_ROLE_NAME);
+	}
 
-  }
+	/*-----------------------------------------SAVE-------------------------------------*/
+	/*-----------------------------------------SAVE-------------------------------------*/
 
-  public void saveMembersArtist(Members member) {
-    memberDao.save(member);
-  }
+	public void saveUsersGenres(UsersGenres usersGenres) {
+		usersGenresDao.save(usersGenres);
 
-  public void saveUser(Users user) {
-    usersDao.save(user);
-  }
+	}
 
-  public void saveArtist(Artists artist) {
-    artistsDao.save(artist);
-  }
+	public void saveMembersArtist(Members member) {
+		memberDao.save(member);
+	}
 
-  public void saveFanatic(Fanatics fanatic) {
-    fanaticsDao.save(fanatic);
-  }
+	public void saveUser(Users user) {
+		usersDao.save(user);
+	}
+
+	public void saveArtist(Artists artist) {
+		artistsDao.save(artist);
+	}
+
+	public void saveFanatic(Fanatics fanatic) {
+		fanaticsDao.save(fanatic);
+	}
+
 
 }

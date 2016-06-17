@@ -63,6 +63,7 @@ public class GenresDao extends GenresHome {
 	    }
 	}
   
+  
   public List<Genres> findAll() {
     try {
         Session session = sessionFactory.openSession();

@@ -16,6 +16,8 @@ import myfan.data.models.UsersGenres;
  * @see myfan.data.models.UsersGenres
  * @author Hibernate Tools
  */
+
+
 public class UsersGenresHome {
 
   private static final Log log = LogFactory.getLog(UsersGenresHome.class);
@@ -90,7 +92,7 @@ public class UsersGenresHome {
   public UsersGenres findById(int id) {
     log.debug("getting UsersGenres instance with id: " + id);
     try {
-      UsersGenres instance = (UsersGenres) sessionFactory.getCurrentSession().get("myfan.dao.temp.UsersGenres", id);
+      UsersGenres instance = (UsersGenres) sessionFactory.getCurrentSession().get("myfan.data.models.UsersGenres", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -106,7 +108,7 @@ public class UsersGenresHome {
   public List findByExample(UsersGenres instance) {
     log.debug("finding UsersGenres instance by example");
     try {
-      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.UsersGenres")
+      List results = sessionFactory.getCurrentSession().createCriteria("myfan.data.models.UsersGenres")
           .add(Example.create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;

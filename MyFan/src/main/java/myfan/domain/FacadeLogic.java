@@ -36,11 +36,16 @@ public class FacadeLogic {
     return utilsLogic.getAllGenres();
     
   }
+  public String getPersonalInformationOfUser(int idUserProfile) {
+	    return userLogic.getPersonalInformationOfUser(idUserProfile);
+	    
+	  }
   
   public String getAllUbications() {
 	    return utilsLogic.getAllUbications();
 	    
 	  }
+
   public Response logIn(LoginRequest credentials) {
     return userLogic.logIn(credentials);
   }
