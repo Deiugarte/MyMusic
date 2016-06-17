@@ -20,18 +20,17 @@
 
                     </div>
                     <div id="fanWelcomeMsgContainer">
-                        ¡Bienvenido {{user}}!
+                        ¡Bienvenido {{vm.newUser.loginUser}}!
                     </div>
 
                 </div>
                 <div id="fanDataContainer">
-                    Nombre: {{vm.newUser.name}} <br />
-                    Edad: {{vm.newUser.age}} <br />
-                    Sexo: {{vm.newUser.sex}}  <br />
-                    Géneros: <p style="margin:0" ng-repeat="genre in  vm.newUser.genres">
-                      {{genre}}
+                    <b>Nombre: </b> {{vm.newUser.nameUser}} <br />
+                    <b>Edad:</b> {{vm.newUser.ageUser}} <br />
+                    <b>Géneros: </b> <p style="margin:0" ng-repeat="genre in  vm.newUser.musisicalGenres">
+                      {{genre.name}}
                     </p>  <!-- usar ng-repeat aquí con <br/> para el salto de linea -->
-                    {{vm.newUser.country}}
+                    {{vm.newUser.countryLocation}}
                 </div>
             </div>
         </div>
@@ -127,11 +126,11 @@
                     </div>
                     <div id="hiddenFiltersInputs" class="col-xs-3 col-md-8">
                         <select class=" input-sm form-control comboBox">
-                            <option ng-repeat="genre in vm.genresList" value="{{genre}">{{genre}}</option>
+                            <option ng-repeat="genre in vm.genresList" value="{{genre.name}">{{genre.name}}</option>
                             <!--  <option ng-repeat="x in genres" value="{{x.genreValue}">{{x.genreName}}</option>  -->
                         </select> <br/>
                         <select class="input-sm form-control comboBox">
-                            <option ng-repeat="country in vm.countriesList" value="{{country}">{{country}}</option>
+                            <option ng-repeat="country in vm.countriesList" value="{{country.name}">{{country.name}}</option>
                             <!--  <option ng-repeat="x in countries" value="{{x.countryValue}">{{x.countryName}}</option>  -->
                         </select> <br/>
                     </div>
