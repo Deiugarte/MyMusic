@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1 -->
+<!-- Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
     <class name="myfan.data.models.Artists" table="artists" catalog="myfan" optimistic-lock="version">
         <id name="artistId" type="java.lang.Integer">
@@ -14,6 +14,15 @@
         <property name="followers" type="int">
             <column name="Followers" not-null="true" />
         </property>
+        <property name="bio" type="string">
+            <column name="Bio" length="300" not-null="true" />
+        </property>
+        <set name="fanaticsArtistses" table="fanatics_artists" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ArtistId" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="myfan.data.models.FanaticsArtists" />
+        </set>
         <set name="artistsCalificationses" table="artists_califications" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="Artist" not-null="true" />

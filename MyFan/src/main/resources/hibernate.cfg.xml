@@ -40,5 +40,6 @@
         <mapping resource="Genres.hbm.xml" />
         <mapping resource="UsersGenres.hbm.xml" />
         <mapping resource="Ubications.hbm.xml" />
+        <mapping resource="FanaticsArtists.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
