@@ -11,8 +11,12 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/artistProfile.css">
     <!--external css-->
+
     <link href="styles/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css">
     <!-- Custom styles for this template -->
@@ -51,15 +55,15 @@
     <script src="bower_components/angular-base64/angular-base64.js"></script>
     <script src="bower_components/angular-password/angular-password.js"></script>
     <script src="bower_components/angular-messages/angular-messages.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/ng-youtube-embed/src/ng-youtube-embed.js"></script>
     <script src="bower_components/angular-ui-select/dist/select.js"></script>
     <script src=bower_components/ng-file-upload/ng-file-upload.min.js></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- bootsrap -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!-- endbootstrap -->
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <!-- endbuild -->
@@ -97,5 +101,14 @@
     <script src="app/services/services.js"></script>
     <script src="app/services/userData.service.js"></script>
 
+    <script src="app/fanProfile/fanProfile.js"></script>
+    <script src="app/fanProfile/fanProfile.route.js"></script>
+    <script src="app/fanProfile/fanProfile.service.js"></script>
+    <script src="app/fanProfile/fanProfile.controller.js"></script>
+
+    <script src="app/artistProfile/artistProfile.js"></script>
+    <script src="app/artistProfile/artistProfile.route.js"></script>
+    <script src="app/artistProfile/artistProfile.service.js"></script>
+    <script src="app/artistProfile/artistProfile.controller.js"></script>
 </body>
 </html>

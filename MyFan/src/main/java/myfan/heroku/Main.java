@@ -18,6 +18,7 @@ public class Main {
     if (webPort == null || webPort.isEmpty()) {
       webPort = "8000";
 
+
       final Server server = new Server(Integer.valueOf(webPort));
       final WebAppContext root = new WebAppContext();
 

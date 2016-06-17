@@ -15,26 +15,6 @@
     vm.saveNewCompany = saveNewCompany;
     vm.registerNewUser = registerNewUser;
     vm.plans = {};
-    vm.data = {
-    repeatSelect: null,
-    availableOptions: [
-      {id: '1', name: 'Costa Rica'},
-      {id: '2', name: 'Panama'},
-      {id: '3', name: 'Nicaragua'}
-    ],
-   };
-   vm.people = [
-  { name: 'Rock' },
-  { name: 'Pop'},
-  { name: 'Estefanía' },
-  { name: 'Adrian' },
-  { name: 'Wladimir'},
-  { name: 'Samantha'},
-  { name: 'Nicole', },
-  { name: 'Natasha', },
-  { name: 'Michael',  },
-  { name: 'Nicolás',  }
-];
 
 
      $scope.dateOptions = {
@@ -49,15 +29,36 @@
         opened: false
       };
 
+      $scope.choices = [{id: 'choice1'}, {id: 'choice2'}];
 
+   $scope.addNewChoice = function() {
+     var newItemNo = $scope.choices.length+1;
+     $scope.choices.push({'id':'choice'+newItemNo});
+   };
 
+   $scope.removeChoice = function() {
+     var lastItem = $scope.choices.length-1;
+     $scope.choices.splice(lastItem);
+   };
 
 
 
 
     getPlans();
-
-
+    getGenresList();
+    getUbicationsList();
+    function getGenresList() {
+      RegisterSrv.getGenresList()
+        .then(function(genresData){
+          vm.genres = genresData.data;
+        })
+    }
+    function getUbicationsList() {
+      RegisterSrv.getUbicationsList()
+        .then(function(ubicationData){
+          vm.ubications = ubicationData.data;
+        })
+    }
     function getPlans() {
       RegisterSrv.getPlansFromServer()
         .then(function(plansData){

@@ -1,0 +1,142 @@
+    <div id="fanProfileContainer" class="container-fluid">
+        <div  class="col-xs-2 col-md-2 ">
+            <div id="fanInfoContainer" class="row contentArea center-blocks">
+                <div id="fanImageContainer">
+                    <div id="fanImageFrame">
+                        <img src="assets/images/userProfile.jpg" id="userProfileImage" alt="artist Profile Image"/>
+                    </div>
+                    <div id="fanCogContainer">
+                        <span uib-dropdown>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Farm-Fresh_cog.png"  id="cogImage" alt="cogImage" title="MyImage" uib-dropdown-toggle />
+                            <ul class="dropdown-menu a" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                                <li>
+                                    <a href>Modificar Datos</a>
+                                </li>
+                                <li>
+                                    <a href>Cerrar Sesión</a>
+                                </li>
+                            </ul>
+                        </span>
+
+                    </div>
+                    <div id="fanWelcomeMsgContainer">
+                        ¡Bienvenido {{user}}!
+                    </div>
+
+                </div>
+                <div id="fanDataContainer">
+                    Nombre: {{vm.newUser.name}} <br />
+                    Edad: {{vm.newUser.age}} <br />
+                    Sexo: {{vm.newUser.sex}}  <br />
+                    Géneros: <p style="margin:0" ng-repeat="genre in  vm.newUser.genres">
+                      {{genre}}
+                    </p>  <!-- usar ng-repeat aquí con <br/> para el salto de linea -->
+                    {{vm.newUser.country}}
+                </div>
+            </div>
+        </div>
+        <div class="contentArea col-xs-7 col-md-7">
+            <div id="buttonNavContainer">
+                <uib-tabset active="activeJustified" justified="true">
+                    <uib-tab index="0" heading="General">
+                        <div id="publicationsContainer">
+                            <ul class="timeline">
+                                <li ng-repeat="publication in vm.timeline.publications">
+                                  <div ng-if="publication.type=='noticia'" class="timeline-badge primary"><i style="vertical-align:baseline;" class="fa fa-newspaper-o"></i></div> <!-- noticia  !-->
+                                  <div ng-if="publication.type=='evento'" class="timeline-badge warning"><i style="vertical-align:baseline;" class="fa fa-calendar-check-o"></i></div>
+                                       <div class="timeline-panel">
+                                           <div class="timeline-heading">
+                                               <h4 class="timeline-title">{{publication.title}}
+                                               <div ng-if="publication.type=='evento'" class="eventReview pull-right">
+                                                 <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="publication.stars"  max="publication.stars"  on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
+                                                       <span class="eventComment">({{publication.commentsAmount}})</span>
+                                                   </div>
+                                                   </h4>
+                                           </div>
+                                           <div class="timeline-body">
+                                               <p>{{publication.body}}</p>
+                                           </div>
+                                           <span class="pull-right" ><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{publication.date}}</small></span>
+                                       </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </uib-tab>
+                    <uib-tab index="1" heading="Mis Artistas">
+                        <div id="myArtistsListContainer">
+                            <div id="myArtistsListHeader">
+                                <div id="myArtistsFollowsCounter">¡Sigues a X artistas!</div>
+                                <div id="myArtistsFilter"><input class="form-control input-sm inputClass"  type="text" placeholder="filtrar mis artistas" ng-model="artistsFilter"></div>
+                            </div>
+                            <div id="myArtistsListMainContent">
+                                <div ng-repeat="artist in vm.artistList.artists" class="artistShortProfile">
+                                    <div class="artistLeftContent">
+                                        <div class="artistImageContainer">
+                                            <img src="assets/images/userProfile.jpg" class="artistProfileImage" alt="artist Profile Image"/>
+                                        </div>
+                                    </div>
+                                    <div class="artistRightContent">
+                                        <div class="artistProfileHeader">
+                                            <div class="artistProfileTitle">{{artist.name}}</div>
+                                            <div class="artistProfileQuitFollow">
+                                                <button class="btn btn-default btn-xs  btn-block">Dejar de seguir</button>
+                                            </div>
+                                        </div>
+                                        <div class="artistProfileLeftInfo">
+                                            <p>{{artist.country}} </p>
+                                            <p> {{artist.albumsAmount}}  Discos</p>
+                                            <p>
+                                              <uib-rating style="font-size: 1.2vw; color:#f9f014;"
+                                              read-only="true" class="star" ng-model="artist.stars"
+                                               max="artist.stars"  aria-labelledby="default-rating"></uib-rating>
+                                            </p>
+                                        </div>
+                                        <div class="artistProfileCenterInfo">
+                                            <div class="centerInfoTitle">Géneros Musicales</div>
+                                            <div class="centerInfoContent">
+                                              <span ng-repeat="genre in artist.genres">{{genre}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="artistProfileRightInfo">
+                                            <div class="rightInfoTitle">Próximo evento</div>
+                                            <div class="rightInfoContent">{{artist.nextEvent}}</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+
+        </div>
+        <div  class="col-xs-3 col-md-3" style="height: 100%">
+            <div  id="fanSearchArtistContainer" class="row contentArea center-blocks">
+                <div id="searchInputContainer">
+                    <input type="search" ng-model="vm.searchArtistValue" class="form-control input-sm inputClass" id="searchBox" placeholder="Búsqueda de artistas..."/>
+                </div>
+                <div id="searchButtonsContainer" class="text-center">
+                    <button class="b btn btn-primary btn-sm btn-block">Buscar</button>
+                    <button ng-click="showFilters()" class="b btn btn-primary btn-sm btn-block">Filtros</button>
+                </div>
+                <div ng-hide="filtersInvisible" class="row" id="searchHiddenFiltersContainer">
+                    <div id="hiddenFiltersDescription" class="col-xs-1 col-md-4">
+                        <p class="descriptionText">Género: </p>
+                        <p class="descriptionText">País: </p>
+                    </div>
+                    <div id="hiddenFiltersInputs" class="col-xs-3 col-md-8">
+                        <select class=" input-sm form-control comboBox">
+                            <option ng-repeat="genre in vm.genresList" value="{{genre}">{{genre}}</option>
+                            <!--  <option ng-repeat="x in genres" value="{{x.genreValue}">{{x.genreName}}</option>  -->
+                        </select> <br/>
+                        <select class="input-sm form-control comboBox">
+                            <option ng-repeat="country in vm.countriesList" value="{{country}">{{country}}</option>
+                            <!--  <option ng-repeat="x in countries" value="{{x.countryValue}">{{x.countryName}}</option>  -->
+                        </select> <br/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
