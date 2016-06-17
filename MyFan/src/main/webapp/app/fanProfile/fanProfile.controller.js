@@ -6,21 +6,16 @@
 
     fanProfileCtrl.$inject = ['FanaticSrv', '$state', '$window', '$scope'];
 
-    function fanProfileCtrl($FanaticSrv, $state, $window, $scope) {
+    function fanProfileCtrl(FanaticSrv, $state, $window, $scope) {
         var vm = this;
-        vm.newUser = {
-            nameUser: 'Dei',
-            loginUser: 'Deivid22',
-            ageUser: 20,
-            musisicalGenres: [
-              {name:'Rock'},
-              {name: 'Reggae'},
-              {name: 'Pop'}
-            ],
-            countryLocation: 'Costa Rica',
-            identificationNumber: 23,
-        };
-
+        vm.newUser = {};
+        getUserData();
+        function getUserData(data){
+          FanaticSrv.getUserData()
+          .then(function(info){
+            vm.newUser = info.data;
+          })
+        }
         vm.timeline = {
             publications: [{
                 type: "noticia",
@@ -38,6 +33,7 @@
                 body: "Un dia de estos tocas Ki MA ni marly",
                 date: "25/12/2011",
                 stars: 3,
+                id: "ass",
                 commentsAmount: 100
             }, {
                 type: "evento",

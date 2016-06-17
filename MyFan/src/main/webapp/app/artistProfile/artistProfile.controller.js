@@ -67,13 +67,13 @@
                     duration: "3:52",
                     version: "normal",
                     type: "Estudio",
-                    video: "No"
+                    video: "link"
                 }, {
                     name: "No Woman, No Cry",
                     duration: "7:10",
                     version: "normal",
                     type: "En vivo",
-                    video: "No"
+                    video: "link"
                 }, {
                     name: "Could you be loved",
                     duration: "3:52",
