@@ -28,7 +28,7 @@ public class ArtistsGenresDAO extends ArtistsgenresHome {
           throw new IllegalStateException("Could not locate SessionFactory in JNDI");
       }
   }
-  
+
   public List<Artistsgenres> getArtistId(String id){
 	  String idQuery = "FROM Artistsgenres WHERE gendeId = " + id;
 	  try {
@@ -47,7 +47,26 @@ public class ArtistsGenresDAO extends ArtistsgenresHome {
 	        throw re;
 	    }
   }
-  
+
+  public List<Artistsgenres> getGenreId(String id){
+	  String idQuery = "FROM Artistsgenres WHERE artistId = " + id;
+	  try {
+	        Session session = sessionFactory.openSession();
+	        org.hibernate.Transaction trans= session.beginTransaction();
+	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+	            log.debug(" >>> Transaction close.");
+	        Query query = session.createQuery(idQuery);
+	        java.util.List results = query.list();
+	        System.out.println("Result list: " + results.size());
+	        trans.commit();
+	        log.debug("get successful, instance found");
+	        return results;
+	    } catch (RuntimeException re) {
+	        log.error("get failed", re);
+	        throw re;
+	    }
+  }
+
   public void save(Artistsgenres Artists){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();

@@ -12,39 +12,41 @@ import myfest.models.Artistsgenres;
 public class GetSearchData {
 	private FacadeDB facadeDB;
 	private int amountSearch;
-	
+
 	public GetSearchData(){
 		facadeDB = new FacadeDB();
 		amountSearch = 0;
 	}
-	
-	public List<String> getSearchNames(GUISearchGeneral guiObject) {
+
+
+	public List<Artists> getSearchNames(GUISearchGeneral guiObject) {
 		amountSearch = Integer.parseInt(guiObject.getResultsAmount());
-		List<String> searchName = facadeDB.getSearchName(guiObject.getValueSearch());
+		List<Artists> searchName = facadeDB.getSearchName(guiObject.getValueSearch());
 		if (amountSearch > searchName.size())
 			return searchName;
 		else
 			return searchName.subList(0, amountSearch);
 	}
-	
-	public List<String> getSearchCountry(GUISearchGeneral guiObject){
+
+	public List<Artists> getSearchCountry(GUISearchGeneral guiObject){
 		amountSearch = Integer.parseInt(guiObject.getResultsAmount());
-		List<String> searchCountry = facadeDB.getSearchCountry_Genre(guiObject.getValueSearch());
+		List<Artists> searchCountry = facadeDB.getSearchCountry_Genre(guiObject.getValueSearch());
+
 		if (amountSearch > searchCountry.size())
 			return searchCountry;
 		else
 			return searchCountry.subList(0, amountSearch);
 	}
-	
-	public List<String> getSearchGenres(GUISearchGeneral guiObject){
-		List<String> genresByName = new ArrayList<String>();
+
+	public List<Artists> getSearchGenres(GUISearchGeneral guiObject){
+		List<Artists> genresByName = new ArrayList<Artists>();
 		amountSearch = Integer.parseInt(guiObject.getResultsAmount());
 		int idGenreList = (Integer) facadeDB.getIdGenre(guiObject.getValueSearch());
 		List<Artistsgenres> listArtistId = facadeDB.getArtistId(Integer.toString(idGenreList));
-		for (int iterator = 0; iterator < listArtistId.size(); iterator ++){ 
+		for (int iterator = 0; iterator < listArtistId.size(); iterator ++){
 			Artists artist = new Artists();
 			artist = facadeDB.getArtistById(listArtistId.get(iterator).getId().getArtistId());
-			genresByName.add(artist.getArtistName());
+			genresByName.add(artist);
 		}
 		if (genresByName.size() < amountSearch)
 			return genresByName;

@@ -91,7 +91,7 @@ public class MusicalgenresHome {
   public Musicalgenres findById(int id) {
     log.debug("getting Musicalgenres instance with id: " + id);
     try {
-      Musicalgenres instance = (Musicalgenres) sessionFactory.getCurrentSession().get("myfest.dao.temp.Musicalgenres",
+      Musicalgenres instance = (Musicalgenres) sessionFactory.getCurrentSession().get("myfest.models.Musicalgenres",
           id);
       if (instance == null) {
         log.debug("get successful, no instance found");
@@ -109,7 +109,7 @@ public class MusicalgenresHome {
     log.debug("finding Musicalgenres instance by example");
     try {
       List<Musicalgenres> results = (List<Musicalgenres>) sessionFactory.getCurrentSession()
-          .createCriteria("myfest.dao.temp.Musicalgenres").add(create(instance)).list();
+          .createCriteria("myfest.models.Musicalgenres").add(create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;
     } catch (RuntimeException re) {

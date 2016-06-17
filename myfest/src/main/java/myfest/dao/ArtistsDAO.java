@@ -30,7 +30,7 @@ public class ArtistsDAO extends ArtistsHome {
           throw new IllegalStateException("Could not locate SessionFactory in JNDI");
       }
   }
-  
+
   //revisar query
   public List<String> getArtistData(GUISearchSpecific guiObject){
 	  String name = guiObject.getValueSearch();
@@ -50,12 +50,12 @@ public class ArtistsDAO extends ArtistsHome {
 	        throw re;
 	    }
   }
-  
-  public List<String> getArtistNameByName(String name){
+
+  public List<Artists> getArtistNameByName(String name){
 	  String valueUper  = name.toUpperCase();
 	  String valueLower = name.toLowerCase();
-	  
-	  String queryName  = "SELECT A.artistName FROM Artists A WHERE ((UPPER(A.artistName) LIKE '%"+valueUper+"%') OR "
+
+	  String queryName  = "FROM Artists A WHERE ((UPPER(A.artistName) LIKE '%"+valueUper+"%') OR "
 	  		+ "(LOWER(A.artistName) LIKE '%"+valueLower+"%')) ORDER BY artistName DESC";
 	  try {
 	        Session session = sessionFactory.openSession();
@@ -73,10 +73,10 @@ public class ArtistsDAO extends ArtistsHome {
 	        throw re;
 	    }
   }
-  
+
   //Esta consulta no funciona por el join que el protocolo no lo admite
   public List<String> getArtistNameByGenre(DBObject dbObject){
-	  String value = dbObject.getValue();	
+	  String value = dbObject.getValue();
 	  String queryGenre = "SELECT A.artistName FROM Artists A LEFT OUTER JOIN ArtistsGenres AG ON A.artistId = AG.artistId WHERE AG.gendeId = "
 		  		+ "(SELECT MG.musicalGenreId FROM MusicalGenres MG WHERE MG.genreName = '"+value+"') ORDER BY artistName DESC";
 	  try {
@@ -95,9 +95,9 @@ public class ArtistsDAO extends ArtistsHome {
 	        throw re;
 	    }
   }
-  
-  public List<String> getArtistNameByCountry(String country){	
-	  String queryCountry = "SELECT A.artistName FROM Artists A WHERE A.ubication = '"+country+"' ORDER BY artistName DESC";
+
+  public List<Artists> getArtistNameByCountry(String country){
+	  String queryCountry = "FROM Artists A WHERE A.ubication = '"+country+"' ORDER BY artistName DESC";
 	  try {
 	        Session session = sessionFactory.openSession();
 	        org.hibernate.Transaction trans= session.beginTransaction();
@@ -114,15 +114,15 @@ public class ArtistsDAO extends ArtistsHome {
 	        throw re;
 	    }
   }
-  
+
   public void save(Artists Artists){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
       persist(Artists);
       trans.commit();
   }
-  
-  public List<String> getUbicationsArtists(){ 
+
+  public List<String> getUbicationsArtists(){
 	  try {
 	        Session session = sessionFactory.openSession();
 	        org.hibernate.Transaction trans= session.beginTransaction();
@@ -139,7 +139,7 @@ public class ArtistsDAO extends ArtistsHome {
 	        throw re;
 	    }
   }
-  
+
   public List<Artists> findAll() {
 	    try {
 	        Session session = sessionFactory.openSession();
