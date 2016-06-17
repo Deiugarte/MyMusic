@@ -6,7 +6,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import myfan.domain.FacadeLogic;
+import myfan.domain.facade.FacadeLogic;
 import myfan.resources.base.LoginRequest;
 
 @Path("v1/resources")

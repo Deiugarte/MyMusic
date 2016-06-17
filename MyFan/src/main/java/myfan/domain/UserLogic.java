@@ -136,7 +136,7 @@ public class UserLogic {
 		Users user = facadeDAO.findUserById(idUser);
 		userProfileResponse.setAgeUser(calculadeAge(user.getBirthday()));
 		Ubications ubications = user.getUbications();
-		ubications=facadeDAO.findUbicationsById(ubications.getUbicationId());
+		ubications = facadeDAO.findUbicationsById(ubications.getUbicationId());
 		userProfileResponse.setCountryLocation(ubications.getName());
 		userProfileResponse.setLoginUser(user.getUsername());
 		userProfileResponse.setNameUser(user.getName());
@@ -144,17 +144,16 @@ public class UserLogic {
 		return json.jsonConverter(userProfileResponse);
 	}
 
-	public ArrayList<GenresResponse> getGenresByUser(int idUser) {
-		List<UsersGenres> usersGenres = facadeDAO.findGenresByUsersId(idUser);
-		List<UsersGenres> A = new ArrayList<UsersGenres>();
-				for (int i = 0; i < usersGenres.size(); i++) {
-					A.add(facadeDAO.findGenresByUserGenressId(usersGenres.get(i).getUsersGenresId()));
-				}
-				
+	private ArrayList<GenresResponse> getGenresByUser(int idUser) {
+		List<UsersGenres> usersGenresList = facadeDAO.findGenresByUsersId(idUser);
+		List<UsersGenres> genresOfUserList = new ArrayList<UsersGenres>();
+		for (int i = 0; i < usersGenresList.size(); i++) {
+			genresOfUserList.add(facadeDAO.findGenresByUserGenressId(usersGenresList.get(i).getUsersGenresId()));
+		}
 		ArrayList<GenresResponse> genresResponse = new ArrayList<GenresResponse>();
-		for (int i = 0; i < usersGenres.size(); i++) {
+		for (int i = 0; i < usersGenresList.size(); i++) {
 			GenresResponse genre = new GenresResponse();
-			genre.setName(A.get(i).getGenres().getName());
+			genre.setName(genresOfUserList.get(i).getGenres().getName());
 			genresResponse.add(genre);
 		}
 		return genresResponse;
