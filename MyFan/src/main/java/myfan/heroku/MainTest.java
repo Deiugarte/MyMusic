@@ -1,29 +1,37 @@
 package myfan.heroku;
 
-import myfan.domain.facade.FacadeLogic;
-import myfan.resources.base.AddNewsRequest;
-import myfan.resources.base.DeleteNewsRequest;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.webapp.WebAppContext;
 
 public class MainTest {
 
-  public static void main(String[] args) {
-    FacadeLogic facadeLogic = new FacadeLogic();
+  public static void main(String[] args) throws Exception{
+      // The port that we should run on can be set into an environment variable
+      // Look for that variable and default to 8080 if it isn't there.
+      String webPort = System.getenv("PORT");
+      if (webPort == null || webPort.isEmpty()) {
+          webPort = "8000";
+      }
 
-	
-    //System.out.println(facadeLogic.getRecentEvents(12, 0));
-   
-  //  System.out.println(facadeLogic.getRecentEvents(10, 0));
-    
-    AddNewsRequest addNewsRequest=new AddNewsRequest();
-	addNewsRequest.setContentNews("Contenido Noticia test");
-	addNewsRequest.setDateNews("2016-02-02");
-	addNewsRequest.setIdUser(10);
-	addNewsRequest.setTitleNews("Test");
-	facadeLogic.createNews(addNewsRequest);
-	DeleteNewsRequest deleteNew=new DeleteNewsRequest();
-	deleteNew.setNewsId(1);
-	facadeLogic.deleteNews(deleteNew);
-	System.out.println("Soy el puto amo");
+      final Server server = new Server(Integer.valueOf(webPort));
+      final WebAppContext root = new WebAppContext();
+
+      root.setContextPath("/");
+      // Parent loader priority is a class loader setting that Jetty accepts.
+      // By default Jetty will behave like most web containers in that it will
+      // allow your application to replace non-server libraries that are part of the
+      // container. Setting parent loader priority to true changes this behavior.
+      // Read more here: http://wiki.eclipse.org/Jetty/Reference/Jetty_Classloading
+      root.setParentLoaderPriority(true);
+
+      final String webappDirLocation = "src/main/webapp/";
+      root.setDescriptor(webappDirLocation + "/WEB-INF/web.xml");
+      root.setResourceBase(webappDirLocation);
+
+      server.setHandler(root);
+
+      server.start();
+      server.join();
   }
 }
 

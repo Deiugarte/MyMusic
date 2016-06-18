@@ -22,11 +22,11 @@ public class Image {
         boolean isPNGExtension = fileDetail.getFileName().contains("png");
         if (isPNGExtension) {
           nameFileWithExtension ="img/"+ nameFile + ".png";
-          file = new File( nameFileWithExtension);
+          file = new File( "src/main/webapp/" +nameFileWithExtension);
           outputStream = new FileOutputStream(file);
         } else {
           nameFileWithExtension = "img/"+nameFile + ".jpg";
-          file = new File(nameFileWithExtension);
+          file = new File("src/main/webapp/"+nameFileWithExtension);
           outputStream = new FileOutputStream(file);
         }
         int read = 0;
