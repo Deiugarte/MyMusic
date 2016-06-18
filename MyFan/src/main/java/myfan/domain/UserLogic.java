@@ -39,7 +39,7 @@ public class UserLogic {
   private final int DISABLE = 13;
   private Image image;
   private JSON json;
-  private Fecha fecha;
+  private DateFabrication date;
 
   protected FacadeDAO facadeDAO;
 
@@ -50,7 +50,7 @@ public class UserLogic {
     facadeDAO = new FacadeDAO();
     image = new Image();
     json = new JSON();
-    fecha = new Fecha();
+    date = new DateFabrication();
 
   }
 
@@ -164,7 +164,7 @@ public class UserLogic {
   private String calculadeAge(Date birthday) {
     SimpleDateFormat formatNowYear = new SimpleDateFormat("yyyy");
     String birthdayYear = formatNowYear.format(birthday);
-    String currentYear = formatNowYear.format(fecha.getCurrentDate());
+    String currentYear = formatNowYear.format(date.getCurrentDate());
     Integer age = Integer.parseInt(currentYear) - Integer.parseInt(birthdayYear);
     return age.toString();
   }
@@ -298,7 +298,7 @@ public class UserLogic {
    * @param login
    *          username del usuario
    * @param birthday
-   *          fecha de cumpleaños
+   *          date de cumpleaños
    */
   protected void createUser(String pathProfilePicture, Ubications ubication, UsersRoles usersRoles, String nameUser,
       String password, String login, String birthday) {
@@ -309,9 +309,9 @@ public class UserLogic {
     user.setUbications(ubication);
     user.setPassword(password);
     user.setImage(pathProfilePicture);
-    user.setCreationDate(fecha.getCurrentDate());
+    user.setCreationDate(date.getCurrentDate());
     user.setUsername(login);
-    user.setBirthday(fecha.getDateFromString(birthday));
+    user.setBirthday(date.getDateFromString(birthday));
     facadeDAO.saveUser(user);
   }
 
@@ -341,7 +341,7 @@ public class UserLogic {
   protected void updateUser(UpdateProfileUserRequest dataUser, String pathProfilePicture) {
     Users user = facadeDAO.findUserById(dataUser.getIdentificationNumber());
     user.setName(dataUser.getNameUser());
-    user.setBirthday(fecha.getDateFromString(dataUser.getBirthday()));
+    user.setBirthday(date.getDateFromString(dataUser.getBirthday()));
     user.setPassword(dataUser.getPassword());
     Ubications ubication = checkUbication(dataUser.getCountryLocation());
     user.setUbications(ubication);

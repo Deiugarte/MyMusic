@@ -6,11 +6,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Fecha {
+public class DateFabrication {
 
 	private final String DATE_FORMAT = "yyyy-MM-dd";
 	/**
-	 * Covierte un tipo Date a un String con la Fecha
+	 * Covierte un tipo DateFabrication a un String con la DateFabrication
 	 * 
 	 * @param date
 	 * @return
@@ -29,20 +29,20 @@ public class Fecha {
 	/**
 	 * Calcula la fecha actual del sistema
 	 * 
-	 * @return un tipo de fecha Date
+	 * @return un tipo de fecha DateFabrication
 	 */
 	public Date getCurrentDate() {
 		String currentDate;
-		Date date = null;
+		Date dateFabrication = null;
 		Calendar currentDateComputer = Calendar.getInstance();
 		DateFormat dateFormatter = new SimpleDateFormat(DATE_FORMAT);
 		currentDate = dateFormatter.format(currentDateComputer.getTime());
 		try {
-			date = dateFormatter.parse(currentDate);
+			dateFabrication = dateFormatter.parse(currentDate);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		return date;
+		return dateFabrication;
 	}
 
 }

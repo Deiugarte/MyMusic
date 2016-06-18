@@ -26,7 +26,7 @@ public class MembersDao extends MembersHome {
   public void save(Members Members){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      persist(Members);
+      merge(Members);
       trans.commit();
   }
 

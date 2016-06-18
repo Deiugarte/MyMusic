@@ -5,6 +5,7 @@ public class AddNewsRequest {
 	private String titleNews;
 	private String contentNews;
 	private String dateNews;
+	
 	public int getIdUser() {
 		return idUser;
 	}

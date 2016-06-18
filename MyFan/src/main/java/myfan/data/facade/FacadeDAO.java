@@ -197,6 +197,10 @@ public class FacadeDAO {
 	public void saveNews(News news) {
 		newsDao.save(news);
 	}
+	
+	public void saveEvent(Events event) {
+		eventsDao.save(event);
+	}
 	/*-----------------------------------------	DELETE-------------------------------------*/
 	/*-----------------------------------------	DELETE-------------------------------------*/
 	

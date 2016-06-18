@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import myfan.resources.base.AddEventRequest;
 import myfan.resources.base.AddNewsRequest;
 
 public class FacadeLogicTest {
@@ -24,6 +25,18 @@ public class FacadeLogicTest {
     addNewsRequest.setIdUser(10);
     addNewsRequest.setTitleNews("Test");
     assertEquals(1, facadeLogic.createNews(addNewsRequest));
+  }
+  
+  @Test
+  public void createEvent() {
+    AddEventRequest addEventRequest = new AddEventRequest();
+    addEventRequest.setContentEvent("Contenido Evento test");
+    addEventRequest.setDateEvent("2016-02-02");
+    addEventRequest.setConcert(true);
+    addEventRequest.setUbicationEvent("Costa Rica");
+    addEventRequest.setIdUser(10);
+    addEventRequest.setTitleEvent("Test");
+    assertEquals(1, facadeLogic.createEvent(addEventRequest));
   }
 
 }

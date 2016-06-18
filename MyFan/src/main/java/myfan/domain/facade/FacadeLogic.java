@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
 import myfan.domain.ArtistLogic;
+import myfan.domain.DiscLogic;
 import myfan.domain.EventsLogic;
 import myfan.domain.FanaticLogic;
 import myfan.domain.GenresLogic;
@@ -17,6 +18,7 @@ import myfan.domain.NewsLogic;
 import myfan.domain.UserLogic;
 import myfan.domain.UtilsLogic;
 import myfan.resources.base.AddEventRequest;
+import myfan.resources.base.AddDiscRequest;
 import myfan.resources.base.AddNewsRequest;
 import myfan.resources.base.AdminGenresRequest;
 import myfan.resources.base.DeleteNewsRequest;
@@ -38,6 +40,7 @@ public class FacadeLogic {
 	private GenresLogic genresLogic;
 	private NewsLogic newsLogic;
 	private EventsLogic eventsLogic;
+	private DiscLogic discLogic;
 
 	public FacadeLogic() {
 		userLogic = new UserLogic();
@@ -47,6 +50,7 @@ public class FacadeLogic {
 		genresLogic = new GenresLogic();
 		newsLogic = new NewsLogic();
 		eventsLogic = new EventsLogic();
+		discLogic= new DiscLogic();
 	}
 
 	/*************************************** RESPONSE ******************************************************/
@@ -120,14 +124,15 @@ public class FacadeLogic {
 		return newsLogic.deleteNews(idNews);
 	}
 
-	public void cancelEvent(Object event) { //falta atributo en base
+	public void cancelEvent(Object event) { //falta atributo en base!!!!!!!!!!!!!!!!
 	}
 
-	//public Response createEvent(AddEventRequest event) {
-	//	return 
-	//}
+	public Response createEvent(AddEventRequest event) {
+		return eventsLogic.createEvent(event);
+	}
 
-	public void addDisc(Object disc) {
+	public Response addDisc(AddDiscRequest disc) {
+		return discLogic.createDisc(disc);
 	}
 
 	public void addSong(Object song) {

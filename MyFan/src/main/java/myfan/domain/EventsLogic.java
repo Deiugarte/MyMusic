@@ -3,21 +3,63 @@ package myfan.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+
 import myfan.data.facade.FacadeDAO;
+import myfan.data.models.Artists;
 import myfan.data.models.Events;
 import myfan.data.models.EventsCalifications;
 import myfan.data.models.FanaticsArtists;
+import myfan.data.models.Ubications;
+import myfan.resources.base.AddEventRequest;
 import myfan.resources.base.RecentEventsResponse;
 
 public class EventsLogic {
 	
 	private FacadeDAO facadeDAO;
 	private JSON json;
+	private DateFabrication dateFabrication;
+	private final String ADD_EVENT_STATUS = "{\"EventId\": \"%s\", \"status\":\"%s\"}";
+	private final String ERROR_ARTIST_NOT_FOUND = "{\"Error \": \"Artist not found \"}";
 
 	public EventsLogic() {
 		facadeDAO = new FacadeDAO();
 		json = new JSON();
+		dateFabrication=new DateFabrication();
 	}
+	
+
+	public Response createEvent(AddEventRequest events) {
+		String response = ADD_EVENT_STATUS;
+		Artists artist = facadeDAO.findArtistByUserId(events.getIdUser());
+		if (artist == null) {
+			return responseBuilder(ERROR_ARTIST_NOT_FOUND);
+		}
+		Events newEvent = new Events();
+		newEvent.setArtists(artist);
+		newEvent.setContent(events.getContentEvent());
+		newEvent.setEventDate(dateFabrication.getDateFromString(events.getDateEvent()));
+		newEvent.setCreationDate(dateFabrication.getCurrentDate());
+		newEvent.setTittle(events.getTitleEvent());
+		newEvent.setType(events.isConcert());
+		Ubications ubications = facadeDAO.findUbicationsByName(events.getUbicationEvent());
+		newEvent.setUbications(ubications);
+		facadeDAO.saveEvent(newEvent);
+		response = String.format(response, newEvent.getEventId(), "OK");
+		return Response.status(Status.OK).entity(response).build();
+	}
+
+	/**
+	 * Determina el tipo de Response
+	 * 
+	 * @param response
+	 * @return
+	 */
+	private Response responseBuilder(String response) {
+		return Response.status(Status.UNAUTHORIZED).entity(response).build();
+	}
+
 	public String getRecentEvents(int idUser, int offset) {
 		List<Events> eventsList = new ArrayList<Events>();
 		if (isArtist(idUser)) {
