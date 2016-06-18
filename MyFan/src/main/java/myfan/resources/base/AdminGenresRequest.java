@@ -3,14 +3,14 @@ package myfan.resources.base;
 import java.util.ArrayList;
 
 public class AdminGenresRequest {
-	private ArrayList<String> musicalGenres; /*opcional*/
+	private String musicalGenre; /*opcional*/
 
-	public ArrayList<String> getMusicalGenres() {
-		return musicalGenres;
+	public String getMusicalGenre() {
+		return musicalGenre;
 	}
 
-	public void setMusicalGenres(ArrayList<String> musicalGenres) {
-		this.musicalGenres = musicalGenres;
+	public void setMusicalGenre(String musicalGenres) {
+		this.musicalGenre = musicalGenres;
 	}
 	
 }
