@@ -24,7 +24,7 @@ public class ArtistLogic extends UserLogic {
       return responseBuilder(ERROR_USER_FOUND);
     }
     Ubications ubication = checkUbication(dataArtist.getCountryLocation());
-    ArrayList<Genres> genders = checkGenres(dataArtist.getMusisicalGenres());
+    ArrayList<Genres> genders = checkGenres(dataArtist.getMusicalGenres());
     UsersRoles usersRoles = facadeDAO.getArtistRole();
 
     createUser(pathProfilePicture, ubication, usersRoles, dataArtist.getNameUser(), dataArtist.getPassword(),
@@ -38,7 +38,7 @@ public class ArtistLogic extends UserLogic {
     facadeDAO.saveArtist(artist);
     saveMembers(artist, dataArtist.getMembers());
     saveGenres(user, genders);
-
+    
     response = String.format(response, user.getUserId().toString(), "OK");
     return Response.status(Status.OK).entity(response).build();
   }

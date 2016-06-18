@@ -12,10 +12,13 @@
     var vm = this;
     vm.newUserData = {};
     vm.newUserData.musicalGenres = [];
+    $scope.members = [{}];
+    vm.newUserData.members=$scope.members;
     vm.saveNewCompany = saveNewCompany;
     vm.registerNewUser = registerNewUser;
+    vm.registerNewArtist = registerNewArtist;
     vm.plans = {};
-
+    vm.type='fanatic';
 
      $scope.dateOptions = {
        showWeeks: false,
@@ -29,22 +32,18 @@
         opened: false
       };
 
-      $scope.choices = [{id: 'choice1'}, {id: 'choice2'}];
+      $scope.members = [{}];
 
    $scope.addNewChoice = function() {
-     var newItemNo = $scope.choices.length+1;
-     $scope.choices.push({'id':'choice'+newItemNo});
+     var newItemNo = $scope.members.length+1;
+     $scope.members.push({});
    };
 
    $scope.removeChoice = function() {
-     var lastItem = $scope.choices.length-1;
-     $scope.choices.splice(lastItem);
+     var lastItem = $scope.members.length-1;
+     $scope.members.splice(lastItem);
    };
 
-
-
-
-    getPlans();
     getGenresList();
     getUbicationsList();
     function getGenresList() {
@@ -59,19 +58,13 @@
           vm.ubications = ubicationData.data;
         })
     }
-    function getPlans() {
-      RegisterSrv.getPlansFromServer()
-        .then(function(plansData){
-          vm.plans = plansData.data;
-        })
-    }
+
     function registerNewUser(){
       RegisterSrv.postNewFanatic(vm.newUserData,vm.picfile)
         .then(function(data) {
-          // console.log(data.status);
           if (data.status === 200){
             $window.alert('Bienvenido' );
-            $state.go('app.dashboard');
+            $state.go('fanProfile');
           }
           else if (data.status === 404){
             $window.alert('Por favor ingrese los datos correctos.');
@@ -88,14 +81,35 @@
           $window.alert('¡El usuario ya existe, intentelo con otro usuario!');
         });
     }
-
+    function registerNewArtist(){
+      RegisterSrv.postNewArtist(vm.newUserData,vm.picfile)
+        .then(function(data) {
+          if (data.status === 200){
+            $window.alert('Bienvenido' );
+            $state.go('artistProfile');
+          }
+          else if (data.status === 404){
+            $window.alert('Por favor ingrese los datos correctos.');
+          }
+          else if (data.status === -1){
+            $window.alert('¡El usuario ya existe!');
+          }
+          else{
+            $window.alert('Ocurrió un error con la conexión');
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+          $window.alert('¡El usuario ya existe, intentelo con otro usuario!');
+        });
+    }
     function saveNewCompany() {
       RegisterSrv.postCompanyInfo(vm.newCompanyData)
         .then(function(data) {
           // console.log(data.status);
           if (data.status === 200){
             $window.alert('Bienvenido ' + vm.newCompanyData.UserRequest.login + '.' );
-            $state.go('app.dashboard');
+            $state.go('fanProfile');
           }
           else if (data.status === 400){
             $window.alert('Por favor ingrese los datos correctos.');

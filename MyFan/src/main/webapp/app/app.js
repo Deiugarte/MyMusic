@@ -11,6 +11,7 @@
       'refiereApp.campaign',
       'refiereApp.fanProfile',
       'refiereApp.artistProfile',
+      'refiereApp.modalEvent',
       'ui.router',
 
     ]);
