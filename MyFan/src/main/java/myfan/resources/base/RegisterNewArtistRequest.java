@@ -5,11 +5,11 @@ import myfan.resources.base.util.Member;
 
 public class RegisterNewArtistRequest {
 	private String nameUser;
-	private String   birthDate; /*verificar*/
+	private String birthDate; /*verificar*/
 	private String login;     /*verificar*/
 	private String password;
 	private String countryLocation; 
-	private ArrayList<String> musisicalGenres; /*opcional*/
+	private ArrayList<String> musicalGenres; /*opcional*/
 	private String identificationNumber;
 	private String currentDate;
 	private String biographyArtist;
@@ -30,8 +30,8 @@ public class RegisterNewArtistRequest {
 	public String getCountryLocation() {
 		return countryLocation;
 	}
-	public ArrayList<String> getMusisicalGenres() {
-		return musisicalGenres;
+	public ArrayList<String> getMusicalGenres() {
+		return musicalGenres;
 	}
 	public String getIdentificationNumber() {
 		return identificationNumber;
@@ -60,8 +60,8 @@ public class RegisterNewArtistRequest {
 	public void setCountryLocation(String countryLocation) {
 		this.countryLocation = countryLocation;
 	}
-	public void setMusisicalGenres(ArrayList<String> musisicalGenres) {
-		this.musisicalGenres = musisicalGenres;
+	public void setMusicalGenres(ArrayList<String> musisicalGenres) {
+		this.musicalGenres = musisicalGenres;
 	}
 	public void setIdentificationNumber(String identificationNumber) {
 		this.identificationNumber = identificationNumber;
