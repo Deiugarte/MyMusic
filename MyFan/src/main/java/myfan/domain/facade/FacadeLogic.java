@@ -18,6 +18,7 @@ import myfan.domain.UserLogic;
 import myfan.domain.UtilsLogic;
 import myfan.resources.base.AddNewsRequest;
 import myfan.resources.base.AdminGenresRequest;
+import myfan.resources.base.DeleteNewsRequest;
 import myfan.resources.base.DisableAccountRequest;
 import myfan.resources.base.LoginRequest;
 import myfan.resources.base.RegisterNewArtistRequest;
@@ -114,8 +115,8 @@ public class FacadeLogic {
 		return newsLogic.createNews(news);
 	}
 
-	public void deleteNews(Object news) {
-		
+	public Response deleteNews(DeleteNewsRequest idNews) {
+		return newsLogic.deleteNews(idNews);
 	}
 
 	public void cancelEvent(Object event) { //falta atributo en base

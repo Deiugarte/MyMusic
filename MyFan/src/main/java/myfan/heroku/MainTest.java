@@ -2,6 +2,7 @@ package myfan.heroku;
 
 import myfan.domain.facade.FacadeLogic;
 import myfan.resources.base.AddNewsRequest;
+import myfan.resources.base.DeleteNewsRequest;
 
 public class MainTest {
 
@@ -19,7 +20,9 @@ public class MainTest {
 	addNewsRequest.setIdUser(10);
 	addNewsRequest.setTitleNews("Test");
 	facadeLogic.createNews(addNewsRequest);
-	
+	DeleteNewsRequest deleteNew=new DeleteNewsRequest();
+	deleteNew.setNewsId(1);
+	facadeLogic.deleteNews(deleteNew);
 	System.out.println("Soy el puto amo");
   }
 }

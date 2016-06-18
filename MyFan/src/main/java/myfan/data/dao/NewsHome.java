@@ -91,7 +91,7 @@ public class NewsHome {
   public News findById(java.lang.Integer id) {
     log.debug("getting News instance with id: " + id);
     try {
-      News instance = (News) sessionFactory.getCurrentSession().get("myfan.dao.temp.News", id);
+      News instance = (News) sessionFactory.getCurrentSession().get("myfan.data.models.News", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -107,7 +107,7 @@ public class NewsHome {
   public List<News> findByExample(News instance) {
     log.debug("finding News instance by example");
     try {
-      List<News> results = (List<News>) sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.News")
+      List<News> results = (List<News>) sessionFactory.getCurrentSession().createCriteria("myfan.data.models.News")
           .add(create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;
