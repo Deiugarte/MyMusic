@@ -89,7 +89,7 @@ public List<Events> getEventsByArtistsList(List<FanaticsArtists> fanaticsArtists
 	        query.setFirstResult(20*offset);
 	        query.setMaxResults(20);
 	        //java.util.List results = query.list();
-	        java.util.List <Events> results= session.createCriteria(Events.class).list();
+			java.util.List<Events> results = session.createCriteria(Events.class).list();
 	        for(int i=0; i< results.size();i++){
 	        	   Hibernate.initialize(results.get(i));  
 	        }

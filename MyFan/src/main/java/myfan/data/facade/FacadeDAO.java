@@ -3,6 +3,7 @@ package myfan.data.facade;
 import java.util.List;
 
 import myfan.data.dao.ArtistsDao;
+import myfan.data.dao.EventsCalificationsDao;
 import myfan.data.dao.EventsDao;
 import myfan.data.dao.FanaticsArtistsDao;
 import myfan.data.dao.FanaticsDao;
@@ -16,6 +17,7 @@ import myfan.data.dao.UsersRolesDao;
 
 import myfan.data.models.Artists;
 import myfan.data.models.Events;
+import myfan.data.models.EventsCalifications;
 import myfan.data.models.Fanatics;
 import myfan.data.models.FanaticsArtists;
 import myfan.data.models.Genres;
@@ -46,6 +48,7 @@ public class FacadeDAO {
 	private NewsDao newsDao;
 	private FanaticsArtistsDao fanaticsArtistsDao;
 	private EventsDao eventsDao;
+	private EventsCalificationsDao eventsCalificationsDao;
 
 	public FacadeDAO() {
 		usersDao = new UsersDao();
@@ -59,6 +62,7 @@ public class FacadeDAO {
 		newsDao = new NewsDao();
 		fanaticsArtistsDao = new FanaticsArtistsDao();
 		eventsDao =new EventsDao();
+		eventsCalificationsDao= new EventsCalificationsDao();
 	}
 
 	/*-----------------------------------------FIND-------------------------------------*/
@@ -119,6 +123,7 @@ public class FacadeDAO {
 	public Ubications findUbicationsByName(String nameUbication) {
 		return ubicationsDao.findByName(nameUbication);
 	}
+	
 
 
 	/*-----------------------------------------GET-------------------------------------*/
@@ -150,6 +155,11 @@ public class FacadeDAO {
 	
 	public List<Events> getEventsByArtistList(List<FanaticsArtists> fanaticsArtistsList, int offset){
 		return eventsDao.getEventsByArtistsList(fanaticsArtistsList, offset);
+	}
+	
+	public List<EventsCalifications> getCalificationByConcert(int idEvent){
+		return eventsCalificationsDao.getCalificationByConcert(idEvent);
+		
 	}
 	
 	/*-----------------------------------------SAVE-------------------------------------*/

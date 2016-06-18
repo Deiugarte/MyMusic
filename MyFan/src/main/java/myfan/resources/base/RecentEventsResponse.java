@@ -8,7 +8,15 @@ public class RecentEventsResponse {
 		private String creationDate;
 		private boolean isConcert;
 		private String ubicationEvent;
+		private double AverageCalificationsConcerts;
 		
+		
+		public double getAverageCalificationsConcerts() {
+			return AverageCalificationsConcerts;
+		}
+		public void setAverageCalificationsConcerts(double averageCalificationsConcerts) {
+			AverageCalificationsConcerts = averageCalificationsConcerts;
+		}
 		
 		public int getEventId() {
 			return eventId;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import myfan.data.facade.FacadeDAO;
 import myfan.data.models.Events;
+import myfan.data.models.EventsCalifications;
 import myfan.data.models.FanaticsArtists;
 import myfan.resources.base.RecentEventsResponse;
 
@@ -28,17 +29,38 @@ public class EventsLogic {
 		ArrayList<RecentEventsResponse> listResponse = new ArrayList<RecentEventsResponse>();
 		for (int i = 0; i < eventsList.size(); i++) {
 			RecentEventsResponse recentEventsResponse = new RecentEventsResponse();
-			recentEventsResponse.setConcert(eventsList.get(i).isType());
+			boolean isConcert=eventsList.get(i).isType();
+			int idEvent=eventsList.get(i).getEventId();
+			recentEventsResponse.setConcert(isConcert);
 			recentEventsResponse.setContentEvent(eventsList.get(i).getContent());
 			recentEventsResponse.setCreationDate(eventsList.get(i).getCreationDate().toString());
 			recentEventsResponse.setDateEvent(eventsList.get(i).getEventDate().toString());
-			recentEventsResponse.setEventId(eventsList.get(i).getEventId());
+			recentEventsResponse.setEventId(idEvent);
 			recentEventsResponse.setTitleEvent(eventsList.get(i).getTittle());
 			recentEventsResponse.setUbicationEvent(eventsList.get(i).getUbications().getName());
-			
+			if (isConcert){
+				recentEventsResponse.setAverageCalificationsConcerts(calculateAverageCalificationsConcerts(idEvent));
+			}
 			listResponse.add(recentEventsResponse);
 		}
 		return json.jsonConverter(listResponse);
+	}
+	
+	
+	private double calculateAverageCalificationsConcerts(int idEvent) {
+		List <EventsCalifications > concertCalificationsList= facadeDAO.getCalificationByConcert(idEvent);
+		double sumCalifications=0;
+		double averageCalifications ;
+		int totalOfData=concertCalificationsList.size();
+		for (int j = 0; j < totalOfData; j++) {
+			sumCalifications += concertCalificationsList.get(j).getCalification();
+		}
+		if (totalOfData>=1){
+			averageCalifications = (sumCalifications/(5*totalOfData))*100;
+		}else{
+			averageCalifications=0;
+		}
+		return averageCalifications;
 	}
 
 	private boolean isArtist(int idUser) {

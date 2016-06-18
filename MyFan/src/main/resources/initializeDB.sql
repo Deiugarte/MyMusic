@@ -282,7 +282,7 @@ insert into events(artist,tittle,content,eventdate,creationdate,ubication,type) 
 insert into events(artist,tittle,content,eventdate,creationdate,ubication,type) values (2,'title3', 'HOLA','2016-02-02','2017-02-02',10,'true')
 insert into events(artist,tittle,content,eventdate,creationdate,ubication,type) values (2,'title4', 'HOLA','2016-04-02','2009-02-02',10,'false')
 
-insert into events(artist,ubication,tittle,eventdate,content,type,creationdate) values (1,10,'title3','2016-07-02','escriba aqui','true','2016-02-02')
 
+insert into events_califications(event,calification,reviewer) values (1,4,1) 
 
 
