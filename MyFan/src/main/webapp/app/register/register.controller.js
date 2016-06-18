@@ -12,8 +12,11 @@
     var vm = this;
     vm.newUserData = {};
     vm.newUserData.musicalGenres = [];
+    $scope.members = [{}];
+    vm.newUserData.members=$scope.members;
     vm.saveNewCompany = saveNewCompany;
     vm.registerNewUser = registerNewUser;
+    vm.registerNewArtist = registerNewArtist;
     vm.plans = {};
     vm.type='fanatic';
 
@@ -78,7 +81,28 @@
           $window.alert('¡El usuario ya existe, intentelo con otro usuario!');
         });
     }
-
+    function registerNewArtist(){
+      RegisterSrv.postNewArtist(vm.newUserData,vm.picfile)
+        .then(function(data) {
+          if (data.status === 200){
+            $window.alert('Bienvenido' );
+            $state.go('artistProfile');
+          }
+          else if (data.status === 404){
+            $window.alert('Por favor ingrese los datos correctos.');
+          }
+          else if (data.status === -1){
+            $window.alert('¡El usuario ya existe!');
+          }
+          else{
+            $window.alert('Ocurrió un error con la conexión');
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+          $window.alert('¡El usuario ya existe, intentelo con otro usuario!');
+        });
+    }
     function saveNewCompany() {
       RegisterSrv.postCompanyInfo(vm.newCompanyData)
         .then(function(data) {

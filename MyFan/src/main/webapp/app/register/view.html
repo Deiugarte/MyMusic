@@ -5,7 +5,7 @@
         <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6">
             <strong>Seleccione su tipo de cuenta:</strong>
             <label class="radio-inline">
-                <input type="radio" name="typeRadio" id="fanatic"  ng-model="vm.type" value="fanatic"> Fanatico
+                <input type="radio" name="typeRadio" id="fanatic" ng-model="vm.type" value="fanatic"> Fanatico
             </label>
             <label class="radio-inline">
                 <input type="radio" name="typeRadio" id="artist" ng-model="vm.type" value="artist"> Artista
@@ -88,16 +88,28 @@
                    </span>
                 <span ng-show="vm.picfile.result">Imagen actualizada</span>
                 <br>
-                <fieldset class="separate-bottom" data-ng-repeat="member in members" ng-if="vm.type=='artist'" >
+                <fieldset class="separate-bottom" data-ng-repeat="member in members" ng-if="vm.type=='artist'">
                     <input type="text" ng-model="member.name" name="" placeholder="Nombre del Miembro" class="form-control separate-bottom form-inline" required>
                     <input type="text" ng-model="member.instrument" name="" placeholder="Instrumento" class="form-control separate-bottom form-inline" required>
                     <button class="btn btn-remove " ng-show="$last" ng-click="removeChoice()" ng-disabled="members.length==1">Borrar Campo</button>
                 </fieldset>
                 <button class="btn btn-add" ng-show="vm.type=='artist'" ng-click="addNewChoice()">Añadir Campo</button>
-
-                <button type="button" class="btn btn-primary btn-block button-block btn-margin" ng-click="vm.registerNewUser()" ng-disabled="newUserForm.$invalid ">
-                    Crear Usuario{{vm.newUserData.members}}
-                </button>
+                <div ng-hide=true>{{vm.newUserData.members=members}}</div>
+                <div ng-if="vm.type=='artist'">
+                <strong> Ingrese la biografia: </strong>
+                <textarea ng-model="vm.newUserData.biographyArtist" class="form-control" ></textarea>
+              </div>
+                <div>
+                <div ng-if="vm.type=='fanatic'">
+                    <button type="button" class="btn btn-primary btn-block button-block btn-margin" ng-click="vm.registerNewUser()" ng-disabled="newUserForm.$invalid ">
+                        Crear Fanatico
+                    </button>
+                </div>
+                <div ng-if="vm.type=='artist'">
+                    <button type="button" class="btn btn-primary btn-block button-block btn-margin" ng-click="vm.registerNewArtist()" ng-disabled="newUserForm.$invalid ">
+                        Crear Artista
+                    </button>
+                </div>
                 <br>
                 <a ui-sref="login" type="button" class="btn btn-primary btn-block">Cancelar</a>
             </form>
