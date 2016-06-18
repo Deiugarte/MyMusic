@@ -10,7 +10,7 @@ public class UpdateProfileUserRequest {
 	private String countryLocation; 
 	private ArrayList<String> musisicalGenres; /*opcional*/
 	private int identificationNumber;
-	
+
 	public String getNameUser() {
 		return nameUser;
 	}

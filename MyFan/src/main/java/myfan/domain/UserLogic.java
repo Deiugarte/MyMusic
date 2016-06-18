@@ -26,7 +26,7 @@ import myfan.resources.base.UserProfileResponse;
 
 public class UserLogic {
 
-  protected final String USER_IDENTIFIER_STATUS = "{\"UserId\": \"%s\", \"status\":\"%s\"}";
+  protected final String USER_IDENTIFIER_STATUS = "{\"UserId\": \"%s\",\"RoleId\": \"%s\", \"status\":\"%s\"}";
   protected final String DISABLE_ACCOUNT_STATUS = "{\"UserId\": \"%s\", \"status\":\"%s\"}";
   protected final String ERROR_USER_FOUND = "{\"Error \": \"User found \"}";
   protected final String ERROR_USER_ROLE_NOT_FOUND = "{\"Error \": \"UserRole not found \"}";
@@ -104,7 +104,7 @@ public class UserLogic {
     }
     user.setUsersRoles(facadeDAO.getDisableRole());
     facadeDAO.saveUser(user);
-    response = String.format(response, user.getUserId(), "OK");
+    response = String.format(response, user.getUserId(),user.getUsersRoles().getUsersRolesId(), "OK");
     return Response.status(Status.OK).entity(response).build();
   }
 
@@ -139,6 +139,7 @@ public class UserLogic {
     userProfileResponse.setLoginUser(user.getUsername());
     userProfileResponse.setNameUser(user.getName());
     userProfileResponse.setMusisicalGenres(getGenresByUser(idUser));
+    userProfileResponse.setImageProfile(user.getImage());
     return json.jsonConverter(userProfileResponse);
   }
 
