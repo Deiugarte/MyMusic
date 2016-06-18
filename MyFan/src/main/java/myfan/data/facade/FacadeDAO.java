@@ -3,6 +3,8 @@ package myfan.data.facade;
 import java.util.List;
 
 import myfan.data.dao.ArtistsDao;
+import myfan.data.dao.EventsDao;
+import myfan.data.dao.FanaticsArtistsDao;
 import myfan.data.dao.FanaticsDao;
 import myfan.data.dao.GenresDao;
 import myfan.data.dao.MembersDao;
@@ -13,7 +15,9 @@ import myfan.data.dao.UsersGenresDao;
 import myfan.data.dao.UsersRolesDao;
 
 import myfan.data.models.Artists;
+import myfan.data.models.Events;
 import myfan.data.models.Fanatics;
+import myfan.data.models.FanaticsArtists;
 import myfan.data.models.Genres;
 import myfan.data.models.Members;
 import myfan.data.models.News;
@@ -40,6 +44,8 @@ public class FacadeDAO {
 	private ArtistsDao artistsDao;
 	private MembersDao memberDao;
 	private NewsDao newsDao;
+	private FanaticsArtistsDao fanaticsArtistsDao;
+	private EventsDao eventsDao;
 
 	public FacadeDAO() {
 		usersDao = new UsersDao();
@@ -51,6 +57,8 @@ public class FacadeDAO {
 		artistsDao = new ArtistsDao();
 		memberDao = new MembersDao();
 		newsDao = new NewsDao();
+		fanaticsArtistsDao = new FanaticsArtistsDao();
+		eventsDao =new EventsDao();
 	}
 
 	/*-----------------------------------------FIND-------------------------------------*/
@@ -85,12 +93,20 @@ public class FacadeDAO {
 		return usersGenresDao.findGenresByUsersId(idUser);
 	}
 	
+	public List <FanaticsArtists> findArtistsByFanaticId(int fanaticId){
+		return fanaticsArtistsDao.findArtistsByFanaticId(fanaticId);
+	}
+	
 	public List<Ubications> findAllUbications() {
 		return ubicationsDao.findAll();
 	}
 
 	public Artists findArtistByUserId(int idUser) {
 		return artistsDao.getArtistsByUserId(idUser);
+	}
+
+	public Fanatics findFanaticByUserId(int idUser) {
+		return fanaticsDao.getFanaticsByUserId(idUser);
 	}
 
 	public Fanatics findFanaticById(int idUser) {
@@ -123,6 +139,17 @@ public class FacadeDAO {
 	
 	public List<News> getNewsByArtistId(int artistId, int offset){
 		return newsDao.getNewsByArtistId(artistId, offset);
+	}
+	public List<Events> getEventsByArtistId(int artistId, int offset){
+		return eventsDao.getEventsByArtistId(artistId, offset);
+	}
+	
+	public List<News> getNewsByArtistList(List<FanaticsArtists> fanaticsArtistsList, int offset){
+		return newsDao.getNewsByArtistsList(fanaticsArtistsList, offset);
+	}
+	
+	public List<Events> getEventsByArtistList(List<FanaticsArtists> fanaticsArtistsList, int offset){
+		return eventsDao.getEventsByArtistsList(fanaticsArtistsList, offset);
 	}
 	
 	/*-----------------------------------------SAVE-------------------------------------*/

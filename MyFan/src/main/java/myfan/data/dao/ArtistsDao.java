@@ -53,7 +53,7 @@ public class ArtistsDao extends ArtistsHome {
 	        System.out.println("Result list: " + results.size());
 	        trans.commit();
 	        log.debug("get successful, instance found");
-	        return results.get(0);
+	        return results.size()==0?null:results.get(0);
 	    } catch (RuntimeException re) {
 	        log.error("get failed", re);
 	        throw re;

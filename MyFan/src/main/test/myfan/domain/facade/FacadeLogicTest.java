@@ -16,9 +16,9 @@ public class FacadeLogicTest {
 	public void getNewsByArtistId() {
 		String expectedAnswer="";
 		FacadeLogic facadeLogic = new FacadeLogic();
-		String newsArtistTest=facadeLogic.getRecentNewsOfArtist(10, 0);
+		String newsArtistTest=facadeLogic.getRecentNews(10, 0);
 		System.out.println(newsArtistTest);
-		assertEquals(1,newsArtistTest);
+		assertEquals(2,newsArtistTest);
 	}
 
 }

@@ -6,6 +6,8 @@ public class RecentNewsResponse {
 	private String contentNews;
 	private String creationDate;
 	private String dateOfNews;
+	
+	
 	public int getIdNews() {
 		return idNews;
 	}

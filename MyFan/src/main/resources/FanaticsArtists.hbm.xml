@@ -12,10 +12,10 @@
                 <column name="ArtistId" />
             </key-property>
         </composite-id>
-        <many-to-one name="artists" class="myfan.data.models.Artists" update="false" insert="false" fetch="select">
+        <many-to-one name="artists" class="myfan.data.models.Artists" update="false" insert="false" fetch="join">
             <column name="ArtistId" not-null="true" unique="true" />
         </many-to-one>
-        <many-to-one name="fanatics" class="myfan.data.models.Fanatics" update="false" insert="false" fetch="select">
+        <many-to-one name="fanatics" class="myfan.data.models.Fanatics" update="false" insert="false" fetch="join">
             <column name="FanaticId" not-null="true" unique="true" />
         </many-to-one>
     </class>

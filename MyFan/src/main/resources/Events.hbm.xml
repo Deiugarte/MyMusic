@@ -8,10 +8,10 @@
             <column name="EventId" />
             <generator class="identity" />
         </id>
-        <many-to-one name="artists" class="myfan.data.models.Artists" fetch="select">
+        <many-to-one name="artists" class="myfan.data.models.Artists" fetch="join">
             <column name="Artist" not-null="true" />
         </many-to-one>
-        <many-to-one name="ubications" class="myfan.data.models.Ubications" fetch="select">
+        <many-to-one name="ubications" class="myfan.data.models.Ubications" fetch="join">
             <column name="Ubication" not-null="true" />
         </many-to-one>
         <property name="tittle" type="string">
@@ -29,7 +29,7 @@
         <property name="creationDate" type="date">
             <column name="CreationDate" length="10" not-null="true" />
         </property>
-        <set name="eventsCalificationses" table="events_califications" inverse="true" lazy="true" fetch="select">
+        <set name="eventsCalificationses" table="events_califications" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="Event" not-null="true" />
             </key>

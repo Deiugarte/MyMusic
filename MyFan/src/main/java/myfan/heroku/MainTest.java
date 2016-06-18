@@ -9,8 +9,9 @@ public class MainTest {
     FacadeLogic facadeLogic = new FacadeLogic();
 
 	
-	System.out.println(facadeLogic.getRecentNewsOfArtist(10, 0));
+	System.out.println(facadeLogic.getRecentEvents(12, 0));
     System.out.println("Soy el puto amo");
+    System.out.println(facadeLogic.getRecentEvents(10, 0));
   }
 }
 
