@@ -1,14 +1,14 @@
 package myfan.resources.base;
 
 public class LoginRequest {
-    private String hola;
+    private String login;
     private String password;
     
     public String getLogin() {
-      return hola;
+      return login;
     }
     public void setLogin(String login) {
-      this.hola = login;
+      this.login = login;
     }
     public String getPassword() {
       return password;

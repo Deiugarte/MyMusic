@@ -189,4 +189,8 @@ public class FacadeDAO {
 	public void saveGenre(Genres genre) {
 		genresDao.save(genre);
 	}
+	
+	public void saveNews(News news) {
+		newsDao.save(news);
+	}
 }
