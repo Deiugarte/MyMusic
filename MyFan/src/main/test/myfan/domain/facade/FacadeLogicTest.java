@@ -10,7 +10,7 @@ public class FacadeLogicTest {
   FacadeLogic facadeLogic = new FacadeLogic();
 
   @Test
-  public void getRecentNews() {
+  public void getRecentNews() { 
     String newsArtistTest = facadeLogic.getRecentNews(12, 0);
     System.out.println(newsArtistTest);
     assertEquals(2, newsArtistTest);

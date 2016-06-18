@@ -56,7 +56,7 @@ public class RegisterNewArtistRequest {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
+		}
 	public void setCountryLocation(String countryLocation) {
 		this.countryLocation = countryLocation;
 	}

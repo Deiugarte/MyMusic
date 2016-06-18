@@ -34,10 +34,9 @@ public class FanaticLogic extends UserLogic {
     fanatic.setSex(dataFanatic.getGender());
     fanatic.setUsers(user);
     facadeDAO.saveFanatic(fanatic);
-
     saveGenres(user, genders);
 
-    response = String.format(response, user.getUserId().toString(), "OK");
+    response = String.format(response, user.getUserId().toString(),user.getUsersRoles().getRoleName(), "OK");
     return Response.status(Status.OK).entity(response).build();
   }
 
@@ -47,7 +46,7 @@ public class FanaticLogic extends UserLogic {
     Fanatics fanatic = facadeDAO.findFanaticById(dataFanatic.getIdentificationNumber());
     fanatic.setSex(dataFanatic.isGender());
     facadeDAO.saveFanatic(fanatic);
-    response = String.format(response, fanatic.getFanaticId().toString(), "OK");
+    response = String.format(response, fanatic.getFanaticId().toString(),"fanatic", "OK");
     return Response.status(Status.OK).entity(response).build();
 
   }
