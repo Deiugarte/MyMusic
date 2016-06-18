@@ -12,6 +12,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import myfan.domain.ArtistLogic;
 import myfan.domain.FanaticLogic;
 import myfan.domain.GenresLogic;
+import myfan.domain.NewsLogic;
 import myfan.domain.UserLogic;
 import myfan.domain.UtilsLogic;
 import myfan.resources.base.AdminGenresRequest;
@@ -31,6 +32,7 @@ public class FacadeLogic {
 	private ArtistLogic artistLogic;
 	private UtilsLogic utilsLogic;
 	private GenresLogic genresLogic;
+	private NewsLogic newsLogic;
 
 	public FacadeLogic() {
 		userLogic = new UserLogic();
@@ -38,6 +40,7 @@ public class FacadeLogic {
 		artistLogic = new ArtistLogic();
 		utilsLogic = new UtilsLogic();
 		genresLogic = new GenresLogic();
+		newsLogic= new NewsLogic();
 	}
 
 	/*************************************** RESPONSE ******************************************************/
@@ -47,6 +50,7 @@ public class FacadeLogic {
 		return utilsLogic.getAllGenres();
 
 	}
+	
 
 	public String getPersonalInformationOfUser(int idUserProfile) {
 		return userLogic.getPersonalInformationOfUser(idUserProfile);
@@ -55,6 +59,10 @@ public class FacadeLogic {
 	public String getAllUbications() {
 		return utilsLogic.getAllUbications();
 	}
+	
+	public String getRecentNewsOfArtist(int idUser,int offset){
+		return newsLogic.getRecentNewsOfArtist(idUser, offset);
+	};
 
 	/*************************************** REQUEST ******************************************************/
 	/*************************************** REQUEST ******************************************************/

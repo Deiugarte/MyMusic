@@ -2,13 +2,11 @@ package myfan.data.facade;
 
 import java.util.List;
 
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-
 import myfan.data.dao.ArtistsDao;
 import myfan.data.dao.FanaticsDao;
 import myfan.data.dao.GenresDao;
 import myfan.data.dao.MembersDao;
+import myfan.data.dao.NewsDao;
 import myfan.data.dao.UbicationsDao;
 import myfan.data.dao.UsersDao;
 import myfan.data.dao.UsersGenresDao;
@@ -18,6 +16,7 @@ import myfan.data.models.Artists;
 import myfan.data.models.Fanatics;
 import myfan.data.models.Genres;
 import myfan.data.models.Members;
+import myfan.data.models.News;
 import myfan.data.models.Ubications;
 import myfan.data.models.Users;
 import myfan.data.models.UsersGenres;
@@ -40,6 +39,7 @@ public class FacadeDAO {
 	private UsersGenresDao usersGenresDao;
 	private ArtistsDao artistsDao;
 	private MembersDao memberDao;
+	private NewsDao newsDao;
 
 	public FacadeDAO() {
 		usersDao = new UsersDao();
@@ -50,6 +50,7 @@ public class FacadeDAO {
 		usersGenresDao = new UsersGenresDao();
 		artistsDao = new ArtistsDao();
 		memberDao = new MembersDao();
+		newsDao = new NewsDao();
 	}
 
 	/*-----------------------------------------FIND-------------------------------------*/
@@ -88,8 +89,8 @@ public class FacadeDAO {
 		return ubicationsDao.findAll();
 	}
 
-	public Artists findArtistById(int idUser) {
-		return artistsDao.getArtistsById(idUser);
+	public Artists findArtistByUserId(int idUser) {
+		return artistsDao.getArtistsByUserId(idUser);
 	}
 
 	public Fanatics findFanaticById(int idUser) {
@@ -119,6 +120,11 @@ public class FacadeDAO {
 		return usersRolesDao.findByRoleName(DISABLE_ROLE_NAME);
 	}
 
+	
+	public List<News> getNewsByArtistId(int artistId, int offset){
+		return newsDao.getNewsByArtistId(artistId, offset);
+	}
+	
 	/*-----------------------------------------SAVE-------------------------------------*/
 	/*-----------------------------------------SAVE-------------------------------------*/
 
@@ -143,5 +149,7 @@ public class FacadeDAO {
 		fanaticsDao.save(fanatic);
 	}
 
-
+	public void saveGenre(Genres genre) {
+		genresDao.save(genre);
+	}
 }
