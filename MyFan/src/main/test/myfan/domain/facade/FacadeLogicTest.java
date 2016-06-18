@@ -12,13 +12,12 @@ import myfan.resources.base.RecentNewsResponse;
 
 public class FacadeLogicTest {
 
-	@Test
-	public void getNewsByArtistId() {
-		String expectedAnswer="";
-		FacadeLogic facadeLogic = new FacadeLogic();
-		String newsArtistTest=facadeLogic.getRecentNewsOfArtist(10, 0);
-		System.out.println(newsArtistTest);
-		assertEquals(1,newsArtistTest);
-	}
-
+  @Test
+  public void getNewsByArtistId() {
+    String expectedAnswer = "";
+    FacadeLogic facadeLogic = new FacadeLogic();
+    String newsArtistTest = facadeLogic.getRecentNewsOfArtist(10, 0);
+    System.out.println(newsArtistTest);
+    assertEquals(1, newsArtistTest);
+  }
 }
