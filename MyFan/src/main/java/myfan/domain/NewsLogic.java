@@ -11,20 +11,33 @@ import myfan.data.models.Artists;
 import myfan.data.models.FanaticsArtists;
 import myfan.data.models.News;
 import myfan.resources.base.AddNewsRequest;
+import myfan.resources.base.DeleteNewsRequest;
 import myfan.resources.base.RecentNewsResponse;
-
 
 public class NewsLogic {
 	private FacadeDAO facadeDAO;
 	private JSON json;
 	private Fecha fecha;
 	private final String ADD_NEWS_STATUS = "{\"NewsId\": \"%s\", \"status\":\"%s\"}";
+	private final String DELETE_NEWS_STATUS = "{ \"status\":\"%s\"}";
 	private final String ERROR_ARTIST_NOT_FOUND = "{\"Error \": \"Artist not found \"}";
+	private final String ERROR_NEWS_NOT_FOUND = "{\"Error \": \"News not found \"}";
 
 	public NewsLogic() {
 		facadeDAO = new FacadeDAO();
 		json = new JSON();
 		fecha = new Fecha();
+	}
+
+	public Response deleteNews(DeleteNewsRequest deleteNewsRequest) {
+		String response = DELETE_NEWS_STATUS;
+		News news = facadeDAO.findNewsById(deleteNewsRequest.getNewsId());
+		if (news == null) {
+			return responseBuilder(ERROR_ARTIST_NOT_FOUND);
+		}
+		facadeDAO.deleteNewsById(news);
+		response = String.format(response, "OK");
+		return Response.status(Status.OK).entity(response).build();
 	}
 
 	public Response createNews(AddNewsRequest news) {

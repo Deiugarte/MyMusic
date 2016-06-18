@@ -75,6 +75,10 @@ public class FacadeDAO {
 	public Users findUserById(int idUserName) {
 		return usersDao.getUsersById(idUserName);
 	}
+	
+	public News findNewsById(int idNews) {
+		return newsDao.getNewsById(idNews);
+	}
 
 	public Ubications findUbicationsById(int ubicationName) {
 		return ubicationsDao.getUbicationsById(ubicationName);
@@ -192,5 +196,11 @@ public class FacadeDAO {
 	
 	public void saveNews(News news) {
 		newsDao.save(news);
+	}
+	/*-----------------------------------------	DELETE-------------------------------------*/
+	/*-----------------------------------------	DELETE-------------------------------------*/
+	
+	public void deleteNewsById(News news) {
+		newsDao.deleteNews(news);
 	}
 }
