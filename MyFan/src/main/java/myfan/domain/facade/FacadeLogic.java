@@ -115,9 +115,10 @@ public class FacadeLogic {
 	}
 
 	public void deleteNews(Object news) {
+		
 	}
 
-	public void cancelEvent(Object event) {
+	public void cancelEvent(Object event) { //falta atributo en base
 	}
 
 	public void createEvent(Object event) {
