@@ -85,7 +85,7 @@ public class FacadeLogic {
 	}
 
 	public Response registerNewFanatic(RegisterNewFanaticRequest fanaticData, InputStream profilePicture,
-			FormDataContentDisposition fileDetail) {
+	    FormDataContentDisposition fileDetail) {
 		String pathProfilePicture = userLogic.saveProfilePictureFile(profilePicture, fileDetail);
 		return fanaticLogic.registerNewFanatic(fanaticData, pathProfilePicture);
 	}

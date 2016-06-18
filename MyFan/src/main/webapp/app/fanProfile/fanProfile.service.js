@@ -20,7 +20,7 @@
     }
 
     function getUserData(data) {
-      var url = 'http://localhost:8000/rest/v1/resources/userdata/11';
+      var url = 'http://localhost:8000/rest/v1/resources/userdata/'+1;
       return $http.get(url, data);
     }
     function getGenresData(data) {

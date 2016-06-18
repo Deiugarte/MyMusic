@@ -26,7 +26,7 @@ public class ArtistLogic extends UserLogic {
     Ubications ubication = checkUbication(dataArtist.getCountryLocation());
     ArrayList<Genres> genders = checkGenres(dataArtist.getMusicalGenres());
     UsersRoles usersRoles = facadeDAO.getArtistRole();
-
+    
     createUser(pathProfilePicture, ubication, usersRoles, dataArtist.getNameUser(), dataArtist.getPassword(),
         dataArtist.getLogin(), dataArtist.getBirthDate());
 
