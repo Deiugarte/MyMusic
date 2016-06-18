@@ -91,7 +91,7 @@ public class EventsHome {
   public Events findById(java.lang.Integer id) {
     log.debug("getting Events instance with id: " + id);
     try {
-      Events instance = (Events) sessionFactory.getCurrentSession().get("myfan.dao.temp.Events", id);
+      Events instance = (Events) sessionFactory.getCurrentSession().get("myfan.data.models.Events", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -107,7 +107,7 @@ public class EventsHome {
   public List<Events> findByExample(Events instance) {
     log.debug("finding Events instance by example");
     try {
-      List<Events> results = (List<Events>) sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.Events")
+      List<Events> results = (List<Events>) sessionFactory.getCurrentSession().createCriteria("myfan.data.models.Events")
           .add(create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;

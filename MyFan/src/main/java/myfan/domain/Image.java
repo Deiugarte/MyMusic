@@ -15,7 +15,7 @@ public class Image {
     OutputStream outputStream = null;
     String nameFile = java.util.UUID.randomUUID().toString();
     String nameFileWithExtension;
-    if (profilePicture != null && fileDetail != null) {
+    if (profilePicture != null && fileDetail.getFileName() != null) {
       try {
         // write the inputStream to a FileOutputStream
         File file;

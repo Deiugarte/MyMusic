@@ -2,22 +2,28 @@ package myfan.domain.facade;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
-
 import org.junit.Test;
 
-import myfan.data.dao.NewsDao;
-import myfan.data.models.News;
-import myfan.resources.base.RecentNewsResponse;
+import myfan.resources.base.AddNewsRequest;
 
 public class FacadeLogicTest {
+  FacadeLogic facadeLogic = new FacadeLogic();
 
   @Test
-  public void getNewsByArtistId() {
-    String expectedAnswer = "";
-    FacadeLogic facadeLogic = new FacadeLogic();
-    String newsArtistTest = facadeLogic.getRecentNewsOfArtist(10, 0);
+  public void getRecentNews() {
+    String newsArtistTest = facadeLogic.getRecentNews(12, 0);
     System.out.println(newsArtistTest);
-    assertEquals(1, newsArtistTest);
+    assertEquals(2, newsArtistTest);
   }
+
+  @Test
+  public void createNews() {
+    AddNewsRequest addNewsRequest = new AddNewsRequest();
+    addNewsRequest.setContentNews("Contenido Noticia test");
+    addNewsRequest.setDateNews("2016-02-02");
+    addNewsRequest.setIdUser(10);
+    addNewsRequest.setTitleNews("Test");
+    assertEquals(1, facadeLogic.createNews(addNewsRequest));
+  }
+
 }

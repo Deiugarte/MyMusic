@@ -91,7 +91,7 @@ public class FanaticsHome {
   public Fanatics findById(java.lang.Integer id) {
     log.debug("getting Fanatics instance with id: " + id);
     try {
-      Fanatics instance = (Fanatics) sessionFactory.getCurrentSession().get("myfan.dao.temp.Fanatics", id);
+      Fanatics instance = (Fanatics) sessionFactory.getCurrentSession().get("myfan.data.models.Fanatics", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {

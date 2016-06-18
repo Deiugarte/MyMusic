@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
+import myfan.data.models.FanaticsArtists;
 import myfan.data.models.News;
 import myfan.data.models.Ubications;
 import myfan.resources.util.HibernateUtil;
@@ -48,7 +49,7 @@ public class NewsDao extends NewsHome {
 	        org.hibernate.Transaction trans= session.beginTransaction();
 	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
 	            log.debug(" >>> Transaction close.");
-	        Query query = session.createQuery("from News where artist = :artistId  order by creationDate ");
+	        Query query = session.createQuery("from News where artist = :artistId  order by creationDate DESC");
 	        query.setParameter("artistId", artistId);
 	        query.setFirstResult(offset*20);
 	        query.setMaxResults(20);
@@ -61,6 +62,42 @@ public class NewsDao extends NewsHome {
 	        log.error("get failed", re);
 	        throw re;
 	    }
+	}
+  public List<News> getNewsByArtistsList(List<FanaticsArtists> fanaticsArtistsList, int offset ) {
+	    try {
+	        Session session = sessionFactory.openSession();
+	        org.hibernate.Transaction trans= session.beginTransaction();
+	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+	            log.debug(" >>> Transaction close.");
+	        String queryStr= "from News where (%s)  order by creationDate DESC ";
+	        queryStr= String.format(queryStr,getQueryWithArtistsList(fanaticsArtistsList) );
+	        Query query = session.createQuery(queryStr);
+	        query.setFirstResult(20*offset);
+	        query.setMaxResults(20);
+	        java.util.List results = query.list();
+	        System.out.println("Result list: " + results.size());
+	        trans.commit();
+	        log.debug("get successful, instance found");
+	        return results;
+	    } catch (RuntimeException re) {
+	        log.error("get failed", re);
+	        throw re;
+	    }
+	}
+  
+  private String getQueryWithArtistsList(List<FanaticsArtists> fanaticsArtistsList) {
+		String query = " artist = %s ";
+		String queryResult = "";
+		for (int i = 0; i < fanaticsArtistsList.size(); i++) {
+			queryResult += String.format(query, fanaticsArtistsList.get(i).getArtists().getArtistId());
+			if (i == fanaticsArtistsList.size() - 1) {
+				break;
+			}
+			else{
+				queryResult+="or ";
+			}
+		}
+		return queryResult;
 	}
   public void deleteNews(News News) {
       Session session = sessionFactory.getCurrentSession();

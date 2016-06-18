@@ -1,12 +1,9 @@
 package myfan.domain;
 
 import java.io.InputStream;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +26,6 @@ import myfan.resources.base.UserProfileResponse;
 
 public class UserLogic {
 
-  private final String DATE_FORMAT = "yyyy-MM-dd";
   protected final String USER_IDENTIFIER_STATUS = "{\"UserId\": \"%s\", \"status\":\"%s\"}";
   protected final String DISABLE_ACCOUNT_STATUS = "{\"UserId\": \"%s\", \"status\":\"%s\"}";
   protected final String ERROR_USER_FOUND = "{\"Error \": \"User found \"}";
@@ -43,6 +39,7 @@ public class UserLogic {
   private final int DISABLE = 13;
   private Image image;
   private JSON json;
+  private Fecha fecha;
 
   protected FacadeDAO facadeDAO;
 
@@ -53,6 +50,7 @@ public class UserLogic {
     facadeDAO = new FacadeDAO();
     image = new Image();
     json = new JSON();
+    fecha = new Fecha();
 
   }
 
@@ -165,7 +163,7 @@ public class UserLogic {
   private String calculadeAge(Date birthday) {
     SimpleDateFormat formatNowYear = new SimpleDateFormat("yyyy");
     String birthdayYear = formatNowYear.format(birthday);
-    String currentYear = formatNowYear.format(calculateCurrentDate());
+    String currentYear = formatNowYear.format(fecha.getCurrentDate());
     Integer age = Integer.parseInt(currentYear) - Integer.parseInt(birthdayYear);
     return age.toString();
   }
@@ -229,42 +227,6 @@ public class UserLogic {
       break;
     }
     return response;
-  }
-
-  /**
-   * Covierte un tipo Date a un String con la Fecha
-   * 
-   * @param date
-   * @return
-   */
-  private Date getDateFromString(String date) {
-    Date returnDate = null;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
-    try {
-      returnDate = simpleDateFormat.parse(date);
-    } catch (ParseException ex) {
-      ex.printStackTrace();
-    }
-    return returnDate;
-  }
-
-  /**
-   * Calcula la fecha actual del sistema
-   * 
-   * @return un tipo de fecha Date
-   */
-  private Date calculateCurrentDate() {
-    String currentDate;
-    Date date = null;
-    Calendar currentDateComputer = Calendar.getInstance();
-    DateFormat dateFormatter = new SimpleDateFormat(DATE_FORMAT);
-    currentDate = dateFormatter.format(currentDateComputer.getTime());
-    try {
-      date = dateFormatter.parse(currentDate);
-    } catch (ParseException e) {
-      e.printStackTrace();
-    }
-    return date;
   }
 
   /**
@@ -346,9 +308,9 @@ public class UserLogic {
     user.setUbications(ubication);
     user.setPassword(password);
     user.setImage(pathProfilePicture);
-    user.setCreationDate(calculateCurrentDate());
+    user.setCreationDate(fecha.getCurrentDate());
     user.setUsername(login);
-    user.setBirthday(getDateFromString(birthday));
+    user.setBirthday(fecha.getDateFromString(birthday));
     facadeDAO.saveUser(user);
   }
 
@@ -378,7 +340,7 @@ public class UserLogic {
   protected void updateUser(UpdateProfileUserRequest dataUser, String pathProfilePicture) {
     Users user = facadeDAO.findUserById(dataUser.getIdentificationNumber());
     user.setName(dataUser.getNameUser());
-    user.setBirthday(getDateFromString(dataUser.getBirthday()));
+    user.setBirthday(fecha.getDateFromString(dataUser.getBirthday()));
     user.setPassword(dataUser.getPassword());
     Ubications ubication = checkUbication(dataUser.getCountryLocation());
     user.setUbications(ubication);
@@ -388,4 +350,5 @@ public class UserLogic {
     saveGenres(user, genders);
 
   }
+
 }

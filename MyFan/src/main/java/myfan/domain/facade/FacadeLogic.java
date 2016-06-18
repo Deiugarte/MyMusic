@@ -10,11 +10,13 @@ import javax.ws.rs.core.Response;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
 import myfan.domain.ArtistLogic;
+import myfan.domain.EventsLogic;
 import myfan.domain.FanaticLogic;
 import myfan.domain.GenresLogic;
 import myfan.domain.NewsLogic;
 import myfan.domain.UserLogic;
 import myfan.domain.UtilsLogic;
+import myfan.resources.base.AddNewsRequest;
 import myfan.resources.base.AdminGenresRequest;
 import myfan.resources.base.DisableAccountRequest;
 import myfan.resources.base.LoginRequest;
@@ -33,6 +35,7 @@ public class FacadeLogic {
 	private UtilsLogic utilsLogic;
 	private GenresLogic genresLogic;
 	private NewsLogic newsLogic;
+	private EventsLogic eventsLogic;
 
 	public FacadeLogic() {
 		userLogic = new UserLogic();
@@ -40,7 +43,8 @@ public class FacadeLogic {
 		artistLogic = new ArtistLogic();
 		utilsLogic = new UtilsLogic();
 		genresLogic = new GenresLogic();
-		newsLogic= new NewsLogic();
+		newsLogic = new NewsLogic();
+		eventsLogic = new EventsLogic();
 	}
 
 	/*************************************** RESPONSE ******************************************************/
@@ -50,7 +54,6 @@ public class FacadeLogic {
 		return utilsLogic.getAllGenres();
 
 	}
-	
 
 	public String getPersonalInformationOfUser(int idUserProfile) {
 		return userLogic.getPersonalInformationOfUser(idUserProfile);
@@ -59,10 +62,14 @@ public class FacadeLogic {
 	public String getAllUbications() {
 		return utilsLogic.getAllUbications();
 	}
-	
-	public String getRecentNewsOfArtist(int idUser,int offset){
-		return newsLogic.getRecentNewsOfArtist(idUser, offset);
-	};
+
+	public String getRecentNews(int idUser, int offset) {
+		return newsLogic.getRecentNews(idUser, offset);
+	}
+
+	public String getRecentEvents(int idUser, int offset) {
+		return eventsLogic.getRecentEvents(idUser, offset);
+	}
 
 	/*************************************** REQUEST ******************************************************/
 	/*************************************** REQUEST ******************************************************/
@@ -100,34 +107,28 @@ public class FacadeLogic {
 	}
 
 	public Response addGenre(AdminGenresRequest musicalGenres) {
-	  return genresLogic.addNewGenres(musicalGenres);
-  }
-
-	// public void disableGenre(Object genre){}
-
-	// public void enableGenre(Object genre){}
-
-	public void createEvent(Object event) {
+		return genresLogic.addNewGenres(musicalGenres);
 	}
 
-	public void cancelEvent(Object event) {
-	}
-
-	public void createNews(Object news) {
+	public Response createNews(AddNewsRequest news) {
+		return newsLogic.createNews(news);
 	}
 
 	public void deleteNews(Object news) {
+		
+	}
+
+	public void cancelEvent(Object event) { //falta atributo en base
+	}
+
+	public void createEvent(Object event) {
 	}
 
 	public void addDisc(Object disc) {
 	}
 
-	// public void deleteDisc(Object disc){}
-
 	public void addSong(Object song) {
 	}
-
-	// public void deleteSong(Object song){}
 
 	public void followArtist(Object artistUser) {
 		// publicar twitter
@@ -148,4 +149,13 @@ public class FacadeLogic {
 
 	public void searchArtist(Object artist) {
 	}
+
+	// public void deleteDisc(Object disc){}
+
+	// public void disableGenre(Object genre){}
+
+	// public void enableGenre(Object genre){}
+
+	// public void deleteSong(Object song){}
+
 }

@@ -1,7 +1,5 @@
 package myfan.resources.base;
 
-import java.util.ArrayList;
-
 public class AdminGenresRequest {
 	private String musicalGenre; /*opcional*/
 
