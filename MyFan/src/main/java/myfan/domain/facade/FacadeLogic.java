@@ -14,6 +14,7 @@ import myfan.domain.ArtistLogic;
 import myfan.domain.DiscLogic;
 import myfan.domain.EventsLogic;
 import myfan.domain.FanaticLogic;
+import myfan.domain.FollowedArtist;
 import myfan.domain.GenresLogic;
 import myfan.domain.NewsLogic;
 import myfan.domain.Search;
@@ -54,6 +55,7 @@ public class FacadeLogic {
 	private SongLogic songLogic;
 	private ActionsUser actionsUser;
 	private Search search;
+	private FollowedArtist  followedArtist;
 
 	public FacadeLogic() {
 		userLogic = new UserLogic();
@@ -67,6 +69,7 @@ public class FacadeLogic {
 		songLogic = new SongLogic();
 		actionsUser = new ActionsUser();
 		search = new Search();
+		followedArtist = new FollowedArtist();
 	}
 
 	/*************************************** RESPONSE ******************************************************/
@@ -75,6 +78,10 @@ public class FacadeLogic {
 	public String getAllGenders() {
 		return utilsLogic.getAllGenres();
 
+	}
+	
+	public String getFollowedArtist(int idUser){
+		return followedArtist.getFollowedArtist(idUser);
 	}
 
 	public String searchArtist(FindArtistRequest artist) {

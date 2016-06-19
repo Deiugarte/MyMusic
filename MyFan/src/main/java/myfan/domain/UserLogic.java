@@ -45,8 +45,8 @@ public class UserLogic {
    */
   public UserLogic() {
     facadeDAO = new FacadeDAO();
-    imageFabrication = new ImageFabrication();
     jSONFabrication = new JSONFabrication();
+    imageFabrication = new ImageFabrication();
     date = new DateFabrication();
 
   }

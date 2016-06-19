@@ -20,7 +20,7 @@
             </key>
             <one-to-many class="myfan.data.models.EventsCalifications" />
         </set>
-        <set name="artistsCalificationses" table="artists_califications" inverse="true" lazy="true" fetch="select">
+        <set name="artistsCalificationses" table="artists_califications" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="Reviewer" not-null="true" />
             </key>

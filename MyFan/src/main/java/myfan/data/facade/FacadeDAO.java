@@ -162,6 +162,14 @@ public class FacadeDAO {
 	/*-----------------------------------------GET-------------------------------------*/
 	/*-----------------------------------------GET-------------------------------------*/
 
+	public  List<ArtistsCalifications> getArtistCalificationByIdArtist(int idArtist){
+		return artistsCalificationsDao.getArtistCalificationByIdArtist(idArtist);	
+	}
+	
+	public  List<Discs> getDiscsByIdArtist(int idArtist){
+		return discsDao.getDiscByIdArtist(idArtist);
+	}
+	
 	public List<Users> getArtistsByUbication(int idUbication){
 		return artistsDao.getArtistsByUbication(idUbication);
 	}
