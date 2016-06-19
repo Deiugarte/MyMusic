@@ -1,82 +1,84 @@
-    <div class="modal-header">
-        <h3 class="modal-title">Evento</h3>
-    </div>
-    <div class="modal-body">
-        <ul class="timeline">
-            <li>
-                <div class="timeline-badge warning"><i class="fa fa-calendar-check-o"></i> </div>
-                <!-- evento  !-->
-                <div class="timeline-panel">
-                    <div class="timeline-heading">
-                        <h4 class="timeline-title">{{currentEvent.title}}
+<div class="modal-header">
+    <h3 class="modal-title">Evento</h3>
+</div>
+<div class="modal-body">
+    <ul class="timeline">
+        <li>
+            <div class="timeline-badge warning">
+                <i style="vertical-align:baseline;" class="fa fa-calendar-check-o"></i>
+            </div>
+            <!-- evento  !-->
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    <h4 class="timeline-title">{{currentEvent.title}}
                     <div class="eventReview pull-right">
                       <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="currentEvent.stars"  max="currentEvent.stars"  on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
                             <span class="eventComment">({{currentEvent.commentsAmount}})</span>
                     </div>
                 </h4>
-                    </div>
-                    <div class="timeline-body clearfix">
-                        <p>{{currentEvent.body}}</p>
-                    </div>
-                    <span class="pull-right"><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{currentEvent.date}}</small></span>
                 </div>
-            </li>
-            <div id="artistRatingFormContainer">
-                <form>
-                    <div id="descriptionTextCol" class="col-xs-3 col-md-4">
+                <div class="timeline-body clearfix">
+                    <p>{{currentEvent.body}}</p>
+                </div>
+                <span class="pull-right"><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{currentEvent.date}}</small></span>
+            </div>
+        </li>
+        <div id="artistRatingFormContainer">
+            <form>
+                <div id="descriptionTextCol" class="col-xs-3 col-md-4">
 
-                        <div id="descriptionText">Calificación</div>
-                        <div id="descriptionText">Comentario
-                            <br/> (opcional) </div>
-                    </div>
-                    <div id="ratingInputsCol" class="col-xs-6 col-md-5">
-                        <uib-rating class="ratingStar pull-left" ng-model="x" max="5" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
-                        <b>({{x}})</b>
-                        <input type="hidden" ng-model="x" name="artistRatingValue">
-                        <textarea rows="5" id="artistCommentReview" class="form-control"></textarea>
-                    </div>
-                    <div id="reviewBtnCol" class="col-xs-2 col-md-3">
-                        <input id="sendReviewBtn" class="btn btn-default btn-sm" type="submit" value="¡Calificar!" />
-                    </div>
-                </form>
-            </div>
-            <div id="artistCommentsContainer">
-                <div id="artistComments">
-                    <ul class="commentsList">
-                        <div id="commentSectionHeader">Comentarios (2)</div>
-                        <li class="commentContainer">
-                            <header class="commentHeader">
-                                <div class="commentAuthor">Kirito
-                                    <div class="commentStarsContainer pull-right">
-                                        <span class="s2 fa fa-star"></span>
-                                        <span class="s2 fa fa-star"></span>
-                                        <span class="s2 fa fa-star"></span>
-                                        <span class="s2 fa fa-star"></span>
-                                    </div>
-                                </div>
-                            </header>
-                            <article class="commentBody">Para mi es un objecto de culto. Su voz y su musica son una pura expresion de fe. con el te lleva casi al más alla. es uno de los padre del movimiento hippie, uno de los mas carismaticos.</article>
-                        </li>
-                        <li class="commentContainer">
-                            <header class="commentHeader">
-                                <div class="commentAuthor">Sygram
-                                    <div class="commentStarsContainer pull-right">
-                                        <span class="s2 fa fa-star"></span>
-                                        <span class="s2 fa fa-star"></span>
-                                        <span class="s2 fa fa-star"></span>
-                                        <span class="s2 fa fa-star"></span>
-                                        <span class="s2 fa fa-star"></span>
-                                    </div>
-                                </div>
-                            </header>
-                            <article class="commentBody">Aunque esté muerto su estilo perdurará por siempre y es el rey del regge y de África. - Ventajas: Puro Regge, Aún vive su espíritu - Desventajas: Por desgracia para todos no está presente :(</article>
-                        </li>
-                    </ul>
+                    <div id="descriptionText">Calificación</div>
+                    <div id="descriptionText">Comentario
+                        <br/> (opcional) </div>
                 </div>
+                <div id="ratingInputsCol" class="col-xs-6 col-md-5">
+                    <uib-rating class="ratingStar pull-left" ng-model="x" max="5" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
+                    <b>({{x}})</b>
+                    <input type="hidden" ng-model="x" name="artistRatingValue">
+                    <textarea rows="5" id="artistCommentReview" class="form-control"></textarea>
+                </div>
+                <div id="reviewBtnCol" class="col-xs-2 col-md-3">
+                    <input id="sendReviewBtn" class="btn btn-default btn-sm" type="submit" value="¡Calificar!" />
+                </div>
+            </form>
+        </div>
+        <div id="artistCommentsContainer">
+            <div id="artistComments">
+                <ul class="commentsList">
+                    <div id="commentSectionHeader">Comentarios (2)</div>
+                    <li class="commentContainer">
+                        <header class="commentHeader">
+                            <div class="commentAuthor">Kirito
+                                <div class="commentStarsContainer pull-right">
+                                    <span class="s2 fa fa-star"></span>
+                                    <span class="s2 fa fa-star"></span>
+                                    <span class="s2 fa fa-star"></span>
+                                    <span class="s2 fa fa-star"></span>
+                                </div>
+                            </div>
+                        </header>
+                        <article class="commentBody">Para mi es un objecto de culto. Su voz y su musica son una pura expresion de fe. con el te lleva casi al más alla. es uno de los padre del movimiento hippie, uno de los mas carismaticos.</article>
+                    </li>
+                    <li class="commentContainer">
+                        <header class="commentHeader">
+                            <div class="commentAuthor">Sygram
+                                <div class="commentStarsContainer pull-right">
+                                    <span class="s2 fa fa-star"></span>
+                                    <span class="s2 fa fa-star"></span>
+                                    <span class="s2 fa fa-star"></span>
+                                    <span class="s2 fa fa-star"></span>
+                                    <span class="s2 fa fa-star"></span>
+                                </div>
+                            </div>
+                        </header>
+                        <article class="commentBody">Aunque esté muerto su estilo perdurará por siempre y es el rey del regge y de África. - Ventajas: Puro Regge, Aún vive su espíritu - Desventajas: Por desgracia para todos no está presente :(</article>
+                    </li>
+                </ul>
             </div>
-        </ul>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-    </div>
+        </div>
+    </ul>
+</div>
+<div class="modal-footer">
+    <button style="width:auto;" class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button style="width:auto;" class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
