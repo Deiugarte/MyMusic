@@ -5,10 +5,10 @@
     .module('refiereApp.register')
     .controller('RegisterCtrl', RegisterCtrl);
 
-  RegisterCtrl.$inject = ['RegisterSrv', '$state', '$window','$scope','Upload'];
+  RegisterCtrl.$inject = ['RegisterSrv', '$state', '$window','$scope','Upload','UserDataService'];
 
   /* @ngInject */
-  function RegisterCtrl(RegisterSrv, $state, $window,$scope,Upload) {
+  function RegisterCtrl(RegisterSrv, $state, $window,$scope,Upload,UserDataService) {
     var vm = this;
     vm.newUserData = {};
     vm.newUserData.musicalGenres = [];
@@ -62,8 +62,10 @@
     function registerNewUser(){
       RegisterSrv.postNewFanatic(vm.newUserData,vm.picfile)
         .then(function(data) {
+          var userInfo = data.data;
+          UserDataService.setUserInfoData(userInfo);
           if (data.status === 200){
-            $window.alert('Bienvenido' );
+
             $state.go('fanProfile');
           }
           else if (data.status === 404){

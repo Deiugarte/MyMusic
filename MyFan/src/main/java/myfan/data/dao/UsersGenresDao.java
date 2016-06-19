@@ -23,7 +23,7 @@ public class UsersGenresDao extends UsersGenresHome{
   private final SessionFactory sessionFactory = getSessionFactory();
 
   @Override
- 
+  
   
   public SessionFactory getSessionFactory(){
       try {
@@ -38,7 +38,7 @@ public class UsersGenresDao extends UsersGenresHome{
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
       merge(UsersGenres);
-      trans.commit();
+      trans.commit(); 
   }
  
   public List<UsersGenres> findGenresByUsersId(int idUser) {
@@ -50,11 +50,10 @@ public class UsersGenresDao extends UsersGenresHome{
 	       
 	        Query query = session.createQuery("from UsersGenres where iduser = :idUser");
 	        query.setParameter("idUser", idUser); 
-	        
 	        java.util.List <UsersGenres> results = query.list();
-	        java.util.List <UsersGenres> results1= session.createCriteria(UsersGenres.class).list();
-	        for(int i=0; i< results1.size();i++){
-	        	   Hibernate.initialize(results1.get(i));  
+	        for(int i=0; i< results.size();i++){
+	          Hibernate.initialize(results.get(i));  
+
 	        }
 	        trans.commit();
 	        log.debug("get successful, instance found");

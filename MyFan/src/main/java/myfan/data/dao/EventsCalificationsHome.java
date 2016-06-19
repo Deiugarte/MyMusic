@@ -1,5 +1,5 @@
 package myfan.data.dao;
-// Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 19, 2016 12:46:28 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.List;
 import javax.naming.InitialContext;

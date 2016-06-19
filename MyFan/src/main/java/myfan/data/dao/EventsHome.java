@@ -1,5 +1,5 @@
 package myfan.data.dao;
-// Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 19, 2016 12:46:28 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -91,7 +91,7 @@ public class EventsHome {
   public Events findById(java.lang.Integer id) {
     log.debug("getting Events instance with id: " + id);
     try {
-      Events instance = (Events) sessionFactory.getCurrentSession().get("myfan.data.models.Events", id);
+      Events instance = (Events) sessionFactory.getCurrentSession().get("myfan.dao.temp.Events", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -107,7 +107,7 @@ public class EventsHome {
   public List<Events> findByExample(Events instance) {
     log.debug("finding Events instance by example");
     try {
-      List<Events> results = (List<Events>) sessionFactory.getCurrentSession().createCriteria("myfan.data.models.Events")
+      List<Events> results = (List<Events>) sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.Events")
           .add(create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;

@@ -4,14 +4,15 @@
         .module('refiereApp.fanProfile')
         .controller('fanProfileCtrl', fanProfileCtrl);
 
-    fanProfileCtrl.$inject = ['FanaticSrv', '$log', '$uibModal', '$state', '$window', '$scope'];
+    fanProfileCtrl.$inject = ['FanaticSrv', '$log', '$uibModal', '$state', '$window', '$scope','UserDataService'];
 
-    function fanProfileCtrl(FanaticSrv, $log, $uibModal, $state, $window, $scope) {
+    function fanProfileCtrl(FanaticSrv, $log, $uibModal, $state, $window, $scope,UserDataService) {
         var vm = this;
         vm.currentEvent = {};
         vm.newUser = {};
         vm.genresList = {};
         vm.countriesList = {};
+        vm.userData = UserDataService.getAllUserData()
         vm.open = function(size, title, body, stars, commentsAmount) {
             vm.currentEvent.title = title;
             vm.currentEvent.body = body;
@@ -28,7 +29,6 @@
                         return vm.currentEvent;
                     }
                 }
-
             });
             modalInstance.result.then(function(selectedItem) {
                 $scope.selected = selectedItem;
@@ -38,11 +38,10 @@
 
 
         };
-
         getUserData();
 
-        function getUserData(data) {
-            FanaticSrv.getUserData()
+        function getUserData() {
+            FanaticSrv.getUserData(vm.userData)
                 .then(function(info) {
                     vm.newUser = info.data;
                 })
@@ -61,6 +60,8 @@
                     vm.countriesList = ubicationData.data;
                 })
         }
+
+
         vm.timeline = {
             publications: [{
                 type: "noticia",
