@@ -67,7 +67,7 @@
         getTimelineNews();
 
         function getTimelineNews() {
-            vm.timelineParameters.idUser = '12';
+            vm.timelineParameters.idUser = vm.userData.UserId ;
             FanaticSrv.getTimelineNews(vm.timelineParameters)
                 .then(function(newsData) {
                     console.log(newsData);
