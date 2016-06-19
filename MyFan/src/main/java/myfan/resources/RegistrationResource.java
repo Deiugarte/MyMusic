@@ -12,7 +12,8 @@ import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
-import myfan.domain.FacadeLogic;
+import myfan.domain.facade.FacadeLogic;
+import myfan.resources.base.RegisterNewArtistRequest;
 import myfan.resources.base.RegisterNewFanaticRequest;
 
 
@@ -23,13 +24,24 @@ public class RegistrationResource {
   @POST
   @Path("/fanatic")
   @Consumes(MediaType.MULTIPART_FORM_DATA)
-  public Response insertDataInDB2(@FormDataParam("file") InputStream uploadedInputStream,
+  public Response registerFanatic(@FormDataParam("file") InputStream uploadedInputStream,
       @FormDataParam("file") FormDataContentDisposition fileDetail, 
       @FormDataParam("data") FormDataBodyPart dataRequest) {
     dataRequest.setMediaType(MediaType.APPLICATION_JSON_TYPE);
     RegisterNewFanaticRequest registerNewFanaticRequest = dataRequest.getValueAs(RegisterNewFanaticRequest.class);
     FacadeLogic facadeLogic = new FacadeLogic();
-    System.out.println(fileDetail.getFileName());
     return facadeLogic.registerNewFanatic(registerNewFanaticRequest, uploadedInputStream, fileDetail);
+  }
+  @POST
+  @Path("/artist")
+  @Consumes(MediaType.MULTIPART_FORM_DATA)
+  public Response registerArtist(@FormDataParam("file") InputStream uploadedInputStream,
+      @FormDataParam("file") FormDataContentDisposition fileDetail, 
+      @FormDataParam("data") FormDataBodyPart dataRequest) {
+    dataRequest.setMediaType(MediaType.APPLICATION_JSON_TYPE);
+    RegisterNewArtistRequest registerNewArtistRequest = dataRequest.getValueAs(RegisterNewArtistRequest.class);
+    FacadeLogic facadeLogic = new FacadeLogic();
+    System.out.println(fileDetail.getFileName());
+    return facadeLogic.registerNewArtist(registerNewArtistRequest, uploadedInputStream, fileDetail);
   }
 }

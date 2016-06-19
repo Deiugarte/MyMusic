@@ -15,41 +15,43 @@ import myfan.resources.base.UpdateProfileUserRequest;
 
 public class FanaticLogic extends UserLogic {
 
-  public Response registerNewFanatic(RegisterNewFanaticRequest dataFanatic, String pathProfilePicture) {
 
-    String response = USER_IDENTIFIER_STATUS;
-    Users user = facadeDAO.findUserByLogin(dataFanatic.getLogin());
-    if (existUser(user)) {
-      return responseBuilder(ERROR_USER_FOUND);
-    }
-    Ubications ubication = checkUbication(dataFanatic.getCountryLocation());
-    ArrayList<Genres> genders = checkGenres(dataFanatic.getMusicalGenres());
-    UsersRoles usersRoles = facadeDAO.getFanaticRole();
 
-    createUser(pathProfilePicture, ubication, usersRoles, dataFanatic.getNameUser(), dataFanatic.getPassword(),
-        dataFanatic.getLogin(), dataFanatic.getBirthDate());
+	public Response registerNewFanatic(RegisterNewFanaticRequest dataFanatic, String pathProfilePicture) {
 
-    Fanatics fanatic = new Fanatics();
-    user = facadeDAO.findUserByLogin(dataFanatic.getLogin());
-    fanatic.setSex(dataFanatic.getGender());
-    fanatic.setUsers(user);
-    facadeDAO.saveFanatic(fanatic);
+		String response = USER_IDENTIFIER_STATUS;
+		Users user = facadeDAO.findUserByLogin(dataFanatic.getLogin());
+		if (existUser(user)) {
+			return responseBuilder(ERROR_USER_FOUND);
+		}
+		Ubications ubication = checkUbication(dataFanatic.getCountryLocation());
+		ArrayList<Genres> genders = checkGenres(dataFanatic.getMusicalGenres());
+		UsersRoles usersRoles = facadeDAO.getFanaticRole();
 
-    saveGenres(user, genders);
+		createUser(pathProfilePicture, ubication, usersRoles, dataFanatic.getNameUser(), dataFanatic.getPassword(),
+				dataFanatic.getLogin(), dataFanatic.getBirthDate());
 
-    response = String.format(response, user.getUserId().toString(), "OK");
-    return Response.status(Status.OK).entity(response).build();
-  }
+		Fanatics fanatic = new Fanatics();
+		user = facadeDAO.findUserByLogin(dataFanatic.getLogin());
+		fanatic.setSex(dataFanatic.getGender());
+		fanatic.setUsers(user);
+		facadeDAO.saveFanatic(fanatic);
+		saveGenres(user, genders);
 
-  public Response updateFanatic(UpdateProfileUserRequest dataFanatic, String pathProfilePicture) {
-    String response = USER_IDENTIFIER_STATUS;
-    updateUser(dataFanatic, pathProfilePicture);
-    Fanatics fanatic = facadeDAO.findFanaticById(dataFanatic.getIdentificationNumber());
-    fanatic.setSex(dataFanatic.isGender());
-    facadeDAO.saveFanatic(fanatic);
-    response = String.format(response, fanatic.getFanaticId().toString(), "OK");
-    return Response.status(Status.OK).entity(response).build();
+		response = String.format(response, user.getUserId().toString(), user.getUsersRoles().getRoleName(), "OK");
+		return Response.status(Status.OK).entity(response).build();
+	}
 
-  }
+	public Response updateFanatic(UpdateProfileUserRequest dataFanatic, String pathProfilePicture) {
+		String response = USER_IDENTIFIER_STATUS;
+		updateUser(dataFanatic, pathProfilePicture);
+		Fanatics fanatic = facadeDAO.findFanaticById(dataFanatic.getIdentificationNumber());
+		fanatic.setSex(dataFanatic.isGender());
+		facadeDAO.saveFanatic(fanatic);
+		response = String.format(response, fanatic.getFanaticId().toString(), "fanatic", "OK");
+		return Response.status(Status.OK).entity(response).build();
+
+	}
+
 
 }

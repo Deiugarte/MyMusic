@@ -1,128 +1,121 @@
 <!-- Header -->
 <section id="top" class="header_ladingpage">
     <div class="text-vertical-center">
-      <div class="col-xs-1 col-sm-3 col-md-3 col-lg-3"></div>
-      <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6">
-        <strong>Seleccione su tipo de cuenta:</strong>
-        <label class="radio-inline">
-          <input type="radio" name="typeRadio" id="fanatic" ng-model= "checked"value="fanatic"> Fanatico
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="typeRadio" id="artist" ng-model= "checked" value="artist"> Artista
-        </label>
-        <form submit="vm.registerNewUser()" name="newUserForm" ng-show="checked=='fanatic'" ng-controller="RegisterCtrl">
-          <strong> Ingrese su nombre completo: </strong>
-          <input type="text" class="form-control" name="name"
-                             ng-model="vm.newUserData.nameUser"
-                             placeholder="Nombre completo"
-                             ng-minlength="1" ng-maxlength="30"
-                             required>
-          <p ng-show="newUserForm.name.$error.minlength" class="help-block">Nombre muy corto</p>
-          <p ng-show="newUserForm.name.$error.maxlength" class="help-block">Nombre muy largo</p>
-          <div >
-          <strong> Introduzca su fecha de nacimiento: </strong>
-              <p class="input-group">
-                <input type="text" class="form-control" name=date placeholder="Fecha de Nacimiento" uib-datepicker-popup="dd-MM-yyyy" ng-model="vm.newUserData.birthDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Cerrar" alt-input-formats="altInputFormats" />
-                  <span class="input-group-btn">
+        <div class="col-xs-1 col-sm-3 col-md-3 col-lg-3"></div>
+        <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6">
+            <strong>Seleccione su tipo de cuenta:</strong>
+            <label class="radio-inline">
+                <input type="radio" name="typeRadio" id="fanatic" ng-model="vm.type" value="fanatic"> Fanatico
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="typeRadio" id="artist" ng-model="vm.type" value="artist"> Artista
+            </label>
+            <form submit="vm.registerNewUser()" name="newUserForm" ng-show="true " ng-controller="RegisterCtrl">
+                <strong> Ingrese su nombre completo: </strong>
+                <input type="text" class="form-control" name="name" ng-model="vm.newUserData.nameUser" placeholder="Nombre completo" ng-minlength="1" ng-maxlength="30" required>
+                <p ng-show="newUserForm.name.$error.minlength" class="help-block">Nombre muy corto</p>
+                <p ng-show="newUserForm.name.$error.maxlength" class="help-block">Nombre muy largo</p>
+                <div>
+                    <strong> Introduzca su fecha de nacimiento: </strong>
+                    <p class="input-group">
+                        <input type="text" class="form-control" name=date placeholder="Fecha de Nacimiento" uib-datepicker-popup="dd-MM-yyyy" ng-model="vm.newUserData.birthDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Cerrar" alt-input-formats="altInputFormats"
+                        />
+                        <span class="input-group-btn">
                     <button type="button" class="btn btn-default margin-calendar-button" ng-click="open1()"><i class="fa fa-calendar"></i></button>
                   </span>
-              </p>
-              <div ng-messages="newUserForm.date.$error" ng-if="newUserForm.date.$submitted || newUserForm.date.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
-                  <div ng-message="required" class="message slide-left">No se han introducido datos</div>
-              </div>
-             </div>
-          <label style="padding-left:0%" class="radio-inline">
-          <strong >Seleccione su genero: </strong>
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="genderRadio" id="genderMen" ng-model= "vm.newUserData.gender"value="false"> Hombre
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="genderRadio" id="genderWomen" ng-model= "vm.newUserData.gender" value="true"> Mujer
-          </label>
-          <br>
-          <strong>Ingrese su nombre de usuario: </strong>
-          <input type="text" class="form-control" name="username"
-                             ng-model="vm.newUserData.login"
-                             placeholder="Nombre"
-                             ng-minlength="4" ng-maxlength="12"
-                             required>
-          <p ng-show="newUserForm.username.$error.minlength" class="help-block">Nombre de usuario muy corto</p>
-          <p ng-show="newUserForm.username.$error.maxlength" class="help-block">Nombre de usuario muy largo</p>
-        <strong>Ingrese su contraseña: </strong>
-        <input type="password" placeholder="Introduzca su contraseña"
-                          class="form-control"
-                          name="newPassword"
-                          ng-model="vm.newUserData.password"
-                          ng-minlength="4" ng-maxlength="8"
-                          required/>
-          <p ng-show="newUserForm.password.$error.minlength" class="help-block">Contraseña muy corta</p>
-          <p ng-show="newUserForm.password.$error.maxlength" class="help-block">Contraseña  muy larga</p>
-          <div class="clearfix">
-            <div ng-messages="newUserForm.newPassword.$error" ng-if="newUserForm.$submitted || newUserForm.newPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
-                <div ng-message="required" class="message slide-left">No se han introducido datos</div>
-                <div ng-message="passwordMatch" class="message slide-left">Las contraseñas no coinciden</div>
-            </div>
-          <strong>Confirme su contraseña: </strong>
-          </div>
-    <input type="password" placeholder="Confirme su contraseña"
-              class="form-control"
-              name="confirmPassword"
-              ng-model="password.confirm"
-              match-password="newPassword"
-              required/>
-    <div class="clearfix">
-      <div ng-messages="newUserForm.confirmPassword.$error" ng-if="newUserForm.$submitted || newUserForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
-        <div ng-message="required" class="message slide-left">No se han introducido datos</div>
-        <div ng-message="passwordMatch" class="message slide-left">Las contraseñas no coinciden</div>
-      </div>
-    </div>
-    <label for="countrySelect"> Seleccione su pais: </label>
-    <select name="countrySelect" id="countrySelect" ng-model="vm.newUserData.countryLocation" required>
-      <option ng-repeat="country in vm.ubications"  value="{{country.name}}">{{country.name}}</option>
-    </select>
-    <div ng-messages="newUserForm.countrySelect.$error" ng-if="newUserForm.$submitted || newUserForm.countrySelect.$pristine" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
-      <div ng-message="required" class="message slide-left">No se ha introducido el pais</div>
-    </div>
-    <br>
-    <strong>Seleccione sus generos favoritos:</strong>
-    <ui-select multiple ng-model="vm.newUserData.musicalGenres" limit="5"  close-on-select="true"  title="Elige tus generos musicales" required>
-        <ui-select-match placeholder="Elige tus generos musicales">{{$item.name}} </ui-select-match>
-        <ui-select-choices repeat="genre.name as genre in vm.genres | filter: {name: $select.search}">
-          <div ng-bind-html="genre.name | highlight: $select.search"></div>
-          <small>
+                    </p>
+                    <div ng-messages="newUserForm.date.$error" ng-if="newUserForm.date.$submitted || newUserForm.date.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                        <div ng-message="required" class="message slide-left">No se han introducido datos</div>
+                    </div>
+                </div>
+                <div ng-show="vm.type=='fanatic'">
+                    <label style="padding-left:0%" class="radio-inline">
+                        <strong>Seleccione su genero: </strong>
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="genderRadio" id="genderMen" ng-model="vm.newUserData.gender" value="false"> Hombre
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="genderRadio" id="genderWomen" ng-model="vm.newUserData.gender" value="true"> Mujer
+                    </label>
+                </div>
+                <br>
+                <strong>Ingrese su nombre de usuario: </strong>
+                <input type="text" class="form-control" name="username" ng-model="vm.newUserData.login" placeholder="Nombre" ng-minlength="4" ng-maxlength="12" required>
+                <p ng-show="newUserForm.username.$error.minlength" class="help-block">Nombre de usuario muy corto</p>
+                <p ng-show="newUserForm.username.$error.maxlength" class="help-block">Nombre de usuario muy largo</p>
+                <strong>Ingrese su contraseña: </strong>
+                <input type="password" placeholder="Introduzca su contraseña" class="form-control" name="newPassword" ng-model="vm.newUserData.password" ng-minlength="4" ng-maxlength="8" required/>
+                <p ng-show="newUserForm.password.$error.minlength" class="help-block">Contraseña muy corta</p>
+                <p ng-show="newUserForm.password.$error.maxlength" class="help-block">Contraseña muy larga</p>
+                <div class="clearfix">
+                    <div ng-messages="newUserForm.newPassword.$error" ng-if="newUserForm.$submitted || newUserForm.newPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                        <div ng-message="required" class="message slide-left">No se han introducido datos</div>
+                        <div ng-message="passwordMatch" class="message slide-left">Las contraseñas no coinciden</div>
+                    </div>
+                    <strong>Confirme su contraseña: </strong>
+                </div>
+                <input type="password" placeholder="Confirme su contraseña" class="form-control" name="confirmPassword" ng-model="password.confirm" match-password="newPassword" required/>
+                <div class="clearfix">
+                    <div ng-messages="newUserForm.confirmPassword.$error" ng-if="newUserForm.$submitted || newUserForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                        <div ng-message="required" class="message slide-left">No se han introducido datos</div>
+                        <div ng-message="passwordMatch" class="message slide-left">Las contraseñas no coinciden</div>
+                    </div>
+                </div>
+                <label for="countrySelect"> Seleccione su pais: </label>
+                <select name="countrySelect" id="countrySelect" ng-model="vm.newUserData.countryLocation" required>
+                    <option ng-repeat="country in vm.ubications" value="{{country.name}}">{{country.name}}</option>
+                </select>
+                <div ng-messages="newUserForm.countrySelect.$error" ng-if="newUserForm.$submitted || newUserForm.countrySelect.$pristine" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                    <div ng-message="required" class="message slide-left">No se ha introducido el pais</div>
+                </div>
+                <br>
+                <strong>Seleccione sus generos favoritos:</strong>
+                <ui-select multiple ng-model="vm.newUserData.musicalGenres" limit="5" close-on-select="true" title="Elige tus generos musicales" required>
+                    <ui-select-match placeholder="Elige tus generos musicales">{{$item.name}} </ui-select-match>
+                    <ui-select-choices repeat="genre.name as genre in vm.genres | filter: {name: $select.search}">
+                        <div ng-bind-html="genre.name | highlight: $select.search"></div>
+                        <small>
             {{genre.name}}
           </small>
-        </ui-select-choices>
-      </ui-select>
-      <strong>Ingrese su foto de Perfil:</strong>
-      <input type="file" ngf-select="" ng-model="vm.picfile" name="file" ngf-accept="'image/*'">
-                   <img ngf-src="vm.picfile" class="thumb">
-                   <span class="progress" ng-show="vm.picfile.progress >= 0">
+                    </ui-select-choices>
+                </ui-select>
+                <strong>Ingrese su foto de Perfil:</strong>
+                <input type="file" ngf-select="" ng-model="vm.picfile" name="file" ngf-accept="'image/*'">
+                <img ngf-src="vm.picfile" class="thumb">
+                <span class="progress" ng-show="vm.picfile.progress >= 0">
                        <div style="width:{{vm.picfile.progress}}%" ng-bind="vm.picfile.progress + '%'" class="ng-binding"></div>
                    </span>
-                   <span ng-show="vm.picfile.result">Imagen actualizada</span>
-                  <br>
-              <fieldset class="separate-bottom" data-ng-repeat="choice in choices">
-                 <input type="text" ng-model="choice.name" name="" placeholder="Nombre del Miembro" class="form-control separate-bottom form-inline">
-                 <input type="text" ng-model="choice.instrument" name="" placeholder="Instrumento" class="form-control separate-bottom form-inline">
-                 <button class="remove " ng-show="$last" ng-click="removeChoice()">-</button>
-              </fieldset>
-              <button class="addfields" ng-click="addNewChoice()">Add fields</button>
-
-
-
-          <button type="button" class="btn btn-primary btn-block button-block btn-margin"
-                                ng-click="vm.registerNewUser()"
-                                ng-disabled="newUserForm.$invalid ">
-          Crear Usuario
-          </button>
-            <br>
-            <a ui-sref="login" type="button" class="btn btn-primary btn-block">Cancelar</a>
-        </form>
-      </div>
-      <div class="col-xs-1 col-sm-3 col-md-3"></div>
-   </div>
+                <span ng-show="vm.picfile.result">Imagen actualizada</span>
+                <br>
+                <fieldset class="separate-bottom" data-ng-repeat="member in members" ng-if="vm.type=='artist'">
+                    <input type="text" ng-model="member.name" name="" placeholder="Nombre del Miembro" class="form-control separate-bottom form-inline" required>
+                    <input type="text" ng-model="member.instrument" name="" placeholder="Instrumento" class="form-control separate-bottom form-inline" required>
+                    <button class="btn btn-remove " ng-show="$last" ng-click="removeChoice()" ng-disabled="members.length==1">Borrar Campo</button>
+                </fieldset>
+                <button class="btn btn-add" ng-show="vm.type=='artist'" ng-click="addNewChoice()">Añadir Campo</button>
+                <div ng-hide=true>{{vm.newUserData.members=members}}</div>
+                <div ng-if="vm.type=='artist'">
+                <strong> Ingrese la biografia: </strong>
+                <textarea ng-model="vm.newUserData.biographyArtist" class="form-control" ></textarea>
+              </div>
+                <div>
+                <div ng-if="vm.type=='fanatic'">
+                    <button type="button" class="btn btn-primary btn-block button-block btn-margin" ng-click="vm.registerNewUser()" ng-disabled="newUserForm.$invalid ">
+                        Crear Fanatico
+                    </button>
+                </div>
+                <div ng-if="vm.type=='artist'">
+                    <button type="button" class="btn btn-primary btn-block button-block btn-margin" ng-click="vm.registerNewArtist()" ng-disabled="newUserForm.$invalid ">
+                        Crear Artista
+                    </button>
+                </div>
+                <br>
+                <a ui-sref="login" type="button" class="btn btn-primary btn-block">Cancelar</a>
+            </form>
+        </div>
+        <div class="col-xs-1 col-sm-3 col-md-3"></div>
+    </div>
 </section>
 
 <!-- Footer -->
@@ -132,10 +125,11 @@
             <div class="col-lg-10 col-lg-offset-1 text-center">
                 <h4><strong>Myfan</strong>
                 </h4>
-                <p>San Jos&eacute; <br>Costa Rica</p>
+                <p>San Jos&eacute;
+                    <br>Costa Rica</p>
                 <ul class="list-unstyled">
                     <li><i class="fa fa-phone fa-fw"></i> (506) 8821-1482</li>
-                    <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">grupo2espe@gmail.com</a>
+                    <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:grupo2espe@gmail.com">grupo2espe@gmail.com</a>
                     </li>
                 </ul>
                 <br>

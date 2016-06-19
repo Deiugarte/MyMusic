@@ -8,25 +8,25 @@ import java.io.OutputStream;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
-public class Image {
+public class ImageFabrication {
 
   public String saveFile(InputStream profilePicture, FormDataContentDisposition fileDetail) {
     String pathFileProfilePicture = "";
     OutputStream outputStream = null;
     String nameFile = java.util.UUID.randomUUID().toString();
     String nameFileWithExtension;
-    if (profilePicture != null && fileDetail != null) {
+    if (profilePicture != null && fileDetail.getFileName() != null) {
       try {
         // write the inputStream to a FileOutputStream
         File file;
         boolean isPNGExtension = fileDetail.getFileName().contains("png");
         if (isPNGExtension) {
           nameFileWithExtension ="img/"+ nameFile + ".png";
-          file = new File( nameFileWithExtension);
+          file = new File( "src/main/webapp/" +nameFileWithExtension);
           outputStream = new FileOutputStream(file);
         } else {
           nameFileWithExtension = "img/"+nameFile + ".jpg";
-          file = new File(nameFileWithExtension);
+          file = new File("src/main/webapp/"+nameFileWithExtension);
           outputStream = new FileOutputStream(file);
         }
         int read = 0;

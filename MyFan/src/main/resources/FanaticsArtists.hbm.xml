@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="myfan.data.models.FanaticsArtists" table="fanatics_artists" catalog="myfan" optimistic-lock="version">
+        <composite-id name="id" class="myfan.data.models.FanaticsArtistsId">
+            <key-property name="fanaticId" type="int">
+                <column name="FanaticId" />
+            </key-property>
+            <key-property name="artistId" type="int">
+                <column name="ArtistId" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="artists" class="myfan.data.models.Artists" update="false" insert="false" fetch="join">
+            <column name="ArtistId" not-null="true" unique="true" />
+        </many-to-one>
+        <many-to-one name="fanatics" class="myfan.data.models.Fanatics" update="false" insert="false" fetch="join">
+            <column name="FanaticId" not-null="true" unique="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

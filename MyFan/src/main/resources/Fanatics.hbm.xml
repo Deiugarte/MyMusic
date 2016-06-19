@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1 -->
+<!-- Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
     <class name="myfan.data.models.Fanatics" table="fanatics" catalog="myfan" optimistic-lock="version">
         <id name="fanaticId" type="java.lang.Integer">
             <column name="FanaticId" />
             <generator class="identity" />
         </id>
-        <many-to-one name="users" class="myfan.data.models.Users" fetch="select">
+        <many-to-one name="users" class="myfan.data.models.Users" fetch="join">
             <column name="UserId" not-null="true" />
         </many-to-one>
         <property name="sex" type="boolean">
@@ -25,6 +25,12 @@
                 <column name="Reviewer" not-null="true" />
             </key>
             <one-to-many class="myfan.data.models.ArtistsCalifications" />
+        </set>
+        <set name="fanaticsArtistses" table="fanatics_artists" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FanaticId" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="myfan.data.models.FanaticsArtists" />
         </set>
         <set name="discsCalificationses" table="discs_califications" inverse="true" lazy="true" fetch="select">
             <key>

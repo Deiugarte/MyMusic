@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1 -->
+<!-- Generated Jun 19, 2016 12:46:28 AM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
     <class name="myfan.data.models.Events" table="events" catalog="myfan" optimistic-lock="version">
         <id name="eventId" type="java.lang.Integer">
             <column name="EventId" />
             <generator class="identity" />
         </id>
-        <many-to-one name="artists" class="myfan.data.models.Artists" fetch="select">
+        <many-to-one name="artists" class="myfan.data.models.Artists" fetch="join">
             <column name="Artist" not-null="true" />
         </many-to-one>
-        <many-to-one name="ubications" class="myfan.data.models.Ubications" fetch="select">
+        <many-to-one name="ubications" class="myfan.data.models.Ubications" fetch="join">
             <column name="Ubication" not-null="true" />
         </many-to-one>
         <property name="tittle" type="string">
@@ -25,6 +25,12 @@
         </property>
         <property name="type" type="boolean">
             <column name="Type" not-null="true" />
+        </property>
+        <property name="creationDate" type="date">
+            <column name="CreationDate" length="10" not-null="true" />
+        </property>
+        <property name="cancel" type="boolean">
+            <column name="Cancel" not-null="true" />
         </property>
         <set name="eventsCalificationses" table="events_califications" inverse="true" lazy="true" fetch="select">
             <key>
