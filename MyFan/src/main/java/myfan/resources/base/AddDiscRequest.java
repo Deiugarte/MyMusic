@@ -7,6 +7,7 @@ public class AddDiscRequest {
 	private int idGenre;
 	private String releaseYear;
 	private String label;
+	
 	public int getIdUser() {
 		return idUser;
 	}

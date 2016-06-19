@@ -39,7 +39,7 @@ public class ArtistLogic extends UserLogic {
     saveMembers(artist, dataArtist.getMembers());
     saveGenres(user, genders);
     
-    response = String.format(response, user.getUserId().toString(), "OK");
+    response = String.format(response, user.getUserId().toString(),"artist", "OK");
     return Response.status(Status.OK).entity(response).build();
   }
   

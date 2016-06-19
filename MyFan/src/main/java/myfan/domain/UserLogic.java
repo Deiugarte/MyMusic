@@ -37,8 +37,8 @@ public class UserLogic {
   private final int FANATIC = 12;
   private final int BAND = 11;
   private final int DISABLE = 13;
-  private Image image;
-  private JSON json;
+  private ImageFabrication imageFabrication;
+  private JSONFabrication jSONFabrication;
   private DateFabrication date;
 
   protected FacadeDAO facadeDAO;
@@ -48,8 +48,8 @@ public class UserLogic {
    */
   public UserLogic() {
     facadeDAO = new FacadeDAO();
-    image = new Image();
-    json = new JSON();
+    imageFabrication = new ImageFabrication();
+    jSONFabrication = new JSONFabrication();
     date = new DateFabrication();
 
   }
@@ -119,7 +119,7 @@ public class UserLogic {
    * @return
    */
   public String saveProfilePictureFile(InputStream profilePicture, FormDataContentDisposition fileDetail) {
-    return image.saveFile(profilePicture, fileDetail);
+    return imageFabrication.saveFile(profilePicture, fileDetail);
 
   }
 
@@ -140,7 +140,7 @@ public class UserLogic {
     userProfileResponse.setNameUser(user.getName());
     userProfileResponse.setMusisicalGenres(getGenresByUser(idUser));
     userProfileResponse.setImageProfile(user.getImage());
-    return json.jsonConverter(userProfileResponse);
+    return jSONFabrication.jsonConverter(userProfileResponse);
   }
 
   private ArrayList<GenresResponse> getGenresByUser(int idUser) {

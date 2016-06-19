@@ -8,7 +8,7 @@ import java.io.OutputStream;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
-public class Image {
+public class ImageFabrication {
 
   public String saveFile(InputStream profilePicture, FormDataContentDisposition fileDetail) {
     String pathFileProfilePicture = "";

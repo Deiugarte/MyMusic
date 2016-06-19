@@ -6,10 +6,8 @@ import javax.ws.rs.core.Response.Status;
 import myfan.data.facade.FacadeDAO;
 import myfan.data.models.Artists;
 import myfan.data.models.Discs;
-import myfan.data.models.Events;
-import myfan.data.models.Ubications;
+import myfan.data.models.Genres;
 import myfan.resources.base.AddDiscRequest;
-import myfan.resources.base.AddEventRequest;
 
 public class DiscLogic {
 	private final String ADD_DISC_STATUS = "{\"DiscId\": \"%s\", \"status\":\"%s\"}";
@@ -19,7 +17,7 @@ public class DiscLogic {
 
 	public DiscLogic() {
 		facadeDAO = new FacadeDAO();
-		dateFabrication=new DateFabrication();
+		dateFabrication = new DateFabrication();
 
 	}
 
@@ -34,15 +32,15 @@ public class DiscLogic {
 		newDisc.setName(disc.getNameDisc());
 		newDisc.setDescription(disc.getDescriptionDisc());
 		newDisc.setReleaseYear(dateFabrication.getDateFromString(disc.getReleaseYear()));
-	//	newDisc.setLabel(label);
+		newDisc.setLabel(disc.getLabel());
+		Genres genres = facadeDAO.findGenderById(disc.getIdGenre());
+		newDisc.setGenres(genres);
+		facadeDAO.saveDisc(newDisc);
 		
-	//	Ubications ubications = facadeDAO.findUbicationsByName(events.getUbicationEvent());
-	//	newDisc.setUbications(ubications);
-	//	facadeDAO.saveEvent(newDisc);
-	//	response = String.format(response, newDisc.getEventId(), "OK");
+		response = String.format(response, newDisc.getDiscId(), "OK");
 		return Response.status(Status.OK).entity(response).build();
 	}
-	
+
 	/**
 	 * Determina el tipo de Response
 	 * 

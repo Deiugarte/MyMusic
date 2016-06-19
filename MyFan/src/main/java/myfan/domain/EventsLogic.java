@@ -18,14 +18,14 @@ import myfan.resources.base.RecentEventsResponse;
 public class EventsLogic {
 	
 	private FacadeDAO facadeDAO;
-	private JSON json;
+	private JSONFabrication jSONFabrication;
 	private DateFabrication dateFabrication;
 	private final String ADD_EVENT_STATUS = "{\"EventId\": \"%s\", \"status\":\"%s\"}";
 	private final String ERROR_ARTIST_NOT_FOUND = "{\"Error \": \"Artist not found \"}";
 
 	public EventsLogic() {
 		facadeDAO = new FacadeDAO();
-		json = new JSON();
+		jSONFabrication = new JSONFabrication();
 		dateFabrication=new DateFabrication();
 	}
 	
@@ -85,7 +85,7 @@ public class EventsLogic {
 			}
 			listResponse.add(recentEventsResponse);
 		}
-		return json.jsonConverter(listResponse);
+		return jSONFabrication.jsonConverter(listResponse);
 	}
 	
 	

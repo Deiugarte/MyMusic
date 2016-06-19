@@ -15,14 +15,17 @@ import myfan.domain.EventsLogic;
 import myfan.domain.FanaticLogic;
 import myfan.domain.GenresLogic;
 import myfan.domain.NewsLogic;
+import myfan.domain.SongLogic;
 import myfan.domain.UserLogic;
 import myfan.domain.UtilsLogic;
 import myfan.resources.base.AddEventRequest;
 import myfan.resources.base.AddDiscRequest;
 import myfan.resources.base.AddNewsRequest;
+import myfan.resources.base.AddSongRequest;
 import myfan.resources.base.AdminGenresRequest;
 import myfan.resources.base.DeleteNewsRequest;
 import myfan.resources.base.DisableAccountRequest;
+import myfan.resources.base.FollowArtistRequest;
 import myfan.resources.base.LoginRequest;
 import myfan.resources.base.RegisterNewArtistRequest;
 import myfan.resources.base.RegisterNewFanaticRequest;
@@ -41,6 +44,7 @@ public class FacadeLogic {
 	private NewsLogic newsLogic;
 	private EventsLogic eventsLogic;
 	private DiscLogic discLogic;
+	private SongLogic songLogic;
 
 	public FacadeLogic() {
 		userLogic = new UserLogic();
@@ -50,7 +54,8 @@ public class FacadeLogic {
 		genresLogic = new GenresLogic();
 		newsLogic = new NewsLogic();
 		eventsLogic = new EventsLogic();
-		discLogic= new DiscLogic();
+		discLogic = new DiscLogic();
+		songLogic = new SongLogic();
 	}
 
 	/*************************************** RESPONSE ******************************************************/
@@ -85,7 +90,7 @@ public class FacadeLogic {
 	}
 
 	public Response registerNewFanatic(RegisterNewFanaticRequest fanaticData, InputStream profilePicture,
-	    FormDataContentDisposition fileDetail) {
+			FormDataContentDisposition fileDetail) {
 		String pathProfilePicture = userLogic.saveProfilePictureFile(profilePicture, fileDetail);
 		return fanaticLogic.registerNewFanatic(fanaticData, pathProfilePicture);
 	}
@@ -124,7 +129,8 @@ public class FacadeLogic {
 		return newsLogic.deleteNews(idNews);
 	}
 
-	public void cancelEvent(Object event) { //falta atributo en base!!!!!!!!!!!!!!!!
+	public void cancelEvent(Object event) { // falta atributo en
+											// base!!!!!!!!!!!!!!!!
 	}
 
 	public Response createEvent(AddEventRequest event) {
@@ -135,11 +141,12 @@ public class FacadeLogic {
 		return discLogic.createDisc(disc);
 	}
 
-	public void addSong(Object song) {
+	public Response addSong(AddSongRequest song) {
+		return songLogic.createSong(song);
 	}
 
-	public void followArtist(Object artistUser) {
-		// publicar twitter
+	public Response followArtist( FollowArtistRequest followArtistRequest) {
+		return fanaticLogic.followArtist(followArtistRequest);
 	}
 
 	public void rateArtist(Object artistQualification) {

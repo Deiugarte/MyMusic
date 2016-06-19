@@ -16,7 +16,7 @@ import myfan.resources.base.RecentNewsResponse;
 
 public class NewsLogic {
 	private FacadeDAO facadeDAO;
-	private JSON json;
+	private JSONFabrication jSONFabrication;
 	private DateFabrication dateFabrication;
 	private final String ADD_NEWS_STATUS = "{\"NewsId\": \"%s\", \"status\":\"%s\"}";
 	private final String ERROR_ARTIST_NOT_FOUND = "{\"Error \": \"Artist not found \"}";
@@ -25,7 +25,7 @@ public class NewsLogic {
 
 	public NewsLogic() {
 		facadeDAO = new FacadeDAO();
-		json = new JSON();
+		jSONFabrication = new JSONFabrication();
 		dateFabrication = new DateFabrication();
 	}
 
@@ -85,7 +85,7 @@ public class NewsLogic {
 			recentNewsResponse.setTitleNews(newsList.get(i).getTittle());
 			listResponse.add(recentNewsResponse);
 		}
-		return json.jsonConverter(listResponse);
+		return jSONFabrication.jsonConverter(listResponse);
 	}
 
 	private boolean isArtist(int idUser) {

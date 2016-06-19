@@ -91,7 +91,7 @@ public class GenresHome {
   public Genres findById(java.lang.Integer id) {
     log.debug("getting Genres instance with id: " + id);
     try {
-      Genres instance = (Genres) sessionFactory.getCurrentSession().get("myfan.dao.temp.Genres", id);
+      Genres instance = (Genres) sessionFactory.getCurrentSession().get("myfan.data.models.Genres", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -107,7 +107,7 @@ public class GenresHome {
   public List<Genres> findByExample(Genres instance) {
     log.debug("finding Genres instance by example");
     try {
-      List<Genres> results = (List<Genres>) sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.Genres")
+      List<Genres> results = (List<Genres>) sessionFactory.getCurrentSession().createCriteria("myfan.data.models.Genres")
           .add(create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;
