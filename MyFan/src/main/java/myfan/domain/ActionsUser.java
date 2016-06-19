@@ -118,10 +118,10 @@ public class ActionsUser {
 		EventsCalifications discCalifications = new EventsCalifications();
 		discCalifications.setCalification(rateConcertRequest.getQualification());
 		if (!rateConcertRequest.getComment().equals(NO_COMMENT)) {
-			//discCalifications.setComment(rateConcertRequest.getComment());
+			discCalifications.setComment(rateConcertRequest.getComment());
 			twitter.postTwitter(fanatic, concert, twitter.STATUS_RATE_AND_COMMENT_A_CONCERT);
 		} else {
-			//discCalifications.setComment(NO_COMMENT);
+			discCalifications.setComment(NO_COMMENT);
 			twitter.postTwitter(fanatic, concert, twitter.STATUS_RATE_A_CONCERT);
 		}
 		discCalifications.setEvents(concert);

@@ -11,7 +11,7 @@
         <property name="name" type="string">
             <column name="Name" length="45" not-null="true" />
         </property>
-        <set name="usersGenreses" table="users_genres" inverse="true" lazy="true" fetch="select">
+        <set name="usersGenreses" table="users_genres" inverse="true" lazy="true" fetch="join">
             <key>
                 <column name="idGenre" not-null="true" />
             </key>

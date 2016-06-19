@@ -33,6 +33,6 @@ public class UtilitiesResource {
   @Produces(MediaType.APPLICATION_JSON)
   public String getUserData(@PathParam("username") int username) {
     FacadeLogic facadeLogic = new FacadeLogic();
-    return facadeLogic.getPersonalInformationOfUser(username);
+    return facadeLogic.getPersonalInformationOfFanatic(username);
     }
 }

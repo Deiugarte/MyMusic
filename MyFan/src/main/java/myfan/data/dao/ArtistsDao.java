@@ -1,5 +1,8 @@
 package myfan.data.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Hibernate;
@@ -11,6 +14,7 @@ import org.hibernate.resource.transaction.spi.TransactionStatus;
 import myfan.data.models.Artists;
 import myfan.data.models.Fanatics;
 import myfan.data.models.Ubications;
+import myfan.data.models.Users;
 import myfan.resources.util.HibernateUtil;
 
 public class ArtistsDao extends ArtistsHome {
@@ -60,6 +64,82 @@ public class ArtistsDao extends ArtistsHome {
 	        trans.commit();
 	        log.debug("get successful, instance found");
 	        return results.size()==0?null:results.get(0);
+	    } catch (RuntimeException re) {
+	        log.error("get failed", re);
+	        throw re;
+	    }
+	}
+  
+  public List<Users> getArtistsByName(String nameArtist) {
+	    try {
+	    	 nameArtist="%"+nameArtist+"%";
+	        Session session = sessionFactory.openSession();
+	        org.hibernate.Transaction trans= session.beginTransaction();
+	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+	            log.debug(" >>> Transaction close.");
+	        Query query = session.createQuery("from Users where name like :nameArtist and role = 11");
+	        query.setParameter("nameArtist", nameArtist);
+	        java.util.List<Users> results = query.list();
+	      //  java.util.List<Artists> resultsFinal = new ArrayList();
+	     //   for (int i = 0; i < results.size(); i++) {
+		//		resultsFinal.add(getArtistsByUserId(results.get(i).getUserId()));
+		//	}
+	        //java.util.List <Artists> results= session.createCriteria(Artists.class).list();
+	        for(int i=0; i< results.size();i++){
+	        	   Hibernate.initialize(results.get(i));
+	        }
+	        System.out.println("Result list: " + results.size());
+	        trans.commit();
+	        log.debug("get successful, instance found");
+	        return results;
+	    } catch (RuntimeException re) {
+	        log.error("get failed", re);
+	        throw re;
+	    }
+	}
+  
+  public List<Users> getArtistsByNameAndUbication(String nameArtist,int idUbication) {
+	    try {
+	    	nameArtist="%"+nameArtist+"%";
+	        Session session = sessionFactory.openSession();
+	        org.hibernate.Transaction trans= session.beginTransaction();
+	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+	            log.debug(" >>> Transaction close.");
+	        Query query = session.createQuery("from Users where name like :nameArtist and ubication=:idUbication and role = 11 ");
+	        query.setParameter("nameArtist", nameArtist);
+	        query.setParameter("idUbication", idUbication);
+	        java.util.List<Users> results = query.list();
+	        //java.util.List <Artists> results= session.createCriteria(Artists.class).list();
+	        for(int i=0; i< results.size();i++){
+	        	   Hibernate.initialize(results.get(i));
+	        }
+	        System.out.println("Result list: " + results.size());
+	        trans.commit();
+	        log.debug("get successful, instance found");
+	        return results;
+	    } catch (RuntimeException re) {
+	        log.error("get failed", re);
+	        throw re;
+	    }
+	}
+  
+  public List<Users> getArtistsByUbication(int idUbication) {
+	    try {
+	        Session session = sessionFactory.openSession();
+	        org.hibernate.Transaction trans= session.beginTransaction();
+	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+	            log.debug(" >>> Transaction close.");
+	        Query query = session.createQuery("from Users where ubication=:idUbication and role = 11 ");
+	        query.setParameter("idUbication", idUbication);
+	        java.util.List<Users> results = query.list();
+	        //java.util.List <Artists> results= session.createCriteria(Artists.class).list();
+	        for(int i=0; i< results.size();i++){
+	        	   Hibernate.initialize(results.get(i));
+	        }
+	        System.out.println("Result list: " + results.size());
+	        trans.commit();
+	        log.debug("get successful, instance found");
+	        return results;
 	    } catch (RuntimeException re) {
 	        log.error("get failed", re);
 	        throw re;
