@@ -8,7 +8,7 @@
             <column name="FanaticId" />
             <generator class="identity" />
         </id>
-        <many-to-one name="users" class="myfan.data.models.Users" fetch="select">
+        <many-to-one name="users" class="myfan.data.models.Users" fetch="join">
             <column name="UserId" not-null="true" />
         </many-to-one>
         <property name="sex" type="boolean">

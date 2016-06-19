@@ -8,6 +8,7 @@ import myfan.resources.base.AddDiscRequest;
 import myfan.resources.base.AddEventRequest;
 import myfan.resources.base.AddNewsRequest;
 import myfan.resources.base.AddSongRequest;
+import myfan.resources.base.FollowArtistRequest;
 
 public class FacadeLogicTest {
   FacadeLogic facadeLogic = new FacadeLogic();
@@ -63,6 +64,14 @@ public class FacadeLogicTest {
     addSongRequest.setNameSong("Test");
     addSongRequest.setVideoLink("https://www.youtube.com/watch?v=jgpJVI3tDbY");
     assertEquals(1, facadeLogic.addSong(addSongRequest));
+  }
+  
+  @Test
+  public void followArtist() {
+    FollowArtistRequest followArtistRequest = new FollowArtistRequest();
+    followArtistRequest.setIdUserArtist(2);
+    followArtistRequest.setIdUserFanatic(1);
+    assertEquals(1, facadeLogic.followArtist(followArtistRequest));
   }
 
 }

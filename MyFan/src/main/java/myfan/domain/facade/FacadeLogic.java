@@ -148,7 +148,10 @@ public class FacadeLogic {
 	public Response followArtist( FollowArtistRequest followArtistRequest) {
 		return fanaticLogic.followArtist(followArtistRequest);
 	}
-
+	
+	public Response unFollowArtist(FollowArtistRequest unFollowArtistRequest) {
+		return fanaticLogic.unFollowArtist(unFollowArtistRequest);
+	}
 	public void rateArtist(Object artistQualification) {
 		// publicar twitter
 	}
@@ -159,8 +162,7 @@ public class FacadeLogic {
 	public void rateEvent(Object eventQualification) {
 	}
 
-	public void unFollowArtist(Object artistUser) {
-	}
+	
 
 	public void searchArtist(Object artist) {
 	}

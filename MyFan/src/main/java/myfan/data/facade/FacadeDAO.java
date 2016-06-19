@@ -129,10 +129,14 @@ public class FacadeDAO {
 		return fanaticsDao.getFanaticsByUserId(idUser);
 	}
 
-	public Fanatics findFanaticById(int idUser) {
-		return fanaticsDao.getFanaticsById(idUser);
+	public Fanatics findFanaticById(int idFanatic) {
+		return fanaticsDao.getFanaticsById(idFanatic);
 	}
-
+	
+	public Artists findArtistById(int idArtist) {
+		return artistsDao.getArtistsById(idArtist);
+	}
+	
 	public List<Genres> findAllGenres() {
 		return genresDao.findAll();
 	}
@@ -221,10 +225,18 @@ public class FacadeDAO {
 	public void saveSong(Songs song) {
 		songsDao.save(song);
 	}
+	
+	public void saveFanaticsArtist(FanaticsArtists fanaticsArtists) {
+		fanaticsArtistsDao.save(fanaticsArtists);
+	}
 	/*-----------------------------------------	DELETE-------------------------------------*/
 	/*-----------------------------------------	DELETE-------------------------------------*/
 	
 	public void deleteNewsById(News news) {
 		newsDao.deleteNews(news);
+	}
+	
+	public void deleteFollowersOfArtist(int idFanatic, int idArtist ) {
+		fanaticsArtistsDao.deleteByIdArtistAndIdFanatic(idArtist,idFanatic);
 	}
 }

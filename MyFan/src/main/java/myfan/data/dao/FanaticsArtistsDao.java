@@ -10,7 +10,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
+import myfan.data.models.Events;
 import myfan.data.models.FanaticsArtists;
+import myfan.data.models.Users;
 import myfan.data.models.UsersGenres;
 import myfan.resources.util.HibernateUtil;
 
@@ -32,7 +34,7 @@ public class FanaticsArtistsDao extends FanaticsArtistsHome {
   public void save(FanaticsArtists Events){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      persist(Events);
+      merge(Events);
       trans.commit();
   }
   public List<FanaticsArtists> findArtistsByFanaticId(int idFanatic) {
@@ -58,7 +60,25 @@ public class FanaticsArtistsDao extends FanaticsArtistsHome {
 	        throw re;
 	    }
 	}
-
+  public void deleteByIdArtistAndIdFanatic(int artistId,int fanaticId) {
+	    try {
+	        Session session = sessionFactory.openSession();
+	        org.hibernate.Transaction trans= session.beginTransaction();
+	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+	            log.debug(" >>> Transaction close.");
+	        Query query = session.createQuery(" from FanaticsArtists where( artistid = :artistId and fanaticid = :fanaticId)");
+	        query.setParameter("artistId", artistId);
+	        query.setParameter("fanaticId", fanaticId);
+	        java.util.List results = query.list();
+	        FanaticsArtists instance =(FanaticsArtists) results.get(0);
+	        trans.commit();
+	        deleteEvents(instance);
+	        log.debug("get successful, instance found");
+	    } catch (RuntimeException re) {
+	        log.error("get failed", re);
+	        throw re;
+	    }
+	}
   
   public void deleteEvents(FanaticsArtists fanaticsArtists) {
       Session session = sessionFactory.getCurrentSession();
