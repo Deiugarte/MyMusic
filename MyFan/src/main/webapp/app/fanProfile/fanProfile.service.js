@@ -16,19 +16,19 @@
     vm.getUbicationsList = getUbicationsList;
 
     function postCompanyInfo(data) {
-      return $http.post('http://localhost:8000/rest/v1/company/register', data);
+      return $http.post('https://powerful-oasis-46465.herokuapp.com/rest/v1/company/register', data);
     }
 
     function getUserData(data) {
-      var url = 'http://localhost:8000/rest/v1/resources/userdata/'+1;
+      var url = 'https://powerful-oasis-46465.herokuapp.com/rest/v1/resources/userdata/'+1;
       return $http.get(url, data);
     }
     function getGenresData(data) {
-      var url = 'http://localhost:8000/rest/v1/resources/genreslist';
+      var url = 'https://powerful-oasis-46465.herokuapp.com/rest/v1/resources/genreslist';
       return $http.get(url, data);
     }
     function getUbicationsList(data) {
-      var url = 'http://localhost:8000/rest/v1/resources/ubicationslist';
+      var url = 'https://powerful-oasis-46465.herokuapp.com/rest/v1/resources/ubicationslist';
       return $http.get(url, data);
     }
   }
