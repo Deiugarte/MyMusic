@@ -13,6 +13,7 @@ import myfan.data.models.EventsCalifications;
 import myfan.data.models.FanaticsArtists;
 import myfan.data.models.Ubications;
 import myfan.resources.base.AddEventRequest;
+import myfan.resources.base.CancelEventRequest;
 import myfan.resources.base.RecentEventsResponse;
 
 public class EventsLogic {
@@ -21,12 +22,22 @@ public class EventsLogic {
 	private JSONFabrication jSONFabrication;
 	private DateFabrication dateFabrication;
 	private final String ADD_EVENT_STATUS = "{\"EventId\": \"%s\", \"status\":\"%s\"}";
+	private final String CANCEL_EVENT_STATUS = "{\"EventId\": \"%s\",\"status\":\"%s\"}";
 	private final String ERROR_ARTIST_NOT_FOUND = "{\"Error \": \"Artist not found \"}";
 
 	public EventsLogic() {
 		facadeDAO = new FacadeDAO();
 		jSONFabrication = new JSONFabrication();
 		dateFabrication=new DateFabrication();
+	}
+	
+	public Response cancelEvent(CancelEventRequest event){
+		String response = CANCEL_EVENT_STATUS;
+		Events events= facadeDAO.findEventById(event.getIdEvent());
+		events.setCancel(true);
+		facadeDAO.saveEvent(events);
+		response = String.format(response, events.getEventId(), "OK");
+		return Response.status(Status.OK).entity(response).build();
 	}
 	
 

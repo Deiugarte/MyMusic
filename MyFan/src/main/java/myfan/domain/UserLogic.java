@@ -22,7 +22,7 @@ import myfan.resources.base.DisableAccountRequest;
 import myfan.resources.base.GenresResponse;
 import myfan.resources.base.LoginRequest;
 import myfan.resources.base.UpdateProfileUserRequest;
-import myfan.resources.base.UserProfileResponse;
+import myfan.resources.base.FanProfileResponse;
 
 public class UserLogic {
 
@@ -33,12 +33,9 @@ public class UserLogic {
   protected final String ERROR_WRONG_PASSWORD = "{\"Error \": \"Wrong Password \"}";
   protected final String ERROR_USER_NOT_FOUND = "{\"Error \": \"User not found \"}";
   protected final String LOGIN_STATUS = "{\"UserId\": \"%s\",\"RoleIdentifier\": \"%s\", \"status\":\"%s\"}";
-  private final int ADMIN = 10;
-  private final int FANATIC = 12;
-  private final int BAND = 11;
   private final int DISABLE = 13;
   private ImageFabrication imageFabrication;
-  private JSONFabrication jSONFabrication;
+  protected JSONFabrication jSONFabrication;
   private DateFabrication date;
 
   protected FacadeDAO facadeDAO;
@@ -48,8 +45,8 @@ public class UserLogic {
    */
   public UserLogic() {
     facadeDAO = new FacadeDAO();
-    imageFabrication = new ImageFabrication();
     jSONFabrication = new JSONFabrication();
+    imageFabrication = new ImageFabrication();
     date = new DateFabrication();
 
   }
@@ -128,8 +125,8 @@ public class UserLogic {
    * @param idUser
    * @return
    */
-  public String getPersonalInformationOfUser(int idUser) {
-    UserProfileResponse userProfileResponse = new UserProfileResponse();
+  protected String getPersonalInformationOfUser(int idUser) {
+    FanProfileResponse userProfileResponse = new FanProfileResponse();
     Users user = facadeDAO.findUserById(idUser);
     userProfileResponse.setAgeUser(calculadeAge(user.getBirthday()));
     Ubications ubications = user.getUbications();
@@ -143,7 +140,7 @@ public class UserLogic {
     return jSONFabrication.jsonConverter(userProfileResponse);
   }
 
-  private ArrayList<GenresResponse> getGenresByUser(int idUser) {
+  protected ArrayList<GenresResponse> getGenresByUser(int idUser) {
     List<UsersGenres> usersGenresList = facadeDAO.findGenresByUsersId(idUser);
     ArrayList<GenresResponse> genresResponse = new ArrayList<GenresResponse>();
     for (int i = 0; i < usersGenresList.size(); i++) {
@@ -160,7 +157,7 @@ public class UserLogic {
    * @param birthday
    * @return
    */
-  private String calculadeAge(Date birthday) {
+  protected String calculadeAge(Date birthday) {
     SimpleDateFormat formatNowYear = new SimpleDateFormat("yyyy");
     String birthdayYear = formatNowYear.format(birthday);
     String currentYear = formatNowYear.format(date.getCurrentDate());

@@ -1,7 +1,6 @@
 package myfan.domain;
 
 import java.util.ArrayList;
-
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
@@ -52,6 +51,13 @@ public class FanaticLogic extends UserLogic {
 		return Response.status(Status.OK).entity(response).build();
 
 	}
+	public String getPersonalInformationOfFanatic(int idUser){
+		return getPersonalInformationOfUser(idUser);
+	}
+	
+
+	
+	
 
 
 }

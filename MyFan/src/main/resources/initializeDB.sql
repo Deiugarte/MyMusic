@@ -257,9 +257,11 @@ insert into genres(genreid,name) values (11, 'Rock')
 
 
 
-insert into users(userid,Username,password,ubication,role,name,creationDate,birthday) values (11, 'javesp','123',10,10,'Javier Espinoza','2016-06-12','1991-04-05')
+
+insert into users(userid,Username,password,ubication,role,name,creationDate,birthday) values (11, 'javesp','123',10,11,'Javier Espinoza','2016-06-12','1991-04-05')
 insert into users(userid,Username,password,ubication,role,name,creationDate,birthday) values (10, 'Blaken','asd',10,11,'Deivid Ugarte','2016-02-02','1993-09-29')
-insert into users(userid,Username,password,ubication,role,name,creationDate,birthday) values (12, 'Valeria','123',10,12,'Vale Chava','2016-06-12','1991-04-05')
+insert into users(userid,Username,password,ubication,role,name,creationDate,birthday) values (12, 'Valeria','123',10,11,'Vale Chava','2016-06-12','1991-04-05')
+
 
 insert into artists(userid,followers,bio) values (10,900,'es un mae que me pone trabajo')
 insert into artists(userid,followers,bio) values (11,900,'es un mae que me pone trabajo')
@@ -278,10 +280,12 @@ insert into news(artist,tittle,content,date,creationdate) values (2,'title3', 'H
 insert into news(artist,tittle,content,date,creationdate) values (2,'title4', 'HOLA','2016-04-02','2009-02-02')
 
 
+
 insert into events(artist,tittle,content,eventdate,creationdate,ubication,type,cancel) values (1,'title1', 'HOLA','2016-02-02','2016-02-02',10,'true','false')
 insert into events(artist,tittle,content,eventdate,creationdate,ubication,type,cancel) values (1,'title2', 'HOLA','2016-04-02','2016-02-02',10,'false','false')
 insert into events(artist,tittle,content,eventdate,creationdate,ubication,type,cancel) values (2,'title3', 'HOLA','2016-02-02','2017-02-02',10,'true','false')
 insert into events(artist,tittle,content,eventdate,creationdate,ubication,type,cancel) values (2,'title4', 'HOLA','2016-04-02','2009-02-02',10,'false','false')
+
 
 
 insert into events_califications(event,calification,reviewer) values (1,4,1) 
