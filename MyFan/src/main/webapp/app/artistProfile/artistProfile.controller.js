@@ -23,6 +23,12 @@
             year: 1980,
             stars: 5,
         };
+        vm.currentUser ={
+          type: "artist",
+          id: "101",
+          userName: "Alejandro22",
+          name: "Alejandro",
+        }
         vm.timeline = {
             publications: [{
                 type: "noticia",

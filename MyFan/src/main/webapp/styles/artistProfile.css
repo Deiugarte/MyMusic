@@ -99,6 +99,17 @@ html, body{
 
 }
 
+#artistCogContainer{
+  float: left;
+padding-left: 2%;
+position: relative;
+vertical-align: top;
+width: 20%;
+height: 80%;
+z-index: 4;
+cursor: pointer;
+}
+
 #artistReview{
     width: 100%;
     height: 50%;
@@ -135,12 +146,13 @@ html, body{
     width: auto;
 }
 
-#artistImageContainer{
+#artistImageContainer, #artistAsArtistImageContainer{
     position: relative;
     width: 100%;
     height: 32%;
 
 }
+
 
 #artistImageFrame{
     vertical-align: top;
@@ -148,6 +160,15 @@ html, body{
     height: 80%;
     margin: 0 auto;
 }
+
+#artistAsArtistImageFrame{
+  float: left;
+    vertical-align: top;
+    width: 80%;
+    height: 80%;
+}
+
+
 
 #userProfileImage{
     width: 100%;
@@ -160,10 +181,20 @@ html, body{
     position: relative;
     width : 100%;
     height : 19%;
-    padding-top: 3px;
+    padding-top: 2%;
     font-size: 1.5vw;
     text-align: center;
 }
+#artistAsArtistName{
+    position: relative;
+    width : 100%;
+    height : 19%;
+    padding-top: 3%;
+    font-size: 1.0vw;
+    text-align: center;
+}
+
+
 
 #artistDataContainer{
     padding: 7% 4%;
@@ -298,7 +329,7 @@ html, body{
     font-size: 1vw;
 }
 .timeline-title{
-    font-size: 1.5vw;
+    font-size: 1.3vw;
 }
 .timeline-panel{
     font-size: 0.8vw;
@@ -383,7 +414,7 @@ html, body{
     height: 100%;
     width: 20%;
     text-align: center;
-    font-size: 60%;
+    font-size: 55%;
     font-weight: bold;
     position: relative;
     top: 60%;
@@ -480,12 +511,17 @@ html, body{
     padding-top: 9%;
 }
 
-#rightButtonsContainer{
+#rightButtonsContainer, #createAlbumContainer{
     position: relative;
     width: 60%;
     height: 20%;
     margin: 0 auto;
 }
+
+#createAlbumContainer{
+  margin: 4% auto;
+}
+
 
 
 
@@ -564,7 +600,7 @@ html, body{
     margin-left: 1%;
     position: relative;
     top: 100px;
-    padding: 2% 1.5%;
+    padding: 2% 2.5%;
 }
 
 #videoTitle{
@@ -573,8 +609,9 @@ html, body{
     text-align: center;
     font-size: 1.4vw;
     font-weight: bold;
-    padding-bottom: 0.5%;
-    border-bottom: 2px solid darkslateblue;
+    margin-top: 1.5%;
+    padding: 1%;
+    border-top: 3px solid darkslateblue;
  }
 
  #videoInfo{
@@ -756,4 +793,8 @@ html, body{
   .commentsList li header h1.author:after {
     content: none;
   }
+}
+
+.artistCog{
+  font-size: 1.5vw !important;
 }
