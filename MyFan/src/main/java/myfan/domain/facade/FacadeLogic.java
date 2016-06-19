@@ -88,8 +88,13 @@ public class FacadeLogic {
 		return search.searchArtist(artist);
 	}
 
-	public String getPersonalInformationOfUser(int idUserProfile) {
-		return userLogic.getPersonalInformationOfUser(idUserProfile);
+	public String getPersonalInformationOfFanatic(int idUserProfile) {
+		return fanaticLogic.getPersonalInformationOfFanatic(idUserProfile);
+	}
+	
+
+	public String getPersonalInformationOfArtist(int idUserProfile) {
+		return artistLogic.getPersonalInformationOfArtist(idUserProfile);
 	}
 
 	public String getAllUbications() {

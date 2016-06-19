@@ -8,7 +8,6 @@ import myfan.data.models.Artists;
 import myfan.data.models.ArtistsCalifications;
 import myfan.data.models.Fanatics;
 import myfan.data.models.FanaticsArtists;
-import myfan.data.models.Genres;
 import myfan.data.models.UsersGenres;
 import myfan.resources.base.FollowedArtistResponse;
 
