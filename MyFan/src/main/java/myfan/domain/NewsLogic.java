@@ -16,24 +16,24 @@ import myfan.resources.base.RecentNewsResponse;
 
 public class NewsLogic {
 	private FacadeDAO facadeDAO;
-	private JSON json;
-	private Fecha fecha;
+	private JSONFabrication jSONFabrication;
+	private DateFabrication dateFabrication;
 	private final String ADD_NEWS_STATUS = "{\"NewsId\": \"%s\", \"status\":\"%s\"}";
-	private final String DELETE_NEWS_STATUS = "{ \"status\":\"%s\"}";
 	private final String ERROR_ARTIST_NOT_FOUND = "{\"Error \": \"Artist not found \"}";
+	private final String DELETE_NEWS_STATUS = "{ \"status\":\"%s\"}";
 	private final String ERROR_NEWS_NOT_FOUND = "{\"Error \": \"News not found \"}";
 
 	public NewsLogic() {
 		facadeDAO = new FacadeDAO();
-		json = new JSON();
-		fecha = new Fecha();
+		jSONFabrication = new JSONFabrication();
+		dateFabrication = new DateFabrication();
 	}
 
 	public Response deleteNews(DeleteNewsRequest deleteNewsRequest) {
 		String response = DELETE_NEWS_STATUS;
 		News news = facadeDAO.findNewsById(deleteNewsRequest.getNewsId());
 		if (news == null) {
-			return responseBuilder(ERROR_ARTIST_NOT_FOUND);
+			return responseBuilder(ERROR_NEWS_NOT_FOUND);
 		}
 		facadeDAO.deleteNewsById(news);
 		response = String.format(response, "OK");
@@ -49,8 +49,8 @@ public class NewsLogic {
 		News newNews = new News();
 		newNews.setArtists(artist);
 		newNews.setContent(news.getContentNews());
-		newNews.setDate(fecha.getDateFromString(news.getDateNews()));
-		newNews.setCreationDate(fecha.getCurrentDate());
+		newNews.setDate(dateFabrication.getDateFromString(news.getDateNews()));
+		newNews.setCreationDate(dateFabrication.getCurrentDate());
 		newNews.setTittle(news.getTitleNews());
 		facadeDAO.saveNews(newNews);
 
@@ -85,7 +85,7 @@ public class NewsLogic {
 			recentNewsResponse.setTitleNews(newsList.get(i).getTittle());
 			listResponse.add(recentNewsResponse);
 		}
-		return json.jsonConverter(listResponse);
+		return jSONFabrication.jsonConverter(listResponse);
 	}
 
 	private boolean isArtist(int idUser) {

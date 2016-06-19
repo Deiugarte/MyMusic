@@ -10,11 +10,11 @@ import myfan.resources.base.UbicationsResponse;
 
 public class UtilsLogic {
   private FacadeDAO facadeDAO;
-  private JSON json;
+  private JSONFabrication jSONFabrication;
 
   public UtilsLogic() {
     facadeDAO = new FacadeDAO();
-    json= new JSON();
+    jSONFabrication= new JSONFabrication();
   }
   
   public String getAllGenres(){
@@ -25,7 +25,7 @@ public class UtilsLogic {
       genre.setName(genres.get(i).getName());
       genresResponse.add(genre);
     }
-    return json.jsonConverter(genresResponse);
+    return jSONFabrication.jsonConverter(genresResponse);
   }
   
   public String getAllUbications(){
@@ -36,7 +36,7 @@ public class UtilsLogic {
 	    	ubication.setName(ubicationsList.get(i).getName());
 	      ubicationResponse.add(ubication);
 	    }
-	    return json.jsonConverter(ubicationResponse);
+	    return jSONFabrication.jsonConverter(ubicationResponse);
 	  }
   
 

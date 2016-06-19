@@ -91,7 +91,7 @@ public class DiscsHome {
   public Discs findById(java.lang.Integer id) {
     log.debug("getting Discs instance with id: " + id);
     try {
-      Discs instance = (Discs) sessionFactory.getCurrentSession().get("myfan.dao.temp.Discs", id);
+      Discs instance = (Discs) sessionFactory.getCurrentSession().get("myfan.data.models.Discs", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -107,7 +107,7 @@ public class DiscsHome {
   public List<Discs> findByExample(Discs instance) {
     log.debug("finding Discs instance by example");
     try {
-      List<Discs> results = (List<Discs>) sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.Discs")
+      List<Discs> results = (List<Discs>) sessionFactory.getCurrentSession().createCriteria("myfan.data.models.Discs")
           .add(create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;
