@@ -259,7 +259,7 @@ insert into genres(genreid,name) values (11, 'Rock')
 
 insert into users(userid,Username,password,ubication,role,name,creationDate,birthday) values (11, 'javesp','123',10,10,'Javier Espinoza','2016-06-12','1991-04-05')
 insert into users(userid,Username,password,ubication,role,name,creationDate,birthday) values (10, 'Blaken','asd',10,11,'Deivid Ugarte','2016-02-02','1993-09-29')
-insert into users(userid,Username,password,ubication,role,name,creationDate,birthday) values (12, 'Valeria','123',10,12,'Vale Chava','2016-06-12','1991-04-05')
+insert into users(userid,Username,password,ubication,role,name,creationDate,birthday,image) values (12, 'Valeria','123',10,12,'Vale Chava','2016-06-12','1991-04-05','img/21966636-269e-4980-b92b-d2f63518e5ba.png')
 
 insert into artists(userid,followers,bio) values (10,900,'es un mae que me pone trabajo')
 insert into artists(userid,followers,bio) values (11,900,'es un mae que me pone trabajo')

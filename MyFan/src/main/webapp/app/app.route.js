@@ -12,6 +12,10 @@
       .state('home', {
         url: '/',
         templateUrl: 'app/login/view.html'
+      })
+      .state('404',{
+        url:'/404',
+        templateUrl:'app/404.html'
       });
   }
 })();

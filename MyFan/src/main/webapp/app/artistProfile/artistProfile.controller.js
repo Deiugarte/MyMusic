@@ -10,8 +10,33 @@
         var vm = this;
         vm.currentUser = {};
         vm.currentEvent = {};
+        vm.timeline=[];
+        vm.timelineParameters = {};
+        vm.timelineParameters.offset = '0';
 
+        getTimelineNews();
+        function getTimelineNews() {
+            vm.timelineParameters.idUser = '11';
+            ArtistSrv.getTimelineNews(vm.timelineParameters)
+                .then(function(newsData) {
+                    for (var i = 0; i < newsData.data.length; i++) {
+                        vm.timeline.push(newsData.data[i]);
+                        console.log(newsData.data);
+                    }
+                });
+        }
 
+        getTimelineEvents();
+
+        function getTimelineEvents() {
+            vm.timelineParameters.idUser = '11';
+            ArtistSrv.getTimelineEvents(vm.timelineParameters)
+                .then(function(eventsData) {
+                    for (var i = 0; i < eventsData.data.length; i++) {
+                        vm.timeline.push(eventsData.data[i]);
+                    }
+                });
+        }
         vm.openEventModal = function(size, title, body, stars, commentsAmount) {
             vm.currentEvent.title = title;
             vm.currentEvent.body = body;
@@ -141,33 +166,7 @@
           userName: "Alejandro22",
           name: "Alejandro",
         }
-        vm.timeline = {
-            publications: [{
-                type: "noticia",
-                title: "Universal Music comercializarálos Beatles en España",
-                body: "Universal Music Spain, coincidmatos DVD y Blu-ray, ha llegado a un acuerdo con Apple Corp",
-                date: "20/04/2015"
-            }, {
-                type: "noticia",
-                title: "Se murió michael jackson",
-                body: "GG legítimo",
-                date: "12/03/2009"
-            }, {
-                type: "evento",
-                title: "Ky-Mani Marley engalanará el Reggae Festival",
-                body: "Un dia de estos tocas Ki MA ni marly",
-                date: "25/12/2011",
-                stars: 3,
-                commentsAmount: 100
-            }, {
-                type: "evento",
-                title: "Ky-Mani Marley engalanará el Reggae Festival",
-                body: "Un dia de estos tocas Ki MA ni marly",
-                date: "25/12/2011",
-                stars: 5,
-                commentsAmount: 20
-            }]
-        };
+
 
         vm.discography = {
             albums: [{

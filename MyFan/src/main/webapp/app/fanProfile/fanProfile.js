@@ -3,6 +3,6 @@
 
   angular
     .module('refiereApp.fanProfile', [
-      'refiereApp.chore','ngMessages','ngPassword','ui.bootstrap','ngAnimate', 'ui.bootstrap.tpls'
+      'refiereApp.chore','ngMessages','ngPassword','ui.bootstrap','ngAnimate', 'ui.bootstrap.tpls','ngCookies'
     ]);
 })();
