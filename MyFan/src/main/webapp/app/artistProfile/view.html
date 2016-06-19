@@ -1,65 +1,101 @@
 <div id="artistProfileContainer" class="container-fluid">
-            <div class="col-xs-2 col-md-2">
-                <div id="artistInfoContainer" class="row contentArea center-blocks">
-                    <div id="artistTopInfo">
-                        <div id="artistFollowers"> <p>¡2101 seguidores!</p></div>
-                        <div id="artistReview" >
-                            <p style="vertical-align: baseline;">
-                              <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="vm.artistProfile.stars"  max="vm.artistProfile.stars" aria-labelledby="default-rating"></uib-rating>
-                                <span id="artistReviewComment">(0)</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div id="artistImageContainer">
-                        <div id="artistImageFrame">
-                            <img src="assets/images/userProfile.jpg" id="userProfileImage" alt="artist Profile Image"/>
-                        </div>
-                        <div id="artistName">
-                            <strong> {{vm.artistProfile.name}} </strong>
-                        </div>
-
-                    </div>
-                    <div id="artistDataContainer">
-                        <span> Géneros:</span>
-                        <span ng-repeat="genre in vm.artistProfile.genres">genre <br /> </span> <!-- usar ng-repeat aquí con <br/> para el salto de linea -->
-                        <span> Integrantes:</span> <br />
-                        <span> {{vm.artistProfile.country}}</span> <br />
-                        <span> {{vm.artistProfile.year}} </span>
-                    </div>
+    <div class="col-xs-2 col-md-2">
+        <div id="artistInfoContainer" class="row contentArea center-blocks">
+            <div id="artistTopInfo">
+                <div id="artistFollowers">
+                    <p>¡2101 seguidores!</p>
+                </div>
+                <div id="artistReview">
+                    <p style="vertical-align: baseline;">
+                        <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star" ng-model="vm.artistProfile.stars" max="vm.artistProfile.stars" aria-labelledby="default-rating"></uib-rating>
+                        <span>(0)</span>
+                    </p>
                 </div>
             </div>
-            <div class="contentArea trans" ng-class="centerCol">
-                <div id="buttonNavContainer">
-                    <uib-tabset active="activeJustified" justified="true">
-                        <uib-tab ng-click="switchContent(false)" index="0" heading="General">
-                            <div id="publicationsContainer">
-                                <ul class="timeline">
-                                  <li ng-repeat="publication in vm.timeline.publications">
-                                    <div ng-if="publication.type=='noticia'" class="timeline-badge primary"><i style="vertical-align:baseline;" class="fa fa-newspaper-o"></i></div> <!-- noticia  !-->
-                                    <div ng-if="publication.type=='evento'" class="timeline-badge warning"><i style="vertical-align:baseline;" class="fa fa-calendar-check-o"></i></div>
-                                         <div class="timeline-panel">
-                                             <div class="timeline-heading">
-                                                 <h4 class="timeline-title">{{publication.title}}
+            <div ng-if="vm.currentUser.type=='fan'" id="artistImageContainer">
+                <div id="artistImageFrame">
+                    <img src="http://i.imgur.com/hfH9CiC.png" id="userProfileImage" alt="artist Profile Image" />
+                </div>
+            </div>
+            <div ng-if="vm.currentUser.type=='artist'" id="artistAsArtistImageContainer">
+                <div id="artistAsArtistImageFrame">
+                    <img src="http://i.imgur.com/hfH9CiC.png" id="userProfileImage" alt="artist Profile Image" />
+                </div>
+                <div id="artistCogContainer">
+                    <span uib-dropdown>
+                                  <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Farm-Fresh_cog.png"  id="cogImage" alt="cogImage" title="MyImage" uib-dropdown-toggle />
+                                  <ul class="dropdown-menu a" uib-dropdown-menu aria-labelledby="simple-dropdown">
+                                      <li>
+                                          <a href>Modificar Datos</a>
+                                      </li>
+                                      <li>
+                                          <a href>Cerrar Sesión</a>
+                                      </li>
+                                  </ul>
+                              </span>
+
+                </div>
+            </div>
+            <div ng-if="vm.currentUser.type=='fan'" id="artistName">
+                <strong> {{vm.artistProfile.name}} </strong>
+            </div>
+
+            <div ng-if="vm.currentUser.type=='artist'" id="artistAsArtistName">
+                <strong> ¡Bienvenido {{vm.currentUser.userName}} ! </strong>
+            </div>
+
+
+            <div id="artistDataContainer">
+                <span> Géneros:</span>
+                <span ng-repeat="genre in vm.artistProfile.genres">{{genre}} <br /> </span>
+                <!-- usar ng-repeat aquí con <br/> para el salto de linea -->
+                <span> Integrantes:</span>
+                <br />
+                <span> {{vm.artistProfile.country}}</span>
+                <br />
+                <span> {{vm.artistProfile.year}} </span>
+            </div>
+        </div>
+    </div>
+    <div class="contentArea trans" ng-class="centerCol">
+        <div id="buttonNavContainer">
+            <uib-tabset active="activeJustified" justified="true">
+                <uib-tab ng-click="switchContent(false)" index="0" heading="General">
+                    <div id="publicationsContainer">
+                        <ul class="timeline">
+                            <li ng-repeat="publication in vm.timeline.publications">
+                                <div ng-if="publication.type=='noticia'" class="timeline-badge primary"><i style="vertical-align:baseline;" class="fa fa-newspaper-o"></i></div>
+                                <!-- si es NOTICIA -->
+                                <div ng-if="publication.type=='evento'" class="timeline-badge warning"><i style="vertical-align:baseline;" class="fa fa-calendar-check-o"></i></div>
+                                <!-- si es EVENTO -->
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title">{{publication.title}}
                                                  <div ng-if="publication.type=='evento'" class="eventReview pull-right">
                                                    <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="publication.stars"  max="publication.stars"  on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
                                                          <span class="eventComment">({{publication.commentsAmount}})</span>
+                                                         <i ng-if="vm.currentUser.type=='artist'" class="fa fa-times pull-right artistCog"></i>
                                                      </div>
+
+                                                     <div ng-if="vm.currentUser.type=='artist' && publication.type=='noticia'" class="pull-right">
+                                                        <i class="fa fa-times pull-right artistCog"></i>
+                                                      </div>
                                                      </h4>
-                                             </div>
-                                             <div class="timeline-body">
-                                                 <p>{{publication.body}}</p>
-                                             </div>
-                                             <span class="pull-right" ><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{publication.date}}</small></span>
-                                         </div>
-                                  </li>
-                                </ul>
-                            </div>
-                        </uib-tab>
-                        <uib-tab index="1" ng-click="switchContent(true)" heading="Discografía">
-                            <div id="accordionContainer">
-                                <script type="text/ng-template" id="group-template.html">
-                                    <div class="panel {{panelClass || 'panel-default'}}">
-                                    <div class="panel-heading" style="background-color: #CCCCCC;">
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p>{{publication.body}}</p>
+                                    </div>
+                                    <span class="pull-right"><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{publication.date}}</small></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </uib-tab>
+                <uib-tab index="1" ng-click="switchContent(true)" heading="Discografía">
+                    <div id="accordionContainer">
+                        <script type="text/ng-template" id="group-template.html">
+                            <div class="panel {{panelClass || 'panel-default'}}">
+                                <div class="panel-heading" style="background-color: #CCCCCC;">
                                     <h4 class="panel-title" style="border:none">
                                     <div tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
                                     <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
@@ -67,161 +103,150 @@
                                     </span>
                                     </div>
                                     </h4>
-                                    </div>
-                                    <div class="panel-collapse collapse" uib-collapse="!isOpen">
+                                </div>
+                                <div class="panel-collapse collapse" uib-collapse="!isOpen">
                                     <div class="panel-body" style="padding:0" ng-transclude>
                                     </div>
-                                    </div>
-                                    </div>
-                                </script>
-
-                                <uib-accordion close-others="true">
-                                    <uib-accordion-group ng-repeat="album in vm.discography.albums" template-url="group-template.html">
-                                        <uib-accordion-heading>
-                                            <div class="albumTitle">
-                                                {{album.title}}
-                                                <div class="pull-right albumStars" ng-click="g()">
-                                                    <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true"
-                                                     class="star pull-left" ng-model="album.stars"  max="album.stars"
-                                                      on-hover="hoveringOver(value)" aria-labelledby="default-rating"></uib-rating>
-                                                    <span id="artistReviewComment">({{album.commentsAmount}})</span>
-                                                </div>
-                                            </div>
-                                        </uib-accordion-heading>
-                                        <div class="albumContainer">
-                                            <div class="albumHeader">
-                                                <div class="albumImageContainer">
-                                                    <img src="assets/images/albumImage.jpg" class="albumImage" alt="Album Image">
-
-                                                </div>
-                                                <div class="albumRightContent">
-                                                    <div class="albumTop">
-                                                        <div class="albumDescriptionName">
-                                                            Descripción:
-                                                        </div>
-                                                        <div class="albumDescriptionText">
-                                                            <p>{{album.description}}</p>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="albumBottom">
-                                                        <div class="albumBottomTxt">Género: {{album.genre}}</div>
-                                                        <div class="albumBottomTxt">Total de canciones: {{album.songsAmount}}</div>
-                                                        <div class="albumBottomTxt">Año: {{album.year}}</div>
-                                                        <div class="albumBottomTxt">Sello discográfico: {{album.recordLabel}}</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="list-group songsContainer">
-                                                <div ng-repeat="song in album.songs" class="list-group-item songContainer">
-                                                    <div class="songLeftInfo ">
-                                                        {{song.name}} ({{song.duration}})
-                                                    </div>
-                                                    <div class="songRightInfo">
-                                                        <div class="songInfo pull-left">
-                                                            {{song.type}}, versión {{song.version}}
-                                                        </div>
-                                                        <div class="videoInfo pull-left">
-                                                            Video: {{song.video}}
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                           </uib-accordion-group>
-
-                                </uib-accordion>
-
-                            </div>
-                        </uib-tab>
-                        <uib-tab index="2" ng-click="switchContent(false)" heading="Calificaciones">
-                            <div id="artistRatingFormContainer" >
-                                <form>
-                                    <div id="descriptionTextCol" class="col-xs-3 col-md-4">
-
-                                        <div id="descriptionText">Calificación</div>
-                                        <div id="descriptionText">Comentario<br/> (opcional) </div>
-                                    </div>
-                                    <div id="ratingInputsCol" class="col-xs-6 col-md-5">
-                                        <uib-rating class="ratingStar pull-left" ng-model="x"  max="5"  on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
-                                        <b>({{x}})</b>
-                                        <input type="hidden" ng-model="x" name="artistRatingValue" >
-                                        <textarea rows="5"  id="artistCommentReview" class="form-control"></textarea>
-                                    </div>
-                                    <div id="reviewBtnCol" class="col-xs-2 col-md-3">
-                                        <input id="sendReviewBtn" class="btn btn-default btn-sm" type="submit" value="¡Calificar!" />
-                                    </div>
-                                </form>
-                            </div>
-                            <div id="artistCommentsContainer">
-                                <div id="artistComments">
-                                    <ul class="commentsList">
-                                        <div id="commentSectionHeader">Comentarios (2)</div>
-                                        <li ng-repeat="comment in vm.artistCommentsList.comments" class="commentContainer">
-                                            <header class="commentHeader">
-                                                <div class="commentAuthor"> {{comment.author}}
-                                                    <div class="commentStarsContainer pull-right">
-                                                        <span class="s2 fa fa-star"></span>
-                                                        <span class="s2 fa fa-star"></span>
-                                                        <span class="s2 fa fa-star"></span>
-                                                        <span class="s2 fa fa-star"></span>
-                                                    </div>
-                                                </div>
-                                            </header>
-                                            <article class="commentBody">{{comment.body}}</article>
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
+                        </script>
 
-                        </uib-tab>
-                    </uib-tabset>
-                </div>
+                        <uib-accordion close-others="true">
+                            <uib-accordion-group ng-repeat="album in vm.discography.albums" template-url="group-template.html">
+                                <uib-accordion-heading>
+                                    <div class="albumTitle">
+                                        {{album.title}}
+                                        <div class="pull-right albumStars" ng-click="g()">
+                                            <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="album.stars" max="album.stars" on-hover="hoveringOver(value)" aria-labelledby="default-rating"></uib-rating>
+                                            <span id="artistReviewComment">({{album.commentsAmount}})</span>
+                                        </div>
+                                    </div>
+                                </uib-accordion-heading>
+                                <div class="albumContainer">
+                                    <div class="albumHeader">
+                                        <div class="albumImageContainer">
+                                            <img src="assets/images/albumImage.jpg" class="albumImage" alt="Album Image">
 
-            </div>
+                                        </div>
+                                        <div class="albumRightContent">
+                                            <div class="albumTop">
+                                                <div class="albumDescriptionName">
+                                                    Descripción:
+                                                </div>
+                                                <div class="albumDescriptionText">
+                                                    <p>{{album.description}}</p>
+                                                </div>
 
-            <div class="trans" ng-class="rightCol">
-                <div ng-show="showVid" id="videoContainer" class="row contentArea center-blocks">
-                    <div id="videoPlayerContainer">
-                        <ng-youtube-embed
-                            url="link"
-                            color="white"
-                            disablekb="true"
-                            width="100%"
-                            height="auto"
-                            end="20">
-                        </ng-youtube-embed>
+                                            </div>
+                                            <div class="albumBottom">
+                                                <div class="albumBottomTxt">Género: {{album.genre}}</div>
+                                                <div class="albumBottomTxt">Total de canciones: {{album.songsAmount}}</div>
+                                                <div class="albumBottomTxt">Año: {{album.year}}</div>
+                                                <div class="albumBottomTxt">Sello discográfico: {{album.recordLabel}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-group songsContainer">
+                                        <div ng-repeat="song in album.songs" class="list-group-item songContainer">
+                                            <div class="songLeftInfo ">
+                                                {{song.name}} ({{song.duration}})
+                                            </div>
+                                            <div class="songRightInfo">
+                                                <div class="songInfo pull-left">
+                                                    {{song.type}}, versión {{song.version}}
+                                                </div>
+                                                <div class="videoInfo pull-left">
+                                                    Video: {{song.video}}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </uib-accordion-group>
+
+                        </uib-accordion>
+
                     </div>
-                    <div id="videoTitle">
-                        No Woman No Cry - (7:01){{song.title}}
-                    </div>
-                    <div id="videoInfo">
-                        <p>En vivo</p>
-                        <p>Versión limitada</p>
-                    </div>
+                </uib-tab>
+                <uib-tab index="2" ng-click="switchContent(false)" heading="Calificaciones">
+                    <div ng-if="vm.currentUser.type=='fan'" id="artistRatingFormContainer">
+                        <form>
+                            <div id="descriptionTextCol" class="col-xs-3 col-md-4">
 
-                </div>
-
-                <div ng-show="!showVid" id="artistProfileRightContent" class="row contentArea center-blocks">
-                    <div id="rightButtonsContainer" class="text-center">
-                        <button class="btn btn-primary btn-block b" ng-click="goBackToProfile()" >Volver a Mi Perfil</button>
-                        <button class="btn btn-primary btn-block b" ng-click="toggleFollowing()">{{following}}</button>
+                                <div id="descriptionText">Calificación</div>
+                                <div id="descriptionText">Comentario
+                                    <br/> (opcional) </div>
+                            </div>
+                            <div id="ratingInputsCol" class="col-xs-6 col-md-5">
+                                <uib-rating class="ratingStar pull-left" ng-model="x" max="5" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
+                                <b>({{x}})</b>
+                                <input type="hidden" ng-model="x" name="artistRatingValue">
+                                <textarea rows="5" id="artistCommentReview" class="form-control"></textarea>
+                            </div>
+                            <div id="reviewBtnCol" class="col-xs-2 col-md-3">
+                                <input id="sendReviewBtn" class="btn btn-default btn-sm" type="submit" value="¡Calificar!" />
+                            </div>
+                        </form>
                     </div>
-                    <div id="artistBiography" class="effect8">
-                        <div id="biographyTitle"><strong>Biografía</strong>
+                    <div id="artistCommentsContainer">
+                        <div id="artistComments">
+                            <ul class="commentsList">
+                                <div id="commentSectionHeader">Comentarios (2)</div>
+                                <li ng-repeat="comment in vm.artistCommentsList.comments" class="commentContainer">
+                                    <header class="commentHeader">
+                                        <div class="commentAuthor"> {{comment.author}}
+                                            <div class="commentStarsContainer pull-right">
+                                                <span class="s2 fa fa-star"></span>
+                                                <span class="s2 fa fa-star"></span>
+                                                <span class="s2 fa fa-star"></span>
+                                                <span class="s2 fa fa-star"></span>
+                                            </div>
+                                        </div>
+                                    </header>
+                                    <article class="commentBody">{{comment.body}}</article>
+                                </li>
+                            </ul>
                         </div>
-                        <div id="biographyContent">La historia musical de los Red Hot Chili Peppers
-                            comienza en en Los Angeles, en 1982, cuando varios amigos se unen para formar una banda
-                            y tocar en locales nocturnos. Los cuatro amigos eran: Michael (Flea), en el bajo, Hillel
-                            (guitarra), Jack (batería) y Anthony Keidis como vocalista.
-                            <br />
-                            <br />
-                            Su primer gran show fue en un concierto, que les dio una tremenda publicidad en Los Angeles
-                            y les valió para firmar un contrato con una gran discográfica. </div>
                     </div>
-                </div>
-            </div>
 
-
+                </uib-tab>
+            </uib-tabset>
         </div>
+
+    </div>
+
+    <div class="trans" ng-class="rightCol">
+        <div ng-show="showVid" id="videoContainer" class="row contentArea center-blocks">
+          <div ng-if="vm.currentUser.type=='artist'" id="createAlbumContainer" class="text-center">
+          <button  class="btn btn-primary btn-block b" ng-click="goBackToProfile()">¡Crear nuevo disco!</button>
+        </div>
+            <div id="videoPlayerContainer">
+                <ng-youtube-embed url="link" color="white" disablekb="true" width="100%" height="auto" end="20">
+                </ng-youtube-embed>
+            </div>
+            <div id="videoTitle">
+                No Woman No Cry - (7:01){{song.title}}
+            </div>
+        </div>
+
+        <div ng-show="!showVid" id="artistProfileRightContent" class="row contentArea center-blocks">
+            <div id="rightButtonsContainer" class="text-center">
+                <button ng-if="vm.currentUser.type=='fan'" class="btn btn-primary btn-block b" ng-click="goBackToProfile()">Volver a Mi Perfil</button>
+                <button ng-if="vm.currentUser.type=='fan'" class="btn btn-primary btn-block b" ng-click="toggleFollowing()">{{following}}</button>
+                <button ng-if="vm.currentUser.type=='artist'" class="btn btn-primary btn-block b" ng-click="goBackToProfile()">Crear evento</button>
+                <button ng-if="vm.currentUser.type=='artist'" class="btn btn-primary btn-block b" ng-click="toggleFollowing()">Crear noticia</button>
+            </div>
+            <div id="artistBiography" class="effect8">
+                <div id="biographyTitle"><strong>Biografía</strong>
+                </div>
+                <div id="biographyContent">La historia musical de los Red Hot Chili Peppers comienza en en Los Angeles, en 1982, cuando varios amigos se unen para formar una banda y tocar en locales nocturnos. Los cuatro amigos eran: Michael (Flea), en el bajo, Hillel (guitarra),
+                    Jack (batería) y Anthony Keidis como vocalista.
+                    <br />
+                    <br /> Su primer gran show fue en un concierto, que les dio una tremenda publicidad en Los Angeles y les valió para firmar un contrato con una gran discográfica. </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
