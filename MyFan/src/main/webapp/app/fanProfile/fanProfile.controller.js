@@ -9,10 +9,14 @@
     function fanProfileCtrl(FanaticSrv, $log, $uibModal, $state, $window, $scope) {
         var vm = this;
         vm.currentEvent = {};
+        vm.currentUser ={
+          rol: "fanatic",
+          id: 10
+        };
         vm.newUser = {};
         vm.genresList = {};
         vm.countriesList = {};
-        vm.open = function(size, title, body, stars, commentsAmount) {
+        vm.openEventModal = function(size, title, body, stars, commentsAmount) {
             vm.currentEvent.title = title;
             vm.currentEvent.body = body;
             vm.currentEvent.stars = stars;
@@ -38,6 +42,29 @@
 
 
         };
+        vm.openEditFan= function(size) {
+            var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: '/templates/editFan/view.html',
+                controller: 'editFanCtrl',
+                size: size,
+                resolve: {
+                    currentUser: function() {
+                        return vm.currentUser;
+                    }
+                }
+
+            });
+            modalInstance.result.then(function(selectedItem) {
+                $scope.selected = selectedItem;
+            }, function() {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
+
+        };
+
+
 
         getUserData();
 

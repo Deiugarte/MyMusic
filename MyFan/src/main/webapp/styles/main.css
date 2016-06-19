@@ -693,12 +693,58 @@ ul.top-menu > li > .logout:hover {
 	color: #fff;
 }
 
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/*
-    Created on : May 31, 2016, 6:06:03 AM
-    Author     : Alejandro
-*/
+body{
+    height: 100%;
+    width: 100%;
+}
+
+#genresManagerPage{
+    width:100%;
+    height:100%;
+}
+
+#backButton{
+    margin: 2% 2%;
+    display:block;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#genresManagerContainer{
+    position:relative;
+    width: 30%;
+    height: 50%;
+    margin: 12% auto;
+
+}
+
+#genresListContainer{
+    width: 60%;
+    margin: 0 auto;
+    max-height: 180px;
+    height: 78%;
+    overflow: auto;
+    border: 2px solid black;
+}
+
+#genresFormContainer{
+    margin-top: 2%;
+    width: 100%;
+    height: 20%;
+}
+
+.a{
+    width:70% !important;
+    height: 100%;
+    float:left;
+    margin: 1% 3% 0 0;    
+}
+
+
+.c{
+    width: 26%;
+    height: 100%;
+    display: inline-block;
+    float:left;
+}

@@ -13,6 +13,12 @@
       'refiereApp.artistProfile',
       'refiereApp.myFest',
       'refiereApp.modalEvent',
+      'refiereApp.editFan',
+      'refiereApp.editArtist',
+      'refiereApp.createEvent',
+      'refiereApp.createNews',
+      'refiereApp.createAlbum',
+      'refiereApp.genresManager',
       'ui.router',
 
     ]);

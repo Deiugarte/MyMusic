@@ -2,13 +2,13 @@
   'use strict';
 
   angular
-    .module('refiereApp.modalEvent')
-    .service('EventSrv', EventSrv);
+    .module('refiereApp.createNews')
+    .service('CreateNewsSrv', CreateNewsSrv);
 
-  EventSrv.$inject = ['$http'];
+  CreateNewsSrv.$inject = ['$http'];
 
   /* @ngInject */
-  function EventSrv($http) {
+  function CreateNewsSrv($http) {
     var vm = this;
     vm.postCompanyInfo = postCompanyInfo;
     vm.getUserData = getUserData;

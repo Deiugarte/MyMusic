@@ -26,7 +26,7 @@
                                   <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Farm-Fresh_cog.png"  id="cogImage" alt="cogImage" title="MyImage" uib-dropdown-toggle />
                                   <ul class="dropdown-menu a" uib-dropdown-menu aria-labelledby="simple-dropdown">
                                       <li>
-                                          <a href>Modificar Datos</a>
+                                          <a ng-click="vm.openEditArtist('lg')" href>Modificar Datos</a>
                                       </li>
                                       <li>
                                           <a href>Cerrar Sesión</a>
@@ -71,7 +71,7 @@
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title">{{publication.title}}
-                                                 <div ng-if="publication.type=='evento'" class="eventReview pull-right">
+                                                 <div ng-if="publication.type=='evento'" ng-click="vm.openEventModal('lg', publication.title, publication.body, publication.stars, publication.commentsAmount)" class="eventReview pull-right">
                                                    <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="publication.stars"  max="publication.stars"  on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
                                                          <span class="eventComment">({{publication.commentsAmount}})</span>
                                                          <i ng-if="vm.currentUser.type=='artist'" class="fa fa-times pull-right artistCog"></i>
@@ -174,8 +174,8 @@
                         <form>
                             <div id="descriptionTextCol" class="col-xs-3 col-md-4">
 
-                                <div id="descriptionText">Calificación</div>
-                                <div id="descriptionText">Comentario
+                                <div class="descriptionText">Calificación</div>
+                                <div class="descriptionText">Comentario
                                     <br/> (opcional) </div>
                             </div>
                             <div id="ratingInputsCol" class="col-xs-6 col-md-5">
@@ -219,7 +219,7 @@
     <div class="trans" ng-class="rightCol">
         <div ng-show="showVid" id="videoContainer" class="row contentArea center-blocks">
           <div ng-if="vm.currentUser.type=='artist'" id="createAlbumContainer" class="text-center">
-          <button  class="btn btn-primary btn-block b" ng-click="goBackToProfile()">¡Crear nuevo disco!</button>
+          <button  class="btn btn-primary btn-block b" ng-click="vm.createAlbumModal('lg')">¡Crear disco!</button>
         </div>
             <div id="videoPlayerContainer">
                 <ng-youtube-embed url="link" color="white" disablekb="true" width="100%" height="auto" end="20">
@@ -234,8 +234,8 @@
             <div id="rightButtonsContainer" class="text-center">
                 <button ng-if="vm.currentUser.type=='fan'" class="btn btn-primary btn-block b" ng-click="goBackToProfile()">Volver a Mi Perfil</button>
                 <button ng-if="vm.currentUser.type=='fan'" class="btn btn-primary btn-block b" ng-click="toggleFollowing()">{{following}}</button>
-                <button ng-if="vm.currentUser.type=='artist'" class="btn btn-primary btn-block b" ng-click="goBackToProfile()">Crear evento</button>
-                <button ng-if="vm.currentUser.type=='artist'" class="btn btn-primary btn-block b" ng-click="toggleFollowing()">Crear noticia</button>
+                <button ng-if="vm.currentUser.type=='artist'" class="btn btn-primary btn-block b" ng-click="vm.createEventModal('lg')">Crear evento</button>
+                <button ng-if="vm.currentUser.type=='artist'" class="btn btn-primary btn-block b" ng-click="vm.createNewsModal('lg')">Crear noticia</button>
             </div>
             <div id="artistBiography" class="effect8">
                 <div id="biographyTitle"><strong>Biografía</strong>
