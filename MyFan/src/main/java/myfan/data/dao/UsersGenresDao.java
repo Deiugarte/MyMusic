@@ -51,10 +51,10 @@ public class UsersGenresDao extends UsersGenresHome{
 	        Query query = session.createQuery("from UsersGenres where iduser = :idUser");
 	        query.setParameter("idUser", idUser); 
 	        
-	      //  java.util.List <UsersGenres> results = query.list();
-	        java.util.List <UsersGenres> results= session.createCriteria(UsersGenres.class).list();
-	        for(int i=0; i< results.size();i++){
-	        	   Hibernate.initialize(results.get(i));  
+	        java.util.List <UsersGenres> results = query.list();
+	        java.util.List <UsersGenres> results1= session.createCriteria(UsersGenres.class).list();
+	        for(int i=0; i< results1.size();i++){
+	        	   Hibernate.initialize(results1.get(i));  
 	        }
 	        trans.commit();
 	        log.debug("get successful, instance found");
