@@ -2,42 +2,49 @@ package myfan.resources.base;
 
 public class RecentNewsResponse {
 	private int idNews;
-	private String titleNews;
-	private String contentNews;
+	private String title;
+	private String content;
 	private String creationDate;
-	private String dateOfNews;
+	private String date;
+	private String type;
+  public int getIdNews() {
+    return idNews;
+  }
+  public void setIdNews(int idNews) {
+    this.idNews = idNews;
+  }
+  public String getTitle() {
+    return title;
+  }
+  public void setTitle(String title) {
+    this.title = title;
+  }
+  public String getContent() {
+    return content;
+  }
+  public void setContent(String content) {
+    this.content = content;
+  }
+  public String getCreationDate() {
+    return creationDate;
+  }
+  public void setCreationDate(String creationDate) {
+    this.creationDate = creationDate;
+  }
+  public String getDate() {
+    return date;
+  }
+  public void setDate(String date) {
+    this.date = date;
+  }
+  public String getType() {
+    return type;
+  }
+  public void setType(String type) {
+    this.type = type;
+  }
 	
 	
-	public int getIdNews() {
-		return idNews;
-	}
-	public String getTitleNews() {
-		return titleNews;
-	}
-	public String getContentNews() {
-		return contentNews;
-	}
-	public String getCreationDate() {
-		return creationDate;
-	}
-	public String getDateOfNews() {
-		return dateOfNews;
-	}
-	public void setIdNews(int idNews) {
-		this.idNews = idNews;
-	}
-	public void setTitleNews(String titleNews) {
-		this.titleNews = titleNews;
-	}
-	public void setContentNews(String contentNews) {
-		this.contentNews = contentNews;
-	}
-	public void setCreationDate(String creationDate) {
-		this.creationDate = creationDate;
-	}
-	public void setDateOfNews(String dateOfNews) {
-		this.dateOfNews = dateOfNews;
-	}
 	
 	
 

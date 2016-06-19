@@ -9,14 +9,8 @@ public class MainTest1 {
 
 	public static void main(String[] args) {
 		FacadeLogic facadeLogic = new FacadeLogic();
+		facadeLogic.getRecentNews(12, 1);
 	
-		
-		RateArtistRequest artistRequest = new RateArtistRequest();
-		artistRequest.setComment("Test");
-		artistRequest.setIdUserArtist(10);
-		artistRequest.setIdUserFanatic(12);
-		artistRequest.setQualification(4);
-		facadeLogic.rateArtist(artistRequest);
 	}
 
 }

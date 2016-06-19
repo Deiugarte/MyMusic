@@ -63,7 +63,7 @@ public class EventsDao extends EventsHome {
 	        query.setParameter("artistId", artistId);
 	        query.setFirstResult(offset*20);
 	        query.setMaxResults(20);
-	        java.util.List results = query.list();
+	        java.util.List results = query.list(); 
 	        //java.util.List <Events> results= session.createCriteria(Events.class).list();
 	        for(int i=0; i< results.size();i++){
 	        	   Hibernate.initialize(results.get(i));
