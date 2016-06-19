@@ -7,18 +7,17 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import myfan.domain.facade.FacadeLogic;
-import myfan.resources.base.LoginRequest;
 
 @Path("v1/resources")
 public class UtilitiesResource {
-
+  
   @GET
   @Path("/genreslist")
   @Produces(MediaType.APPLICATION_JSON)
   public String getGenresList() {
     FacadeLogic facadeLogic = new FacadeLogic();
     return facadeLogic.getAllGenders();
-
+    
   }
 
   @GET
@@ -27,7 +26,7 @@ public class UtilitiesResource {
   public String getUbicationsList() {
     FacadeLogic facadeLogic = new FacadeLogic();
     return facadeLogic.getAllUbications();
-  }
+    }
 
   @GET
   @Path("/userdata/{username}")
@@ -35,5 +34,5 @@ public class UtilitiesResource {
   public String getUserData(@PathParam("username") int username) {
     FacadeLogic facadeLogic = new FacadeLogic();
     return facadeLogic.getPersonalInformationOfUser(username);
-  }
+    }
 }

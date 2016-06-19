@@ -5,9 +5,9 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.password">2ZLrKwcwAcdaySuiDdAnLCiRVO</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-83-59-110.compute-1.amazonaws.com:5432/da379n8n0iebje?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory</property>
-        <property name="hibernate.connection.username">wywqcpgyplgcib</property>
+        <property name="hibernate.connection.password">myfan</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/myfan</property>
+        <property name="hibernate.connection.username">myfan</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.transaction.auto_close_session">true</property>

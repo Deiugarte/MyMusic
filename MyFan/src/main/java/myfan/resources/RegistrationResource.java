@@ -30,7 +30,6 @@ public class RegistrationResource {
     dataRequest.setMediaType(MediaType.APPLICATION_JSON_TYPE);
     RegisterNewFanaticRequest registerNewFanaticRequest = dataRequest.getValueAs(RegisterNewFanaticRequest.class);
     FacadeLogic facadeLogic = new FacadeLogic();
-    System.out.println(fileDetail.getFileName());
     return facadeLogic.registerNewFanatic(registerNewFanaticRequest, uploadedInputStream, fileDetail);
   }
   @POST

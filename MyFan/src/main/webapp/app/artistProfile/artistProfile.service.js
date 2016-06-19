@@ -14,11 +14,11 @@
     this.getPlansFromServer = getPlansFromServer;
 
     function postCompanyInfo(data) {
-      return $http.post('https://powerful-oasis-46465.herokuapp.com/rest/v1/company/register', data);
+      return $http.post('http://localhost:8000/rest/v1/company/register', data);
     }
 
     function getPlansFromServer(data) {
-      return $http.get('https://powerful-oasis-46465.herokuapp.com/rest/v1/plan/all', data);
+      return $http.get('http://localhost:8000/rest/v1/plan/all', data);
     }
   }
 })();
