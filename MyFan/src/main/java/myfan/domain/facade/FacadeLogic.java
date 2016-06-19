@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
+import myfan.domain.ActionsUser;
 import myfan.domain.ArtistLogic;
 import myfan.domain.DiscLogic;
 import myfan.domain.EventsLogic;
@@ -27,6 +28,8 @@ import myfan.resources.base.DeleteNewsRequest;
 import myfan.resources.base.DisableAccountRequest;
 import myfan.resources.base.FollowArtistRequest;
 import myfan.resources.base.LoginRequest;
+import myfan.resources.base.RateArtistRequest;
+import myfan.resources.base.RateDiscRequest;
 import myfan.resources.base.RegisterNewArtistRequest;
 import myfan.resources.base.RegisterNewFanaticRequest;
 import myfan.resources.base.UpdateProfileUserRequest;
@@ -45,6 +48,7 @@ public class FacadeLogic {
 	private EventsLogic eventsLogic;
 	private DiscLogic discLogic;
 	private SongLogic songLogic;
+	private ActionsUser actionsUser;
 
 	public FacadeLogic() {
 		userLogic = new UserLogic();
@@ -56,6 +60,7 @@ public class FacadeLogic {
 		eventsLogic = new EventsLogic();
 		discLogic = new DiscLogic();
 		songLogic = new SongLogic();
+		actionsUser= new ActionsUser();
 	}
 
 	/*************************************** RESPONSE ******************************************************/
@@ -146,21 +151,23 @@ public class FacadeLogic {
 	}
 
 	public Response followArtist( FollowArtistRequest followArtistRequest) {
-		return fanaticLogic.followArtist(followArtistRequest);
+		return actionsUser.followArtist(followArtistRequest);
+	}
+	
+	public Response unFollowArtist(FollowArtistRequest unFollowArtistRequest) {
+		return actionsUser.unFollowArtist(unFollowArtistRequest);
+	}
+	public Response rateArtist(RateArtistRequest artistQualification) {
+		return  actionsUser.rateArtist(artistQualification);
 	}
 
-	public void rateArtist(Object artistQualification) {
-		// publicar twitter
-	}
-
-	public void rateDiscography(Object discographyQualification) {
+	public Response rateDiscography(RateDiscRequest discographyQualification) {
+		return actionsUser.rateDisc(discographyQualification); 
 	}
 
 	public void rateEvent(Object eventQualification) {
 	}
 
-	public void unFollowArtist(Object artistUser) {
-	}
 
 	public void searchArtist(Object artist) {
 	}

@@ -10,16 +10,13 @@ import myfan.data.models.Genres;
 import myfan.data.models.Ubications;
 import myfan.data.models.Users;
 import myfan.data.models.UsersRoles;
-import myfan.resources.base.FollowArtistRequest;
 import myfan.resources.base.RegisterNewFanaticRequest;
 import myfan.resources.base.UpdateProfileUserRequest;
 
 public class FanaticLogic extends UserLogic {
 
-	private final String FOLLOW_ARTIST_STATUS = "{ \"status\":\"%s\"}";
-	private final String ERROR_ARTIST_NOT_FOUND = "{\"Error \": \"Artist not found \"}";
-	private final String ERROR_FANATIC_NOT_FOUND = "{\"Error \": \"Fanatic not found \"}";
-	
+
+
 	public Response registerNewFanatic(RegisterNewFanaticRequest dataFanatic, String pathProfilePicture) {
 
 		String response = USER_IDENTIFIER_STATUS;
@@ -56,10 +53,5 @@ public class FanaticLogic extends UserLogic {
 
 	}
 
-	public Response followArtist(FollowArtistRequest followArtistRequest) {
-		String response = FOLLOW_ARTIST_STATUS;
-		response = String.format(response, "OK");
-		return Response.status(Status.OK).entity(response).build();
-	}
 
 }
