@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('refiereApp.fanProfile')
+    .module('refiereApp.modalEvent')
     .service('EventSrv', EventSrv);
 
   EventSrv.$inject = ['$http'];

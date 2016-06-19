@@ -7,6 +7,7 @@ public class MainTest1 {
 	public static void main(String[] args) {
 		FacadeLogic facadeLogic = new FacadeLogic();
 		System.out.println(facadeLogic.getPersonalInformationOfArtist(11));
+
 	}
 
 }
