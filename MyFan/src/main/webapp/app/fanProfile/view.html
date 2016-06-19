@@ -3,7 +3,7 @@
         <div id="fanInfoContainer" class="row contentArea center-blocks">
             <div id="fanImageContainer">
                 <div id="fanImageFrame">
-                    <img src="assets/images/userProfile.jpg" id="userProfileImage" alt="artist Profile Image" />
+                    <img ng-src="/{{vm.newUser.imageProfile}}" id="userProfileImage" alt="artist Profile Image" />
                 </div>
                 <div id="fanCogContainer">
                     <span uib-dropdown>
@@ -34,6 +34,7 @@
                     {{genre.name}}
                 </p>
                 <!-- usar ng-repeat aquí con <br/> para el salto de linea -->
+                <b>Pais: </b>
                 {{vm.newUser.countryLocation}}
             </div>
         </div>

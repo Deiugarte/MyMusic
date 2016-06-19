@@ -1,5 +1,5 @@
 package myfan.data.models;
-// Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -17,22 +17,21 @@ public class Discs implements java.io.Serializable {
   private String description;
   private Date releaseYear;
   private String label;
-  private Set discsCalificationses = new HashSet(0);
-  private Set songses = new HashSet(0);
+  private Set<DiscsCalifications> discsCalificationses = new HashSet<DiscsCalifications>(0);
+  private Set<Songs> songses = new HashSet<Songs>(0);
 
   public Discs() {
   }
 
-  public Discs(Artists artists, Genres genres, String name, String description, Date releaseYear) {
+  public Discs(Artists artists, Genres genres, String name, Date releaseYear) {
     this.artists = artists;
     this.genres = genres;
     this.name = name;
-    this.description = description;
     this.releaseYear = releaseYear;
   }
 
   public Discs(Artists artists, Genres genres, String name, String description, Date releaseYear, String label,
-      Set discsCalificationses, Set songses) {
+      Set<DiscsCalifications> discsCalificationses, Set<Songs> songses) {
     this.artists = artists;
     this.genres = genres;
     this.name = name;
@@ -99,19 +98,19 @@ public class Discs implements java.io.Serializable {
     this.label = label;
   }
 
-  public Set getDiscsCalificationses() {
+  public Set<DiscsCalifications> getDiscsCalificationses() {
     return this.discsCalificationses;
   }
 
-  public void setDiscsCalificationses(Set discsCalificationses) {
+  public void setDiscsCalificationses(Set<DiscsCalifications> discsCalificationses) {
     this.discsCalificationses = discsCalificationses;
   }
 
-  public Set getSongses() {
+  public Set<Songs> getSongses() {
     return this.songses;
   }
 
-  public void setSongses(Set songses) {
+  public void setSongses(Set<Songs> songses) {
     this.songses = songses;
   }
 

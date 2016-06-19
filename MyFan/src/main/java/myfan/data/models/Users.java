@@ -1,5 +1,5 @@
 package myfan.data.models;
-// Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -19,9 +19,9 @@ public class Users implements java.io.Serializable {
   private String image;
   private Date creationDate;
   private Date birthday;
-  private Set usersGenreses = new HashSet(0);
-  private Set artistses = new HashSet(0);
-  private Set fanaticses = new HashSet(0);
+  private Set<UsersGenres> usersGenreses = new HashSet<UsersGenres>(0);
+  private Set<Artists> artistses = new HashSet<Artists>(0);
+  private Set<Fanatics> fanaticses = new HashSet<Fanatics>(0);
 
   public Users() {
   }
@@ -38,7 +38,8 @@ public class Users implements java.io.Serializable {
   }
 
   public Users(Ubications ubications, UsersRoles usersRoles, String username, String password, String name,
-      String image, Date creationDate, Date birthday, Set usersGenreses, Set artistses, Set fanaticses) {
+      String image, Date creationDate, Date birthday, Set<UsersGenres> usersGenreses, Set<Artists> artistses,
+      Set<Fanatics> fanaticses) {
     this.ubications = ubications;
     this.usersRoles = usersRoles;
     this.username = username;
@@ -124,27 +125,27 @@ public class Users implements java.io.Serializable {
     this.birthday = birthday;
   }
 
-  public Set getUsersGenreses() {
+  public Set<UsersGenres> getUsersGenreses() {
     return this.usersGenreses;
   }
 
-  public void setUsersGenreses(Set usersGenreses) {
+  public void setUsersGenreses(Set<UsersGenres> usersGenreses) {
     this.usersGenreses = usersGenreses;
   }
 
-  public Set getArtistses() {
+  public Set<Artists> getArtistses() {
     return this.artistses;
   }
 
-  public void setArtistses(Set artistses) {
+  public void setArtistses(Set<Artists> artistses) {
     this.artistses = artistses;
   }
 
-  public Set getFanaticses() {
+  public Set<Fanatics> getFanaticses() {
     return this.fanaticses;
   }
 
-  public void setFanaticses(Set fanaticses) {
+  public void setFanaticses(Set<Fanatics> fanaticses) {
     this.fanaticses = fanaticses;
   }
 

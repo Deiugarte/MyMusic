@@ -9,6 +9,18 @@
   margin-bottom: 2%;
 }
 
+.btn-remove{
+  display: inline-block;
+  background-color: #ff3333;
+  color:white;
+}
+
+.btn-add{
+  display: inline-block;
+  background-color: #4CAF50;
+  color:white;
+}
+
 .remove{
   margin-top: 2%;
 }

@@ -1,5 +1,5 @@
 package myfan.data.dao;
-// Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -7,9 +7,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Example;
 
 import myfan.data.models.UsersRoles;
+
+import static org.hibernate.criterion.Example.create;
 
 /**
  * Home object for domain model class UsersRoles.
@@ -103,11 +104,11 @@ public class UsersRolesHome {
     }
   }
 
-  public List findByExample(UsersRoles instance) {
+  public List<UsersRoles> findByExample(UsersRoles instance) {
     log.debug("finding UsersRoles instance by example");
     try {
-      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.UsersRoles")
-          .add(Example.create(instance)).list();
+      List<UsersRoles> results = (List<UsersRoles>) sessionFactory.getCurrentSession()
+          .createCriteria("myfan.dao.temp.UsersRoles").add(create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;
     } catch (RuntimeException re) {

@@ -9,7 +9,14 @@ public class UserProfileResponse {
 	private String countryLocation; 
 	private ArrayList<GenresResponse> musisicalGenres; /*opcional*/
 	private int identificationNumber;
+	private String imageProfile;
 	
+	public String getImageProfile() {
+		return imageProfile;
+	}
+	public void setImageProfile(String imageProfile) {
+		this.imageProfile = imageProfile;
+	}
 	
 	public String getNameUser() {
 		return nameUser;

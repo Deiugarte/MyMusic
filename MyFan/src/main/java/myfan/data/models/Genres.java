@@ -1,5 +1,5 @@
 package myfan.data.models;
-// Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,8 +11,8 @@ public class Genres implements java.io.Serializable {
 
   private Integer genreId;
   private String name;
-  private Set usersGenreses = new HashSet(0);
-  private Set discses = new HashSet(0);
+  private Set<UsersGenres> usersGenreses = new HashSet<UsersGenres>(0);
+  private Set<Discs> discses = new HashSet<Discs>(0);
 
   public Genres() {
   }
@@ -21,7 +21,7 @@ public class Genres implements java.io.Serializable {
     this.name = name;
   }
 
-  public Genres(String name, Set usersGenreses, Set discses) {
+  public Genres(String name, Set<UsersGenres> usersGenreses, Set<Discs> discses) {
     this.name = name;
     this.usersGenreses = usersGenreses;
     this.discses = discses;
@@ -43,19 +43,19 @@ public class Genres implements java.io.Serializable {
     this.name = name;
   }
 
-  public Set getUsersGenreses() {
+  public Set<UsersGenres> getUsersGenreses() {
     return this.usersGenreses;
   }
 
-  public void setUsersGenreses(Set usersGenreses) {
+  public void setUsersGenreses(Set<UsersGenres> usersGenreses) {
     this.usersGenreses = usersGenreses;
   }
 
-  public Set getDiscses() {
+  public Set<Discs> getDiscses() {
     return this.discses;
   }
 
-  public void setDiscses(Set discses) {
+  public void setDiscses(Set<Discs> discses) {
     this.discses = discses;
   }
 

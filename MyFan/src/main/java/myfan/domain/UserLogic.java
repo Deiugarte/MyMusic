@@ -1,12 +1,9 @@
 package myfan.domain;
 
 import java.io.InputStream;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -29,8 +26,7 @@ import myfan.resources.base.UserProfileResponse;
 
 public class UserLogic {
 
-  private final String DATE_FORMAT = "yyyy-MM-dd";
-  protected final String USER_IDENTIFIER_STATUS = "{\"UserId\": \"%s\", \"status\":\"%s\"}";
+  protected final String USER_IDENTIFIER_STATUS = "{\"UserId\": \"%s\",\"RoleId\": \"%s\", \"status\":\"%s\"}";
   protected final String DISABLE_ACCOUNT_STATUS = "{\"UserId\": \"%s\", \"status\":\"%s\"}";
   protected final String ERROR_USER_FOUND = "{\"Error \": \"User found \"}";
   protected final String ERROR_USER_ROLE_NOT_FOUND = "{\"Error \": \"UserRole not found \"}";
@@ -41,8 +37,9 @@ public class UserLogic {
   private final int FANATIC = 12;
   private final int BAND = 11;
   private final int DISABLE = 13;
-  private Image image;
-  private JSON json;
+  private ImageFabrication imageFabrication;
+  private JSONFabrication jSONFabrication;
+  private DateFabrication date;
 
   protected FacadeDAO facadeDAO;
 
@@ -51,8 +48,9 @@ public class UserLogic {
    */
   public UserLogic() {
     facadeDAO = new FacadeDAO();
-    image = new Image();
-    json = new JSON();
+    imageFabrication = new ImageFabrication();
+    jSONFabrication = new JSONFabrication();
+    date = new DateFabrication();
 
   }
 
@@ -106,7 +104,7 @@ public class UserLogic {
     }
     user.setUsersRoles(facadeDAO.getDisableRole());
     facadeDAO.saveUser(user);
-    response = String.format(response, user.getUserId(), "OK");
+    response = String.format(response, user.getUserId(),user.getUsersRoles().getUsersRolesId(), "OK");
     return Response.status(Status.OK).entity(response).build();
   }
 
@@ -121,7 +119,7 @@ public class UserLogic {
    * @return
    */
   public String saveProfilePictureFile(InputStream profilePicture, FormDataContentDisposition fileDetail) {
-    return image.saveFile(profilePicture, fileDetail);
+    return imageFabrication.saveFile(profilePicture, fileDetail);
 
   }
 
@@ -141,20 +139,17 @@ public class UserLogic {
     userProfileResponse.setLoginUser(user.getUsername());
     userProfileResponse.setNameUser(user.getName());
     userProfileResponse.setMusisicalGenres(getGenresByUser(idUser));
-    return json.jsonConverter(userProfileResponse);
+    userProfileResponse.setImageProfile(user.getImage());
+    return jSONFabrication.jsonConverter(userProfileResponse);
   }
 
-  public ArrayList<GenresResponse> getGenresByUser(int idUser) {
-    List<UsersGenres> usersGenres = facadeDAO.findGenresByUsersId(idUser);
-    List<UsersGenres> A = new ArrayList<UsersGenres>();
-    for (int i = 0; i < usersGenres.size(); i++) {
-      A.add(facadeDAO.findGenresByUserGenressId(usersGenres.get(i).getUsersGenresId()));
-    }
+  private ArrayList<GenresResponse> getGenresByUser(int idUser) {
+    List<UsersGenres> usersGenresList = facadeDAO.findGenresByUsersId(idUser);
 
     ArrayList<GenresResponse> genresResponse = new ArrayList<GenresResponse>();
-    for (int i = 0; i < usersGenres.size(); i++) {
+    for (int i = 0; i < usersGenresList.size(); i++) {
       GenresResponse genre = new GenresResponse();
-      genre.setName(A.get(i).getGenres().getName());
+      genre.setName(usersGenresList.get(i).getGenres().getName());
       genresResponse.add(genre);
     }
     return genresResponse;
@@ -169,7 +164,7 @@ public class UserLogic {
   private String calculadeAge(Date birthday) {
     SimpleDateFormat formatNowYear = new SimpleDateFormat("yyyy");
     String birthdayYear = formatNowYear.format(birthday);
-    String currentYear = formatNowYear.format(calculateCurrentDate());
+    String currentYear = formatNowYear.format(date.getCurrentDate());
     Integer age = Integer.parseInt(currentYear) - Integer.parseInt(birthdayYear);
     return age.toString();
   }
@@ -182,8 +177,7 @@ public class UserLogic {
    * @return
    */
   private UsersRoles enableAccount(int idUser) {
-    System.out.println("Soy un puto amo" + idUser);
-    if (facadeDAO.findArtistById(idUser) != null) {
+    if (facadeDAO.findArtistByUserId(idUser) != null) {
       return facadeDAO.getArtistRole();
     } else {
       return facadeDAO.getFanaticRole();
@@ -234,42 +228,6 @@ public class UserLogic {
       break;
     }
     return response;
-  }
-
-  /**
-   * Covierte un tipo Date a un String con la Fecha
-   * 
-   * @param date
-   * @return
-   */
-  private Date getDateFromString(String date) {
-    Date returnDate = null;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
-    try {
-      returnDate = simpleDateFormat.parse(date);
-    } catch (ParseException ex) {
-      ex.printStackTrace();
-    }
-    return returnDate;
-  }
-
-  /**
-   * Calcula la fecha actual del sistema
-   * 
-   * @return un tipo de fecha Date
-   */
-  private Date calculateCurrentDate() {
-    String currentDate;
-    Date date = null;
-    Calendar currentDateComputer = Calendar.getInstance();
-    DateFormat dateFormatter = new SimpleDateFormat(DATE_FORMAT);
-    currentDate = dateFormatter.format(currentDateComputer.getTime());
-    try {
-      date = dateFormatter.parse(currentDate);
-    } catch (ParseException e) {
-      e.printStackTrace();
-    }
-    return date;
   }
 
   /**
@@ -340,7 +298,7 @@ public class UserLogic {
    * @param login
    *          username del usuario
    * @param birthday
-   *          fecha de cumpleaños
+   *          date de cumpleaños
    */
   protected void createUser(String pathProfilePicture, Ubications ubication, UsersRoles usersRoles, String nameUser,
       String password, String login, String birthday) {
@@ -351,9 +309,9 @@ public class UserLogic {
     user.setUbications(ubication);
     user.setPassword(password);
     user.setImage(pathProfilePicture);
-    user.setCreationDate(calculateCurrentDate());
+    user.setCreationDate(date.getCurrentDate());
     user.setUsername(login);
-    user.setBirthday(getDateFromString(birthday));
+    user.setBirthday(date.getDateFromString(birthday));
     facadeDAO.saveUser(user);
   }
 
@@ -383,7 +341,7 @@ public class UserLogic {
   protected void updateUser(UpdateProfileUserRequest dataUser, String pathProfilePicture) {
     Users user = facadeDAO.findUserById(dataUser.getIdentificationNumber());
     user.setName(dataUser.getNameUser());
-    user.setBirthday(getDateFromString(dataUser.getBirthday()));
+    user.setBirthday(date.getDateFromString(dataUser.getBirthday()));
     user.setPassword(dataUser.getPassword());
     Ubications ubication = checkUbication(dataUser.getCountryLocation());
     user.setUbications(ubication);
