@@ -23,7 +23,7 @@ public class UsersGenresDao extends UsersGenresHome{
   private final SessionFactory sessionFactory = getSessionFactory();
 
   @Override
- 
+  
   
   public SessionFactory getSessionFactory(){
       try {
@@ -53,6 +53,7 @@ public class UsersGenresDao extends UsersGenresHome{
 	        java.util.List <UsersGenres> results = query.list();
 	        for(int i=0; i< results.size();i++){
 	          Hibernate.initialize(results.get(i));  
+
 	        }
 	        trans.commit();
 	        log.debug("get successful, instance found");
