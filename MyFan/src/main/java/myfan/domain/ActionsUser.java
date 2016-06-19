@@ -7,11 +7,15 @@ import myfan.data.facade.FacadeDAO;
 import myfan.data.models.Artists;
 import myfan.data.models.ArtistsCalifications;
 import myfan.data.models.Discs;
+import myfan.data.models.DiscsCalifications;
+import myfan.data.models.Events;
+import myfan.data.models.EventsCalifications;
 import myfan.data.models.Fanatics;
 import myfan.data.models.FanaticsArtists;
 import myfan.data.models.FanaticsArtistsId;
 import myfan.resources.base.FollowArtistRequest;
 import myfan.resources.base.RateArtistRequest;
+import myfan.resources.base.RateConcertRequest;
 import myfan.resources.base.RateDiscRequest;
 
 public class ActionsUser {
@@ -75,36 +79,55 @@ public class ActionsUser {
 		artistsCalifications.setCalification(artistQualification.getQualification());
 		if (!artistQualification.getComment().equals(NO_COMMENT)) {
 			artistsCalifications.setComment(artistQualification.getComment());
-			twitter.postTwitter(fanatic, artists, twitter.STATUS_RATE_AND_COMMENT);
+			twitter.postTwitter(fanatic, artists, twitter.STATUS_RATE_AND_COMMENT_AN_ARTIST);
 		} else {
 			artistsCalifications.setComment(NO_COMMENT);
-			twitter.postTwitter(fanatic, artists, twitter.STATUS_RATE);
+			twitter.postTwitter(fanatic, artists, twitter.STATUS_RATE_AN_ARTIST);
 		}
 		artistsCalifications.setArtists(artists);
 		artistsCalifications.setFanatics(fanatic);
 		facadeDAO.saveCommentsForArtist(artistsCalifications);
-		decreaseFollowers(artists);
 		response = String.format(response, artistsCalifications.getArtistCalificationId(), "OK");
 		return Response.status(Status.OK).entity(response).build();
 	}
+	
 	public Response rateDisc(RateDiscRequest rateDiscRequest) {
 		String response = QUALIFICATION_ARTIST_STATUS;
 		Fanatics fanatic = facadeDAO.findFanaticByUserId(rateDiscRequest.getIdUserFanatic());
 		Discs disc = facadeDAO.findDiscById(rateDiscRequest.getIdDisc());
-	/*	ArtistsCalifications artistsCalifications = new ArtistsCalifications();
-		artistsCalifications.setCalification(rateDiscRequest.getQualification());
+		DiscsCalifications discCalifications = new DiscsCalifications();
+		discCalifications.setCalification(rateDiscRequest.getQualification());
 		if (!rateDiscRequest.getComment().equals(NO_COMMENT)) {
-			artistsCalifications.setComment(rateDiscRequest.getComment());
-			twitter.postTwitter(fanatic, artists, twitter.STATUS_RATE_AND_COMMENT);
+			discCalifications.setComment(rateDiscRequest.getComment());
+			twitter.postTwitter(fanatic, disc, twitter.STATUS_RATE_AND_COMMENT_A_DISC);
 		} else {
-			artistsCalifications.setComment(NO_COMMENT);
-			twitter.postTwitter(fanatic, artists, twitter.STATUS_RATE);
+			discCalifications.setComment(NO_COMMENT);
+			twitter.postTwitter(fanatic, disc, twitter.STATUS_RATE_A_DISC);
 		}
-		artistsCalifications.setArtists(artists);
-		artistsCalifications.setFanatics(fanatic);
-		facadeDAO.saveCommentsForArtist(artistsCalifications);
-		decreaseFollowers(artists);*/
-		//response = String.format(response, artistsCalifications.getArtistCalificationId(), "OK");
+		discCalifications.setDiscs(disc);;
+		discCalifications.setFanatics(fanatic);
+		facadeDAO.saveCommentsForDisc(discCalifications);
+		response = String.format(response, discCalifications.getDiscCalificationId(), "OK");
+		return Response.status(Status.OK).entity(response).build();
+	}
+	
+	public Response rateConcert(RateConcertRequest rateConcertRequest) {
+		String response = QUALIFICATION_ARTIST_STATUS;
+		Events concert= facadeDAO.findEventById(rateConcertRequest.getIdEvent());
+		Fanatics fanatic = facadeDAO.findFanaticByUserId(rateConcertRequest.getIdUserFanatic());
+		EventsCalifications discCalifications = new EventsCalifications();
+		discCalifications.setCalification(rateConcertRequest.getQualification());
+		if (!rateConcertRequest.getComment().equals(NO_COMMENT)) {
+			//discCalifications.setComment(rateConcertRequest.getComment());
+			twitter.postTwitter(fanatic, concert, twitter.STATUS_RATE_AND_COMMENT_A_CONCERT);
+		} else {
+			//discCalifications.setComment(NO_COMMENT);
+			twitter.postTwitter(fanatic, concert, twitter.STATUS_RATE_A_CONCERT);
+		}
+		discCalifications.setEvents(concert);
+		discCalifications.setFanatics(fanatic);
+		facadeDAO.saveCommentsForConcert(discCalifications);
+		response = String.format(response, discCalifications.getEventCalificationId(), "OK");
 		return Response.status(Status.OK).entity(response).build();
 	}
 	

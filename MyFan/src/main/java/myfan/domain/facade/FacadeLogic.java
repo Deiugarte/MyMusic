@@ -29,6 +29,7 @@ import myfan.resources.base.DisableAccountRequest;
 import myfan.resources.base.FollowArtistRequest;
 import myfan.resources.base.LoginRequest;
 import myfan.resources.base.RateArtistRequest;
+import myfan.resources.base.RateConcertRequest;
 import myfan.resources.base.RateDiscRequest;
 import myfan.resources.base.RegisterNewArtistRequest;
 import myfan.resources.base.RegisterNewFanaticRequest;
@@ -60,7 +61,7 @@ public class FacadeLogic {
 		eventsLogic = new EventsLogic();
 		discLogic = new DiscLogic();
 		songLogic = new SongLogic();
-		actionsUser= new ActionsUser();
+		actionsUser = new ActionsUser();
 	}
 
 	/*************************************** RESPONSE ******************************************************/
@@ -150,26 +151,28 @@ public class FacadeLogic {
 		return songLogic.createSong(song);
 	}
 
-	public Response followArtist( FollowArtistRequest followArtistRequest) {
+	public Response followArtist(FollowArtistRequest followArtistRequest) {
 		return actionsUser.followArtist(followArtistRequest);
 	}
-	
+
 	public Response unFollowArtist(FollowArtistRequest unFollowArtistRequest) {
 		return actionsUser.unFollowArtist(unFollowArtistRequest);
 	}
+
 	public Response rateArtist(RateArtistRequest artistQualification) {
-		return  actionsUser.rateArtist(artistQualification);
+		return actionsUser.rateArtist(artistQualification);
 	}
 
 	public Response rateDiscography(RateDiscRequest discographyQualification) {
-		return actionsUser.rateDisc(discographyQualification); 
+		return actionsUser.rateDisc(discographyQualification);
 	}
 
-	public void rateEvent(Object eventQualification) {
+	public Response rateEvent(RateConcertRequest eventQualification) { // falta parametro
+		return actionsUser.rateConcert(eventQualification);									
 	}
-
 
 	public void searchArtist(Object artist) {
+		
 	}
 
 	// public void deleteDisc(Object disc){}

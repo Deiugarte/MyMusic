@@ -38,7 +38,7 @@ public class UsersGenresDao extends UsersGenresHome{
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
       merge(UsersGenres);
-      trans.commit();
+      trans.commit(); 
   }
  
   public List<UsersGenres> findGenresByUsersId(int idUser) {
@@ -50,8 +50,7 @@ public class UsersGenresDao extends UsersGenresHome{
 	       
 	        Query query = session.createQuery("from UsersGenres where iduser = :idUser");
 	        query.setParameter("idUser", idUser); 
-	        
-	       java.util.List <UsersGenres> results = query.list();
+	        java.util.List <UsersGenres> results = query.list();
 	        for(int i=0; i< results.size();i++){
 	          Hibernate.initialize(results.get(i));  
 	        }

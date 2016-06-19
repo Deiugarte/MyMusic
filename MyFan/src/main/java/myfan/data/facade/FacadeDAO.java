@@ -4,6 +4,7 @@ import java.util.List;
 
 import myfan.data.dao.ArtistsCalificationsDao;
 import myfan.data.dao.ArtistsDao;
+import myfan.data.dao.DiscsCalificationsDao;
 import myfan.data.dao.DiscsDao;
 import myfan.data.dao.EventsCalificationsDao;
 import myfan.data.dao.EventsDao;
@@ -21,6 +22,7 @@ import myfan.data.dao.UsersRolesDao;
 import myfan.data.models.Artists;
 import myfan.data.models.ArtistsCalifications;
 import myfan.data.models.Discs;
+import myfan.data.models.DiscsCalifications;
 import myfan.data.models.Events;
 import myfan.data.models.EventsCalifications;
 import myfan.data.models.Fanatics;
@@ -54,6 +56,8 @@ public class FacadeDAO {
 	private DiscsDao discsDao;
 	private SongsDao songsDao;
 	private ArtistsCalificationsDao artistsCalificationsDao;
+	private DiscsCalificationsDao discsCalificationsDao;
+
 
 	public FacadeDAO() {
 		usersDao = new UsersDao();
@@ -71,6 +75,8 @@ public class FacadeDAO {
 		discsDao = new DiscsDao();
 		songsDao = new SongsDao();
 		artistsCalificationsDao = new ArtistsCalificationsDao();
+		discsCalificationsDao= new DiscsCalificationsDao();
+	
 	}
 
 	/*-----------------------------------------FIND-------------------------------------*/
@@ -92,6 +98,10 @@ public class FacadeDAO {
 		return discsDao.getDiscsById(idDisc);
 	}
 
+	public Events findEventById(int idEvent ){
+		return eventsDao.getEventsById(idEvent);
+	}
+	
 	public Ubications findUbicationsById(int ubicationName) {
 		return ubicationsDao.getUbicationsById(ubicationName);
 
@@ -232,6 +242,15 @@ public class FacadeDAO {
 	public void saveCommentsForArtist(ArtistsCalifications artistsCalifications) {
 		artistsCalificationsDao.save(artistsCalifications);
 	}
+	
+	public void saveCommentsForDisc(DiscsCalifications artistsCalifications) {
+		discsCalificationsDao.save(artistsCalifications);
+	}
+	
+	public void saveCommentsForConcert(EventsCalifications concertCalifications) {
+		eventsCalificationsDao.save(concertCalifications);
+	}
+	
 	/*-----------------------------------------	DELETE-------------------------------------*/
 	/*-----------------------------------------	DELETE-------------------------------------*/
 
