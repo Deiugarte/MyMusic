@@ -2,6 +2,7 @@ package myfan.data.dao;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,6 +10,7 @@ import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import myfan.data.models.Artists;
 import myfan.data.models.Fanatics;
+import myfan.data.models.UsersGenres;
 import myfan.resources.util.HibernateUtil;
 
 public class FanaticsDao extends FanaticsHome {
@@ -25,7 +27,7 @@ public class FanaticsDao extends FanaticsHome {
           throw new IllegalStateException("Could not locate SessionFactory in JNDI");
       }
   }
-  
+
   public void save(Fanatics Fanatics){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
@@ -40,7 +42,7 @@ public class FanaticsDao extends FanaticsHome {
       trans.commit();
       return instance;
   }
-  
+
   public Fanatics getFanaticsByUserId(int idUser) {
 	    try {
 	        Session session = sessionFactory.openSession();
@@ -50,6 +52,10 @@ public class FanaticsDao extends FanaticsHome {
 	        Query query = session.createQuery("from Fanatics where userid = :idUser");
 	        query.setParameter("idUser", idUser);
 	        java.util.List<Fanatics> results = query.list();
+	      //  java.util.List <Fanatics> results= session.createCriteria(Fanatics.class).list();
+	        for(int i=0; i< results.size();i++){
+	        	   Hibernate.initialize(results.get(i));
+	        }
 	        System.out.println("Result list: " + results.size());
 	        trans.commit();
 	        log.debug("get successful, instance found");
@@ -59,7 +65,7 @@ public class FanaticsDao extends FanaticsHome {
 	        throw re;
 	    }
 	}
-  
+
   public void deleteFanatics(Fanatics Fanatics) {
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();

@@ -30,7 +30,7 @@ public class EventsDao extends EventsHome {
           throw new IllegalStateException("Could not locate SessionFactory in JNDI");
       }
   }
-  
+
   public void save(Events Events){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
@@ -52,7 +52,7 @@ public class EventsDao extends EventsHome {
       delete(Events);
       trans.commit();
   }
-  
+
   public List<Events> getEventsByArtistId(int artistId,int offset) {
 	    try {
 	        Session session = sessionFactory.openSession();
@@ -63,10 +63,10 @@ public class EventsDao extends EventsHome {
 	        query.setParameter("artistId", artistId);
 	        query.setFirstResult(offset*20);
 	        query.setMaxResults(20);
-	        //java.util.List results = query.list();
-	        java.util.List <Events> results= session.createCriteria(Events.class).list();
+	        java.util.List results = query.list(); 
+	        //java.util.List <Events> results= session.createCriteria(Events.class).list();
 	        for(int i=0; i< results.size();i++){
-	        	   Hibernate.initialize(results.get(i));  
+	        	   Hibernate.initialize(results.get(i));
 	        }
 	        System.out.println("Result list: " + results.size());
 	        trans.commit();
@@ -88,10 +88,10 @@ public List<Events> getEventsByArtistsList(List<FanaticsArtists> fanaticsArtists
 	        Query query = session.createQuery(queryStr);
 	        query.setFirstResult(20*offset);
 	        query.setMaxResults(20);
-	        //java.util.List results = query.list();
-			java.util.List<Events> results = session.createCriteria(Events.class).list();
+	        java.util.List results = query.list();
+			    //java.util.List<Events> results = session.createCriteria(Events.class).list();
 	        for(int i=0; i< results.size();i++){
-	        	   Hibernate.initialize(results.get(i));  
+	        	   Hibernate.initialize(results.get(i));
 	        }
 	        System.out.println("Result list: " + results.size());
 	        trans.commit();

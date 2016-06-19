@@ -74,12 +74,13 @@ public class EventsLogic {
 			boolean isConcert=eventsList.get(i).isType();
 			int idEvent=eventsList.get(i).getEventId();
 			recentEventsResponse.setConcert(isConcert);
-			recentEventsResponse.setContentEvent(eventsList.get(i).getContent());
+			recentEventsResponse.setContent(eventsList.get(i).getContent());
 			recentEventsResponse.setCreationDate(eventsList.get(i).getCreationDate().toString());
-			recentEventsResponse.setDateEvent(eventsList.get(i).getEventDate().toString());
+			recentEventsResponse.setDate(eventsList.get(i).getEventDate().toString());
 			recentEventsResponse.setEventId(idEvent);
-			recentEventsResponse.setTitleEvent(eventsList.get(i).getTittle());
-			recentEventsResponse.setUbicationEvent(eventsList.get(i).getUbications().getName());
+			recentEventsResponse.setTitle(eventsList.get(i).getTittle());
+			recentEventsResponse.setUbication(eventsList.get(i).getUbications().getName());
+			recentEventsResponse.setType("event");
 			if (isConcert){
 				recentEventsResponse.setAverageCalificationsConcerts(calculateAverageCalificationsConcerts(idEvent));
 			}
@@ -98,7 +99,7 @@ public class EventsLogic {
 			sumCalifications += concertCalificationsList.get(j).getCalification();
 		}
 		if (totalOfData>=1){
-			averageCalifications = (sumCalifications/(5*totalOfData))*100;
+			averageCalifications = (sumCalifications/totalOfData);
 		}else{
 			averageCalifications=0;
 		}

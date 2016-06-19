@@ -2,7 +2,9 @@ package myfan.data.facade;
 
 import java.util.List;
 
+import myfan.data.dao.ArtistsCalificationsDao;
 import myfan.data.dao.ArtistsDao;
+import myfan.data.dao.DiscsCalificationsDao;
 import myfan.data.dao.DiscsDao;
 import myfan.data.dao.EventsCalificationsDao;
 import myfan.data.dao.EventsDao;
@@ -18,7 +20,9 @@ import myfan.data.dao.UsersGenresDao;
 import myfan.data.dao.UsersRolesDao;
 
 import myfan.data.models.Artists;
+import myfan.data.models.ArtistsCalifications;
 import myfan.data.models.Discs;
+import myfan.data.models.DiscsCalifications;
 import myfan.data.models.Events;
 import myfan.data.models.EventsCalifications;
 import myfan.data.models.Fanatics;
@@ -32,15 +36,11 @@ import myfan.data.models.Users;
 import myfan.data.models.UsersGenres;
 import myfan.data.models.UsersRoles;
 
-
-
 public class FacadeDAO {
-	
-	
-	 
-	private final String FANATIC_ROLE_NAME = "Fanatic";
-	private final String ARTIST_ROLE_NAME = "Band";
-	private final String DISABLE_ROLE_NAME = "Disable";
+
+	private final String FANATIC_ROLE_NAME = "fanatic";
+	private final String ARTIST_ROLE_NAME = "artist";
+	private final String DISABLE_ROLE_NAME = "disable";
 	private UsersDao usersDao;
 	private UbicationsDao ubicationsDao;
 	private GenresDao genresDao;
@@ -55,6 +55,9 @@ public class FacadeDAO {
 	private EventsCalificationsDao eventsCalificationsDao;
 	private DiscsDao discsDao;
 	private SongsDao songsDao;
+	private ArtistsCalificationsDao artistsCalificationsDao;
+	private DiscsCalificationsDao discsCalificationsDao;
+
 
 	public FacadeDAO() {
 		usersDao = new UsersDao();
@@ -67,10 +70,13 @@ public class FacadeDAO {
 		memberDao = new MembersDao();
 		newsDao = new NewsDao();
 		fanaticsArtistsDao = new FanaticsArtistsDao();
-		eventsDao =new EventsDao();
-		eventsCalificationsDao= new EventsCalificationsDao();
-		discsDao=new DiscsDao();
-		songsDao=new SongsDao();
+		eventsDao = new EventsDao();
+		eventsCalificationsDao = new EventsCalificationsDao();
+		discsDao = new DiscsDao();
+		songsDao = new SongsDao();
+		artistsCalificationsDao = new ArtistsCalificationsDao();
+		discsCalificationsDao= new DiscsCalificationsDao();
+	
 	}
 
 	/*-----------------------------------------FIND-------------------------------------*/
@@ -83,15 +89,19 @@ public class FacadeDAO {
 	public Users findUserById(int idUserName) {
 		return usersDao.getUsersById(idUserName);
 	}
-	
+
 	public News findNewsById(int idNews) {
 		return newsDao.getNewsById(idNews);
 	}
-	
+
 	public Discs findDiscById(int idDisc) {
 		return discsDao.getDiscsById(idDisc);
 	}
 
+	public Events findEventById(int idEvent ){
+		return eventsDao.getEventsById(idEvent);
+	}
+	
 	public Ubications findUbicationsById(int ubicationName) {
 		return ubicationsDao.getUbicationsById(ubicationName);
 
@@ -104,19 +114,19 @@ public class FacadeDAO {
 	public Genres findGenderById(int idGenero) {
 		return genresDao.getGenresById(idGenero);
 	}
-	
+
 	public UsersGenres findGenresByUserGenressId(int idUserGenre) {
 		return usersGenresDao.findGenresByUserGenressId(idUserGenre);
 	}
-	
-	public List <UsersGenres> findGenresByUsersId(int idUser) {
+
+	public List<UsersGenres> findGenresByUsersId(int idUser) {
 		return usersGenresDao.findGenresByUsersId(idUser);
 	}
-	
-	public List <FanaticsArtists> findArtistsByFanaticId(int fanaticId){
+
+	public List<FanaticsArtists> findArtistsByFanaticId(int fanaticId) {
 		return fanaticsArtistsDao.findArtistsByFanaticId(fanaticId);
 	}
-	
+
 	public List<Ubications> findAllUbications() {
 		return ubicationsDao.findAll();
 	}
@@ -129,18 +139,21 @@ public class FacadeDAO {
 		return fanaticsDao.getFanaticsByUserId(idUser);
 	}
 
-	public Fanatics findFanaticById(int idUser) {
-		return fanaticsDao.getFanaticsById(idUser);
+	public Fanatics findFanaticById(int idFanatic) {
+		return fanaticsDao.getFanaticsById(idFanatic);
+	}
+
+	public Artists findArtistById(int idArtist) {
+		return artistsDao.getArtistsById(idArtist);
 	}
 
 	public List<Genres> findAllGenres() {
 		return genresDao.findAll();
 	}
+
 	public Ubications findUbicationsByName(String nameUbication) {
 		return ubicationsDao.findByName(nameUbication);
 	}
-	
-
 
 	/*-----------------------------------------GET-------------------------------------*/
 	/*-----------------------------------------GET-------------------------------------*/
@@ -157,27 +170,27 @@ public class FacadeDAO {
 		return usersRolesDao.findByRoleName(DISABLE_ROLE_NAME);
 	}
 
-	
-	public List<News> getNewsByArtistId(int artistId, int offset){
+	public List<News> getNewsByArtistId(int artistId, int offset) {
 		return newsDao.getNewsByArtistId(artistId, offset);
 	}
-	public List<Events> getEventsByArtistId(int artistId, int offset){
+
+	public List<Events> getEventsByArtistId(int artistId, int offset) {
 		return eventsDao.getEventsByArtistId(artistId, offset);
 	}
-	
-	public List<News> getNewsByArtistList(List<FanaticsArtists> fanaticsArtistsList, int offset){
+
+	public List<News> getNewsByArtistList(List<FanaticsArtists> fanaticsArtistsList, int offset) {
 		return newsDao.getNewsByArtistsList(fanaticsArtistsList, offset);
 	}
-	
-	public List<Events> getEventsByArtistList(List<FanaticsArtists> fanaticsArtistsList, int offset){
+
+	public List<Events> getEventsByArtistList(List<FanaticsArtists> fanaticsArtistsList, int offset) {
 		return eventsDao.getEventsByArtistsList(fanaticsArtistsList, offset);
 	}
-	
-	public List<EventsCalifications> getCalificationByConcert(int idEvent){
+
+	public List<EventsCalifications> getCalificationByConcert(int idEvent) {
 		return eventsCalificationsDao.getCalificationByConcert(idEvent);
-		
+
 	}
-	
+
 	/*-----------------------------------------SAVE-------------------------------------*/
 	/*-----------------------------------------SAVE-------------------------------------*/
 
@@ -205,26 +218,47 @@ public class FacadeDAO {
 	public void saveGenre(Genres genre) {
 		genresDao.save(genre);
 	}
-	
+
 	public void saveNews(News news) {
 		newsDao.save(news);
 	}
-	
+
 	public void saveEvent(Events event) {
 		eventsDao.save(event);
 	}
-	
+
 	public void saveDisc(Discs disc) {
 		discsDao.save(disc);
 	}
-	
+
 	public void saveSong(Songs song) {
 		songsDao.save(song);
 	}
-	/*-----------------------------------------	DELETE-------------------------------------*/
-	/*-----------------------------------------	DELETE-------------------------------------*/
+
+	public void saveFanaticsArtist(FanaticsArtists fanaticsArtists) {
+		fanaticsArtistsDao.save(fanaticsArtists);
+	}
+
+	public void saveCommentsForArtist(ArtistsCalifications artistsCalifications) {
+		artistsCalificationsDao.save(artistsCalifications);
+	}
 	
+	public void saveCommentsForDisc(DiscsCalifications artistsCalifications) {
+		discsCalificationsDao.save(artistsCalifications);
+	}
+	
+	public void saveCommentsForConcert(EventsCalifications concertCalifications) {
+		eventsCalificationsDao.save(concertCalifications);
+	}
+	
+	/*-----------------------------------------	DELETE-------------------------------------*/
+	/*-----------------------------------------	DELETE-------------------------------------*/
+
 	public void deleteNewsById(News news) {
 		newsDao.deleteNews(news);
+	}
+
+	public void deleteFollowersOfArtist(int idFanatic, int idArtist) {
+		fanaticsArtistsDao.deleteByIdArtistAndIdFanatic(idArtist, idFanatic);
 	}
 }

@@ -10,5 +10,6 @@
         var vm = this;
         vm.currentUser = {};
         vm.currentEvent = {};
+      }
 
 })();

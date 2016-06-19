@@ -4,9 +4,9 @@
         .module('refiereApp.fanProfile')
         .controller('fanProfileCtrl', fanProfileCtrl);
 
-    fanProfileCtrl.$inject = ['FanaticSrv', '$log', '$uibModal', '$state', '$window', '$scope'];
+    fanProfileCtrl.$inject = ['FanaticSrv', '$log', '$uibModal', '$state', '$window', '$scope', 'UserDataService'];
 
-    function fanProfileCtrl(FanaticSrv, $log, $uibModal, $state, $window, $scope) {
+    function fanProfileCtrl(FanaticSrv, $log, $uibModal, $state, $window, $scope, UserDataService) {
         var vm = this;
         vm.currentEvent = {};
         vm.currentUser ={
@@ -16,9 +16,14 @@
         vm.newUser = {};
         vm.genresList = {};
         vm.countriesList = {};
-        vm.openEventModal = function(size, title, body, stars, commentsAmount) {
+        vm.timelineParameters = {};
+        vm.timeline = [];
+        vm.userData = UserDataService.getAllUserData();
+        vm.timelineParameters.offset = '0';
+
+        vm.open = function(size, title, content, stars, commentsAmount) {
             vm.currentEvent.title = title;
-            vm.currentEvent.body = body;
+            vm.currentEvent.content = content;
             vm.currentEvent.stars = stars;
             vm.currentEvent.commentsAmount = commentsAmount;
             console.log(vm.currentEvent);
@@ -32,7 +37,6 @@
                         return vm.currentEvent;
                     }
                 }
-
             });
             modalInstance.result.then(function(selectedItem) {
                 $scope.selected = selectedItem;
@@ -42,6 +46,7 @@
 
 
         };
+
         vm.openEditFan= function(size) {
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
@@ -65,11 +70,10 @@
         };
 
 
-
         getUserData();
 
-        function getUserData(data) {
-            FanaticSrv.getUserData()
+        function getUserData() {
+            FanaticSrv.getUserData(vm.userData)
                 .then(function(info) {
                     vm.newUser = info.data;
                 })
@@ -88,35 +92,32 @@
                     vm.countriesList = ubicationData.data;
                 })
         }
-        vm.timeline = {
-            publications: [{
-                type: "noticia",
-                title: "Universal Music comercializarálos Beatles en España",
-                body: "Universal Music Spain, coincidmatos DVD y Blu-ray, ha llegado a un acuerdo con Apple Corp",
-                date: "20/04/2015"
-            }, {
-                type: "noticia",
-                title: "Se murió michael jackson",
-                body: "GG legítimo",
-                date: "12/03/2009"
-            }, {
-                type: "evento",
-                title: "Ky-Mani Marley engalanará el Reggae Festival",
-                body: "Un dia de estos tocas Ki MA ni marly",
-                date: "25/12/2011",
-                stars: 3,
-                id: "12",
-                commentsAmount: 100
-            }, {
-                type: "evento",
-                title: "Ky-Mani Marley engalanará el Reggae Festival",
-                body: "Un dia de estos tocas Ki MA ni marly",
-                date: "25/12/2011",
-                stars: 5,
-                id: "50",
-                commentsAmount: 20
-            }]
-        };
+        getTimelineNews();
+
+        function getTimelineNews() {
+            vm.timelineParameters.idUser = vm.userData.UserId ;
+            FanaticSrv.getTimelineNews(vm.timelineParameters)
+                .then(function(newsData) {
+                    console.log(newsData);
+                    for (var i = 0; i < newsData.data.length; i++) {
+                        vm.timeline.push(newsData.data[i]);
+                    }
+                    console.log(vm.timeline);
+                });
+        }
+
+        getTimelineEvents();
+
+        function getTimelineEvents() {
+            vm.timelineParameters.idUser = '12';
+            FanaticSrv.getTimelineEvents(vm.timelineParameters)
+                .then(function(eventsData) {
+                    for (var i = 0; i < eventsData.data.length; i++) {
+                        vm.timeline.push(eventsData.data[i]);
+                    }
+                });
+        }
+
 
         vm.artistList = {
             artists: [{

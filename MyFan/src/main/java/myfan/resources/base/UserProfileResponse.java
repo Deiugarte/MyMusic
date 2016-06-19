@@ -7,7 +7,7 @@ public class UserProfileResponse {
 	private String loginUser;
 	private String ageUser;    /*verificar*/
 	private String countryLocation; 
-	private ArrayList<GenresResponse> musisicalGenres; /*opcional*/
+	private ArrayList<GenresResponse> musicalGenres; /*opcional*/
 	private int identificationNumber;
 	private String imageProfile;
 	
@@ -30,8 +30,8 @@ public class UserProfileResponse {
 	public String getCountryLocation() {
 		return countryLocation;
 	}
-	public ArrayList<GenresResponse> getMusisicalGenres() {
-		return musisicalGenres;
+	public ArrayList<GenresResponse> getMusicalGenres() {
+		return musicalGenres;
 	}
 	public int getIdentificationNumber() {
 		return identificationNumber;
@@ -48,8 +48,8 @@ public class UserProfileResponse {
 	public void setCountryLocation(String countryLocation) {
 		this.countryLocation = countryLocation;
 	}
-	public void setMusisicalGenres(ArrayList<GenresResponse> musisicalGenres) {
-		this.musisicalGenres = musisicalGenres;
+	public void setMusicalGenres(ArrayList<GenresResponse> musisicalGenres) {
+		this.musicalGenres = musisicalGenres;
 	}
 	public void setIdentificationNumber(int identificationNumber) {
 		this.identificationNumber = identificationNumber;

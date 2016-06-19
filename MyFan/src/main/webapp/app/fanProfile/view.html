@@ -30,12 +30,11 @@
                 <b>Edad:</b> {{vm.newUser.ageUser}}
                 <br />
                 <b>Géneros: </b>
-                <p style="margin:0" ng-repeat="genre in  vm.newUser.musisicalGenres">
+                <p style="margin:0" ng-repeat="genre in  vm.newUser.musicalGenres">
                     {{genre.name}}
                 </p>
                 <!-- usar ng-repeat aquí con <br/> para el salto de linea -->
-                <b>Pais: </b>
-                {{vm.newUser.countryLocation}}
+                <b>Pais: </b> {{vm.newUser.countryLocation}}
             </div>
         </div>
     </div>
@@ -45,21 +44,20 @@
                 <uib-tab index="0" heading="General">
                     <div id="publicationsContainer">
                         <ul class="timeline">
-                            <li ng-repeat="publication in vm.timeline.publications">
-                                <div ng-if="publication.type=='noticia'" class="timeline-badge primary"><i style="vertical-align:baseline;" class="fa fa-newspaper-o"></i></div>
+                            <li ng-repeat="publication in vm.timeline | orderBy:'-date'">
+                                <div ng-if="publication.type=='news'" class="timeline-badge primary"><i style="vertical-align:baseline;" class="fa fa-newspaper-o"></i></div>
                                 <!-- noticia  !-->
-                                <div ng-if="publication.type=='evento'" class="timeline-badge warning"><i style="vertical-align:baseline;" class="fa fa-calendar-check-o"></i></div>
+                                <div ng-if="publication.type=='event'" class="timeline-badge warning"><i style="vertical-align:baseline;" class="fa fa-calendar-check-o"></i></div>
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title">{{publication.title}}
-                                               <div ng-if="publication.type=='evento'" ng-click="vm.openEventModal('lg', publication.title, publication.body, publication.stars, publication.commentsAmount)" class="eventReview pull-right">
-                                                 <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="publication.stars"  max="publication.stars"  on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
-                                                       <span class="eventComment">({{publication.commentsAmount}})</span>
+                                               <div ng-if="publication.concert==true" ng-click="vm.open('lg', publication.title, publication.content, publication.stars, publication.commentsAmount)" class="eventReview pull-right">
+                                                 <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="publication.averageCalificationsConcerts"  max='5'   aria-labelledby="default-rating"></uib-rating>
                                                    </div>
                                                    </h4>
                                     </div>
                                     <div class="timeline-body">
-                                        <p>{{publication.body}}</p>
+                                        <p>{{publication.content}}</p>
                                     </div>
                                     <span class="pull-right"><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{publication.date}}</small></span>
                                 </div>
