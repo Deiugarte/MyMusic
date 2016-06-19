@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1 -->
+<!-- Generated Jun 19, 2016 12:46:28 AM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
     <class name="myfan.data.models.Events" table="events" catalog="myfan" optimistic-lock="version">
         <id name="eventId" type="java.lang.Integer">
@@ -29,7 +29,10 @@
         <property name="creationDate" type="date">
             <column name="CreationDate" length="10" not-null="true" />
         </property>
-        <set name="eventsCalificationses" table="events_califications" inverse="true" lazy="true" fetch="join">
+        <property name="cancel" type="boolean">
+            <column name="Cancel" not-null="true" />
+        </property>
+        <set name="eventsCalificationses" table="events_califications" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="Event" not-null="true" />
             </key>

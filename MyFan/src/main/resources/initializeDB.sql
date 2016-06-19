@@ -1,8 +1,8 @@
 -- Inserting default user roles
-insert into users_roles(usersrolesid, rolename) values (10, 'System administrator')
-insert into users_roles(usersrolesid, rolename) values (11,'Band')
-insert into users_roles(usersrolesid, rolename) values (12, 'Fanatic')
-insert into users_roles(usersrolesid, rolename) values (13, 'Disable')
+insert into users_roles(usersrolesid, rolename) values (10, 'administrator')
+insert into users_roles(usersrolesid, rolename) values (11,'artist')
+insert into users_roles(usersrolesid, rolename) values (12, 'fanatic')
+insert into users_roles(usersrolesid, rolename) values (13, 'disable')
 
 
 INSERT INTO ubications(name) VALUES ( 'Afghanistan');

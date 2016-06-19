@@ -6,7 +6,6 @@
                     <img ng-src="/{{vm.newUser.imageProfile}}" id="userProfileImage" alt="artist Profile Image" />
                 </div>
                 <div id="fanCogContainer">
-                  {{vm.userData}}
                     <span uib-dropdown>
                             <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Farm-Fresh_cog.png"  id="cogImage" alt="cogImage" title="MyImage" uib-dropdown-toggle />
                             <ul class="dropdown-menu a" uib-dropdown-menu aria-labelledby="simple-dropdown">
@@ -31,7 +30,7 @@
                 <b>Edad:</b> {{vm.newUser.ageUser}}
                 <br />
                 <b>Géneros: </b>
-                <p style="margin:0" ng-repeat="genre in  vm.newUser.musisicalGenres">
+                <p style="margin:0" ng-repeat="genre in  vm.newUser.musicalGenres">
                     {{genre.name}}
                 </p>
                 <!-- usar ng-repeat aquí con <br/> para el salto de linea -->

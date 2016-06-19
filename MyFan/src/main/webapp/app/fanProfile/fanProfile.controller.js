@@ -29,7 +29,6 @@
                         return vm.currentEvent;
                     }
                 }
-
             });
             modalInstance.result.then(function(selectedItem) {
                 $scope.selected = selectedItem;
@@ -61,6 +60,8 @@
                     vm.countriesList = ubicationData.data;
                 })
         }
+
+
         vm.timeline = {
             publications: [{
                 type: "noticia",

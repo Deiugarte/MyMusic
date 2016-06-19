@@ -14,15 +14,15 @@
     vm.getUserData = getUserData;
     vm.getGenresData = getGenresData;
     vm.getUbicationsList = getUbicationsList;
-    vm.getTimelineNews = getTimelineNews;
-    vm.getTimelineEvents = getTimelineEvents;
+  //  vm.getTimelineNews = getTimelineNews;
+  //  vm.getTimelineEvents = getTimelineEvents;
 
     function postCompanyInfo(data) {
       return $http.post('http://localhost:8000/rest/v1/company/register', data);
     }
 
     function getUserData(data) {
-      var url = 'http://localhost:8000/rest/v1/resources/userdata/'+data.RoleIdentifier;
+      var url = 'http://localhost:8000/rest/v1/resources/userdata/'+data.UserId;
       return $http.get(url, data);
     }
     function getGenresData(data) {

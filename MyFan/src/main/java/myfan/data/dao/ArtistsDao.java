@@ -27,7 +27,7 @@ public class ArtistsDao extends ArtistsHome {
           throw new IllegalStateException("Could not locate SessionFactory in JNDI");
       }
   }
-  
+
   public void save(Artists Artists){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
@@ -42,7 +42,7 @@ public class ArtistsDao extends ArtistsHome {
       trans.commit();
       return instance;
   }
-  
+
   public Artists getArtistsByUserId(int idUser) {
 	    try {
 	        Session session = sessionFactory.openSession();
@@ -51,10 +51,10 @@ public class ArtistsDao extends ArtistsHome {
 	            log.debug(" >>> Transaction close.");
 	        Query query = session.createQuery("from Artists where userid = :idUser");
 	        query.setParameter("idUser", idUser);
-	        //java.util.List<Artists> results = query.list();
-	        java.util.List <Artists> results= session.createCriteria(Artists.class).list();
+	        java.util.List<Artists> results = query.list();
+	        //java.util.List <Artists> results= session.createCriteria(Artists.class).list();
 	        for(int i=0; i< results.size();i++){
-	        	   Hibernate.initialize(results.get(i));  
+	        	   Hibernate.initialize(results.get(i));
 	        }
 	        System.out.println("Result list: " + results.size());
 	        trans.commit();

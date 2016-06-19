@@ -83,7 +83,6 @@ public class UserLogic {
     if (!existRole(userRole)) {
       return responseBuilder(ERROR_USER_ROLE_NOT_FOUND);
     }
-    response = determiningRole(response, userRole);
     response = String.format(response,user.getUserId(), user.getUsersRoles().getRoleName(), "OK");
     return Response.status(Status.OK).entity(response).build();
 
@@ -138,14 +137,14 @@ public class UserLogic {
     userProfileResponse.setCountryLocation(ubications.getName());
     userProfileResponse.setLoginUser(user.getUsername());
     userProfileResponse.setNameUser(user.getName());
-    userProfileResponse.setMusisicalGenres(getGenresByUser(idUser));
+    userProfileResponse.setMusicalGenres(getGenresByUser(idUser));
     userProfileResponse.setImageProfile(user.getImage());
+    userProfileResponse.setIdentificationNumber(idUser);
     return jSONFabrication.jsonConverter(userProfileResponse);
   }
 
   private ArrayList<GenresResponse> getGenresByUser(int idUser) {
     List<UsersGenres> usersGenresList = facadeDAO.findGenresByUsersId(idUser);
-
     ArrayList<GenresResponse> genresResponse = new ArrayList<GenresResponse>();
     for (int i = 0; i < usersGenresList.size(); i++) {
       GenresResponse genre = new GenresResponse();
@@ -208,27 +207,7 @@ public class UserLogic {
     return user.getPassword().equals(password);
   }
 
-  /**
-   * Determina el tipo de Role, con el que se esta iniciando sesion
-   * 
-   * @param response
-   * @param userRole
-   * @return
-   */
-  private String determiningRole(String response, UsersRoles userRole) {
-    switch (userRole.getUsersRolesId()) {
-    case ADMIN:
-      response = String.format(response, userRole.getUsersRolesId(), "OK");
-      break;
-    case FANATIC:
-      response = String.format(response, userRole.getUsersRolesId(), "OK");
-      break;
-    case BAND:
-      response = String.format(response, userRole.getUsersRolesId(), "OK");
-      break;
-    }
-    return response;
-  }
+ 
 
   /**
    * Determina el tipo de Response

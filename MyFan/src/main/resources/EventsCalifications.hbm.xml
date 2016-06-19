@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1 -->
+<!-- Generated Jun 19, 2016 12:46:28 AM by Hibernate Tools 5.1.0.Alpha1 -->
 <hibernate-mapping>
     <class name="myfan.data.models.EventsCalifications" table="events_califications" catalog="myfan" optimistic-lock="version">
         <id name="eventCalificationId" type="java.lang.Integer">
@@ -16,6 +16,9 @@
         </many-to-one>
         <property name="calification" type="int">
             <column name="Calification" not-null="true" />
+        </property>
+        <property name="comment" type="string">
+            <column name="Comment" length="300" />
         </property>
     </class>
 </hibernate-mapping>

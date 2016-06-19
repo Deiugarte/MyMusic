@@ -36,9 +36,9 @@ import myfan.data.models.UsersRoles;
 
 public class FacadeDAO {
 
-	private final String FANATIC_ROLE_NAME = "Fanatic";
-	private final String ARTIST_ROLE_NAME = "Band";
-	private final String DISABLE_ROLE_NAME = "Disable";
+	private final String FANATIC_ROLE_NAME = "fanatic";
+	private final String ARTIST_ROLE_NAME = "artist";
+	private final String DISABLE_ROLE_NAME = "disable";
 	private UsersDao usersDao;
 	private UbicationsDao ubicationsDao;
 	private GenresDao genresDao;

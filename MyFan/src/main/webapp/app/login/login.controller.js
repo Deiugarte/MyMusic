@@ -20,17 +20,16 @@
         .then(function(data) {
 
           var userInfo = data.data;
-          userInfo.name = vm.loginData.login;
           UserDataService.setUserInfoData(userInfo);
 
           if (data.status === 200){
-            if(userInfo.RoleIdentifier==12){
+            if(userInfo.RoleIdentifier=='fanatic'){
               $state.go('fanProfile');
             }
-            if(userInfo.RoleIdentifier==11){
+            if(userInfo.RoleIdentifier=='artist'){
               $state.go('artistProfile');
             }
-            if(userInfo.RoleIdentifier==10){
+            if(userInfo.RoleIdentifier=='admin'){
               $state.go('adminProfile');
             }
           }
