@@ -5,10 +5,10 @@
     .module('refiereApp.login')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['$state', 'LoginSrv', '$window', 'UserDataService'];
+  LoginCtrl.$inject = ['$state', 'LoginSrv', '$window','$log', 'UserDataService'];
 
   /* @ngInject */
-  function LoginCtrl($state, LoginSrv, $window, UserDataService) {
+  function LoginCtrl($state, LoginSrv, $window,$log,UserDataService) {
     var vm = this;
 
     vm.loginData = {};
@@ -24,7 +24,15 @@
           UserDataService.setUserInfoData(userInfo);
 
           if (data.status === 200){
-            $state.go('dashboard');
+            if(userInfo.RoleIdentifier==12){
+              $state.go('fanProfile');
+            }
+            if(userInfo.RoleIdentifier==11){
+              $state.go('artistProfile');
+            }
+            if(userInfo.RoleIdentifier==10){
+              $state.go('adminProfile');
+            }
           }
 
         })

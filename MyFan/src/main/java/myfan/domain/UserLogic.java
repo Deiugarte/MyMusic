@@ -104,7 +104,7 @@ public class UserLogic {
     }
     user.setUsersRoles(facadeDAO.getDisableRole());
     facadeDAO.saveUser(user);
-    response = String.format(response, user.getUserId(),user.getUsersRoles().getUsersRolesId(), "OK");
+    response = String.format(response, user.getUserId(), user.getUsersRoles().getUsersRolesId(), "OK");
     return Response.status(Status.OK).entity(response).build();
   }
 
