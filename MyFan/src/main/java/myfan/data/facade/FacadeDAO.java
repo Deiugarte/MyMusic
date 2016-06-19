@@ -122,6 +122,10 @@ public class FacadeDAO {
 	public List<UsersGenres> findGenresByUsersId(int idUser) {
 		return usersGenresDao.findGenresByUsersId(idUser);
 	}
+	
+	public List<UsersGenres> findGenresByGenreId(int idGenre) {
+		return usersGenresDao.findGenresByGenreId(idGenre);
+	}
 
 	public List<FanaticsArtists> findArtistsByFanaticId(int fanaticId) {
 		return fanaticsArtistsDao.findArtistsByFanaticId(fanaticId);
@@ -158,6 +162,16 @@ public class FacadeDAO {
 	/*-----------------------------------------GET-------------------------------------*/
 	/*-----------------------------------------GET-------------------------------------*/
 
+	public List<Users> getArtistsByUbication(int idUbication){
+		return artistsDao.getArtistsByUbication(idUbication);
+	}
+	public List<Users> getArtistByName(String nameArtist) {
+		return artistsDao.getArtistsByName(nameArtist);
+	}
+	
+	public List<Users> getArtistsByNameAndUbication(String nameArtist,int idUbication) {
+		return artistsDao.getArtistsByNameAndUbication(nameArtist, idUbication);
+	}
 	public UsersRoles getFanaticRole() {
 		return usersRolesDao.findByRoleName(FANATIC_ROLE_NAME);
 	}

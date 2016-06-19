@@ -33,9 +33,6 @@ public class UserLogic {
   protected final String ERROR_WRONG_PASSWORD = "{\"Error \": \"Wrong Password \"}";
   protected final String ERROR_USER_NOT_FOUND = "{\"Error \": \"User not found \"}";
   protected final String LOGIN_STATUS = "{\"UserId\": \"%s\",\"RoleIdentifier\": \"%s\", \"status\":\"%s\"}";
-  private final int ADMIN = 10;
-  private final int FANATIC = 12;
-  private final int BAND = 11;
   private final int DISABLE = 13;
   private ImageFabrication imageFabrication;
   private JSONFabrication jSONFabrication;

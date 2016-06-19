@@ -64,6 +64,28 @@ public class UsersGenresDao extends UsersGenresHome{
 	    }
 	}
 
+  public List<UsersGenres> findGenresByGenreId(int idGendre) {
+	    try {
+	        Session session = sessionFactory.getCurrentSession();
+	        org.hibernate.Transaction trans= session.beginTransaction();
+	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+	            log.debug(" >>> Transaction close.");
+	       
+	        Query query = session.createQuery("from UsersGenres where idgenre = :idGendre");
+	        query.setParameter("idGendre", idGendre); 
+	        java.util.List <UsersGenres> results = query.list();
+	        for(int i=0; i< results.size();i++){
+	          Hibernate.initialize(results.get(i));  
+
+	        }
+	        trans.commit();
+	        log.debug("get successful, instance found");
+	        return results;
+	    } catch (RuntimeException re) {
+	        log.error("get failed", re);
+	        throw re;
+	    }
+	}
 
 	  public UsersGenres findGenresByUserGenressId(int id) {
 	      Session session = sessionFactory.getCurrentSession();

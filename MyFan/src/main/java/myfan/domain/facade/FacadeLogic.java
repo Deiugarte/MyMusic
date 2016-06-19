@@ -16,6 +16,7 @@ import myfan.domain.EventsLogic;
 import myfan.domain.FanaticLogic;
 import myfan.domain.GenresLogic;
 import myfan.domain.NewsLogic;
+import myfan.domain.Search;
 import myfan.domain.SongLogic;
 import myfan.domain.UserLogic;
 import myfan.domain.UtilsLogic;
@@ -24,8 +25,10 @@ import myfan.resources.base.AddDiscRequest;
 import myfan.resources.base.AddNewsRequest;
 import myfan.resources.base.AddSongRequest;
 import myfan.resources.base.AdminGenresRequest;
+import myfan.resources.base.CancelEventRequest;
 import myfan.resources.base.DeleteNewsRequest;
 import myfan.resources.base.DisableAccountRequest;
+import myfan.resources.base.FindArtistRequest;
 import myfan.resources.base.FollowArtistRequest;
 import myfan.resources.base.LoginRequest;
 import myfan.resources.base.RateArtistRequest;
@@ -50,6 +53,7 @@ public class FacadeLogic {
 	private DiscLogic discLogic;
 	private SongLogic songLogic;
 	private ActionsUser actionsUser;
+	private Search search;
 
 	public FacadeLogic() {
 		userLogic = new UserLogic();
@@ -62,6 +66,7 @@ public class FacadeLogic {
 		discLogic = new DiscLogic();
 		songLogic = new SongLogic();
 		actionsUser = new ActionsUser();
+		search = new Search();
 	}
 
 	/*************************************** RESPONSE ******************************************************/
@@ -70,6 +75,10 @@ public class FacadeLogic {
 	public String getAllGenders() {
 		return utilsLogic.getAllGenres();
 
+	}
+
+	public String searchArtist(FindArtistRequest artist) {
+		return search.searchArtist(artist);
 	}
 
 	public String getPersonalInformationOfUser(int idUserProfile) {
@@ -135,8 +144,8 @@ public class FacadeLogic {
 		return newsLogic.deleteNews(idNews);
 	}
 
-	public void cancelEvent(Object event) { // falta atributo en
-											// base!!!!!!!!!!!!!!!!
+	public Response cancelEvent(CancelEventRequest event) { 
+		return eventsLogic.cancelEvent(event);
 	}
 
 	public Response createEvent(AddEventRequest event) {
@@ -167,13 +176,10 @@ public class FacadeLogic {
 		return actionsUser.rateDisc(discographyQualification);
 	}
 
-	public Response rateEvent(RateConcertRequest eventQualification) { // falta parametro
+	public Response rateEvent(RateConcertRequest eventQualification) {
 		return actionsUser.rateConcert(eventQualification);									
 	}
 
-	public void searchArtist(Object artist) {
-		
-	}
 
 	// public void deleteDisc(Object disc){}
 
