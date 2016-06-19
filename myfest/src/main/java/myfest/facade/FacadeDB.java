@@ -74,7 +74,7 @@ public class FacadeDB {
 	// Get musicalGenres by id
 	
 	public Musicalgenres getMusicalGenreByID(int musicalGenreID){
-		return musicalGenresDAO.getArtistsById(musicalGenreID);
+		return musicalGenresDAO.getGenresById(musicalGenreID);
 	}
 	
 	// Get artistsScores by id

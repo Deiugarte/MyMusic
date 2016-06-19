@@ -73,7 +73,7 @@ public class MusicalGenresDAO extends MusicalgenresHome {
 	}
   
   
-  public Musicalgenres getArtistsById(int id) {
+  public Musicalgenres getGenresById(int id) {
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
       Musicalgenres instance = findById(id);
