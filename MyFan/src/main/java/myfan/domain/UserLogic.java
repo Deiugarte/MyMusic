@@ -32,7 +32,7 @@ public class UserLogic {
   protected final String ERROR_USER_ROLE_NOT_FOUND = "{\"Error \": \"UserRole not found \"}";
   protected final String ERROR_WRONG_PASSWORD = "{\"Error \": \"Wrong Password \"}";
   protected final String ERROR_USER_NOT_FOUND = "{\"Error \": \"User not found \"}";
-  protected final String ROLE_IDENTIFIER_STATUS = "{\"RoleIdentifier\": \"%s\", \"status\":\"%s\"}";
+  protected final String LOGIN_STATUS = "{\"UserId\": \"%s\",\"RoleIdentifier\": \"%s\", \"status\":\"%s\"}";
   private final int ADMIN = 10;
   private final int FANATIC = 12;
   private final int BAND = 11;
@@ -62,7 +62,7 @@ public class UserLogic {
    * @return
    */
   public Response logIn(LoginRequest credentials) {
-    String response = ROLE_IDENTIFIER_STATUS;
+    String response = LOGIN_STATUS;
 
     Users user = facadeDAO.findUserByLogin(credentials.getLogin());
 
@@ -84,7 +84,7 @@ public class UserLogic {
       return responseBuilder(ERROR_USER_ROLE_NOT_FOUND);
     }
     response = determiningRole(response, userRole);
-    response = String.format(response, user.getUsersRoles().getUsersRolesId(), "OK");
+    response = String.format(response,user.getUserId(), user.getUsersRoles().getRoleName(), "OK");
     return Response.status(Status.OK).entity(response).build();
 
   }

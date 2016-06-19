@@ -3,20 +3,20 @@ package myfan.heroku;
 import myfan.data.dao.FanaticsArtistsDao;
 import myfan.domain.facade.FacadeLogic;
 import myfan.resources.base.FollowArtistRequest;
+import myfan.resources.base.RateArtistRequest;
 
 public class MainTest1 {
 
 	public static void main(String[] args) {
 		FacadeLogic facadeLogic = new FacadeLogic();
-		FollowArtistRequest followArtistRequest = new FollowArtistRequest();
-		followArtistRequest.setIdUserArtist(2);
-		followArtistRequest.setIdUserFanatic(1);
-		facadeLogic.followArtist(followArtistRequest);
-		FanaticsArtistsDao artistsDao = new FanaticsArtistsDao();
-		System.out.println("----------------------------------");
-		artistsDao.deleteByIdArtistAndIdFanatic(1, 1);
-		System.out.println("----------------------------------");
-
+	
+		
+		RateArtistRequest artistRequest = new RateArtistRequest();
+		artistRequest.setComment("Test");
+		artistRequest.setIdUserArtist(10);
+		artistRequest.setIdUserFanatic(12);
+		artistRequest.setQualification(4);
+		facadeLogic.rateArtist(artistRequest);
 	}
 
 }

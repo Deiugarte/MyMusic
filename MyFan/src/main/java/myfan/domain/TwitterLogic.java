@@ -8,9 +8,9 @@ import twitter4j.TwitterException;
 
 public class TwitterLogic {
 	private Twitter twitter;
-	private final int STATUS_RATE = 0;
-	private final int STATUS_FOLLOW = 1;
-	private final int STATUS_RATE_AND_COMMENT = 2;
+	public final int STATUS_RATE = 0;
+	public final int STATUS_FOLLOW = 1;
+	public final int STATUS_RATE_AND_COMMENT = 2;
 
 	/**
 	 * Contructor de la clase que crea una nueva instancia de la conexion de
@@ -44,7 +44,7 @@ public class TwitterLogic {
 		}
 	}
 
-	public void postStatusTwitter(String nameUser, String nameArtist, int typeInstruction) {
+	private void postStatusTwitter(String nameUser, String nameArtist, int typeInstruction) {
 		String finalStatusTwitter = "";
 		switch (typeInstruction) {
 		case STATUS_RATE:
