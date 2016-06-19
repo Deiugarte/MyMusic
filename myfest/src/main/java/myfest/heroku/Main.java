@@ -26,18 +26,18 @@ public class Main {
     
     FacadeGUI facade = new FacadeGUI();
     // Objetos de búsqueda
-    DeliveryGeneral general = new DeliveryGeneral("WaG", "3");
-    DeliveryGeneral country = new DeliveryGeneral("Cartago", "10");
-    DeliveryGeneral genre   = new DeliveryGeneral("Bachata", "3");
+    DeliveryGeneral general = new DeliveryGeneral();
+    general.setAmount("10");
+    general.setName("W");
+    general.setGenre("Salsa");
+    general.setCountry("Francia");
     DeliverySpecific spec   = new DeliverySpecific("1");
     
     // Busqueda inicial
     String genres = facade.getListGenres();
     String ubications =  facade.getListUbications();
     // Search
-    String namesSearched = facade.getSearchNames(general);
-    String countriesSearched = facade.getSearchCountries(country);
-    String genresSearched = facade.getSearchGenders(genre);
+    String namesSearched = facade.getSearch(general);
     // Dashboard
     String dashboard = facade.getSearchArtistData(spec);
     
@@ -46,11 +46,11 @@ public class Main {
     
     System.out.println("Ubicaciones con json:\n"+ubications);    
     
-    System.out.println("Busqueda por nombre:\n"+namesSearched);
+    System.out.println("Busqueda por filtros:\n"+namesSearched);
     
-    System.out.println("Busqueda por países:\n"+countriesSearched);
+    //System.out.println("Busqueda por países:\n"+countriesSearched);
     
-    System.out.println("Busqueda por géneros:\n"+genresSearched);
+    //System.out.println("Busqueda por géneros:\n"+genresSearched);
     
     System.out.println("Dashboard:\n"+dashboard);
     

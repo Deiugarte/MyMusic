@@ -21,6 +21,90 @@ public class GetSearchData {
 		json = new JSonConverter();
 	}
 
+	/**
+	 * Este método realiza las búsquedas de los artistas por los filtros que el usuario especifique
+	 * @param searchValue
+	 * @return
+	 */
+	public String getSearch(DeliveryGeneral searchValue){
+		String countrySearch = searchValue.getCountry();
+		String genreSearch   = searchValue.getGenre();
+		String nameSearch    = searchValue.getName();
+		
+		if((countrySearch.equals("false"))){
+			if (genreSearch.equals("false"))
+				return json.jsonConverter(getSearchNames(searchValue));
+			else if (nameSearch.equals("false"))
+				return json.jsonConverter(getSearchGenres(searchValue));
+			else{
+				List<ResponseSearch> aux = new ArrayList<ResponseSearch>();
+				List<ResponseSearch> name_Genre = getSearchGenres(searchValue);
+				List<ResponseSearch> name_Name  = getSearchNames(searchValue);
+				
+				for (int genreSize = 0; genreSize < name_Genre.size(); genreSize++){
+					for (int nameSize = 0; nameSize < name_Name.size(); nameSize++){
+						if(name_Genre.get(genreSize).getArtistID().equals(name_Name.get(nameSize).getArtistID()))
+							aux.add(name_Name.get(nameSize));
+					}
+				}
+				return json.jsonConverter(aux);
+			}
+		}else if(nameSearch.equals("false")){
+			if(genreSearch.equals("false"))
+				return json.jsonConverter(getSearchCountries(searchValue));
+			else if(countrySearch.equals("false"))
+				return json.jsonConverter(getSearchGenres(searchValue));
+			else{
+				List<ResponseSearch> aux = new ArrayList<ResponseSearch>();
+				List<ResponseSearch> name_Genre = getSearchGenres(searchValue);
+				List<ResponseSearch> name_Country  = getSearchCountries(searchValue);		
+				for (int genreSize = 0; genreSize < name_Genre.size(); genreSize++){
+					for (int countrySize = 0; countrySize < name_Country.size(); countrySize++){
+						if(name_Genre.get(genreSize).getArtistID().equals(name_Country.get(countrySize).getArtistID())){
+							aux.add(name_Country.get(countrySize));							
+						}
+					}
+				}
+				return json.jsonConverter(aux);
+			}
+		}else if(genreSearch.equals("false")){
+			if(nameSearch.equals("false"))
+				return json.jsonConverter(getSearchCountries(searchValue));
+			else if(countrySearch.equals("false"))
+				return json.jsonConverter(getSearchNames(searchValue));
+			else{
+				List<ResponseSearch> aux = new ArrayList<ResponseSearch>();
+				List<ResponseSearch> name_Name = getSearchNames(searchValue);
+				List<ResponseSearch> name_Country  = getSearchCountries(searchValue);				
+				for (int nameSize = 0; nameSize < name_Name.size(); nameSize++){
+					for (int countrySize = 0; countrySize < name_Country.size(); countrySize++){
+						if(name_Name.get(nameSize).getArtistID().equals(name_Country.get(countrySize).getArtistID())){
+							aux.add(name_Country.get(countrySize));
+							
+						}
+					}
+				}
+				return json.jsonConverter(aux);
+			}
+		}else{
+			List<ResponseSearch> aux 		   = new ArrayList<ResponseSearch>();
+			List<ResponseSearch> name_Name     = getSearchNames(searchValue);
+			List<ResponseSearch> name_Country  = getSearchCountries(searchValue);
+			List<ResponseSearch> name_Genre    = getSearchGenres(searchValue);
+			
+			for (int nameSize = 0; nameSize < name_Name.size(); nameSize++){
+				for (int countrySize = 0; countrySize < name_Country.size(); countrySize++){
+					for (int genreSize = 0; genreSize < name_Genre.size(); genreSize++){
+						if(name_Name.get(nameSize).getArtistID().equals(name_Country.get(countrySize).getArtistID()) && 
+								name_Name.get(nameSize).getArtistID().equals(name_Genre.get(genreSize).getArtistID())){
+							aux.add(name_Country.get(countrySize));
+						}
+					}
+				}
+			}
+			return json.jsonConverter(aux);
+		}
+	}
 	
 	/**
 	 * Este método devuelve la lista de nombres de artistas que poseeen alguna coincidencia
@@ -28,9 +112,10 @@ public class GetSearchData {
 	 * @param searchValue
 	 * @return
 	 */
-	public String getSearchNames(DeliveryGeneral searchValue) {		
+	
+	private List<ResponseSearch> getSearchNames(DeliveryGeneral searchValue) {		
 		amountSearch = Integer.parseInt(searchValue.getResultsAmount());
-		List<Artists> searchName = facadeDB.getSearchName(searchValue.getValueSearch());
+		List<Artists> searchName = facadeDB.getSearchName(searchValue.getName());
 		List<ResponseSearch> nameSearch = new ArrayList<ResponseSearch>();
 		for (int countryIterator = 0; countryIterator < searchName.size(); countryIterator++){
 			ResponseSearch valueResponse = new ResponseSearch();
@@ -39,9 +124,9 @@ public class GetSearchData {
 			nameSearch.add(valueResponse);
 		}
 		if (amountSearch > nameSearch.size())
-			return json.jsonConverter(nameSearch);
+			return nameSearch;
 		else
-			return json.jsonConverter(nameSearch.subList(0, amountSearch));
+			return nameSearch.subList(0, amountSearch);
 	}
 	
 
@@ -51,9 +136,9 @@ public class GetSearchData {
 	 * @param searchValue
 	 * @return
 	 */
-	public String getSearchCountry(DeliveryGeneral searchValue){
+	private List<ResponseSearch> getSearchCountries (DeliveryGeneral searchValue){
 		amountSearch = Integer.parseInt(searchValue.getResultsAmount());
-		List<Artists> country = facadeDB.getSearchCountry(searchValue.getValueSearch());
+		List<Artists> country = facadeDB.getSearchCountry(searchValue.getCountry());
 		List<ResponseSearch> countriesSearch = new ArrayList<ResponseSearch>();
 		for (int countryIterator = 0; countryIterator < country.size(); countryIterator++){
 			ResponseSearch valueResponse = new ResponseSearch();
@@ -62,9 +147,9 @@ public class GetSearchData {
 			countriesSearch.add(valueResponse);
 		}
 		if (amountSearch > countriesSearch.size())
-			return json.jsonConverter(countriesSearch);
+			return countriesSearch;
 		else
-			return json.jsonConverter(countriesSearch.subList(0, amountSearch));
+			return countriesSearch.subList(0, amountSearch);
 	}
 
 	/**
@@ -73,10 +158,10 @@ public class GetSearchData {
 	 * @param searchValue
 	 * @return
 	 */
-	public String getSearchGenres(DeliveryGeneral searchValue){
+	private List<ResponseSearch> getSearchGenres(DeliveryGeneral searchValue){
 		List<ResponseSearch> genresSearch = new ArrayList<ResponseSearch>();
 		amountSearch = Integer.parseInt(searchValue.getResultsAmount());
-		int idGenreList = (Integer) facadeDB.getIdGenre(searchValue.getValueSearch());
+		int idGenreList = (Integer) facadeDB.getIdGenre(searchValue.getGenre());
 		List<Artistsgenres> listArtistId = facadeDB.getArtistId(Integer.toString(idGenreList));
 		for (int iterator = 0; iterator < listArtistId.size(); iterator ++){
 			Artists artist = new Artists();
@@ -87,8 +172,8 @@ public class GetSearchData {
 			genresSearch.add(genre);
 		}
 		if (genresSearch.size() < amountSearch)
-			return json.jsonConverter(genresSearch);
+			return genresSearch;
 		else
-			return json.jsonConverter(genresSearch.subList(0, amountSearch));
+			return genresSearch.subList(0, amountSearch);
 	}
 }

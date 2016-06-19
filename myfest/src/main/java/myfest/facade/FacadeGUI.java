@@ -35,18 +35,22 @@ public class FacadeGUI {
 	}
 	
 	// ******************** SEARCH *****************
-	// Search Names
-	public String getSearchNames(DeliveryGeneral searchValue){
-		return searchData.getSearchNames(searchValue);
+	
+	public String getSearch(DeliveryGeneral searchValue){
+		return searchData.getSearch(searchValue);
 	}
+	// Search Names
+	//public String getSearchNames(DeliveryGeneral searchValue){
+	//	return searchData.getSearchNames(searchValue);
+	//}
 	
 	// Search Genders
-	public String getSearchGenders(DeliveryGeneral searchValue){
-		return searchData.getSearchGenres(searchValue);
-	}
+	//public String getSearchGenders(DeliveryGeneral searchValue){
+	//	return searchData.getSearchGenres(searchValue);
+	//}
 	
 	// Search Countries
-	public String getSearchCountries(DeliveryGeneral searchValue){
-		return searchData.getSearchCountry(searchValue);
-	}
+	//public String getSearchCountries(DeliveryGeneral searchValue){
+	//	return searchData.getSearchCountry(searchValue);
+	//}
 }

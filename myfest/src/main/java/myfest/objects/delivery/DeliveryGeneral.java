@@ -1,11 +1,16 @@
 package myfest.objects.delivery;
 
-public class DeliveryGeneral extends DeliverySpecific{
+public class DeliveryGeneral{
 	private String amount;
+	private String genre;
+	private String country;
+	private String name;
 	
-	public DeliveryGeneral(String valueSearch, String resultsAmount){
-		super(valueSearch);
-		amount = resultsAmount;
+	public DeliveryGeneral(){
+		amount  = "0";
+		genre   = "false";
+		country = "false";
+		name    = "false";
 	}
 	
 	public String getResultsAmount() {
@@ -19,6 +24,28 @@ public class DeliveryGeneral extends DeliverySpecific{
 	public void setAmount(String amount) {
 		this.amount = amount;
 	}
-	
-	
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}	
 }
