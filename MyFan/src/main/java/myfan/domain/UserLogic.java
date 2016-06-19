@@ -37,9 +37,9 @@ public class UserLogic {
   private final int FANATIC = 12;
   private final int BAND = 11;
   private final int DISABLE = 13;
-  private Image image;
-  private JSON json;
-  private Fecha fecha;
+  private ImageFabrication imageFabrication;
+  private JSONFabrication jSONFabrication;
+  private DateFabrication date;
 
   protected FacadeDAO facadeDAO;
 
@@ -48,9 +48,9 @@ public class UserLogic {
    */
   public UserLogic() {
     facadeDAO = new FacadeDAO();
-    image = new Image();
-    json = new JSON();
-    fecha = new Fecha();
+    imageFabrication = new ImageFabrication();
+    jSONFabrication = new JSONFabrication();
+    date = new DateFabrication();
 
   }
 
@@ -119,7 +119,7 @@ public class UserLogic {
    * @return
    */
   public String saveProfilePictureFile(InputStream profilePicture, FormDataContentDisposition fileDetail) {
-    return image.saveFile(profilePicture, fileDetail);
+    return imageFabrication.saveFile(profilePicture, fileDetail);
 
   }
 
@@ -140,7 +140,7 @@ public class UserLogic {
     userProfileResponse.setNameUser(user.getName());
     userProfileResponse.setMusisicalGenres(getGenresByUser(idUser));
     userProfileResponse.setImageProfile(user.getImage());
-    return json.jsonConverter(userProfileResponse);
+    return jSONFabrication.jsonConverter(userProfileResponse);
   }
 
   private ArrayList<GenresResponse> getGenresByUser(int idUser) {
@@ -164,7 +164,7 @@ public class UserLogic {
   private String calculadeAge(Date birthday) {
     SimpleDateFormat formatNowYear = new SimpleDateFormat("yyyy");
     String birthdayYear = formatNowYear.format(birthday);
-    String currentYear = formatNowYear.format(fecha.getCurrentDate());
+    String currentYear = formatNowYear.format(date.getCurrentDate());
     Integer age = Integer.parseInt(currentYear) - Integer.parseInt(birthdayYear);
     return age.toString();
   }
@@ -298,7 +298,7 @@ public class UserLogic {
    * @param login
    *          username del usuario
    * @param birthday
-   *          fecha de cumpleaños
+   *          date de cumpleaños
    */
   protected void createUser(String pathProfilePicture, Ubications ubication, UsersRoles usersRoles, String nameUser,
       String password, String login, String birthday) {
@@ -309,9 +309,9 @@ public class UserLogic {
     user.setUbications(ubication);
     user.setPassword(password);
     user.setImage(pathProfilePicture);
-    user.setCreationDate(fecha.getCurrentDate());
+    user.setCreationDate(date.getCurrentDate());
     user.setUsername(login);
-    user.setBirthday(fecha.getDateFromString(birthday));
+    user.setBirthday(date.getDateFromString(birthday));
     facadeDAO.saveUser(user);
   }
 
@@ -341,7 +341,7 @@ public class UserLogic {
   protected void updateUser(UpdateProfileUserRequest dataUser, String pathProfilePicture) {
     Users user = facadeDAO.findUserById(dataUser.getIdentificationNumber());
     user.setName(dataUser.getNameUser());
-    user.setBirthday(fecha.getDateFromString(dataUser.getBirthday()));
+    user.setBirthday(date.getDateFromString(dataUser.getBirthday()));
     user.setPassword(dataUser.getPassword());
     Ubications ubication = checkUbication(dataUser.getCountryLocation());
     user.setUbications(ubication);

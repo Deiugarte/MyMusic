@@ -3,6 +3,7 @@ package myfan.data.facade;
 import java.util.List;
 
 import myfan.data.dao.ArtistsDao;
+import myfan.data.dao.DiscsDao;
 import myfan.data.dao.EventsCalificationsDao;
 import myfan.data.dao.EventsDao;
 import myfan.data.dao.FanaticsArtistsDao;
@@ -10,12 +11,14 @@ import myfan.data.dao.FanaticsDao;
 import myfan.data.dao.GenresDao;
 import myfan.data.dao.MembersDao;
 import myfan.data.dao.NewsDao;
+import myfan.data.dao.SongsDao;
 import myfan.data.dao.UbicationsDao;
 import myfan.data.dao.UsersDao;
 import myfan.data.dao.UsersGenresDao;
 import myfan.data.dao.UsersRolesDao;
 
 import myfan.data.models.Artists;
+import myfan.data.models.Discs;
 import myfan.data.models.Events;
 import myfan.data.models.EventsCalifications;
 import myfan.data.models.Fanatics;
@@ -23,6 +26,7 @@ import myfan.data.models.FanaticsArtists;
 import myfan.data.models.Genres;
 import myfan.data.models.Members;
 import myfan.data.models.News;
+import myfan.data.models.Songs;
 import myfan.data.models.Ubications;
 import myfan.data.models.Users;
 import myfan.data.models.UsersGenres;
@@ -49,6 +53,8 @@ public class FacadeDAO {
 	private FanaticsArtistsDao fanaticsArtistsDao;
 	private EventsDao eventsDao;
 	private EventsCalificationsDao eventsCalificationsDao;
+	private DiscsDao discsDao;
+	private SongsDao songsDao;
 
 	public FacadeDAO() {
 		usersDao = new UsersDao();
@@ -63,6 +69,8 @@ public class FacadeDAO {
 		fanaticsArtistsDao = new FanaticsArtistsDao();
 		eventsDao =new EventsDao();
 		eventsCalificationsDao= new EventsCalificationsDao();
+		discsDao=new DiscsDao();
+		songsDao=new SongsDao();
 	}
 
 	/*-----------------------------------------FIND-------------------------------------*/
@@ -78,6 +86,10 @@ public class FacadeDAO {
 	
 	public News findNewsById(int idNews) {
 		return newsDao.getNewsById(idNews);
+	}
+	
+	public Discs findDiscById(int idDisc) {
+		return discsDao.getDiscsById(idDisc);
 	}
 
 	public Ubications findUbicationsById(int ubicationName) {
@@ -196,6 +208,18 @@ public class FacadeDAO {
 	
 	public void saveNews(News news) {
 		newsDao.save(news);
+	}
+	
+	public void saveEvent(Events event) {
+		eventsDao.save(event);
+	}
+	
+	public void saveDisc(Discs disc) {
+		discsDao.save(disc);
+	}
+	
+	public void saveSong(Songs song) {
+		songsDao.save(song);
 	}
 	/*-----------------------------------------	DELETE-------------------------------------*/
 	/*-----------------------------------------	DELETE-------------------------------------*/

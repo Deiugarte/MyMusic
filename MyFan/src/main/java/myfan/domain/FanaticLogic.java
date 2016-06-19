@@ -10,45 +10,56 @@ import myfan.data.models.Genres;
 import myfan.data.models.Ubications;
 import myfan.data.models.Users;
 import myfan.data.models.UsersRoles;
+import myfan.resources.base.FollowArtistRequest;
 import myfan.resources.base.RegisterNewFanaticRequest;
 import myfan.resources.base.UpdateProfileUserRequest;
 
 public class FanaticLogic extends UserLogic {
 
-  public Response registerNewFanatic(RegisterNewFanaticRequest dataFanatic, String pathProfilePicture) {
+	private final String FOLLOW_ARTIST_STATUS = "{ \"status\":\"%s\"}";
+	private final String ERROR_ARTIST_NOT_FOUND = "{\"Error \": \"Artist not found \"}";
+	private final String ERROR_FANATIC_NOT_FOUND = "{\"Error \": \"Fanatic not found \"}";
+	
+	public Response registerNewFanatic(RegisterNewFanaticRequest dataFanatic, String pathProfilePicture) {
 
-    String response = USER_IDENTIFIER_STATUS;
-    Users user = facadeDAO.findUserByLogin(dataFanatic.getLogin());
-    if (existUser(user)) {
-      return responseBuilder(ERROR_USER_FOUND);
-    }
-    Ubications ubication = checkUbication(dataFanatic.getCountryLocation());
-    ArrayList<Genres> genders = checkGenres(dataFanatic.getMusicalGenres());
-    UsersRoles usersRoles = facadeDAO.getFanaticRole();
+		String response = USER_IDENTIFIER_STATUS;
+		Users user = facadeDAO.findUserByLogin(dataFanatic.getLogin());
+		if (existUser(user)) {
+			return responseBuilder(ERROR_USER_FOUND);
+		}
+		Ubications ubication = checkUbication(dataFanatic.getCountryLocation());
+		ArrayList<Genres> genders = checkGenres(dataFanatic.getMusicalGenres());
+		UsersRoles usersRoles = facadeDAO.getFanaticRole();
 
-    createUser(pathProfilePicture, ubication, usersRoles, dataFanatic.getNameUser(), dataFanatic.getPassword(),
-        dataFanatic.getLogin(), dataFanatic.getBirthDate());
+		createUser(pathProfilePicture, ubication, usersRoles, dataFanatic.getNameUser(), dataFanatic.getPassword(),
+				dataFanatic.getLogin(), dataFanatic.getBirthDate());
 
-    Fanatics fanatic = new Fanatics();
-    user = facadeDAO.findUserByLogin(dataFanatic.getLogin());
-    fanatic.setSex(dataFanatic.getGender());
-    fanatic.setUsers(user);
-    facadeDAO.saveFanatic(fanatic);
-    saveGenres(user, genders);
+		Fanatics fanatic = new Fanatics();
+		user = facadeDAO.findUserByLogin(dataFanatic.getLogin());
+		fanatic.setSex(dataFanatic.getGender());
+		fanatic.setUsers(user);
+		facadeDAO.saveFanatic(fanatic);
+		saveGenres(user, genders);
 
-    response = String.format(response, user.getUserId().toString(),user.getUsersRoles().getRoleName(), "OK");
-    return Response.status(Status.OK).entity(response).build();
-  }
+		response = String.format(response, user.getUserId().toString(), user.getUsersRoles().getRoleName(), "OK");
+		return Response.status(Status.OK).entity(response).build();
+	}
 
-  public Response updateFanatic(UpdateProfileUserRequest dataFanatic, String pathProfilePicture) {
-    String response = USER_IDENTIFIER_STATUS;
-    updateUser(dataFanatic, pathProfilePicture);
-    Fanatics fanatic = facadeDAO.findFanaticById(dataFanatic.getIdentificationNumber());
-    fanatic.setSex(dataFanatic.isGender());
-    facadeDAO.saveFanatic(fanatic);
-    response = String.format(response, fanatic.getFanaticId().toString(),"fanatic", "OK");
-    return Response.status(Status.OK).entity(response).build();
+	public Response updateFanatic(UpdateProfileUserRequest dataFanatic, String pathProfilePicture) {
+		String response = USER_IDENTIFIER_STATUS;
+		updateUser(dataFanatic, pathProfilePicture);
+		Fanatics fanatic = facadeDAO.findFanaticById(dataFanatic.getIdentificationNumber());
+		fanatic.setSex(dataFanatic.isGender());
+		facadeDAO.saveFanatic(fanatic);
+		response = String.format(response, fanatic.getFanaticId().toString(), "fanatic", "OK");
+		return Response.status(Status.OK).entity(response).build();
 
-  }
+	}
+
+	public Response followArtist(FollowArtistRequest followArtistRequest) {
+		String response = FOLLOW_ARTIST_STATUS;
+		response = String.format(response, "OK");
+		return Response.status(Status.OK).entity(response).build();
+	}
 
 }

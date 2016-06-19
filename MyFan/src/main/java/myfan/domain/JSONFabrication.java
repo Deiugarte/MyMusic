@@ -5,7 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class JSON {
+public class JSONFabrication {
 	  public String jsonConverter(Object source) {
 		    ObjectMapper mapper = new ObjectMapper();
 		    String jsonInString= "{}";
