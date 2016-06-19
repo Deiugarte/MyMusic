@@ -4,9 +4,9 @@
         .module('refiereApp.fanProfile')
         .controller('fanProfileCtrl', fanProfileCtrl);
 
-    fanProfileCtrl.$inject = ['FanaticSrv', '$log', '$uibModal', '$state', '$window', '$scope', 'UserDataService'];
+    fanProfileCtrl.$inject = ['FanaticSrv', '$log', '$uibModal', '$state', '$window', '$scope', 'UserDataService','$cookies','$cookieStore'];
 
-    function fanProfileCtrl(FanaticSrv, $log, $uibModal, $state, $window, $scope, UserDataService) {
+    function fanProfileCtrl(FanaticSrv, $log, $uibModal, $state, $window, $scope, UserDataService,$cookies,$cookieStore) {
         var vm = this;
         vm.currentEvent = {};
         vm.currentUser ={
@@ -18,8 +18,10 @@
         vm.countriesList = {};
         vm.timelineParameters = {};
         vm.timeline = [];
-        vm.userData = UserDataService.getAllUserData();
+        vm.userData = $cookies.getObject('userInfo');
         vm.timelineParameters.offset = '0';
+
+        permissions();
 
         vm.open = function(size, title, content, stars, commentsAmount) {
             vm.currentEvent.title = title;
@@ -70,12 +72,24 @@
         };
 
 
-        getUserData();
-
+        function permissions(){
+          if( vm.userData==null){
+            console.log(vm.userData)
+            $state.go('404')
+          }
+          else{
+            getUserData();
+          }
+        }
+        vm.sessionClose = function sessionClose(){
+          $cookies.remove('userInfo');
+          $state.go('login');
+        }
         function getUserData() {
             FanaticSrv.getUserData(vm.userData)
                 .then(function(info) {
                     vm.newUser = info.data;
+
                 })
         }
 
@@ -98,18 +112,16 @@
             vm.timelineParameters.idUser = vm.userData.UserId ;
             FanaticSrv.getTimelineNews(vm.timelineParameters)
                 .then(function(newsData) {
-                    console.log(newsData);
                     for (var i = 0; i < newsData.data.length; i++) {
                         vm.timeline.push(newsData.data[i]);
                     }
-                    console.log(vm.timeline);
                 });
         }
 
         getTimelineEvents();
 
         function getTimelineEvents() {
-            vm.timelineParameters.idUser = '12';
+            vm.timelineParameters.idUser = vm.userData.UserId;
             FanaticSrv.getTimelineEvents(vm.timelineParameters)
                 .then(function(eventsData) {
                     for (var i = 0; i < eventsData.data.length; i++) {

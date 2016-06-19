@@ -3,9 +3,9 @@
     .module('refiereApp.services')
     .factory('UserDataService', UserDataService);
 
-  UserDataService.$inject = [];
+  UserDataService.$inject = ['$cookies','$cookieStore'];
 
-  function UserDataService() {
+  function UserDataService($cookies,$cookieStore) {
 
     var userInfo = {};
     var service = {
@@ -23,6 +23,7 @@
     return service;
 
     function setUserInfoData(userInfoData) {
+      $cookies.putObject('userInfo', userInfoData);
       userInfo = userInfoData;
     }
 
