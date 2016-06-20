@@ -39,7 +39,7 @@ public class UserActionsResource {
     UpdateProfileUserRequest modifyFanaticRequest = dataRequest.getValueAs(UpdateProfileUserRequest.class);
     FacadeLogic facadeLogic = new FacadeLogic();
     return facadeLogic.modifyDataFanatic(modifyFanaticRequest, uploadedInputStream, fileDetail);
-  }
+    }
   
   @POST
   @Path("/modifyArtist")

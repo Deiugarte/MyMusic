@@ -316,16 +316,27 @@ public class UserLogic {
    */
   protected void updateUser(UpdateProfileUserRequest dataUser, String pathProfilePicture) {
     Users user = facadeDAO.findUserById(dataUser.getIdentificationNumber());
-    user.setName(dataUser.getNameUser());
-    user.setBirthday(date.getDateFromString(dataUser.getBirthday()));
-    user.setPassword(dataUser.getPassword());
-    Ubications ubication = checkUbication(dataUser.getCountryLocation());
-    user.setUbications(ubication);
-    user.setImage(pathProfilePicture);
+    if(dataUser.getNameUser()!=""){
+      user.setName(dataUser.getNameUser());
+    }
+    if(dataUser.getBirthday()!=""){
+      user.setBirthday(date.getDateFromString(dataUser.getBirthday()));
+    }
+    if(dataUser.getPassword()!=""){
+      user.setPassword(dataUser.getPassword());
+    }
+    if(dataUser.getCountryLocation()!=""){
+      Ubications ubication = checkUbication(dataUser.getCountryLocation());
+      user.setUbications(ubication);
+    }
+    if(pathProfilePicture!=""){
+      user.setImage(pathProfilePicture);
+    }    
     facadeDAO.saveUser(user);
+    if(dataUser.getMusisicalGenres()!=null){
     ArrayList<Genres> genders = checkGenres(dataUser.getMusisicalGenres());
     saveGenres(user, genders);
-
+    }
   }
 
 }

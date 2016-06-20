@@ -65,7 +65,7 @@
                         </ul>
                     </div>
                 </uib-tab>
-                <uib-tab index="1" heading="Mis Artistas">
+                <uib-tab ng-click="vm.getFollowedArtist()" index="1" heading="Mis Artistas">
                     <div id="myArtistsListContainer">
                         <div id="myArtistsListHeader">
                             <div id="myArtistsFollowsCounter">¡Sigues a X artistas!</div>
@@ -74,24 +74,24 @@
                             </div>
                         </div>
                         <div id="myArtistsListMainContent">
-                            <div ng-repeat="artist in vm.artistList.artists" class="artistShortProfile">
+                            <div ng-repeat="artist in vm.artistList" class="artistShortProfile">
                                 <div class="artistLeftContent">
                                     <div class="artistImageContainer">
-                                        <img src="assets/images/userProfile.jpg" class="artistProfileImage" alt="artist Profile Image" />
+                                        <img ng-src="{{artist.image}}" class="artistProfileImage" alt="artist Profile Image" />
                                     </div>
                                 </div>
                                 <div class="artistRightContent">
                                     <div class="artistProfileHeader">
-                                        <div class="artistProfileTitle">{{artist.name}}</div>
+                                        <div class="artistProfileTitle">{{artist.nameArtist}}</div>
                                         <div class="artistProfileQuitFollow">
                                             <button class="btn btn-default btn-xs  btn-block">Dejar de seguir</button>
                                         </div>
                                     </div>
                                     <div class="artistProfileLeftInfo">
-                                        <p>{{artist.country}} </p>
-                                        <p> {{artist.albumsAmount}} Discos</p>
+                                        <p>{{artist.ubicationArtist}} </p>
+                                        <p> {{artist.totalOfDiscs}} Discos</p>
                                         <p>
-                                            <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star" ng-model="artist.stars" max="artist.stars" aria-labelledby="default-rating"></uib-rating>
+                                            <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star" ng-model="artist.rankingOfArtist" max="5" aria-labelledby="default-rating"></uib-rating>
                                         </p>
                                     </div>
                                     <div class="artistProfileCenterInfo">
@@ -99,10 +99,6 @@
                                         <div class="centerInfoContent">
                                             <span ng-repeat="genre in artist.genres">{{genre}}</span>
                                         </div>
-                                    </div>
-                                    <div class="artistProfileRightInfo">
-                                        <div class="rightInfoTitle">Próximo evento</div>
-                                        <div class="rightInfoContent">{{artist.nextEvent}}</div>
                                     </div>
 
                                 </div>
