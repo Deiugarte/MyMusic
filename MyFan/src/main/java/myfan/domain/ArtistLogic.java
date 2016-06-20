@@ -57,7 +57,6 @@ public class ArtistLogic extends UserLogic {
 		Members members = new Members();
 		members.setArtists(artist);
 		for (int i = 0; i < membersList.size(); i++) {
-			System.out.println("---->" + membersList.get(i).getName());
 			members.setInstrument(membersList.get(i).getInstrument());
 			members.setName(membersList.get(i).getName());
 			facadeDAO.saveMembersArtist(members);

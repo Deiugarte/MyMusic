@@ -104,7 +104,7 @@ public class DiscsDao extends DiscsHome {
 			org.hibernate.Transaction trans = session.beginTransaction();
 			if (trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
 				log.debug(" >>> Transaction close.");
-			Query query = session.createQuery("from Discs where artist = :idArtiste");
+			Query query = session.createQuery("from Discs where artist = :idArtist");
 			query.setParameter("idArtist", artist);
 			java.util.List<Discs> results = query.list();
 			for (int i = 0; i < results.size(); i++) {

@@ -169,7 +169,7 @@ public class FacadeLogic {
 	 FormDataContentDisposition fileDetail) {
 		String pathProfilePicture = userLogic.saveProfilePictureFile(profilePicture, fileDetail);
 		return artistLogic.updateArtist(modifiedDataUsers, pathProfilePicture);
-	}
+		}
 
 	public Response addGenre(AdminGenresRequest musicalGenres) {
 		return genresLogic.addNewGenres(musicalGenres);
