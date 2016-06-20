@@ -18,6 +18,9 @@
     vm.postRateArtist = postRateArtist;
     vm.postFollowStatus = postFollowStatus;
     vm.postUnfollowStatus = postUnfollowStatus;
+    vm.postGetFollowingStatus = postGetFollowingStatus;
+    vm.postDeleteNews = postDeleteNews;
+    vm.postCancelEvent = postCancelEvent;
 
     function getArtistComments(data){
       var url = 'http://localhost:8000/rest/v1/comments/getArtistComments/' + data.idArtist;
@@ -58,6 +61,23 @@
       var url = 'http://localhost:8000/rest/v1/userActions/unfollowArtist';
       return $http.post(url, data);
     }
+
+    function postGetFollowingStatus(data){
+      var url = 'http://localhost:8000/rest/v1/resources/followStatus';
+      return $http.post(url, data);
+    }
+
+    function postCancelEvent(data){
+      var url = 'http://localhost:8000/rest/v1/events/cancel';
+      return $http.post(url, data);
+    }
+
+    function postDeleteNews(data){
+      var url = 'http://localhost:8000/rest/v1/news/delete';
+      return $http.post(url, data);
+    }
+
+
 
   }
 })();

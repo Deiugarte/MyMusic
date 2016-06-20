@@ -59,10 +59,12 @@
                                     <div class="timeline-body">
                                         <p>{{publication.content}}</p>
                                     </div>
+                                    <span ng-if="publication.isCancel===true" class="pull-left"><small><i class="glyphicon glyphicon-time"></i>Cancelado</small></span>
                                     <span class="pull-right"><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{publication.date}}</small></span>
                                 </div>
                             </li>
                         </ul>
+                        <uib-pager total-items="totalItems" ng-model="currentPage"></uib-pager>
                     </div>
                 </uib-tab>
                 <uib-tab ng-click="vm.getFollowedArtist()" index="1" heading="Mis Artistas">
@@ -81,7 +83,7 @@
                                     <div class="artistProfileHeader">
                                         <div class="artistProfileTitle">{{artist.nameArtist}}</div>
                                         <div class="artistProfileQuitFollow">
-                                            <button ng-click= "vm.unfollowArtist(artist.artistId)" class="btn btn-default btn-xs  btn-block">Dejar de seguir</button>
+                                            <button ng-click="vm.unfollowArtist(artist.artistId)" class="btn btn-default btn-xs  btn-block">Dejar de seguir</button>
                                         </div>
                                     </div>
                                     <div class="artistProfileLeftInfo">
@@ -123,21 +125,21 @@
                 </div>
                 <div id="hiddenFiltersInputs" class="col-xs-3 col-md-8">
                     <select ng-model="vm.searchParameters.nameGenre" class=" input-sm form-control comboBox">
-                      <option value="">Ninguno</option>
+                        <option value="">Ninguno</option>
                         <option ng-repeat="genre in vm.genresList" value="{{genre.name}}">{{genre.name}}</option>
                         <!--  <option ng-repeat="x in genres" value="{{x.genreValue}">{{x.genreName}}</option>  -->
                     </select>
                     <br/>
                     <select ng-model="vm.searchParameters.nameUbication" class="input-sm form-control comboBox">
-                      <option value="">Ninguno</option>
+                        <option value="">Ninguno</option>
                         <option ng-repeat="country in vm.countriesList" value="{{country.name}}">{{country.name}}</option>
                         <!--  <option ng-repeat="x in countries" value="{{x.countryValue}">{{x.countryName}}</option>  -->
                     </select>
                     <br/>
                 </div>
             </div>
-            <div ng-click="vm.goToArtistProfile(result.idArtist)" class="searchResult" ng-repeat= "result in vm.searchResults">
-              {{result.nameArtist}}
+            <div ng-click="vm.goToArtistProfile(result.idArtist)" class="searchResult" ng-repeat="result in vm.searchResults">
+                {{result.nameArtist}}
             </div>
         </div>
 

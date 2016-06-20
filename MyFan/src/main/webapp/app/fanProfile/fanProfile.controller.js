@@ -8,6 +8,10 @@
 
     function fanProfileCtrl(FanaticSrv, $log, $uibModal, $state, $window, $scope, UserDataService,$cookies,$cookieStore) {
         var vm = this;
+
+        $scope.totalItems = 60;
+        $scope.currentPage = 1;
+
         vm.currentEvent = {};
         vm.newUser = {};
         vm.genresList = {};
@@ -17,6 +21,7 @@
         vm.artistList=[];
         vm.userData = $cookies.getObject('userInfo');
         vm.timelineParameters.offset = '0';
+
 
 
         vm.unfollowParameters = {};

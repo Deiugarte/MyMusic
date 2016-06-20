@@ -6,8 +6,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 import myfan.domain.facade.FacadeLogic;
+import myfan.resources.base.AdminGenresRequest;
 import myfan.resources.base.FindArtistRequest;
+import myfan.resources.base.FollowArtistRequest;
 import myfan.resources.base.FindArtistRequest;
 
 @Path("v1/resources")
@@ -62,4 +66,21 @@ public class UtilitiesResource {
     return facadeLogic.searchArtist(findArtistRequest);
     
   }
+  
+  @POST
+  @Path("/followStatus")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response getFollowStatus(FollowArtistRequest followArtistRequest){
+    FacadeLogic facadeLogic = new FacadeLogic();
+    return facadeLogic.Following(followArtistRequest);    
+  }
+  
+  @POST
+  @Path("/addNewGenre")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response addNewGenre(AdminGenresRequest newGenreRequest){
+    FacadeLogic facadeLogic = new FacadeLogic();
+    return facadeLogic.addGenre(newGenreRequest);
+  }
+  
 }
