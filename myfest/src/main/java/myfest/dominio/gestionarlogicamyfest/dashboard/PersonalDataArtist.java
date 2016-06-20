@@ -1,4 +1,4 @@
-package myfest.objects.request;
+package myfest.dominio.gestionarlogicamyfest.dashboard;
 
 public class PersonalDataArtist {
 	private int  idArtist;

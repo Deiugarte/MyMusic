@@ -5,8 +5,8 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import myfest.datasource.databaseconection.HibernateUtil;
 import myfest.models.Discsscores;
-import myfest.utils.HibernateUtil;
 
 
 public class DiscsScoresDAO extends DiscsscoresHome {

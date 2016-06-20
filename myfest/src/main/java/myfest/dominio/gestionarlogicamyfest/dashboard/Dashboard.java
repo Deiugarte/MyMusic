@@ -1,16 +1,14 @@
-package myfest.logic;
+package myfest.dominio.gestionarlogicamyfest.dashboard;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import myfest.facade.FacadeDB;
+import myfest.controldomain.response.JSonConverter;
+import myfest.datasource.facade.FacadeDB;
 import myfest.models.Artists;
 import myfest.models.Artistsgenres;
 import myfest.models.Twittermentions;
-import myfest.objects.response.MonthlyTwitterMentions;
-import myfest.objects.response.ResponseDashboard;
-import myfest.utils.JSonConverter;
 
 public class Dashboard {
   private FacadeDB facadeDB;

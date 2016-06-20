@@ -1,4 +1,4 @@
-package myfest.utils;
+package myfest.datasource.databaseconection;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

@@ -1,4 +1,4 @@
-package myfest.resources;
+package myfest.controlador_mediador.comunicacion.resources;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;

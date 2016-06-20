@@ -1,4 +1,4 @@
-package myfest.resources;
+package myfest.controlador_mediador.comunicacion.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -7,8 +7,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import myfest.facade.FacadeGUI;
-import myfest.objects.request.General;
+import myfest.dominio.facade.FacadeGUI;
+import myfest.dominio.gestionarlogicamyfest.dashboard.General;
 
 @Path("v1/resources")
 public class UtilitiesResource {

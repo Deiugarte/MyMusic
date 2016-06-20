@@ -10,8 +10,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
+import myfest.datasource.databaseconection.HibernateUtil;
 import myfest.models.Musicalgenres;
-import myfest.utils.HibernateUtil;
 
 
 public class MusicalGenresDAO extends MusicalgenresHome {

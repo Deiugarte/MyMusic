@@ -1,10 +1,10 @@
-package myfest.facade;
+package myfest.dominio.facade;
 
-import myfest.logic.Dashboard;
-import myfest.logic.ListGenresUbications;
-import myfest.logic.SearchData;
-import myfest.objects.request.General;
-import myfest.objects.request.PersonalDataArtist;
+import myfest.dominio.gestionarlogicamyfest.dashboard.Dashboard;
+import myfest.dominio.gestionarlogicamyfest.dashboard.General;
+import myfest.dominio.gestionarlogicamyfest.dashboard.ListGenresUbications;
+import myfest.dominio.gestionarlogicamyfest.dashboard.PersonalDataArtist;
+import myfest.dominio.gestionarlogicamyfest.dashboard.SearchData;
 
 
 public class FacadeGUI {

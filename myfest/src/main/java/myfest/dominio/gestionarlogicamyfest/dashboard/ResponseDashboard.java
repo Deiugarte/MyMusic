@@ -1,4 +1,4 @@
-package myfest.objects.response;
+package myfest.dominio.gestionarlogicamyfest.dashboard;
 
 import java.util.List;
 

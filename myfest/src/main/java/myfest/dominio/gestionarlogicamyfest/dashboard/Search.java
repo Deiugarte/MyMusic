@@ -1,4 +1,4 @@
-package myfest.objects.response;
+package myfest.dominio.gestionarlogicamyfest.dashboard;
 
 public class Search extends ArtistGenres{
 	private String artistID;
