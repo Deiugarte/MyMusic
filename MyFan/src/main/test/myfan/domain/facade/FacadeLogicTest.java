@@ -86,7 +86,7 @@ public class FacadeLogicTest {
 	 updateProfileUserRequest.setGender(true);
 	 updateProfileUserRequest.setNameUser("Test");
 	 updateProfileUserRequest.setNameUser("Test");
-	 facadeLogic.modifyDataArtist(updateProfileUserRequest, null, null)
+	 facadeLogic.modifyDataArtist(updateProfileUserRequest, null, null);
  }
   
   @Test
