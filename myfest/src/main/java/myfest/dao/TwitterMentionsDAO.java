@@ -35,14 +35,14 @@ public class TwitterMentionsDAO extends TwittermentionsHome {
       trans.commit();
   }
   
-  public List<Twittermentions> getTwitterMentionsByID(String artistID){
-	  String idQuery = "FROM Twittermentions WHERE artistId = " + artistID;
+  public List<Twittermentions> getTwitterMentionsByID(int artistID){
 	  try {
 	        Session session = sessionFactory.openSession();
 	        org.hibernate.Transaction trans= session.beginTransaction();
 	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
 	            log.debug(" >>> Transaction close.");
-	        Query query = session.createQuery(idQuery);
+	        Query query = session.createQuery("from Twittermentions where artistId = :artistID");
+	        query.setParameter("artistID", artistID);
 	        java.util.List results = query.list();
 	        System.out.println("Result list: " + results.size());
 	        trans.commit();

@@ -48,14 +48,15 @@ public class ArtistsGenresDAO extends ArtistsgenresHome {
 	    }
   }
 
-  public List<Artistsgenres> getGenreId(String id){
-	  String idQuery = "FROM Artistsgenres WHERE artistId = " + id;
+  public List<Artistsgenres> getGenreId(int artistId){
+
 	  try {
 	        Session session = sessionFactory.openSession();
 	        org.hibernate.Transaction trans= session.beginTransaction();
 	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
 	            log.debug(" >>> Transaction close.");
-	        Query query = session.createQuery(idQuery);
+	        Query query = session.createQuery("FROM Artistsgenres WHERE artistId =:artistId ");
+	        query.setParameter("artistId", artistId);
 	        java.util.List results = query.list();
 	        System.out.println("Result list: " + results.size());
 	        trans.commit();

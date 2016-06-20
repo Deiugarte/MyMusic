@@ -5,7 +5,7 @@ import java.util.List;
 
 import myfest.facade.FacadeDB;
 import myfest.models.Musicalgenres;
-import myfest.objects.response.Unique;
+import myfest.objects.response.ArtistGenres;
 import myfest.utils.JSonConverter;
 
 public class ListGenresUbications {
@@ -23,10 +23,10 @@ public class ListGenresUbications {
 	 */
 	public String getListUbications(){
 	    List<String> ubications = facadeDB.getUbicationsArtists();
-	    List<Unique> listUbications = new ArrayList<Unique>();
+	    List<ArtistGenres> listUbications = new ArrayList<ArtistGenres>();
 	    int amountUbications = ubications.size();
 	    for (int ubicationIterator = 0; ubicationIterator < amountUbications; ubicationIterator++){
-	    	Unique ubicationObject = new Unique();
+	    	ArtistGenres ubicationObject = new ArtistGenres();
 	    	ubicationObject.setDataResponse(ubications.get(ubicationIterator));
 	    	listUbications.add(ubicationObject);
 	    }
@@ -40,10 +40,10 @@ public class ListGenresUbications {
 	 */
 	public String getListGenres(){
 		List<Musicalgenres> genres = facadeDB.getGenres();
-	    List<Unique> listGenres = new ArrayList<Unique>();
+	    List<ArtistGenres> listGenres = new ArrayList<ArtistGenres>();
 	    int amountGenres = genres.size();
 	    for (int genreIterator = 0; genreIterator < amountGenres; genreIterator++){
-	    	Unique ubicationObject = new Unique();
+	    	ArtistGenres ubicationObject = new ArtistGenres();
 	    	ubicationObject.setDataResponse(genres.get(genreIterator).getGenreName());
 	    	listGenres.add(ubicationObject);
 	    }

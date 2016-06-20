@@ -10,8 +10,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import myfest.models.Artists;
-import myfest.models.Musicalgenres;
-import myfest.objects.request.Specific;
 import myfest.utils.HibernateUtil;
 
 
@@ -30,8 +28,8 @@ public class ArtistsDAO extends ArtistsHome {
       }
   }
 
-  //revisar query
-  public List<String> getArtistData(Specific guiObject){
+/*  //revisar query
+  public List<String> getArtistData(PersonalDataArtist guiObject){
 	  String name = guiObject.getValueSearch();
 	  try {
 	        Session session = sessionFactory.openSession();
@@ -48,7 +46,7 @@ public class ArtistsDAO extends ArtistsHome {
 	        log.error("get failed", re);
 	        throw re;
 	    }
-  }
+  }*/
 
   public List<Artists> getArtistNameByName(String name){
 	  String valueUper  = name.toUpperCase();

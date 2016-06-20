@@ -4,11 +4,11 @@ public class Scores {
 	private int score;
 	private int voters;
 	private int commentsAmount;
-	
-	public Scores(){
-		score  			= 0;
-		voters 			= 0;
-		commentsAmount 	= 0;
+
+	public Scores() {
+		score = 0;
+		voters = 0;
+		commentsAmount = 0;
 	}
 
 	public int getScore() {
@@ -34,6 +34,5 @@ public class Scores {
 	public void setCommentsAmount(int commentsAmount) {
 		this.commentsAmount = commentsAmount;
 	}
-	
-	
+
 }
