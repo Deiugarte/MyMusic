@@ -14,7 +14,20 @@
         vm.timeline=[];
         vm.timelineParameters = {};
         vm.timelineParameters.offset = '0';
+        vm.currentAlbumInfo = {};
+        $scope.link = 'https://www.youtube.com/watch?v=mGNRAzW0BdI';
+        $scope.artist = {};
+        $scope.artist.id = "11";
 
+
+        getArtistComments();
+        function getArtistComments(){
+
+          ArtistSrv.getArtistComments($scope.artist.id)
+          .then(function(commentsData){
+              $scope.artistComments = commentsData.data;
+          });
+        }
 
         vm.currentUser ={
           type: "fanatic",
@@ -23,6 +36,10 @@
           name: "Alejandro",
         }
 
+        vm.changeVideo = function (videoLink){
+          $scope.link = videoLink;
+          console.log("aaasd");
+        }
 
         vm.getDiscography = function(){
           $scope.switchContent(true);
@@ -65,11 +82,12 @@
 
                 })
         }
-        vm.openEventModal = function(size, title, body, stars, commentsAmount) {
+        vm.openEventModal = function(size, title, body, stars, commentsAmount, id) {
             vm.currentEvent.title = title;
             vm.currentEvent.body = body;
             vm.currentEvent.stars = stars;
             vm.currentEvent.commentsAmount = commentsAmount;
+            vm.currentEvent.id = id;
             console.log(vm.currentEvent);
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
@@ -89,19 +107,24 @@
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());
             });
-
-
         };
 
-        vm.openAlbumModal = function(size) {
+        vm.openAlbumModal = function(size, title, desc, genre, year, songsNum, label) {
+            vm.currentAlbumInfo.title = title;
+            vm.currentAlbumInfo.desc = desc;
+            vm.currentAlbumInfo.genre = genre;
+            vm.currentAlbumInfo.year = year;
+            vm.currentAlbumInfo.songsNum = songsNum;
+            vm.currentAlbumInfo.label = label;
+
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
                 templateUrl: '/templates/modalAlbum/view.html',
                 controller: 'modalAlbumCtrl',
                 size: size,
                 resolve: {
-                    currentEvent: function() {
-                        return vm.currentEvent;
+                    currentAlbumInfo: function() {
+                        return vm.currentAlbumInfo;
                     }
                 }
 
@@ -150,7 +173,9 @@
 
             });
             modalInstance.result.then(function(selectedItem) {
-                $scope.selected = selectedItem;
+              vm.timeline = [];
+              getTimelineEvents();
+              getTimelineNews();
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());
             });
@@ -170,7 +195,9 @@
 
             });
             modalInstance.result.then(function(selectedItem) {
-                $scope.selected = selectedItem;
+              vm.timeline = [];
+              getTimelineEvents();
+              getTimelineNews();
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());
             });
@@ -220,7 +247,6 @@
         }
 
         $scope.following = "¡Seguir artista!";
-        $scope.link = 'https://www.youtube.com/watch?v=mGNRAzW0BdI';
         $scope.centerCol = 'col-xs-7 col-md-7';
         $scope.rightCol = 'col-xs-3 col-md-3';
         $scope.showVid = false;
@@ -237,6 +263,8 @@
             }
 
         }
+
+
         $scope.toggleFollowing = function() {
             if ($scope.following === "¡Seguir artista!") {
                 $scope.following = "¡Dejar de seguir artista!";

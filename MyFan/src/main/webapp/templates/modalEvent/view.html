@@ -33,47 +33,29 @@
                         <br/> (opcional) </div>
                 </div>
                 <div id="ratingInputsCol" class="col-xs-6 col-md-5">
-                    <uib-rating class="ratingStar pull-left" ng-model="x" max="5" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
-                    <b>({{x}})</b>
-                    <input type="hidden" ng-model="x" name="artistRatingValue">
-                    <textarea rows="5" id="artistCommentReview" class="form-control"></textarea>
+                    <uib-rating class="ratingStar pull-left" ng-model="eventRating.qualification" max="5" aria-labelledby="default-rating"></uib-rating>
+                    <b>({{eventRating.qualification}})</b>
+                    <textarea rows="5" id="artistCommentReview" ng-model="eventRating.comment" class="form-control"></textarea>
                 </div>
                 <div id="reviewBtnCol" class="col-xs-2 col-md-3">
-                    <input id="sendReviewBtn" class="btn btn-default btn-sm" type="submit" value="¡Calificar!" />
+                    <button type="button" ng-click="sendRateEvent()" id="sendReviewBtn" class="btn btn-default btn-sm"  value="¡Calificar!" />
                 </div>
             </form>
         </div>
         <div id="artistCommentsContainer">
             <div id="artistComments">
                 <ul class="commentsList">
-                    <div id="commentSectionHeader">Comentarios (2)</div>
-                    <li class="commentContainer">
-                        <header class="commentHeader">
-                            <div class="commentAuthor">Kirito
-                                <div class="commentStarsContainer pull-right">
-                                    <span class="s2 fa fa-star"></span>
-                                    <span class="s2 fa fa-star"></span>
-                                    <span class="s2 fa fa-star"></span>
-                                    <span class="s2 fa fa-star"></span>
-                                </div>
-                            </div>
-                        </header>
-                        <article class="commentBody">Para mi es un objecto de culto. Su voz y su musica son una pura expresion de fe. con el te lleva casi al más alla. es uno de los padre del movimiento hippie, uno de los mas carismaticos.</article>
-                    </li>
-                    <li class="commentContainer">
-                        <header class="commentHeader">
-                            <div class="commentAuthor">Sygram
-                                <div class="commentStarsContainer pull-right">
-                                    <span class="s2 fa fa-star"></span>
-                                    <span class="s2 fa fa-star"></span>
-                                    <span class="s2 fa fa-star"></span>
-                                    <span class="s2 fa fa-star"></span>
-                                    <span class="s2 fa fa-star"></span>
-                                </div>
-                            </div>
-                        </header>
-                        <article class="commentBody">Aunque esté muerto su estilo perdurará por siempre y es el rey del regge y de África. - Ventajas: Puro Regge, Aún vive su espíritu - Desventajas: Por desgracia para todos no está presente :(</article>
-                    </li>
+                  <div id="commentSectionHeader">Comentarios ({{eventComments.totalOfComments}})</div>
+                  <li ng-repeat:"comment in eventComments.comments"class="commentContainer">
+                      <header class="commentHeader">
+                          <div class="commentAuthor">{{comment.reviewer}}
+                              <div class="commentStarsContainer pull-right">
+                                <uib-rating class="ratingStar pull-left" read-only="true"; ng-model="comment.calification" max="5" aria-labelledby="default-rating"></uib-rating>
+                              </div>
+                          </div>
+                      </header>
+                      <article class="commentBody">{{comment.comment}}</article>
+                  </li>
                 </ul>
             </div>
         </div>

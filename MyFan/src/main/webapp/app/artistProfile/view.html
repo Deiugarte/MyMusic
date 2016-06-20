@@ -35,7 +35,7 @@
 
                 </div>
             </div>
-            <div  id="artistName">
+            <div id="artistName">
                 <strong> {{vm.artistProfile.nameUser}} </strong>
             </div>
 
@@ -65,9 +65,8 @@
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title">{{publication.title}}
-                                                 <div ng-if="publication.concert=='true'" ng-click="vm.openEventModal('lg', publication.title, publication.content, publication.averageCalificationsConcerts, publication.commentsAmount)" class="eventReview pull-right">
-                                                   <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="publication.averageCalificationsConcerts"  max=5  aria-labelledby="default-rating"></uib-rating>
-                                                         <span class="eventComment">({{publication.commentsAmount}})</span>
+                                                 <div ng-if="publication.concert===true" ng-click="vm.openEventModal('lg', publication.title, publication.content, publication.averageCalificationsConcerts, publication.commentsAmount, publication.eventId)" class="eventReview pull-right">
+                                                   <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="publication.averageCalificationsConcerts"  max="5"  aria-labelledby="default-rating"></uib-rating>
                                                          <i ng-if="vm.currentUser.type=='artist'" class="fa fa-times pull-right artistCog"></i>
                                                      </div>
 
@@ -110,9 +109,8 @@
                                 <uib-accordion-heading>
                                     <div class="albumTitle">
                                         {{album.title}}
-                                        <div class="pull-right albumStars" ng-click="vm.openAlbumModal('lg')">
+                                        <div class="pull-right albumStars" ng-click="vm.openAlbumModal('lg', album.title, album.description, album.genre, album.songsAmount, album.year, album.recordLabel)">
                                             <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="album.stars" max="5" on-hover="hoveringOver(value)" aria-labelledby="default-rating"></uib-rating>
-                                            <span id="artistReviewComment">({{album.commentsAmount}})</span>
                                         </div>
                                     </div>
                                 </uib-accordion-heading>
@@ -143,12 +141,13 @@
                                             </div>
                                             <div class="songRightInfo">
                                                 <div class="songInfo pull-left">
-                                                  <span ng-if="song.type==true">En vivo &nbsp;</span>
-                                                  <span ng-if="song.type==false">Estudio &nbsp;</span>
-                                                  <span ng-if="song.version==true">- versión limitada </span>
-                                                  <span ng-if="song.version==false">- versión normal </span>                                                </div>
+                                                    <span ng-if="song.type==true">En vivo &nbsp;</span>
+                                                    <span ng-if="song.type==false">Estudio &nbsp;</span>
+                                                    <span ng-if="song.version==true">- versión limitada </span>
+                                                    <span ng-if="song.version==false">- versión normal </span> </div>
                                                 <div class="videoInfo pull-left">
-                                                    Video: {{song.video}}
+                                                    <span ng-if="song.video.length>5 " ng-click="vm.changeVideo(song.video)"> {{link}} Video: Sí </span>
+                                                    <span ng-if="song.video.length<=5">  Video: No </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -171,10 +170,9 @@
                                     <br/> (opcional) </div>
                             </div>
                             <div id="ratingInputsCol" class="col-xs-6 col-md-5">
-                                <uib-rating class="ratingStar pull-left" ng-model="x" max="5" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
-                                <b>({{x}})</b>
-                                <input type="hidden" ng-model="x" name="artistRatingValue">
-                                <textarea rows="5" id="artistCommentReview" class="form-control"></textarea>
+                                <uib-rating class="ratingStar pull-left" ng-model="artistStarRating" max="5" aria-labelledby="default-rating"></uib-rating>
+                                <b>({{artistStarRating}})</b>
+                                <textarea rows="5" ng-model="artistCommentRating" id="artistCommentReview" class="form-control"></textarea>
                             </div>
                             <div id="reviewBtnCol" class="col-xs-2 col-md-3">
                                 <input id="sendReviewBtn" class="btn btn-default btn-sm" type="submit" value="¡Calificar!" />
@@ -184,24 +182,20 @@
                     <div id="artistCommentsContainer">
                         <div id="artistComments">
                             <ul class="commentsList">
-                                <div id="commentSectionHeader">Comentarios (2)</div>
-                                <li ng-repeat="comment in vm.artistCommentsList.comments" class="commentContainer">
-                                    <header class="commentHeader">
-                                        <div class="commentAuthor"> {{comment.author}}
-                                            <div class="commentStarsContainer pull-right">
-                                                <span class="s2 fa fa-star"></span>
-                                                <span class="s2 fa fa-star"></span>
-                                                <span class="s2 fa fa-star"></span>
-                                                <span class="s2 fa fa-star"></span>
-                                            </div>
-                                        </div>
-                                    </header>
-                                    <article class="commentBody">{{comment.content}}</article>
-                                </li>
+                              <div id="commentSectionHeader">Comentarios ({{artistComments.totalOfComments}})</div>
+                              <li ng-repeat:"comment in artistComments.comments"class="commentContainer">
+                                  <header class="commentHeader">
+                                      <div class="commentAuthor">{{comment.reviewer}}
+                                          <div class="commentStarsContainer pull-right">
+                                            <uib-rating class="ratingStar pull-left" read-only="true"; ng-model="comment.calification" max="5" aria-labelledby="default-rating"></uib-rating>
+                                          </div>
+                                      </div>
+                                  </header>
+                                  <article class="commentBody">{{comment.comment}}</article>
+                              </li>
                             </ul>
                         </div>
                     </div>
-
                 </uib-tab>
             </uib-tabset>
         </div>
@@ -210,9 +204,9 @@
 
     <div class="trans" ng-class="rightCol">
         <div ng-show="showVid" id="videoContainer" class="row contentArea center-blocks">
-          <div ng-if="vm.currentUser.type=='artist'" id="createAlbumContainer" class="text-center">
-          <button  class="btn btn-primary btn-block b" ng-click="vm.createAlbumModal('lg')">¡Crear disco!</button>
-        </div>
+            <div ng-if="vm.currentUser.type=='artist'" id="createAlbumContainer" class="text-center">
+                <button class="btn btn-primary btn-block b" ng-click="vm.createAlbumModal('lg')">¡Crear disco!</button>
+            </div>
             <div id="videoPlayerContainer">
                 <ng-youtube-embed url="link" color="white" disablekb="true" width="100%" height="auto" end="20">
                 </ng-youtube-embed>

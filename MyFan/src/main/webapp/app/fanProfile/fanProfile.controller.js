@@ -24,11 +24,12 @@
 
         permissions();
 
-        vm.open = function(size, title, content, stars, commentsAmount) {
+        vm.open = function(size, title, content, stars, commentsAmount, id) {
             vm.currentEvent.title = title;
             vm.currentEvent.content = content;
             vm.currentEvent.stars = stars;
             vm.currentEvent.commentsAmount = commentsAmount;
+            vm.currentEvent.id = id;
             console.log(vm.currentEvent);
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,

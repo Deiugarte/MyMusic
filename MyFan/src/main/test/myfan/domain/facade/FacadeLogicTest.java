@@ -35,7 +35,7 @@ public class FacadeLogicTest {
     AddEventRequest addEventRequest = new AddEventRequest();
     addEventRequest.setContentEvent("Contenido Evento test");
     addEventRequest.setDateEvent("2016-02-02");
-    addEventRequest.setConcert(true);
+    addEventRequest.setIsConcert(true);
     addEventRequest.setUbicationEvent("Costa Rica");
     addEventRequest.setIdUser(10);
     addEventRequest.setTitleEvent("Test");
