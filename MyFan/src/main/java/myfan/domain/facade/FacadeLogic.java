@@ -12,6 +12,7 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import myfan.domain.ActionsUser;
 import myfan.domain.ArtistLogic;
 import myfan.domain.DiscLogic;
+import myfan.domain.DiscographyLogic;
 import myfan.domain.EventsLogic;
 import myfan.domain.FanaticLogic;
 import myfan.domain.FollowedArtist;
@@ -58,6 +59,7 @@ public class FacadeLogic {
 	private Search search;
 	private FollowedArtist  followedArtist;
 	private OptionsArtist optionsArtist;
+	private DiscographyLogic discographyLogic;
 
 	public FacadeLogic() {
 		userLogic = new UserLogic();
@@ -73,6 +75,7 @@ public class FacadeLogic {
 		search = new Search();
 		followedArtist = new FollowedArtist();
 		optionsArtist = new OptionsArtist();
+		discographyLogic = new DiscographyLogic();
 	}
 
 	/*************************************** RESPONSE ******************************************************/
@@ -116,6 +119,9 @@ public class FacadeLogic {
 		return eventsLogic.getRecentEvents(idUser, offset);
 	}
 
+	public String getDiscography(int idUser){
+		return discographyLogic.getDiscography(idUser);
+	}
 	/*************************************** REQUEST ******************************************************/
 	/*************************************** REQUEST ******************************************************/
 
