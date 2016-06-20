@@ -8,9 +8,24 @@
 
     function editFanCtrl(EditFanSrv, currentUser, $uibModalInstance, $state, $window, $scope) {
         $scope.currentUser = currentUser;
-        $scope.selected = {
-            currentEvent: $scope.currentUser[0]
-        };
+
+
+        getGenresList();
+        getUbicationsList();
+
+        function getGenresList() {
+          EditFanSrv.getGenresList()
+            .then(function(genresData){
+             $scope.genres = genresData.data;
+            })
+        }
+
+        function getUbicationsList() {
+          EditFanSrv.getUbicationsList()
+            .then(function(ubicationData){
+             $scope.ubications = ubicationData.data;
+            })
+        }
 
         $scope.ok = function() {
             $uibModalInstance.close($scope.selected.currentUser);
