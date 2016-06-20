@@ -23,6 +23,12 @@
         $scope.artist.id = "11";
         $scope.artist.idArtist = "11";
 
+
+        vm.followParameters = {};
+        vm.followParameters.idUserFanatic = "12";
+        vm.followParameters.idUserArtist = "11";
+
+
         vm.currentUser ={
           type: "fanatic",
           id: "101",
@@ -39,6 +45,24 @@
               console.log("arriba comments de Artist");
           });
         }
+
+        vm.followArtist = function () {
+          console.log(vm.followParameters);
+          ArtistSrv.postFollowStatus(vm.followParameters)
+          .then(function(followData){
+              $scope.following =!$scope.following;
+              console.log("follow exitoso");
+          });
+        };
+
+        vm.unFollowArtist = function () {
+          console.log(vm.followParameters);
+          ArtistSrv.postUnfollowStatus(vm.followParameters)
+          .then(function(followData){
+              $scope.following =!$scope.following;
+              console.log("unfollow exitoso");
+          });
+        };
 
         $scope.sendRateArtist = function(){
           console.log($scope.artistRating);
@@ -224,6 +248,8 @@
             });
         };
 
+
+
         vm.createAlbumModal = function(size) {
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
@@ -259,7 +285,7 @@
             ]
         }
 
-        $scope.following = "¡Seguir artista!";
+        $scope.following =  "true";
         $scope.centerCol = 'col-xs-7 col-md-7';
         $scope.rightCol = 'col-xs-3 col-md-3';
         $scope.showVid = false;
@@ -278,13 +304,6 @@
         }
 
 
-        $scope.toggleFollowing = function() {
-            if ($scope.following === "¡Seguir artista!") {
-                $scope.following = "¡Dejar de seguir artista!";
-            } else {
-                $scope.following = "¡Seguir artista!";
-            }
-        };
         $scope.goBackToProfile = function() {
             $window.location.href = 'fanProfile.html';
         };

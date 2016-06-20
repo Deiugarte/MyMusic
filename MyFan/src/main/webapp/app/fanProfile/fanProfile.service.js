@@ -17,6 +17,7 @@
     vm.getTimelineEvents = getTimelineEvents;
     vm.getFollowedArtist = getFollowedArtist;
     vm.searchData = searchData;
+    vm.postUnfollowStatus =  postUnfollowStatus;
 
     function searchData(data){
       var url = 'http://localhost:8000/rest/v1/resources/searchData'

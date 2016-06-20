@@ -81,7 +81,7 @@
                                     <div class="artistProfileHeader">
                                         <div class="artistProfileTitle">{{artist.nameArtist}}</div>
                                         <div class="artistProfileQuitFollow">
-                                            <button class="btn btn-default btn-xs  btn-block">Dejar de seguir</button>
+                                            <button ng-click= "vm.unfollowArtist(artist.artistId)" class="btn btn-default btn-xs  btn-block">Dejar de seguir</button>
                                         </div>
                                     </div>
                                     <div class="artistProfileLeftInfo">
@@ -136,7 +136,7 @@
                     <br/>
                 </div>
             </div>
-            <div ng-repeat= "result in vm.searchResults">
+            <div ng-click="vm.goToArtistProfile(result.idArtist)" class="searchResult" ng-repeat= "result in vm.searchResults">
               {{result.nameArtist}}
             </div>
         </div>
