@@ -47,15 +47,15 @@
 
                   <ul class="commentsList">
                     <div class="commentSectionHeader">Comentarios ({{eventComments.totalOfComments}})</div>
-                  <li ng-repeat:"comment in eventComments.comments" class="commentContainer">
+                  <li ng-repeat="comment in eventComments.coments" class="commentContainer">
                       <header class="commentHeader">
-                          <div class="commentAuthor">asd{{comment.reviewer}}
+                          <div class="commentAuthor">{{comment.reviewer}}
                               <div class="commentStarsContainer pull-right">
                                 <uib-rating  style="color: #f9f014; font-size:1.7vw;" class="pull-right" read-only="true" ng-model="comment.calification" max="5" aria-labelledby="default-rating"></uib-rating>
                               </div>
                           </div>
                       </header>
-                      <article class="commentBody">asdasd{{comment.comment}}</article>
+                      <article class="commentBody">{{comment.comment}}</article>
                   </li>
                 </ul>
             </div>

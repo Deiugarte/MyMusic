@@ -54,7 +54,7 @@ public class FacadeLogic {
 	private UtilsLogic utilsLogic;
 	private GenresLogic genresLogic;
 	private NewsLogic newsLogic;
-	private EventsLogic eventsLogic;
+	private EventsLogic eventsLogic; 
 	private DiscLogic discLogic;
 	private SongLogic songLogic;
 	private ActionsUser actionsUser;
