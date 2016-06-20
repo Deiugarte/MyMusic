@@ -1,5 +1,5 @@
 package myfan.data.models;
-// Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,9 +12,10 @@ public class Fanatics implements java.io.Serializable {
   private Integer fanaticId;
   private Users users;
   private boolean sex;
-  private Set eventsCalificationses = new HashSet(0);
-  private Set artistsCalificationses = new HashSet(0);
-  private Set discsCalificationses = new HashSet(0);
+  private Set<EventsCalifications> eventsCalificationses = new HashSet<EventsCalifications>(0);
+  private Set<ArtistsCalifications> artistsCalificationses = new HashSet<ArtistsCalifications>(0);
+  private Set<FanaticsArtists> fanaticsArtistses = new HashSet<FanaticsArtists>(0);
+  private Set<DiscsCalifications> discsCalificationses = new HashSet<DiscsCalifications>(0);
 
   public Fanatics() {
   }
@@ -24,12 +25,14 @@ public class Fanatics implements java.io.Serializable {
     this.sex = sex;
   }
 
-  public Fanatics(Users users, boolean sex, Set eventsCalificationses, Set artistsCalificationses,
-      Set discsCalificationses) {
+  public Fanatics(Users users, boolean sex, Set<EventsCalifications> eventsCalificationses,
+      Set<ArtistsCalifications> artistsCalificationses, Set<FanaticsArtists> fanaticsArtistses,
+      Set<DiscsCalifications> discsCalificationses) {
     this.users = users;
     this.sex = sex;
     this.eventsCalificationses = eventsCalificationses;
     this.artistsCalificationses = artistsCalificationses;
+    this.fanaticsArtistses = fanaticsArtistses;
     this.discsCalificationses = discsCalificationses;
   }
 
@@ -57,27 +60,35 @@ public class Fanatics implements java.io.Serializable {
     this.sex = sex;
   }
 
-  public Set getEventsCalificationses() {
+  public Set<EventsCalifications> getEventsCalificationses() {
     return this.eventsCalificationses;
   }
 
-  public void setEventsCalificationses(Set eventsCalificationses) {
+  public void setEventsCalificationses(Set<EventsCalifications> eventsCalificationses) {
     this.eventsCalificationses = eventsCalificationses;
   }
 
-  public Set getArtistsCalificationses() {
+  public Set<ArtistsCalifications> getArtistsCalificationses() {
     return this.artistsCalificationses;
   }
 
-  public void setArtistsCalificationses(Set artistsCalificationses) {
+  public void setArtistsCalificationses(Set<ArtistsCalifications> artistsCalificationses) {
     this.artistsCalificationses = artistsCalificationses;
   }
 
-  public Set getDiscsCalificationses() {
+  public Set<FanaticsArtists> getFanaticsArtistses() {
+    return this.fanaticsArtistses;
+  }
+
+  public void setFanaticsArtistses(Set<FanaticsArtists> fanaticsArtistses) {
+    this.fanaticsArtistses = fanaticsArtistses;
+  }
+
+  public Set<DiscsCalifications> getDiscsCalificationses() {
     return this.discsCalificationses;
   }
 
-  public void setDiscsCalificationses(Set discsCalificationses) {
+  public void setDiscsCalificationses(Set<DiscsCalifications> discsCalificationses) {
     this.discsCalificationses = discsCalificationses;
   }
 

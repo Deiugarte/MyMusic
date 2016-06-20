@@ -9,5 +9,18 @@
       'refiereApp.register',
       'refiereApp.services',
       'refiereApp.campaign',
-      'ui.router']);
+      'refiereApp.fanProfile',
+      'refiereApp.artistProfile',
+      'refiereApp.myFest',
+      'refiereApp.modalEvent',
+      'refiereApp.modalAlbum',
+      'refiereApp.editFan',
+      'refiereApp.editArtist',
+      'refiereApp.createEvent',
+      'refiereApp.createNews',
+      'refiereApp.createAlbum',
+      'refiereApp.genresManager',
+      'ui.router',
+
+    ]);
 })();

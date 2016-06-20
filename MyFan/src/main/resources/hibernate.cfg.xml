@@ -12,6 +12,7 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.transaction.auto_close_session">true</property>
         <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
         <!-- Possible values: -->
         <!-- 'create'       -> creates the schema, destroying previous data
              'create-drop'  -> drop the schema at the end of the session 
@@ -40,5 +41,6 @@
         <mapping resource="Genres.hbm.xml" />
         <mapping resource="UsersGenres.hbm.xml" />
         <mapping resource="Ubications.hbm.xml" />
+        <mapping resource="FanaticsArtists.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

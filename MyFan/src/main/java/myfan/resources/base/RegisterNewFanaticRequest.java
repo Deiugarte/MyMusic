@@ -1,26 +1,22 @@
 package myfan.resources.base;
 
 import java.util.ArrayList;
-import java.util.Date;
-
-
 
 public class RegisterNewFanaticRequest {
 	private String nameUser;
-	private Date birthDate; /*verificar*/
+	private String birthDate; /*verificar*/
 	private boolean gender;
 	private String login;     /*verificar*/
 	private String password;
 	private String countryLocation; 
-	private String profilePicture; /*opcional*/
-	private ArrayList<String> musisicalGenres; /*opcional*/
+	private ArrayList<String> musicalGenres; /*opcional*/
 	private String identificationNumber;
 	private String currentDate;
 	
 	public String getNameUser() {
 		return nameUser;
 	}
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 	public boolean getGender() {
@@ -35,11 +31,9 @@ public class RegisterNewFanaticRequest {
 	public String getCountryLocation() {
 		return countryLocation;
 	}
-	public String getProfilePicture() {
-		return profilePicture;
-	}
-	public ArrayList<String> getMusisicalGenres() {
-		return musisicalGenres;
+
+	public ArrayList<String> getMusicalGenres() {
+		return musicalGenres;
 	}
 	public String getIdentificationNumber() {
 		return identificationNumber;
@@ -50,7 +44,7 @@ public class RegisterNewFanaticRequest {
 	public void setNameUser(String nameUser) {
 		this.nameUser = nameUser;
 	}
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 	public void setGender(boolean gender) {
@@ -65,11 +59,9 @@ public class RegisterNewFanaticRequest {
 	public void setCountryLocation(String countryLocation) {
 		this.countryLocation = countryLocation;
 	}
-	public void setProfilePicture(String profilePicture) {
-		this.profilePicture = profilePicture;
-	}
-	public void setMusisicalGenres(ArrayList<String> musisicalGenres) {
-		this.musisicalGenres = musisicalGenres;
+
+	public void setMusicalGenres(ArrayList<String> musisicalGenres) {
+		this.musicalGenres = musisicalGenres;
 	}
 	public void setIdentificationNumber(String identificationNumber) {
 		this.identificationNumber = identificationNumber;

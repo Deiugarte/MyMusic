@@ -1,5 +1,5 @@
 package myfan.data.models;
-// Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 19, 2016 12:46:28 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -17,27 +17,34 @@ public class Events implements java.io.Serializable {
   private Date eventDate;
   private String content;
   private boolean type;
-  private Set eventsCalificationses = new HashSet(0);
+  private Date creationDate;
+  private boolean cancel;
+  private Set<EventsCalifications> eventsCalificationses = new HashSet<EventsCalifications>(0);
 
   public Events() {
   }
 
-  public Events(Artists artists, Ubications ubications, String tittle, Date eventDate, boolean type) {
+  public Events(Artists artists, Ubications ubications, String tittle, Date eventDate, boolean type, Date creationDate,
+      boolean cancel) {
     this.artists = artists;
     this.ubications = ubications;
     this.tittle = tittle;
     this.eventDate = eventDate;
     this.type = type;
+    this.creationDate = creationDate;
+    this.cancel = cancel;
   }
 
   public Events(Artists artists, Ubications ubications, String tittle, Date eventDate, String content, boolean type,
-      Set eventsCalificationses) {
+      Date creationDate, boolean cancel, Set<EventsCalifications> eventsCalificationses) {
     this.artists = artists;
     this.ubications = ubications;
     this.tittle = tittle;
     this.eventDate = eventDate;
     this.content = content;
     this.type = type;
+    this.creationDate = creationDate;
+    this.cancel = cancel;
     this.eventsCalificationses = eventsCalificationses;
   }
 
@@ -97,11 +104,27 @@ public class Events implements java.io.Serializable {
     this.type = type;
   }
 
-  public Set getEventsCalificationses() {
+  public Date getCreationDate() {
+    return this.creationDate;
+  }
+
+  public void setCreationDate(Date creationDate) {
+    this.creationDate = creationDate;
+  }
+
+  public boolean isCancel() {
+    return this.cancel;
+  }
+
+  public void setCancel(boolean cancel) {
+    this.cancel = cancel;
+  }
+
+  public Set<EventsCalifications> getEventsCalificationses() {
     return this.eventsCalificationses;
   }
 
-  public void setEventsCalificationses(Set eventsCalificationses) {
+  public void setEventsCalificationses(Set<EventsCalifications> eventsCalificationses) {
     this.eventsCalificationses = eventsCalificationses;
   }
 

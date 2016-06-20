@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h3 class="modal-title">Crear nueva noticia</h3>
+</div>
+<div class="modal-body row container-fluid ">
+    <div class="col-xs-1 col-sm-3 col-md-3 col-lg-3"></div>
+    <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6">
+        <form name="newNewsForm">
+            <strong> Título: </strong>
+            <input type="text" class="form-control" name="titleNews" ng-model="newNewsData.titleNews" placeholder="Título" ng-minlength="1" ng-maxlength="30" required>
+            <p ng-show="newNewsForm.titleNews.$error.maxlength" class="help-block">Título muy largo</p>
+            <div>
+                <strong> Fecha: </strong>
+                <p class="input-group">
+                    <input type="text" class="form-control" name="dateNews" placeholder="Fecha"
+                    uib-datepicker-popup="dd-MM-yyyy" ng-model="newNewsData.dateNews"
+                    is-open="isCalendarOpen" datepicker-options="dateOptions" ng-required="true"
+                   close-text="Cerrar" alt-input-formats="altInputFormats" />
+                    <span class="input-group-btn">
+            <button type="button" class="btn btn-default margin-calendar-button"
+            ng-click="isCalendarOpen = !isCalendarOpen"><i class="fa fa-calendar"></i></button>
+          </span>
+                </p>
+                <div ng-messages="newNewsForm.dateNews.$error" ng-if="newNewsForm.dateNews.$submitted || newNewsForm.dateNews.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                    <div ng-message="required" class="message slide-left">No se han introducido datos</div>
+                </div>
+            </div>
+            <br>
+
+            <strong>Contenido: </strong>
+            <textarea rows="4" placeholder="Contenido" class="form-control" name="contentNews" ng-model="newNewsData.contentNews" ng-maxlength="300" required /> </textarea>
+            <p ng-show="newNewsForm.contentNews.$error.maxlength" class="help-block">Contenido muy largo, por favor ingrese menos de 300 caracteres</p>
+            <br/>
+
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <button style="width:auto;" class="btn btn-primary" type="button" ng-click="ok()">{{newNewsData}}OK</button>
+    <button style="width:auto;" class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

@@ -1,5 +1,5 @@
 package myfan.data.dao;
-// Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -7,9 +7,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Example;
 
 import myfan.data.models.Artists;
+
+import static org.hibernate.criterion.Example.create;
 
 /**
  * Home object for domain model class Artists.
@@ -90,7 +91,7 @@ public class ArtistsHome {
   public Artists findById(java.lang.Integer id) {
     log.debug("getting Artists instance with id: " + id);
     try {
-      Artists instance = (Artists) sessionFactory.getCurrentSession().get("myfan.dao.temp.Artists", id);
+      Artists instance = (Artists) sessionFactory.getCurrentSession().get("myfan.data.models.Artists", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -103,11 +104,11 @@ public class ArtistsHome {
     }
   }
 
-  public List findByExample(Artists instance) {
+  public List<Artists> findByExample(Artists instance) {
     log.debug("finding Artists instance by example");
     try {
-      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.Artists")
-          .add(Example.create(instance)).list();
+      List<Artists> results = (List<Artists>) sessionFactory.getCurrentSession()
+          .createCriteria("myfan.data.models.Artists").add(create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;
     } catch (RuntimeException re) {

@@ -2,5 +2,5 @@
   'use strict';
 
   angular
-    .module('refiereApp.services', []);
+    .module('refiereApp.services', ['ngCookies']);
 })();

@@ -1,5 +1,5 @@
 package myfan.data.dao;
-// Generated Jun 13, 2016 1:18:21 AM by Hibernate Tools 5.1.0.Alpha1
+// Generated Jun 17, 2016 12:28:37 AM by Hibernate Tools 5.1.0.Alpha1
 
 import java.util.List;
 import javax.naming.InitialContext;
@@ -7,9 +7,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Example;
 
 import myfan.data.models.Ubications;
+
+import static org.hibernate.criterion.Example.create;
 
 /**
  * Home object for domain model class Ubications.
@@ -90,7 +91,7 @@ public class UbicationsHome {
   public Ubications findById(java.lang.Integer id) {
     log.debug("getting Ubications instance with id: " + id);
     try {
-      Ubications instance = (Ubications) sessionFactory.getCurrentSession().get("myfan.dao.temp.Ubications", id);
+      Ubications instance = (Ubications) sessionFactory.getCurrentSession().get("myfan.data.models.Ubications", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -103,11 +104,11 @@ public class UbicationsHome {
     }
   }
 
-  public List findByExample(Ubications instance) {
+  public List<Ubications> findByExample(Ubications instance) {
     log.debug("finding Ubications instance by example");
     try {
-      List results = sessionFactory.getCurrentSession().createCriteria("myfan.dao.temp.Ubications")
-          .add(Example.create(instance)).list();
+      List<Ubications> results = (List<Ubications>) sessionFactory.getCurrentSession()
+          .createCriteria("myfan.data.models.Ubications").add(create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;
     } catch (RuntimeException re) {

@@ -4,3 +4,4 @@
 *.gitignore
 *.project
 *.tern-project
+img/*

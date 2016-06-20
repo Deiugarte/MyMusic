@@ -1,10 +1,15 @@
 package myfan.data.dao;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
+import myfan.data.models.Artists;
 import myfan.data.models.EventsCalifications;
 import myfan.resources.util.HibernateUtil;
 
@@ -44,4 +49,23 @@ public class EventsCalificationsDao extends EventsCalificationsHome {
       delete(EventsCalifications);
       trans.commit();
   }
+  
+  public List<EventsCalifications> getCalificationByConcert(int idEvent) {
+	    try {
+	        Session session = sessionFactory.openSession();
+	        org.hibernate.Transaction trans= session.beginTransaction();
+	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+	            log.debug(" >>> Transaction close.");
+	        Query query = session.createQuery("from EventsCalifications where event = :idEvent");
+	        query.setParameter("idEvent", idEvent);
+	        java.util.List<EventsCalifications> results = query.list();
+	        System.out.println("Result list: " + results.size());
+	        trans.commit();
+	        log.debug("get successful, instance found");
+	        return results;
+	    } catch (RuntimeException re) {
+	        log.error("get failed", re);
+	        throw re;
+	    }
+	}
 }
