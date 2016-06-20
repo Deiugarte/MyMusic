@@ -34,7 +34,7 @@ public class EventsDao extends EventsHome {
   public void save(Events Events){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      persist(Events);
+      merge(Events);
       trans.commit();
   }
 

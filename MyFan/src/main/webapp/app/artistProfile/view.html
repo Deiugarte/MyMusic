@@ -65,19 +65,22 @@
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title">{{publication.title}}
+                                          <div ng-if="vm.currentUser.type=='artist' && publication.type=='event'" class="pull-right">
+                                            <i ng-click="vm.cancelEvent(publication.eventId)" style="cursor:pointer;" class="fa fa-times pull-right artistCog"></i>
+                                            </div>
                                                  <div ng-if="publication.concert===true" ng-click="vm.openEventModal('lg', publication.title, publication.content, publication.averageCalificationsConcerts, publication.commentsAmount, publication.date, publication.eventId)" class="eventReview pull-right">
                                                    <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="publication.averageCalificationsConcerts"  max="5"  aria-labelledby="default-rating"></uib-rating>
-                                                         <i ng-if="vm.currentUser.type=='artist'" class="fa fa-times pull-right artistCog"></i>
-                                                     </div>
+                                                 </div>
 
                                                      <div ng-if="vm.currentUser.type=='artist' && publication.type=='news'" class="pull-right">
-                                                        <i class="fa fa-times pull-right artistCog"></i>
+                                                        <i ng-click="vm.deleteNews(publication.idNews)" style="cursor:pointer;" class="fa fa-times pull-right artistCog"></i>
                                                       </div>
                                                      </h4>
                                     </div>
                                     <div class="timeline-body">
                                         <p>{{publication.content}}</p>
                                     </div>
+                                    <span ng-if="publication.isCancel===true" class="pull-left"><small><i class="glyphicon glyphicon-time"></i>Cancelado</small></span>
                                     <span class="pull-right"><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{publication.date}}</small></span>
                                 </div>
                             </li>
@@ -174,24 +177,24 @@
                                 <textarea rows="5" ng-model="artistRating.comment" id="artistCommentReview" class="form-control"></textarea>
                             </div>
                             <div id="reviewBtnCol" class="col-xs-2 col-md-3">
-                              <button type="button" ng-click="sendRateArtist()" id="sendReviewBtn" class="btn btn-default input-sm"> ¡Calificar! </button>
+                                <button type="button" ng-click="sendRateArtist()" id="sendReviewBtn" class="btn btn-default input-sm"> ¡Calificar! </button>
                             </div>
                         </form>
                     </div>
                     <div class="artistCommentsContainer">
                         <div class="artistComments">
                             <ul class="commentsList">
-                              <div class="commentSectionHeader">Comentarios ({{artistComments.totalOfComents}})</div>
-                              <li ng-repeat="comment in artistComments.coments"class="commentContainer">
-                                  <header class="commentHeader">
-                                      <div class="commentAuthor">{{comment.reviewer}}
-                                          <div class="commentStarsContainer pull-right">
-                                            <uib-rating class="ratingStar pull-left" read-only="true" ng-model="comment.calification" max="5" aria-labelledby="default-rating"></uib-rating>
-                                          </div>
-                                      </div>
-                                  </header>
-                                  <article class="commentBody">{{comment.comment}}</article>
-                              </li>
+                                <div class="commentSectionHeader">Comentarios ({{artistComments.totalOfComents}})</div>
+                                <li ng-repeat="comment in artistComments.coments" class="commentContainer">
+                                    <header class="commentHeader">
+                                        <div class="commentAuthor">{{comment.reviewer}}
+                                            <div class="commentStarsContainer pull-right">
+                                                <uib-rating class="ratingStar pull-left" read-only="true" ng-model="comment.calification" max="5" aria-labelledby="default-rating"></uib-rating>
+                                            </div>
+                                        </div>
+                                    </header>
+                                    <article class="commentBody">{{comment.comment}}</article>
+                                </li>
                             </ul>
                         </div>
                     </div>

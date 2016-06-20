@@ -10,9 +10,17 @@ public class RecentEventsResponse {
   private String ubication;
   private double AverageCalificationsConcerts;
   private String type;
+  private boolean isCancel;
   
   
-  public String getType() {
+  
+  public boolean getIsCancel() {
+	return isCancel;
+}
+public void setIsCancel(boolean isCancel) {
+	this.isCancel = isCancel;
+}
+public String getType() {
     return type;
   }
   public void setType(String type) {

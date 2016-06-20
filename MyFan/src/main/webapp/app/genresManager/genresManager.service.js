@@ -1,24 +1,27 @@
 (function() {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('refiereApp.genresManager')
-    .service('GenresManagerSrv', GenresManagerSrv);
+    angular
+        .module('refiereApp.genresManager')
+        .service('GenresManagerSrv', GenresManagerSrv);
 
-  GenresManagerSrv.$inject = ['$http'];
+    GenresManagerSrv.$inject = ['$http'];
 
-  /* @ngInject */
-  function GenresManagerSrv($http) {
+    /* @ngInject */
+    function GenresManagerSrv($http) {
+        var vm = this;
+        vm.postAddNewGenres = postAddNewGenres;
+        vm.getGenresList = getGenresList;
 
-    this.postCompanyInfo = postCompanyInfo;
-    this.getPlansFromServer = getPlansFromServer;
+        function postAddNewGenres(data) {
+            var url = 'http://localhost:8000/rest/v1/resources/addNewGenre';
+            return $http.post(url, data);
+        }
 
-    function postCompanyInfo(data) {
-      return $http.post('http://localhost:8000/rest/v1/company/register', data);
+        function getGenresList(data) {
+            var url = 'http://localhost:8000/rest/v1/resources/genreslist';
+            return $http.get(url, data);
+        }
+
     }
-
-    function getPlansFromServer(data) {
-      return $http.get('http://localhost:8000/rest/v1/plan/all', data);
-    }
-  }
 })();
