@@ -20,7 +20,6 @@
           </div>
       </div>
   </div>
-
         <div id="artistRatingFormContainer">
             <form>
                 <div id="descriptionTextCol" class="col-xs-3 col-md-4">
@@ -38,10 +37,10 @@
                 </div>
             </form>
         </div>
-        <div id="artistCommentsContainer">
-            <div id="artistComments">
+        <div class="artistCommentsContainer">
+            <div class="artistComments">
                 <ul class="commentsList">
-                    <div id="commentSectionHeader">Comentarios ({{albumComments.totalOfComents}})</div>
+                    <div class="commentSectionHeader">Comentarios ({{albumComments.totalOfComents}})</div>
                     <li ng-repeat="comment in albumComments.coments"class="commentContainer">
                         <header class="commentHeader">
                             <div class="commentAuthor">{{comment.reviewer}}

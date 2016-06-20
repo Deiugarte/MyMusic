@@ -9,10 +9,6 @@
     function fanProfileCtrl(FanaticSrv, $log, $uibModal, $state, $window, $scope, UserDataService,$cookies,$cookieStore) {
         var vm = this;
         vm.currentEvent = {};
-        vm.currentUser ={
-          rol: "fanatic",
-          id: 10
-        };
         vm.newUser = {};
         vm.genresList = {};
         vm.countriesList = {};
@@ -21,11 +17,23 @@
         vm.artistList=[];
         vm.userData = $cookies.getObject('userInfo');
         vm.timelineParameters.offset = '0';
+
+
+        vm.unfollowParameters = {};
+        vm.unfollowParameters.idUserFanatic = 11;
+
         vm.searchParameters={
           name:"",
           nameGenre:"",
           nameUbication:""
         };
+
+        vm.currentUser ={
+          rol: "fanatic",
+          id: 10
+        };
+
+
 
         vm.searchResults={};
 
@@ -55,9 +63,9 @@
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());
             });
-
-
         };
+
+
 
         vm.openEditFan= function(size) {
             var modalInstance = $uibModal.open({
@@ -151,15 +159,21 @@
                 });
         }
 
+        vm.unfollowArtist = function (artistId) {
+          vm.unfollowParameters.idUserArtist = artistId;
+          FanaticSrv.postUnfollowStatus(vm.unfollowParameters)
+          .then(function(unfollowData){
+              console.log("unfollow exitoso");
+          });
+        }
+
+
         vm.search = function(){
           FanaticSrv.searchData(vm.searchParameters)
               .then(function(searchData) {
                 vm.searchResults=searchData.data;
               });
         }
-
-
-
 
         $scope.filtersInvisible = true;
         $scope.showFilters = function() {

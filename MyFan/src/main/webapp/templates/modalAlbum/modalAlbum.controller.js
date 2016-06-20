@@ -4,11 +4,12 @@
         .module('refiereApp.modalEvent')
         .controller('modalAlbumCtrl', modalAlbumCtrl);
 
-    modalAlbumCtrl.$inject = ['AlbumSrv', 'currentAlbumInfo', '$uibModalInstance', '$state', '$window', '$scope'];
+    modalAlbumCtrl.$inject = ['AlbumSrv', 'currentAlbumInfo', '$uibModalInstance', '$state', '$window', '$scope', '$log'];
 
-    function modalAlbumCtrl(AlbumSrv, currentAlbumInfo, $uibModalInstance, $state, $window, $scope) {
+    function modalAlbumCtrl(AlbumSrv, currentAlbumInfo, $uibModalInstance, $state, $window, $scope, $log) {
         $scope.currentAlbumInfo = currentAlbumInfo;
         $scope.albumCommentRating = "";
+        $scope.albumRating = {};
         $scope.albumRating.idDisc = $scope.currentAlbumInfo.idDisc;
         $scope.albumRating.idUserFanatic = 12;
 
@@ -37,7 +38,7 @@
 
 
         $scope.ok = function() {
-            $uibModalInstance.close($scope.selected.currentEvent);
+            $uibModalInstance.close();
         };
 
         $scope.cancel = function() {

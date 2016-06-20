@@ -32,6 +32,6 @@ public class CommentsResource {
   @Produces(MediaType.APPLICATION_JSON)
   public String getDiscComments(@PathParam("idDisc") int idDisc) {
     FacadeLogic facadeLogic = new FacadeLogic();
-    return facadeLogic.getCalificationsOfConcert(idDisc);
+    return facadeLogic.getCalificationsOfDisc(idDisc);
   }
 }

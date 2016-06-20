@@ -52,5 +52,11 @@
       var url = 'http://localhost:8000/rest/v1/resources/ubicationslist';
       return $http.get(url, data);
     }
+
+    function postUnfollowStatus(data){
+      var url = 'http://localhost:8000/rest/v1/userActions/unfollowArtist';
+      return $http.post(url, data);
+    }
+
   }
 })();
