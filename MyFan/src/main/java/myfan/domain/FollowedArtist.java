@@ -35,6 +35,7 @@ public class FollowedArtist {
 			followedArtistResponse.setRankingOfArtist(optionsArtist.calculateRankingArtist(artistasByFanatic.get(i).getArtists().getArtistId()));
 			followedArtistResponse.setTotalOfDiscs(calculateTotalOfDisc(artistasByFanatic.get(i).getArtists().getArtistId()));
 			followedArtistResponse.setGenres(getGenresByArtist(idUser));
+			followedArtistResponse.setArtistId(artist.getArtistId());
 			fanaticsArtists.add(followedArtistResponse);
 			
 		}

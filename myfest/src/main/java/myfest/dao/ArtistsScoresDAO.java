@@ -27,7 +27,7 @@ public class ArtistsScoresDAO extends ArtistsscoresHome {
   public void save(Artistsscores Artistsscores){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      persist(Artistsscores);
+      merge(Artistsscores);
       trans.commit();
   }
 

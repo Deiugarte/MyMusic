@@ -60,5 +60,15 @@ public class UserActionsResource {
     FacadeLogic facadeLogic = new FacadeLogic();
     return facadeLogic.followArtist(followArtistRequest);    
   }
+  
+  @POST
+  @Path("/unfollowArtist")
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response unfollowArtist(FollowArtistRequest followArtistRequest) {
+    FacadeLogic facadeLogic = new FacadeLogic();
+    return facadeLogic.unFollowArtist(followArtistRequest);    
+  }
+  
+  
 
 }

@@ -8,12 +8,25 @@
 
     function artistProfileCtrl(ArtistSrv, $uibModal, $state, $window, $scope) {
         var vm = this;
-        vm.currentUser = {};
         vm.currentEvent = {};
         vm.userData={};
         vm.timeline=[];
         vm.timelineParameters = {};
         vm.timelineParameters.offset = '0';
+        vm.currentAlbumInfo = {};
+        $scope.link = 'https://www.youtube.com/watch?v=mGNRAzW0BdI';
+
+        $scope.artistRating = {};
+        $scope.artistRating.idUserArtist = "11";
+        $scope.artistRating.idUserFanatic = "12";
+        $scope.artist = {};
+        $scope.artist.id = "11";
+        $scope.artist.idArtist = "11";
+
+
+        vm.followParameters = {};
+        vm.followParameters.idUserFanatic = "12";
+        vm.followParameters.idUserArtist = "11";
 
 
         vm.currentUser ={
@@ -23,6 +36,54 @@
           name: "Alejandro",
         }
 
+        getArtistComments();
+        function getArtistComments(){
+          ArtistSrv.getArtistComments($scope.artist)
+          .then(function(commentsData){
+              $scope.artistComments = commentsData.data;
+              console.log(commentsData.data);
+              console.log("arriba comments de Artist");
+          });
+        }
+
+        vm.followArtist = function () {
+          console.log(vm.followParameters);
+          ArtistSrv.postFollowStatus(vm.followParameters)
+          .then(function(followData){
+              $scope.following =!$scope.following;
+              console.log("follow exitoso");
+          });
+        };
+
+        vm.unFollowArtist = function () {
+          console.log(vm.followParameters);
+          ArtistSrv.postUnfollowStatus(vm.followParameters)
+          .then(function(followData){
+              $scope.following =!$scope.following;
+              console.log("unfollow exitoso");
+          });
+        };
+
+        $scope.sendRateArtist = function(){
+          console.log($scope.artistRating);
+          ArtistSrv.postRateArtist($scope.artistRating)
+          .then(function(data){
+            getArtistComments();
+            console.log(data);
+          })
+          .catch(function(error) {
+            console.log(error);
+            $window.alert('No se pudo calificar artista :( ');
+          });
+
+        }
+
+
+
+        vm.changeVideo = function (videoLink){
+          $scope.link = videoLink;
+          console.log("aaasd");
+        }
 
         vm.getDiscography = function(){
           $scope.switchContent(true);
@@ -65,11 +126,13 @@
 
                 })
         }
-        vm.openEventModal = function(size, title, body, stars, commentsAmount) {
+        vm.openEventModal = function(size, title, body, stars, commentsAmount, date, id) {
             vm.currentEvent.title = title;
             vm.currentEvent.body = body;
             vm.currentEvent.stars = stars;
             vm.currentEvent.commentsAmount = commentsAmount;
+            vm.currentEvent.date = date;
+            vm.currentEvent.id = id;
             console.log(vm.currentEvent);
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
@@ -89,19 +152,24 @@
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());
             });
-
-
         };
 
-        vm.openAlbumModal = function(size) {
+        vm.openAlbumModal = function(size, title, desc, genre, year, songsNum, label, id) {
+            vm.currentAlbumInfo.title = title;
+            vm.currentAlbumInfo.desc = desc;
+            vm.currentAlbumInfo.genre = genre;
+            vm.currentAlbumInfo.year = year;
+            vm.currentAlbumInfo.songsNum = songsNum;
+            vm.currentAlbumInfo.label = label;
+            vm.currentAlbumInfo.idDisc = id;
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
                 templateUrl: '/templates/modalAlbum/view.html',
                 controller: 'modalAlbumCtrl',
                 size: size,
                 resolve: {
-                    currentEvent: function() {
-                        return vm.currentEvent;
+                    currentAlbumInfo: function() {
+                        return vm.currentAlbumInfo;
                     }
                 }
 
@@ -150,7 +218,9 @@
 
             });
             modalInstance.result.then(function(selectedItem) {
-                $scope.selected = selectedItem;
+              vm.timeline = [];
+              getTimelineEvents();
+              getTimelineNews();
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());
             });
@@ -170,11 +240,15 @@
 
             });
             modalInstance.result.then(function(selectedItem) {
-                $scope.selected = selectedItem;
+              vm.timeline = [];
+              getTimelineEvents();
+              getTimelineNews();
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());
             });
         };
+
+
 
         vm.createAlbumModal = function(size) {
             var modalInstance = $uibModal.open({
@@ -197,14 +271,6 @@
         };
 
 
-
-        vm.currentUser ={
-          type: "artist",
-          id: "101",
-          userName: "Alejandro22",
-          name: "Alejandro",
-        }
-
         vm.artistCommentsList = {
             comments: [{
                     author: "Alejandro",
@@ -219,8 +285,7 @@
             ]
         }
 
-        $scope.following = "¡Seguir artista!";
-        $scope.link = 'https://www.youtube.com/watch?v=mGNRAzW0BdI';
+        $scope.following =  "true";
         $scope.centerCol = 'col-xs-7 col-md-7';
         $scope.rightCol = 'col-xs-3 col-md-3';
         $scope.showVid = false;
@@ -237,13 +302,8 @@
             }
 
         }
-        $scope.toggleFollowing = function() {
-            if ($scope.following === "¡Seguir artista!") {
-                $scope.following = "¡Dejar de seguir artista!";
-            } else {
-                $scope.following = "¡Seguir artista!";
-            }
-        };
+
+
         $scope.goBackToProfile = function() {
             $window.location.href = 'fanProfile.html';
         };

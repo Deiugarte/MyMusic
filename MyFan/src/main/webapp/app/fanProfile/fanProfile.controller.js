@@ -9,10 +9,6 @@
     function fanProfileCtrl(FanaticSrv, $log, $uibModal, $state, $window, $scope, UserDataService,$cookies,$cookieStore) {
         var vm = this;
         vm.currentEvent = {};
-        vm.currentUser ={
-          rol: "fanatic",
-          id: 10
-        };
         vm.newUser = {};
         vm.genresList = {};
         vm.countriesList = {};
@@ -22,13 +18,34 @@
         vm.userData = $cookies.getObject('userInfo');
         vm.timelineParameters.offset = '0';
 
+
+        vm.unfollowParameters = {};
+        vm.unfollowParameters.idUserFanatic = 12;
+
+        vm.searchParameters={
+          name:"",
+          nameGenre:"",
+          nameUbication:""
+        };
+
+        vm.currentUser ={
+          rol: "fanatic",
+          id: 10
+        };
+
+
+
+        vm.searchResults={};
+
         permissions();
 
-        vm.open = function(size, title, content, stars, commentsAmount) {
+        vm.open = function(size, title, body, stars, commentsAmount, date, id) {
             vm.currentEvent.title = title;
-            vm.currentEvent.content = content;
+            vm.currentEvent.body = body;
             vm.currentEvent.stars = stars;
             vm.currentEvent.commentsAmount = commentsAmount;
+            vm.currentEvent.date = date;
+            vm.currentEvent.id = id;
             console.log(vm.currentEvent);
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
@@ -46,9 +63,9 @@
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());
             });
-
-
         };
+
+
 
         vm.openEditFan= function(size) {
             var modalInstance = $uibModal.open({
@@ -142,10 +159,22 @@
                 });
         }
 
+        vm.unfollowArtist = function (artistId) {
+          vm.unfollowParameters.idUserArtist = artistId;
+          console.log(vm.unfollowParameters);
+          FanaticSrv.postUnfollowStatus(vm.unfollowParameters)
+          .then(function(unfollowData){
+              console.log("unfollow exitoso");
+          });
+        }
 
 
-
-
+        vm.search = function(){
+          FanaticSrv.searchData(vm.searchParameters)
+              .then(function(searchData) {
+                vm.searchResults=searchData.data;
+              });
+        }
 
         $scope.filtersInvisible = true;
         $scope.showFilters = function() {

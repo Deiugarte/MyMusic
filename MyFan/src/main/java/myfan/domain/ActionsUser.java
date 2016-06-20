@@ -64,7 +64,7 @@ public class ActionsUser {
 	public Response unFollowArtist(FollowArtistRequest unFollowArtistRequest) {
 		String response = UNFOLLOW_ARTIST_STATUS;
 		Fanatics fanatic = facadeDAO.findFanaticByUserId(unFollowArtistRequest.getIdUserFanatic());
-		Artists artists = facadeDAO.findArtistByUserId(unFollowArtistRequest.getIdUserArtist());
+		Artists artists = facadeDAO.findArtistById(unFollowArtistRequest.getIdUserArtist());
 		facadeDAO.deleteFollowersOfArtist(fanatic.getFanaticId(), artists.getArtistId());
 		decreaseFollowers(artists);
 		response = String.format(response, "OK");

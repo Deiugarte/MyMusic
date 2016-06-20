@@ -8,8 +8,6 @@
 
     function myFestCtrl(MyFestSrv, $log, $uibModal, $state, $window, $scope) {
         var vm = this;
-
-
         $scope.data = {
                    dataset0: [
                        {
@@ -57,36 +55,8 @@
 
         vm.currentEvent = {};
         vm.newUser = {};
-        vm.genresList = {};
-        vm.countriesList = {};
-        vm.open = function(size, title, body, stars, commentsAmount) {
-            vm.currentEvent.title = title;
-            vm.currentEvent.body = body;
-            vm.currentEvent.stars = stars;
-            vm.currentEvent.commentsAmount = commentsAmount;
-            console.log(vm.currentEvent);
-            var modalInstance = $uibModal.open({
-                animation: $scope.animationsEnabled,
-                templateUrl: '/templates/modalEvent/view.html',
-                controller: 'ModalInstanceCtrl',
-                size: size,
-                resolve: {
-                    currentEvent: function() {
-                        return vm.currentEvent;
-                    }
-                }
-
-            });
-            modalInstance.result.then(function(selectedItem) {
-                $scope.selected = selectedItem;
-            }, function() {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
-
-
-        };
-
-        getUserData();
+        vm.genresList = [];
+        vm.countriesList = [];
 
         function getUserData(data) {
             MyFestSrv.getUserData()
@@ -95,17 +65,20 @@
                 })
         }
 
-        function getGenresData(data) {
+        getGenresData();
+        function getGenresData() {
             MyFestSrv.getGenresData()
                 .then(function(info) {
                     vm.genresList = info.data;
+                    console.log(vm.genresList);
                 })
         }
-
+        getUbicationsList();
         function getUbicationsList() {
             MyFestSrv.getUbicationsList()
                 .then(function(ubicationData) {
                     vm.countriesList = ubicationData.data;
+                    console.log(vm.countriesList);
                 })
         }
 

@@ -51,7 +51,7 @@
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title">{{publication.title}}
-                                               <div ng-if="publication.concert==true" ng-click="vm.open('lg', publication.title, publication.content, publication.stars, publication.commentsAmount)" class="eventReview pull-right">
+                                               <div ng-if="publication.concert==true" ng-click="vm.open('lg', publication.title, publication.content, publication.stars, publication.commentsAmount, publication.date, publication.eventId)" class="eventReview pull-right">
                                                  <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="publication.averageCalificationsConcerts"  max='5'   aria-labelledby="default-rating"></uib-rating>
                                                    </div>
                                                    </h4>
@@ -69,9 +69,6 @@
                     <div id="myArtistsListContainer">
                         <div id="myArtistsListHeader">
                             <div id="myArtistsFollowsCounter">¡Sigues a {{vm.artistList.length}} artistas!</div>
-                            <div id="myArtistsFilter">
-                                <input class="form-control input-sm inputClass" type="text" placeholder="filtrar mis artistas" ng-model="artistsFilter">
-                            </div>
                         </div>
                         <div id="myArtistsListMainContent">
                             <div ng-repeat="artist in vm.artistList" class="artistShortProfile">
@@ -84,7 +81,7 @@
                                     <div class="artistProfileHeader">
                                         <div class="artistProfileTitle">{{artist.nameArtist}}</div>
                                         <div class="artistProfileQuitFollow">
-                                            <button class="btn btn-default btn-xs  btn-block">Dejar de seguir</button>
+                                            <button ng-click= "vm.unfollowArtist(artist.artistId)" class="btn btn-default btn-xs  btn-block">Dejar de seguir</button>
                                         </div>
                                     </div>
                                     <div class="artistProfileLeftInfo">
@@ -113,10 +110,10 @@
     <div class="col-xs-3 col-md-3" style="height: 100%">
         <div id="fanSearchArtistContainer" class="row contentArea center-blocks">
             <div id="searchInputContainer">
-                <input type="search" ng-model="vm.searchArtistValue" class="form-control input-sm inputClass" id="searchBox" placeholder="Búsqueda de artistas..." />
+                <input type="search" ng-model="vm.searchParameters.name" class="form-control input-sm inputClass" id="searchBox" placeholder="Búsqueda de artistas..." />
             </div>
             <div id="searchButtonsContainer" class="text-center">
-                <button class="b btn btn-primary btn-sm btn-block">Buscar</button>
+                <button ng-click="vm.search()" class="b btn btn-primary btn-sm btn-block">Buscar</button>
                 <button ng-click="showFilters()" class="b btn btn-primary btn-sm btn-block">Filtros</button>
             </div>
             <div ng-hide="filtersInvisible" class="row" id="searchHiddenFiltersContainer">
@@ -125,108 +122,24 @@
                     <p style="font-size:1.2vw;">País: </p>
                 </div>
                 <div id="hiddenFiltersInputs" class="col-xs-3 col-md-8">
-                    <select class=" input-sm form-control comboBox">
+                    <select ng-model="vm.searchParameters.nameGenre" class=" input-sm form-control comboBox">
                       <option value="">Ninguno</option>
-                        <option ng-repeat="genre in vm.genresList" value="{{genre.name}">{{genre.name}}</option>
+                        <option ng-repeat="genre in vm.genresList" value="{{genre.name}}">{{genre.name}}</option>
                         <!--  <option ng-repeat="x in genres" value="{{x.genreValue}">{{x.genreName}}</option>  -->
                     </select>
                     <br/>
-                    <select class="input-sm form-control comboBox">
+                    <select ng-model="vm.searchParameters.nameUbication" class="input-sm form-control comboBox">
                       <option value="">Ninguno</option>
-                        <option ng-repeat="country in vm.countriesList" value="{{country.name}">{{country.name}}</option>
+                        <option ng-repeat="country in vm.countriesList" value="{{country.name}}">{{country.name}}</option>
                         <!--  <option ng-repeat="x in countries" value="{{x.countryValue}">{{x.countryName}}</option>  -->
                     </select>
                     <br/>
                 </div>
             </div>
+            <div ng-click="vm.goToArtistProfile(result.idArtist)" class="searchResult" ng-repeat= "result in vm.searchResults">
+              {{result.nameArtist}}
+            </div>
         </div>
 
     </div>
 </div>
-
-<script type="text/ng-template" id="eventReviewModal.html">
-    <div class="modal-header">
-        <h3 class="modal-title">Evento</h3>
-    </div>
-    <div class="modal-body">
-        <ul class="timeline">
-            <li>
-                <div class="timeline-badge warning"><i class="fa fa-calendar-check-o"></i> </div>
-                <!-- evento  !-->
-                <div class="timeline-panel">
-                    <div class="timeline-heading">
-                        <h4 class="timeline-title">Ky-Mani Marley engalanará el Reggae Festival
-                    <div class="eventReview pull-right">
-                        <span class="star fa fa-star" style="font-size: 1.8vw; color:#f9f014;" ></span>
-                        <span class="star fa fa-star" style="font-size: 1.8vw; color:#f9f014;"></span>
-                        <span class="eventComment">(0)</span>
-                    </div>
-                </h4>
-                    </div>
-                    <div class="timeline-body clearfix">
-                        <p>Universal Music Spain, Music Spain, coincidiendo con el laversal Music Spain, coincidiendo con el laversal Music Spain, coincidiendo con el laversal Music Spain, coincidiendo con el lacon el lanzamiento de '1' de The Beatles en
-                            formatos DVD y Blu-ray, ha llegado a un acuerdo con Apple Corps para comercializar los derechos de imagen de la banda en la industria del merchandising en España y Portugal.</p>
-                    </div>
-                    <span class="pull-right"><small class="text-muted"><i class="glyphicon glyphicon-time"></i> 11 hours ago via Twitter</small></span>
-                </div>
-            </li>
-            <div id="artistRatingFormContainer">
-                <form>
-                    <div id="descriptionTextCol" class="col-xs-3 col-md-4">
-
-                        <div id="descriptionText">Calificación</div>
-                        <div id="descriptionText">Comentario
-                            <br/> (opcional) </div>
-                    </div>
-                    <div id="ratingInputsCol" class="col-xs-6 col-md-5">
-                        <uib-rating class="ratingStar pull-left" ng-model="x" max="5" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
-                        <b>({{x}})</b>
-                        <input type="hidden" ng-model="x" name="artistRatingValue">
-                        <textarea rows="5" id="artistCommentReview" class="form-control"></textarea>
-                    </div>
-                    <div id="reviewBtnCol" class="col-xs-2 col-md-3">
-                        <input id="sendReviewBtn" class="btn btn-default btn-sm" type="submit" value="¡Calificar!" />
-                    </div>
-                </form>
-            </div>
-            <div id="artistCommentsContainer">
-                <div id="artistComments">
-                    <ul class="commentsList">
-                        <div id="commentSectionHeader">Comentarios (2)</div>
-                        <li class="commentContainer">
-                            <header class="commentHeader">
-                                <div class="commentAuthor">Kirito
-                                    <div class="commentStarsContainer pull-right">
-                                        <span class="s2 fa fa-star"></span>
-                                        <span class="s2 fa fa-star"></span>
-                                        <span class="s2 fa fa-star"></span>
-                                        <span class="s2 fa fa-star"></span>
-                                    </div>
-                                </div>
-                            </header>
-                            <article class="commentBody">Para mi es un objecto de culto. Su voz y su musica son una pura expresion de fe. con el te lleva casi al más alla. es uno de los padre del movimiento hippie, uno de los mas carismaticos.</article>
-                        </li>
-                        <li class="commentContainer">
-                            <header class="commentHeader">
-                                <div class="commentAuthor">Sygram
-                                    <div class="commentStarsContainer pull-right">
-                                        <span class="s2 fa fa-star"></span>
-                                        <span class="s2 fa fa-star"></span>
-                                        <span class="s2 fa fa-star"></span>
-                                        <span class="s2 fa fa-star"></span>
-                                        <span class="s2 fa fa-star"></span>
-                                    </div>
-                                </div>
-                            </header>
-                            <article class="commentBody">Aunque esté muerto su estilo perdurará por siempre y es el rey del regge y de África. - Ventajas: Puro Regge, Aún vive su espíritu - Desventajas: Por desgracia para todos no está presente :(</article>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </ul>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-    </div>
-</script>

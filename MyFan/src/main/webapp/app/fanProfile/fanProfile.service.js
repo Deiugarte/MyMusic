@@ -16,6 +16,13 @@
     vm.getTimelineNews = getTimelineNews;
     vm.getTimelineEvents = getTimelineEvents;
     vm.getFollowedArtist = getFollowedArtist;
+    vm.searchData = searchData;
+    vm.postUnfollowStatus =  postUnfollowStatus;
+
+    function searchData(data){
+      var url = 'http://localhost:8000/rest/v1/resources/searchData'
+      return $http.post(url,data);
+    }
 
 
     function getFollowedArtist(data){
@@ -46,5 +53,11 @@
       var url = 'http://localhost:8000/rest/v1/resources/ubicationslist';
       return $http.get(url, data);
     }
+
+    function postUnfollowStatus(data){
+      var url = 'http://localhost:8000/rest/v1/userActions/unfollowArtist';
+      return $http.post(url, data);
+    }
+
   }
 })();

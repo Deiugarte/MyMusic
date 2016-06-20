@@ -25,7 +25,7 @@ public class Search {
 
 	public String searchArtist(FindArtistRequest artist) {
 		String name = artist.getName();
-		String nameGenreMusical = artist.getNameGenere();
+		String nameGenreMusical = artist.getNameGenre();
 		String nameUbication = artist.getNameUbication();
 		String response = null;
 

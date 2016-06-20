@@ -35,7 +35,7 @@ public class CommentsDisc extends DiscographyLogic {
 		for (int i = 0; i < discCalifications.size(); i++) {
 			if (!discCalifications.get(i).getComment().equals("") || discCalifications.get(i).getComment() != null) {
 				if (discCalifications.get(i).getFanatics().getUsers().getUsersRoles()
-						.getUsersRolesId() == DISABLE_ROLE) {
+						.getUsersRolesId() != DISABLE_ROLE) {
 					Comments comment = new Comments();
 					comment.setCalification(discCalifications.get(i).getCalification());
 					comment.setComment(discCalifications.get(i).getComment());

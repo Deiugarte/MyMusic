@@ -45,7 +45,7 @@ public class AddEventRequest {
 	public void setUbicationEvent(String ubicationEvent) {
 		this.ubicationEvent = ubicationEvent;
 	}
-	public void setConcert(boolean isConcert) {
+	public void setIsConcert(boolean isConcert) {
 		this.isConcert = isConcert;
 	}
 	public void setCreationDate(String creationDate) {

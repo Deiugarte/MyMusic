@@ -10,26 +10,18 @@
   /* @ngInject */
   function EventSrv($http) {
     var vm = this;
-    vm.postCompanyInfo = postCompanyInfo;
-    vm.getUserData = getUserData;
-    vm.getGenresData = getGenresData;
-    vm.getUbicationsList = getUbicationsList;
+    vm.getEventComments = getEventComments;
+    vm.postRateEvent = postRateEvent;
 
-    function postCompanyInfo(data) {
-      return $http.post('http://localhost:8000/rest/v1/company/register', data);
+    function getEventComments(data){
+      var url = 'http://localhost:8000/rest/v1/comments/getEventComments/' + data.id;
+      return $http.get(url, data);
     }
 
-    function getUserData(data) {
-      var url = 'http://localhost:8000/rest/v1/resources/userdata/11';
-      return $http.get(url, data);
+    function postRateEvent(data){
+      var url = 'http://localhost:8000/rest/calificate/event';
+      return $http.post(url, data);
     }
-    function getGenresData(data) {
-      var url = 'http://localhost:8000/rest/v1/resources/genreslist';
-      return $http.get(url, data);
-    }
-    function getUbicationsList(data) {
-      var url = 'http://localhost:8000/rest/v1/resources/ubicationslist';
-      return $http.get(url, data);
-    }
+
   }
 })();

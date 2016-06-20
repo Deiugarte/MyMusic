@@ -30,6 +30,20 @@ html, body{
 
 }
 
+.searchResult{
+  text-align: center;
+  font-weight: bold;
+  margin-left: 4%;
+  margin-top: 20px;;
+  border-style: inset;
+  padding-top: 6%;
+  border: 1px dashed #ddd;
+ box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
+  width: 90%;
+  height: 50px;
+  cursor: pointer;
+}
+
 
 #fanImageContainer{
     position: relative;
@@ -435,6 +449,8 @@ html, body{
     margin-left: 1%;
     position: relative;
     top: 100px;
+    height: auto;
+    padding-bottom: 10px;
 }
 
 #searchInputContainer{
@@ -605,132 +621,3 @@ form.tab-form-demo .tab-pane {
  #sendReviewBtn{
      font-size: 1.3vw;
  }
-
-
-
- /***************************************Comentarios***********************************************/
-
-
-  #artistCommentsContainer{
-     width: 100%;
-     height: auto;
-     position: relative;
- }
-
- #artistComments{
-     width: 75%;
-     margin: 0 auto;
-  background-color: #fff;
-  color: #000;
-  font-size: 16px;
-  font-family: sans-serif;
-  text-align: left;
-  line-height: 1.4;
-  z-index: 0;
-  cursor: default;
-  background: #eee;
-  font-weight: 300;
-  font-family: Ubuntu, sans-serif;
- }
-
-
- #commentSectionHeader{
-     background-color: white;
-     height: auto;
-     padding: 1% 2%;
-     margin: -3%;
-     font-size: 1.7vw;
-     border-bottom: 2px solid black;
- }
-.commentsList {
- border: 2px solid black;
-  padding: 3%;
-  list-style: none;
-}
-
-.commentContainer {
-  background: #fff;
-  border-radius: 2px;
-  height: 80px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  position: relative;
-  margin: 2% 3%;
-
-}
-.commentContainer:not(:first-child) {
-  margin-top: 20px;
-}
-
-.commentContainer:before {
-  content: "";
-  border-width: 10px 10px 10px 0;
-  border-style: solid;
-  border-color: transparent #fff;
-  position: absolute;
-  top: 10px;
-  left: -10px;
-}
-.commentHeader{
-  border-bottom: 1px solid #e5e5e5;
-  height: 33%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-
-.commentHeader * {
-  display: block;
-}
-
-.commentAuthor {
-  padding: 0.5% 4%;
-  font-size: 1.5vw;
-  font-weight: normal;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-}
-
-
-.commentBody {
-  padding: 1% 4%;
-  font-size: 1vw;
-  text-align: justify;
-  height: 67%;
-  white-space: pre-line;
-  overflow-x: hidden;
-}
-
-.commentBody  strong {
-  font-weight: 500;
-}
-.commentBody em {
-  font-style: italic;
-}
-.commentBody a {
-  text-decoration: underline;
-}
-.commentsList li article a:hover {
-  text-decoration: none;
-}
-.commentsList li article code {
-  font-family: "Source Code Pro", monospace;
-}
-
-@media (max-width: 440px) {
-  .commentsList {
-    padding: 0;
-  }
-  .commentsList li:before {
-    content: none;
-  }
-  .commentsList li header img {
-    clip: rect(0, 0, 0, 0);
-  }
-  .commentsList li header h1.author:after {
-    content: none;
-  }
-}
