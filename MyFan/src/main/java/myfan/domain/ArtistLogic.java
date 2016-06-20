@@ -66,7 +66,7 @@ public class ArtistLogic extends UserLogic {
 
 	public String getPersonalInformationOfArtist(int idUser) {
 		ArtistProfileResponse artistProfileResponse = new ArtistProfileResponse();
-		OptionsArtist optionsArtist = new OptionsArtist();
+		CommnetsArtist optionsArtist = new CommnetsArtist();
 		Users user = facadeDAO.findUserById(idUser);
 		Artists artist = facadeDAO.findArtistByUserId(idUser);
 		artistProfileResponse.setAgeUser(calculadeAge(user.getBirthday()));

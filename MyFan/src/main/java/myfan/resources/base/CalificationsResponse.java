@@ -3,7 +3,7 @@ package myfan.resources.base;
 import java.util.List;
 import myfan.resources.base.util.Comments;
 
-public class ArtistCalificationsResponse {
+public class CalificationsResponse {
 		private List<Comments> comments;
 		private int averageOfCalifications;
 		private int totalOfComents;

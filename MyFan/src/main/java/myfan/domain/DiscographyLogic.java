@@ -59,7 +59,7 @@ public class DiscographyLogic {
 		return songsList;
 	}
 
-	private int calculateTotalOfComments(int idDisc) {
+	protected int calculateTotalOfComments(int idDisc) {
 		List<DiscsCalifications> discCalifications = facadeDAO.getCalificationsOfDiscs(idDisc);
 		int totalOfComments = 0;
 		for (int i = 0; i < discCalifications.size(); i++) {
@@ -74,14 +74,14 @@ public class DiscographyLogic {
 		return facadeDAO.getSongsByIdDisc(idDisc).size();
 	}
 
-	private int calculateDiscAverage(int idDisc) {
+	protected int calculateDiscAverage(int idDisc) {
 		List<DiscsCalifications> discsCalifications = facadeDAO.getCalificationsOfDiscs(idDisc);
 		int sumCalifications = 0;
 		int average = 0;
 		for (int i = 0; i < discsCalifications.size(); i++) {
 			sumCalifications += discsCalifications.get(i).getCalification();
 		}
-		average = (sumCalifications / discsCalifications.size()) * 100;
+		average = (sumCalifications / discsCalifications.size());
 		return average;
 
 	}

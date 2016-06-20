@@ -21,7 +21,7 @@ public class FollowedArtist {
 	}
 
 	public String getFollowedArtist(int idUser) {
-		OptionsArtist optionsArtist= new OptionsArtist();
+		CommnetsArtist optionsArtist= new CommnetsArtist();
 		Fanatics fanatic = facadeDAO.findFanaticByUserId(idUser);
 		List<FanaticsArtists> artistasByFanatic = facadeDAO.findArtistsByFanaticId(fanatic.getFanaticId());
 		List<FollowedArtistResponse> fanaticsArtists = new ArrayList<FollowedArtistResponse>();
@@ -33,7 +33,7 @@ public class FollowedArtist {
 			followedArtistResponse.setImage(artist.getUsers().getImage());
 			followedArtistResponse.setUbicationArtist(artist.getUsers().getUbications().getName());
 			followedArtistResponse.setRankingOfArtist(optionsArtist.calculateRankingArtist(artistasByFanatic.get(i).getArtists().getArtistId()));
-			followedArtistResponse.setTotalOfDiscs(optionsArtist.calculateTotalOfDisc(artistasByFanatic.get(i).getArtists().getArtistId()));
+			followedArtistResponse.setTotalOfDiscs(calculateTotalOfDisc(artistasByFanatic.get(i).getArtists().getArtistId()));
 			followedArtistResponse.setGenres(getGenresByArtist(idUser));
 			fanaticsArtists.add(followedArtistResponse);
 			
@@ -51,6 +51,11 @@ public class FollowedArtist {
 		
 		
 	}
+	
+	public int calculateTotalOfDisc(int idArtist) {
+		return facadeDAO.getDiscsByIdArtist(idArtist).size();
+	}
+	
 	
 
 }
