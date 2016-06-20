@@ -92,7 +92,7 @@ public class ConcertsscoresHome {
     log.debug("getting Concertsscores instance with id: " + id);
     try {
       Concertsscores instance = (Concertsscores) sessionFactory.getCurrentSession()
-          .get("myfest.dao.temp.Concertsscores", id);
+          .get("myfest.models.Concertsscores", id);
       if (instance == null) {
         log.debug("get successful, no instance found");
       } else {
@@ -109,7 +109,7 @@ public class ConcertsscoresHome {
     log.debug("finding Concertsscores instance by example");
     try {
       List<Concertsscores> results = (List<Concertsscores>) sessionFactory.getCurrentSession()
-          .createCriteria("myfest.dao.temp.Concertsscores").add(create(instance)).list();
+          .createCriteria("myfest.models.Concertsscores").add(create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;
     } catch (RuntimeException re) {

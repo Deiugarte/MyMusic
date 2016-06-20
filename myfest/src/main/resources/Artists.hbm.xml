@@ -6,7 +6,7 @@
     <class name="myfest.models.Artists" table="artists" catalog="myfest" optimistic-lock="version">
         <id name="artistId" type="int">
             <column name="ArtistId" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="artistsscores" class="myfest.models.Artistsscores" fetch="select">
             <column name="ArtistScore" not-null="true" />
