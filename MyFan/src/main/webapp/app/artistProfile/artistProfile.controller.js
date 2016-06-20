@@ -31,7 +31,44 @@
 
         vm.currentUser ={
           type: $cookies.getObject('userInfo').RoleIdentifier
+
         }
+
+
+//------------------------------CANCELA Y ELIMINAR PUBLICACIONES------------------------------------
+
+
+      vm.newsDelete = {};
+      vm.eventCancel = {};
+
+
+        vm.deleteNews = function (newsId){
+          vm.newsDelete.newsId = newsId;
+          ArtistSrv.postDeleteNews(vm.newsDelete)
+          .then(function(data){
+          $state.reload();
+              console.log("¡Borré noticia!");
+          }).catch((error) => {
+            console.log("Error al intentar borrar noticia");
+          });
+        };
+
+        vm.cancelEvent = function (eventId){
+          vm.eventCancel.idEvent = eventId;
+          ArtistSrv.postCancelEvent(vm.eventCancel)
+          .then(function(data){
+            $state.reload();
+            console.log("¡Cancelé evento!");
+        }).catch((error) => {
+          console.log(vm.eventCancel);
+          console.log("Error al intentar cancelar evento");
+          });
+        };
+
+
+
+//------------------------------CANCELA Y ELIMINAR PUBLICACIONES------------------------------------
+
 
         getArtistComments();
         function getArtistComments(){
@@ -60,6 +97,17 @@
               console.log("unfollow exitoso");
           });
         };
+
+        getFollowingStatus();
+        function getFollowingStatus () {
+          console.log(vm.followParameters);
+          ArtistSrv.postGetFollowingStatus(vm.followParameters)
+          .then(function(followData){
+              $scope.following = !followData.data.following;
+              console.log("followstatus exitoso");
+              console.log("estado: " + followData.data.following);
+          });
+        }
 
         $scope.sendRateArtist = function(){
           console.log($scope.artistRating);

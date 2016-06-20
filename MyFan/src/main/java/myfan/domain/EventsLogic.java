@@ -32,6 +32,7 @@ public class EventsLogic {
 	}
 	
 	public Response cancelEvent(CancelEventRequest event){
+		System.out.println(event.getIdEvent());
 		String response = CANCEL_EVENT_STATUS;
 		Events events= facadeDAO.findEventById(event.getIdEvent());
 		events.setCancel(true);
@@ -92,6 +93,7 @@ public class EventsLogic {
 			recentEventsResponse.setTitle(eventsList.get(i).getTittle());
 			recentEventsResponse.setUbication(eventsList.get(i).getUbications().getName());
 			recentEventsResponse.setType("event");
+			recentEventsResponse.setIsCancel(eventsList.get(i).isCancel());
 			if (isConcert){
 				recentEventsResponse.setAverageCalificationsConcerts(calculateAverageCalificationsConcerts(idEvent));
 			}

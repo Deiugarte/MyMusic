@@ -5,14 +5,14 @@
             <div id="genresManagerContainer">
 
                 <div id="genresListContainer">
-                    <div ng-repeat="genre in genresList">
-                      {{genre}}
+                    <div ng-repeat="genre in vm.genresList">
+                      {{genre.name}}
                     </div>
                 </div>
                 <div id="genresFormContainer">
                     <form>
-                        <input class="a form-control" size="15" type="text" name="newGenre" placeholder="Añadir nuevo genero" />
-                        <button type="button" class=" c btn btn-success"> Agregar
+                        <input class="a form-control" size="15" type="text" ng-model="vm.newGenre.musicalGenre" name="newGenre" placeholder="Añadir nuevo genero" />
+                        <button type="button" ng-click="vm.agregarGenero()" class=" c btn btn-success"> Agregar
                         </button>
                     </form>
                 </div>
