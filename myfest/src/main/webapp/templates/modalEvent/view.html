@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <h3 class="modal-title">Evento</h3>
+</div>
+<div class="modal-body">
+    <ul class="timeline">
+        <li>
+            <div class="timeline-badge warning">
+                <i style="vertical-align:baseline;" class="fa fa-calendar-check-o"></i>
+            </div>
+            <!-- evento  !-->
+            <div class="timeline-panel">
+                <div class="timeline-heading">
+                    <h4 class="timeline-title">{{currentEvent.title}}
+                    <div class="eventReview pull-right">
+                      <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="currentEvent.stars"  max="currentEvent.stars"  on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
+                            <span class="eventComment">({{currentEvent.commentsAmount}})</span>
+                    </div>
+                </h4>
+                </div>
+                <div class="timeline-body clearfix">
+                    <p>{{currentEvent.body}}</p>
+                </div>
+                <span class="pull-right"><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{currentEvent.date}}</small></span>
+            </div>
+        </li>
+        </ul>
+        <div id="artistRatingFormContainer">
+            <form>
+                <div id="descriptionTextCol" class="col-xs-3 col-md-4">
+
+                    <div id="descriptionText">Calificación</div>
+                    <div id="descriptionText">Comentario
+                        <br/> (opcional) </div>
+                </div>
+                <div id="ratingInputsCol" class="col-xs-6 col-md-5">
+                    <uib-rating class="ratingStar pull-left" ng-model="eventRating.qualification" max="5" aria-labelledby="default-rating"></uib-rating>
+                    <b>({{eventRating.qualification}})</b>
+                    <textarea rows="5" id="artistCommentReview" ng-model="eventRating.comment" class="form-control"></textarea>
+                </div>
+                <div id="reviewBtnCol" class="col-xs-2 col-md-3">
+                    <button type="button" ng-click="sendRateEvent()" id="sendReviewBtn" class="btn btn-default input-sm"> ¡Calificar! </button>
+                </div>
+            </form>
+        </div>
+        <div  class="artistCommentsContainer">
+            <div class="artistComments">
+
+                  <ul class="commentsList">
+                    <div class="commentSectionHeader">Comentarios ({{eventComments.totalOfComments}})</div>
+                  <li ng-repeat="comment in eventComments.coments" class="commentContainer">
+                      <header class="commentHeader">
+                          <div class="commentAuthor">{{comment.reviewer}}
+                              <div class="commentStarsContainer pull-right">
+                                <uib-rating  style="color: #f9f014; font-size:1.7vw;" class="pull-right" read-only="true" ng-model="comment.calification" max="5" aria-labelledby="default-rating"></uib-rating>
+                              </div>
+                          </div>
+                      </header>
+                      <article class="commentBody">{{comment.comment}}</article>
+                  </li>
+                </ul>
+            </div>
+        </div>
+
+</div>
+<div class="modal-footer">
+    <button style="width:auto;" class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button style="width:auto;" class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

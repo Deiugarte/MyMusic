@@ -1,0 +1,81 @@
+<div id="myFestContainer" class="container-fluid">
+            <div id="myFestTopSection">
+                <div id="myFestNavButtons" class="row" >
+                    <button class="col-md-3 col-md-offset-3 btn btn-default btn-lg"> Estadísticas </button>
+                    <button class="col-md-3 btn btn-default btn-lg"> Búsqueda Inteligente </button>
+                </div>
+                <div id="myFestSearchContainer" class="row">
+                    <div id="myFestSearchInputContainer" class="col-xs-2 col-xs-offset-2 col-md-2 col-md-offset-2">
+                        <input type="search" class="form-control input-sm" name="myFestSearch" placeholder="Buscar" ng-model="vm.searchParameters.name" id="myFestSearch"/>
+                    </div>
+                    <div id="myFestSearchButtonsContainer" class="col-xs-2 col-md-2">
+                        <button ng-click="vm.search()" class="myFestSearchBtns btn btn-primary btn-sm">Buscar</button>
+                        <button ng-click="filtersInvisible = !filtersInvisible" class="myFestSearchBtns btn btn-primary btn-sm">Filtros</button>
+                    </div>
+                    <div ng-hide="filtersInvisible" class="col-xs-4 col-md-4 form-inline">
+                        <label>Género: </label>
+                        <select ng-model="vm.searchParameters.genre" class=" form-control input-sm myFestComboBox">
+                          <option value="" >Ninguno</option>
+                            <option ng-repeat="genre in vm.genresList" value="{{genre.dataResponse}}" >{{genre.dataResponse}}</option>
+                            <!--  <option ng-repeat="x in genres" value="{{x.genreValue}">{{x.genreName}}</option>  -->
+                        </select>
+                        <label>País: </label>
+                        <select ng-model=vm.searchParameters.country class="form-control input-sm myFestComboBox">
+                          <option value="" >Ninguno</option>
+                            <option ng-repeat="country in vm.countriesList" value="{{country.dataResponse}}">{{country.dataResponse}}</option>
+                            <!--  <option ng-repeat="x in countries" value="{{x.countryValue}">{{x.countryName}}</option>  -->
+                        </select>
+                    </div>
+
+                </div>
+                <div ng-repeat="searchData in vm.searchData" ng-click="vm.selectProfile(searchData.artistID)">{{searchData.dataResponse}}</div>
+            </div>
+            <div id="myFestMainContent" class="row">
+                <div id="myFestArtistInfoContainer" class="row">
+                    <div id="myFestArtistInfoLeft" class="col-xs-offset-1
+                         col-xs-2 col-md-offset-1 col-md-2">
+                        <div id="myFestArtistImageContainer">
+                            <img src="http://i.imgur.com/hfH9CiC.png" id="myFestArtistImage">
+
+                            </img>
+                        </div>
+                        <p id="myFestArtistName">{{vm.dashBoardData.name}}</p>
+                        <span ng-repeat="genre in vm.dashBoardData.artistGenders" >{{genre}}--</span>
+                    </div>
+                    <div id="myFestArtistInfoRight" class="col-xs-8 col-md-8">
+                        <div id="myFestArtistRightTop" class="row">
+                            <div id="myFestArtistReview" class="col-xs-4 col-md-4">
+                                <uib-rating  read-only="true" class="myFestStar" ng-model="vm.dashBoardData.artistScore"  max="5" aria-labelledby="default-rating"></uib-rating>
+                                <br/>
+                                <p>Artista</p>
+                            </div>
+                            <div id="myFestEventsReview" class="col-xs-4 col-md-4">
+                                <uib-rating read-only="true" class="myFestStar" ng-model="vm.dashBoardData.concertScore"  max="5" aria-labelledby="default-rating"></uib-rating>
+                                <br/>
+                                <p>Eventos</p>
+                            </div>
+                            <div id="myFestAlbumsReview" class="col-xs-4 col-md-4">
+                                <uib-rating read-only="true" class="myFestStar" ng-model="vm.dashBoardData.discScore"  max="5" aria-labelledby="default-rating"></uib-rating>
+                                <br/>
+                                <p>Discografía</p>
+                            </div>
+                        </div>
+                        <div id="myFestArtistRightBottom" class="row">
+                            <div id="myFestFollowersCount" class="col-xs-6 col-md-6">
+                                <i class="festIcon fa fa-users"></i> Seguidores
+                                <p>{{vm.dashBoardData.followersAmount}}</p>
+                            </div>
+                            <div id="myFestEventComments" class="col-xs-6 col-md-6">
+                                <i class="festIcon fa fa-commenting"></i>Comentarios
+                                <p>50</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="myFestArtistGraph" class="col-xs-offset-1
+                     col-xs-10 col-md-offset-1 col-md-10">
+                     <linechart data="data" options="options"></linechart>
+                </div>
+            </div>
+
+        </div>

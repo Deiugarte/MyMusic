@@ -1,0 +1,112 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : Jun 18, 2016, 12:00:38 AM
+    Author     : Alejandro
+*/
+
+body{
+    height: 100%;
+  margin: 0
+}
+
+#myFestContainer{
+  height: 100%;
+
+}
+
+
+#myFestNavButtons{
+    padding-top: 2%;
+    margin-bottom: 3%;
+
+
+}
+
+.myFestSearchBtns{
+    width: 48%;
+}
+
+.filterText{
+    font-size: 1vw;
+}
+#myFestTopSection{
+    height: 20%;
+}
+
+#myFestMainContent{
+    margin-top: 2%;
+   height: 80%;
+    border: 2px solid black;
+}
+
+#myFestArtistImageContainer{
+    height: 150px;
+}
+
+#myFestArtistName{
+    font-size: 1.4vw;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+#myFestArtistGenres{
+    font-size: 1vw;
+    text-align: center;
+}
+
+#myFestArtistImage{
+    width: 100%;
+    max-height: 100%;
+    height: auto;
+
+}
+
+#myFestArtistInfoLeft, #myFestArtistInfoRight{
+    padding:0;
+    height: 195px;
+    border: 2px solid  darkslateblue;
+
+}
+
+#myFestArtistReview, #myFestEventsReview, #myFestAlbumsReview, #myFestFollowersCount, #myFestEventComments{
+    text-align: center;
+    font-size: 1.7vw;
+    font-weight: bold;
+}
+
+#myFestArtistRightTop, #myFestArtistRightBottom{
+    padding: 2% 2%;
+}
+
+.myFestStar{
+    font-size: 1.5vw;
+    color:#f9f014;
+}
+
+
+
+.festIcon{
+    font-size: 1.5vw;
+    margin-right: 1%;
+}
+
+#myFestSearch{
+  margin-top: 0;
+}
+
+.myFestComboBox{
+  font-size: 1vw;
+  margin: 0 1%;
+  min-width: 70px;
+  padding: 0;
+}
+
+#myFestArtistGraph{
+    height: 175px;
+    border: 1px solid turquoise;
+    padding: 0;
+}

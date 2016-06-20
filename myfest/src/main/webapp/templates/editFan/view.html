@@ -1,0 +1,84 @@
+<div class="modal-header">
+    <h3 class="modal-title">Edite su perfil</h3>
+</div>
+<div class="modal-body row container-fluid">
+    <div class="col-xs-1 col-sm-3 col-md-3 col-lg-3"></div>
+    <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6">
+        <form name="newUserForm" ng-show="true ">
+            <strong> Nombre completo: </strong>
+            <input type="text" class="form-control" name="name" ng-model="newUserUpdateData.nameUser" placeholder="Nombre completo" ng-minlength="1" ng-maxlength="30">
+            <p ng-show="newUserForm.name.$error.minlength" class="help-block">Nombre muy corto</p>
+            <p ng-show="newUserForm.name.$error.maxlength" class="help-block">Nombre muy largo</p>
+            <div>
+                <strong> Fecha de nacimiento: </strong>
+                <p class="input-group">
+                    <input type="text" class="form-control" name="date" placeholder="Fecha de Nacimiento" uib-datepicker-popup="dd-MM-yyyy" ng-model="newUserUpdateData.birthday" is-open="isCalendarOpen" datepicker-options="dateOptions" close-text="Cerrar"
+                        alt-input-formats="altInputFormats" />
+                    <span class="input-group-btn">
+              <button type="button" class="btn btn-default margin-calendar-button" ng-click="isCalendarOpen = !isCalendarOpen"><i class="fa fa-calendar"></i></button>
+            </span>
+                </p>
+                <div ng-messages="newUserForm.date.$error" ng-if="newUserForm.date.$submitted || newUserForm.date.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                </div>
+            </div>
+            <br>
+            <label style="padding-left:0%" class="radio-inline">
+                <strong>Seleccione su genero: </strong>
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="genderRadio" id="genderMen" ng-model="newUserUpdateData.gender" value="false"> Hombre
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="genderRadio" id="genderWomen" ng-model="newUserUpdateData.gender" value="true"> Mujer
+            </label>
+
+            <br/>
+
+            <strong>Contraseña: </strong>
+            <input type="password" placeholder="Introduzca su contraseña" class="form-control" name="newPassword" ng-model="newUserUpdateData.password" ng-minlength="4" ng-maxlength="8" />
+            <p ng-show="newUserForm.password.$error.minlength" class="help-block">Contraseña muy corta</p>
+            <p ng-show="newUserForm.password.$error.maxlength" class="help-block">Contraseña muy larga</p>
+            <div class="clearfix">
+                <div ng-messages="newUserForm.newPassword.$error" ng-if="newUserForm.$submitted || newUserForm.newPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                    <div ng-message="passwordMatch" class="message slide-left">Las contraseñas no coinciden</div>
+                </div>
+                <strong>Confirmar contraseña: </strong>
+            </div>
+            <input type="password" placeholder="Confirme su contraseña" class="form-control" name="confirmPassword" ng-model="password.confirm" match-password="newPassword" />
+            <div class="clearfix">
+                <div ng-messages="newUserForm.confirmPassword.$error" ng-if="newUserForm.$submitted || newUserForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                    <div ng-message="passwordMatch" class="message slide-left">Las contraseñas no coinciden</div>
+                </div>
+            </div>
+            <label for="countrySelect"> País: </label>
+            <select name="countrySelect" id="countrySelect" class="form-control" ng-model="newUserUpdateData.countryLocation" >
+                <option ng-repeat="country in ubications" value="{{country.name}}">{{country.name}}</option>
+            </select>
+            <div ng-messages="newUserForm.countrySelect.$error" ng-if="newUserForm.$submitted || newUserForm.countrySelect.$pristine" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+            </div>
+            <br>
+            <strong>Géneros favoritos:</strong>
+
+            <ui-select multiple ng-model="newUserUpdateData.musisicalGenres" limit="5" close-on-select="true" title="Elige tus generos musicales">
+                <ui-select-match placeholder="Elige tus generos musicales">{{$item.name}} </ui-select-match>
+                <ui-select-choices repeat="genre.name as genre in genres | filter: {name: $select.search}">
+                    <div ng-bind-html="genre.name | highlight: $select.search"></div>
+                    <small>{{genre.name}}</small>
+                </ui-select-choices>
+            </ui-select>
+
+            <br>
+
+            <strong>Ingrese su foto de Perfil:</strong>
+            <input type="file" ngf-select="" ng-model="picfile" name="file" ngf-accept="'image/*'">
+            <img ngf-src="picfile" class="thumb">
+            <span ng-show="picfile.result">Imagen actualizada</span>
+            <br>
+
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <button style="width:auto;" class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button style="width:auto;" class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
