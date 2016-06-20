@@ -4,6 +4,6 @@
   angular
     .module('refiereApp.login', [
       'refiereApp.chore',
-      'base64'
+      'base64','ngCookies'
     ]);
 })();

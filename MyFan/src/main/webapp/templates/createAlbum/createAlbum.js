@@ -3,6 +3,6 @@
 
   angular
     .module('refiereApp.createAlbum', [
-      'refiereApp.chore','ngMessages','ngPassword','ui.bootstrap','ngAnimate'
+      'refiereApp.chore','ngMessages','ngPassword','ui.bootstrap','ngAnimate','ngCookies'
     ]);
 })();

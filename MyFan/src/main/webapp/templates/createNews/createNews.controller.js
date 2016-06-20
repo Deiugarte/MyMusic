@@ -4,9 +4,9 @@
         .module('refiereApp.createNews')
         .controller('createNewsCtrl', createNewsCtrl);
 
-    createNewsCtrl.$inject = ['CreateNewsSrv', 'currentUser', '$uibModalInstance', '$state', '$window', '$scope'];
+    createNewsCtrl.$inject = ['CreateNewsSrv', 'currentUser', '$uibModalInstance', '$state', '$window', '$scope','$cookies','$cookieStore'];
 
-    function createNewsCtrl(CreateNewsSrv, currentUser, $uibModalInstance, $state, $window, $scope) {
+    function createNewsCtrl(CreateNewsSrv, currentUser, $uibModalInstance, $state, $window, $scope,$cookies,$cookieStore) {
       $scope.newNewsData = {};
       $scope.newNewsData.idUser =$cookies.get("idArtist");
       $scope.isCalendarOpen = false;

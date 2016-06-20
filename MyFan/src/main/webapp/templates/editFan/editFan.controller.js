@@ -4,9 +4,9 @@
         .module('refiereApp.editFan')
         .controller('editFanCtrl', editFanCtrl);
 
-    editFanCtrl.$inject = ['EditFanSrv', 'currentUser', '$uibModalInstance', '$state', '$window', '$scope'];
+    editFanCtrl.$inject = ['EditFanSrv', 'currentUser', '$uibModalInstance', '$state', '$window', '$scope','$cookies','$cookieStore'];
 
-    function editFanCtrl(EditFanSrv, currentUser, $uibModalInstance, $state, $window, $scope) {
+    function editFanCtrl(EditFanSrv, currentUser, $uibModalInstance, $state, $window, $scope,$cookies,$cookieStore) {
         $scope.newUserUpdateData ={};
         $scope.newUserUpdateData ={
           nameUser: "",

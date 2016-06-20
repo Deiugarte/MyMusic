@@ -4,9 +4,9 @@
         .module('refiereApp.editArtist')
         .controller('editArtistCtrl', editArtistCtrl);
 
-    editArtistCtrl.$inject = ['EditArtistSrv', 'currentUser', '$uibModalInstance', '$state', '$window', '$scope'];
+    editArtistCtrl.$inject = ['EditArtistSrv', 'currentUser', '$uibModalInstance', '$state', '$window', '$scope','$cookies','$cookieStore'];
 
-    function editArtistCtrl(EditArtistSrv, currentUser, $uibModalInstance, $state, $window, $scope) {
+    function editArtistCtrl(EditArtistSrv, currentUser, $uibModalInstance, $state, $window, $scope,$cookies,$cookieStore) {
         $scope.currentUser = currentUser;
         $scope.newUserUpdateData ={};
         $scope.newUserUpdateData ={
