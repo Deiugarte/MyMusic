@@ -44,8 +44,12 @@ public class FanaticLogic extends UserLogic {
 	public Response updateFanatic(UpdateProfileUserRequest dataFanatic, String pathProfilePicture) {
 		String response = USER_IDENTIFIER_STATUS; 
 		updateUser(dataFanatic, pathProfilePicture);
-		Fanatics fanatic = facadeDAO.findFanaticById(dataFanatic.getIdentificationNumber());
-		fanatic.setSex(dataFanatic.isGender());
+		Fanatics fanatic = facadeDAO.findFanaticByUserId((dataFanatic.getIdentificationNumber()));
+		Boolean gender= new Boolean(dataFanatic.isGender());
+		System.out.println(fanatic.getFanaticId());
+		if(gender!=null){
+		  fanatic.setSex(gender.booleanValue());
+		}
 		facadeDAO.saveFanatic(fanatic);
 		response = String.format(response, fanatic.getFanaticId().toString(), "fanatic", "OK");
 		return Response.status(Status.OK).entity(response).build();
