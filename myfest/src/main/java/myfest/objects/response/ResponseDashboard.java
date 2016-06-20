@@ -9,7 +9,7 @@ public class ResponseDashboard {
 	private int concertScore;
 	private int discScore;
 	private int artistScore;
-	private int twitterMentionsAmount;
+	private List<MonthlyTwitterMentions> twitterMentionsAmount;
 	private List<String> artistGenders;
 	
 	public String getName() {
@@ -33,7 +33,7 @@ public class ResponseDashboard {
 	public int getArtistScore() {
 		return artistScore;
 	}
-	public int getTwitterMentionsAmount() {
+	public List<MonthlyTwitterMentions> getTwitterMentionsAmount() {
 		return twitterMentionsAmount;
 	}
 	public void setName(String name) {
@@ -57,7 +57,7 @@ public class ResponseDashboard {
 	public void setArtistScore(int artistScore) {
 		this.artistScore = artistScore;
 	}
-	public void setTwitterMentionsAmount(int twitterMentionsAmount) {
+	public void setTwitterMentionsAmount(List<MonthlyTwitterMentions> twitterMentionsAmount) {
 		this.twitterMentionsAmount = twitterMentionsAmount;
 	}
 	
