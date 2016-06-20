@@ -4,13 +4,13 @@
         .module('refiereApp.createEvent')
         .controller('createEventCtrl', createEventCtrl);
 
-    createEventCtrl.$inject = ['CreateEventSrv', 'currentUser', '$uibModalInstance', '$state', '$window', '$scope'];
+    createEventCtrl.$inject = ['CreateEventSrv', 'currentUser', '$uibModalInstance', '$state', '$window', '$scope','$cookies','$cookieStore'];
 
-    function createEventCtrl(CreateEventSrv, currentUser, $uibModalInstance, $state, $window, $scope) {
+    function createEventCtrl(CreateEventSrv, currentUser, $uibModalInstance, $state, $window, $scope,$cookies,$cookieStore) {
         var vm = this;
         $scope.newEventData = {};
         $scope.ubications = [];
-        $scope.newEventData.idUser = $cookies.getObject('userInfo').idUser;
+        $scope.newEventData.idUser = $cookies.get("idArtist");
         $scope.isCalendarOpen = false;
 
         $scope.ok = function() { //método que se llama cuando se le da OK en el modal de crear evento

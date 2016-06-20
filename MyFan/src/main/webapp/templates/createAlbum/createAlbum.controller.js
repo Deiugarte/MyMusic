@@ -4,9 +4,9 @@
         .module('refiereApp.createAlbum')
         .controller('createAlbumCtrl', createAlbumCtrl);
 
-    createAlbumCtrl.$inject = ['CreateAlbumSrv', 'currentUser', '$uibModalInstance', '$state', '$window', '$scope'];
+    createAlbumCtrl.$inject = ['CreateAlbumSrv', 'currentUser', '$uibModalInstance', '$state', '$window', '$scope','$cookies','$cookieStore'];
 
-    function createAlbumCtrl(CreateAlbumSrv, currentUser, $uibModalInstance, $state, $window, $scope) {
+    function createAlbumCtrl(CreateAlbumSrv, currentUser, $uibModalInstance, $state, $window, $scope,$cookies,$cookieStore) {
         $scope.currentUser = currentUser;
         $scope.newAlbumData = {};
         $scope.newAlbumData.idUser =$cookies.get("idArtist");

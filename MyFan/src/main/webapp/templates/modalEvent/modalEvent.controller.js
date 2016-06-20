@@ -4,9 +4,9 @@
         .module('refiereApp.modalEvent')
         .controller('ModalInstanceCtrl', ModalInstanceCtrl);
 
-    ModalInstanceCtrl.$inject = ['EventSrv', 'currentEvent', '$uibModalInstance', '$state', '$window', '$scope','$log'];
+    ModalInstanceCtrl.$inject = ['EventSrv', 'currentEvent', '$uibModalInstance', '$state', '$window', '$scope','$log','$cookies','$cookieStore'];
 
-    function ModalInstanceCtrl(EventSrv, currentEvent, $uibModalInstance, $state, $window, $scope,$log) {
+    function ModalInstanceCtrl(EventSrv, currentEvent, $uibModalInstance, $state, $window, $scope,$log,$cookies,$cookieStore) {
         $scope.currentEvent = currentEvent;
         $scope.eventRating = {};
         $scope.eventRating.idEvent = $scope.currentEvent.id;

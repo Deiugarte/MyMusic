@@ -3,6 +3,6 @@
 
   angular
     .module('refiereApp.editArtist', [
-      'refiereApp.chore','ngMessages','ngPassword','ui.bootstrap','ngAnimate'
+      'refiereApp.chore','ngMessages','ngPassword','ui.bootstrap','ngAnimate','ngCookies'
     ]);
 })();

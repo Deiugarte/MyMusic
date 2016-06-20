@@ -36,10 +36,11 @@ public class ArtistLogic extends UserLogic {
 		user = facadeDAO.findUserByLogin(dataArtist.getLogin());
 		artist.setBio(dataArtist.getBiographyArtist());
 		artist.setUsers(user);
-
-		facadeDAO.saveArtist(artist);
-		saveMembers(artist, dataArtist.getMembers());
+		
 		saveGenres(user, genders);
+		facadeDAO.saveArtist(artist);	
+		artist=facadeDAO.findArtistByUserId(user.getUserId());
+		saveMembers(artist, dataArtist.getMembers());
 
 		response = String.format(response, user.getUserId().toString(), "artist", "OK");
 		return Response.status(Status.OK).entity(response).build();
@@ -54,9 +55,9 @@ public class ArtistLogic extends UserLogic {
 	}
 
 	private void saveMembers(Artists artist, ArrayList<Member> membersList) {
-		Members members = new Members();
-		members.setArtists(artist);
-		for (int i = 0; i < membersList.size(); i++) {
+	  Members members = new Members();
+    members.setArtists(artist);
+		for (int i = 0; i < membersList.size(); i++) {		  
 			members.setInstrument(membersList.get(i).getInstrument());
 			members.setName(membersList.get(i).getName());
 			facadeDAO.saveMembersArtist(members);

@@ -4,9 +4,9 @@
         .module('refiereApp.modalEvent')
         .controller('modalAlbumCtrl', modalAlbumCtrl);
 
-    modalAlbumCtrl.$inject = ['AlbumSrv', 'currentAlbumInfo', '$uibModalInstance', '$state', '$window', '$scope', '$log'];
+    modalAlbumCtrl.$inject = ['AlbumSrv', 'currentAlbumInfo', '$uibModalInstance', '$state', '$window', '$scope', '$log','$cookies','$cookieStore'];
 
-    function modalAlbumCtrl(AlbumSrv, currentAlbumInfo, $uibModalInstance, $state, $window, $scope, $log) {
+    function modalAlbumCtrl(AlbumSrv, currentAlbumInfo, $uibModalInstance, $state, $window, $scope, $log,$cookies,$cookieStore) {
         $scope.currentAlbumInfo = currentAlbumInfo;
         $scope.albumCommentRating = "";
         $scope.albumRating = {};
