@@ -9,8 +9,8 @@
     function createAlbumCtrl(CreateAlbumSrv, currentUser, $uibModalInstance, $state, $window, $scope) {
         $scope.currentUser = currentUser;
         $scope.newAlbumData = {};
-        $scope.newAlbumData.idUser = 11;
-        $scope.newAlbumData.releaseYear = 2016;
+        $scope.newAlbumData.idUser = "11";
+        $scope.newAlbumData.releaseYear = "2016";
         $scope.discID = 0;
         $scope.songs = [{}];
 
@@ -43,9 +43,9 @@
             $scope.newAlbumData.releaseYear = new Date($scope.newAlbumData.releaseYear);
             CreateAlbumSrv.postCreateNewAlbum($scope.newAlbumData)
                 .then(function(dataAlbum) {
-                    $scope.discID = data.DiscId;
+                    $scope.discID = dataAlbum.data.DiscId;
                     $scope.songs.forEach(function(row) {
-                      row.DiscId = $scope.DiscId;
+                      row.idDisc = $scope.discID;
                         CreateAlbumSrv.postCreateNewSong(row)
                             .then(function(dataSong) {
                                 console.log("se agrego cancion con exito");

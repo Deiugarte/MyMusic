@@ -7,6 +7,7 @@ public class AddSongRequest {
 	private boolean isLimitEdition;
 	private String videoLink;
 	private boolean isLife;
+	
 	public int getIdDisc() {
 		return idDisc;
 	}
