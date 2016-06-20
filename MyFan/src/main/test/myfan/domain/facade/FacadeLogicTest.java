@@ -17,6 +17,7 @@ import myfan.resources.base.FollowArtistRequest;
 import myfan.resources.base.LoginRequest;
 import myfan.resources.base.RegisterNewArtistRequest;
 import myfan.resources.base.RegisterNewFanaticRequest;
+import myfan.resources.base.UpdateProfileUserRequest;
 import myfan.resources.base.util.Member;
 
 public class FacadeLogicTest {
@@ -77,6 +78,17 @@ public class FacadeLogicTest {
 	  accountRequest.setLogin("javesp");
 	  facadeLogic.disableProfile(accountRequest);
   }
+ // @Test
+ public void modifyData(){
+	 UpdateProfileUserRequest updateProfileUserRequest = new UpdateProfileUserRequest();
+	 updateProfileUserRequest.setBirthday("2016-02-02");
+	 updateProfileUserRequest.setCountryLocation("Costa Rica");
+	 updateProfileUserRequest.setGender(true);
+	 updateProfileUserRequest.setNameUser("Test");
+	 updateProfileUserRequest.setNameUser("Test");
+	 facadeLogic.modifyDataArtist(updateProfileUserRequest, null, null)
+ }
+  
   @Test
   public void createNews() {
     AddNewsRequest addNewsRequest = new AddNewsRequest();
