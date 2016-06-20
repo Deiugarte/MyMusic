@@ -36,8 +36,9 @@ public class CommentsConcert {
 		List<EventsCalifications> concertsCalifications = facadeDAO.getCalificationByConcert(idEvent);
 		for (int i = 0; i < concertsCalifications.size(); i++) {
 			if (!concertsCalifications.get(i).getComment().equals("")|| concertsCalifications.get(i).getComment() != null) {
-				if (concertsCalifications.get(i).getFanatics().getUsers().getUsersRoles().getUsersRolesId() == DISABLE_ROLE) {
+				if (concertsCalifications.get(i).getFanatics().getUsers().getUsersRoles().getUsersRolesId() != DISABLE_ROLE) {
 					Comments comment = new Comments();
+					System.out.println(concertsCalifications.get(i).getComment());
 					comment.setCalification(concertsCalifications.get(i).getCalification());
 					comment.setComment(concertsCalifications.get(i).getComment());
 					comment.setReviewer(concertsCalifications.get(i).getFanatics().getUsers().getName());

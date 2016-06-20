@@ -14,7 +14,7 @@
     vm.postRateEvent = postRateEvent;
 
     function getEventComments(data){
-      var url = 'http://localhost:8000/rest/v1/comments/getEventComments/' + data.idEvent;
+      var url = 'http://localhost:8000/rest/v1/comments/getEventComments/' + data.id;
       return $http.get(url, data);
     }
 
