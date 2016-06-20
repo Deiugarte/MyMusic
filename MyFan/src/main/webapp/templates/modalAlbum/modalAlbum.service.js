@@ -11,14 +11,15 @@
   function AlbumSrv($http) {
     var vm = this;
     vm.getAlbumComments = getAlbumComments;
-    vm.postRateDisc = postRateDisc;
+    vm.postRateAlbum = postRateAlbum;
+
 
     function getAlbumComments(data){
       var url = 'http://localhost:8000/rest/v1/comments/getDiscComments/' + data.idDisc;
       return $http.get(url, data);
     }
 
-    function postRateDisc(data){
+    function postRateAlbum(data){
       var url = 'http://localhost:8000/rest/calificate/disc';
       return $http.post(url, data);
     }

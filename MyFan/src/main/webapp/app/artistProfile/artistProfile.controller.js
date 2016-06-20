@@ -8,7 +8,6 @@
 
     function artistProfileCtrl(ArtistSrv, $uibModal, $state, $window, $scope) {
         var vm = this;
-        vm.currentUser = {};
         vm.currentEvent = {};
         vm.userData={};
         vm.timeline=[];
@@ -16,13 +15,24 @@
         vm.timelineParameters.offset = '0';
         vm.currentAlbumInfo = {};
         $scope.link = 'https://www.youtube.com/watch?v=mGNRAzW0BdI';
+
+        $scope.artistRating = {};
+        $scope.artistRating.idUserArtist = "11";
+        $scope.artistRating.idUserFanatic = "12";
         $scope.artist = {};
         $scope.artist.id = "11";
         $scope.artist.idArtist = "11";
 
+        vm.currentUser ={
+          type: "fanatic",
+          id: "101",
+          userName: "Alejandro22",
+          name: "Alejandro",
+        }
+
         getArtistComments();
         function getArtistComments(){
-          ArtistSrv.getArtistComments($scope.currentAlbumInfo)
+          ArtistSrv.getArtistComments($scope.artist)
           .then(function(commentsData){
               $scope.artistComments = commentsData.data;
               console.log(commentsData.data);
@@ -34,6 +44,7 @@
           console.log($scope.artistRating);
           ArtistSrv.postRateArtist($scope.artistRating)
           .then(function(data){
+            getArtistComments();
             console.log(data);
           })
           .catch(function(error) {
@@ -43,12 +54,7 @@
 
         }
 
-        vm.currentUser ={
-          type: "fanatic",
-          id: "101",
-          userName: "Alejandro22",
-          name: "Alejandro",
-        }
+
 
         vm.changeVideo = function (videoLink){
           $scope.link = videoLink;
@@ -238,14 +244,6 @@
             });
         };
 
-
-
-        vm.currentUser ={
-          type: "artist",
-          id: "101",
-          userName: "Alejandro22",
-          name: "Alejandro",
-        }
 
         vm.artistCommentsList = {
             comments: [{
