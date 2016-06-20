@@ -1,9 +1,14 @@
 package myfest.dao;
 
+
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import myfest.models.Musicalgenres;
 import myfest.utils.HibernateUtil;
@@ -24,6 +29,24 @@ public class MusicalGenresDAO extends MusicalgenresHome {
       }
   }
   
+  public List<Musicalgenres> findAll() {
+	    try {
+	        Session session = sessionFactory.openSession();
+	        org.hibernate.Transaction trans= session.beginTransaction();
+	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+	            log.debug(" >>> Transaction close.");
+	        Query query = session.createQuery("from Musicalgenres");
+	        java.util.List results = query.list();
+	        System.out.println("Result list: " + results.size());
+	        trans.commit();
+	        log.debug("get successful, instance found");
+	        return results;
+	    } catch (RuntimeException re) {
+	        log.error("get failed", re);
+	        throw re;
+	    }
+	}
+  
   public void save(Musicalgenres Musicalgenres){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
@@ -31,7 +54,26 @@ public class MusicalGenresDAO extends MusicalgenresHome {
       trans.commit();
   }
 
-  public Musicalgenres getArtistsById(int id) {
+  public Object getGenreId(String genreName){
+	  try {
+	        Session session = sessionFactory.openSession();
+	        org.hibernate.Transaction trans= session.beginTransaction();
+	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+	            log.debug(" >>> Transaction close.");
+	        Query query = session.createQuery("SELECT M.musicalGenreId from Musicalgenres M WHERE M.genreName = '"+genreName+"'");
+	        java.util.List results = query.list();
+	        System.out.println("Result list: " + results.size());
+	        trans.commit();
+	        log.debug("get successful, instance found");
+	        return results.get(0);
+	    } catch (RuntimeException re) {
+	        log.error("get failed", re);
+	        throw re;
+	    }
+	}
+  
+  
+  public Musicalgenres getGenresById(int id) {
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
       Musicalgenres instance = findById(id);
