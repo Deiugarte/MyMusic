@@ -4,9 +4,9 @@
         .module('refiereApp.artistProfile')
         .controller('artistProfileCtrl', artistProfileCtrl);
 
-    artistProfileCtrl.$inject = ['ArtistSrv','$uibModal', '$state', '$window', '$scope'];
+    artistProfileCtrl.$inject = ['ArtistSrv','$uibModal', '$state', '$window', '$scope','$cookies','$cookieStore'];
 
-    function artistProfileCtrl(ArtistSrv, $uibModal, $state, $window, $scope) {
+    function artistProfileCtrl(ArtistSrv, $uibModal, $state, $window, $scope,$cookies,$cookieStore) {
         var vm = this;
         vm.currentEvent = {};
         vm.userData={};
@@ -17,23 +17,20 @@
         $scope.link = 'https://www.youtube.com/watch?v=mGNRAzW0BdI';
 
         $scope.artistRating = {};
-        $scope.artistRating.idUserArtist = "11";
-        $scope.artistRating.idUserFanatic = "12";
+        $scope.artistRating.idUserArtist = $cookies.get("idArtist");
+        $scope.artistRating.idUserFanatic = $cookies.getObject('userInfo').UserId;
         $scope.artist = {};
-        $scope.artist.id = "11";
-        $scope.artist.idArtist = "11";
+        $scope.artist.id =  $cookies.get("idArtist");
+        $scope.artist.idArtist =  $cookies.get("idArtist");
 
 
         vm.followParameters = {};
-        vm.followParameters.idUserFanatic = "12";
-        vm.followParameters.idUserArtist = "11";
+        vm.followParameters.idUserFanatic = $cookies.getObject('userInfo').UserId;
+        vm.followParameters.idUserArtist =  $cookies.get("idArtist");
 
 
         vm.currentUser ={
-          type: "fanatic",
-          id: "101",
-          userName: "Alejandro22",
-          name: "Alejandro",
+          type: $cookies.getObject('userInfo').RoleIdentifier
         }
 
         getArtistComments();
@@ -87,7 +84,7 @@
 
         vm.getDiscography = function(){
           $scope.switchContent(true);
-          vm.timelineParameters.idUser = '11';
+          vm.timelineParameters.idUser =  $cookies.get("idArtist");
           ArtistSrv.getDiscography(vm.timelineParameters)
               .then(function(discographyData) {
                   vm.discography = discographyData.data;
@@ -96,7 +93,7 @@
 
         getTimelineNews();
         function getTimelineNews() {
-            vm.timelineParameters.idUser = '11';
+            vm.timelineParameters.idUser = $cookies.get("idArtist");
             ArtistSrv.getTimelineNews(vm.timelineParameters)
                 .then(function(newsData) {
                     for (var i = 0; i < newsData.data.length; i++) {
@@ -109,7 +106,7 @@
         getTimelineEvents();
 
         function getTimelineEvents() {
-            vm.timelineParameters.idUser = '11';
+            vm.timelineParameters.idUser =  $cookies.get("idArtist");
             ArtistSrv.getTimelineEvents(vm.timelineParameters)
                 .then(function(eventsData) {
                     for (var i = 0; i < eventsData.data.length; i++) {
@@ -119,7 +116,7 @@
         }
         getUserData();
         function getUserData() {
-          vm.userData.UserId='11';
+          vm.userData.UserId= $cookies.get("idArtist");
             ArtistSrv.getUserData(vm.userData)
                 .then(function(info) {
                     vm.artistProfile = info.data;

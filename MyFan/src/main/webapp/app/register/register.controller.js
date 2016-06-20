@@ -66,7 +66,7 @@
           UserDataService.setUserInfoData(userInfo);
           if (data.status === 200){
 
-            $state.go('fanProfile');
+            $state.go('login');
           }
           else if (data.status === 404){
             $window.alert('Por favor ingrese los datos correctos.');
@@ -87,8 +87,7 @@
       RegisterSrv.postNewArtist(vm.newUserData,vm.picfile)
         .then(function(data) {
           if (data.status === 200){
-            $window.alert('Bienvenido' );
-            $state.go('artistProfile');
+            $state.go('login');
           }
           else if (data.status === 404){
             $window.alert('Por favor ingrese los datos correctos.');
