@@ -7,35 +7,35 @@
         <form name="newAlbumForm" ng-show="true ">
 
             <strong> Nombre de disco: </strong>
-            <input type="text" class="form-control" name="albumName" ng-model="vm.newAlbumData.nameDisc" placeholder="Nombre de disco" ng-minlength="1" ng-maxlength="30" required>
-            <p ng-show="newAlbumForm.name.$error.maxlength" class="help-block">Nombre de disco muy largo</p>
+            <input type="text" class="form-control" name="albumName" ng-model="newAlbumData.nameDisc" placeholder="Nombre de disco" ng-minlength="1" ng-maxlength="30" required>
+            <p ng-show="newAlbumForm.albumName.$error.maxlength" class="help-block">Nombre de disco muy largo</p>
 
             <br>
 
-            <strong> Descripción(*): </strong>
-            <input type="text" class="form-control" name="descriptionDisc" ng-model="vm.newAlbumData.descriptionDisc" placeholder="Descripción de disco" ng-maxlength="300">
+            <strong> *Descripción: </strong>
+            <input type="text" class="form-control" name="descriptionDisc" ng-model="newAlbumData.descriptionDisc" placeholder="Descripción de disco" ng-maxlength="300">
             <p ng-show="newAlbumForm.descriptionDisc.$error.maxlength" class="help-block">Nombre de disco muy largo</p>
 
             <br>
 
 
-            <strong>Género:</strong>
-            <ui-select multiple ng-model="vm.newAlbumData.idGenre" limit="1" close-on-select="true" title="Elige tus generos musicales" required>
+            <strong>Género: {{newAlbumData.idGenre}}</strong>
+            <select class="form-control" name="idGenre" ng-model="newAlbumData.idGenre" required>
+              <option ng-repeat="genre in genres" value="{{genre.name}}">{{genre.name}}</option>
+            </select>
+
+
+          <!--  <ui-select multiple ng-model="newAlbumData.idGenre" limit="5" close-on-select="true" title="Elige tus generos musicales" required>
                 <ui-select-match placeholder="Elige tus generos musicales">{{$item.name}} </ui-select-match>
-                <ui-select-choices repeat="genre.name as genre in vm.genres | filter: {name: $select.search}">
+                <ui-select-choices repeat="genre.name as genre in genres | filter: {name: $select.search}">
                     <div ng-bind-html="genre.name | highlight: $select.search"></div>
                     <small>{{genre.name}}</small>
                 </ui-select-choices>
-            </ui-select>
-
-
-
-
-
+            </ui-select> -->
 
             <strong> Año: </strong>
-            <select id="releaseYear" name="releaseYear" ng-model="vm.newAlbumData.releaseYear">
-                <option selected="selected" value="2016">2016</option>
+            <select class="form-control" id="releaseYear" name="releaseYear" ng-model="newAlbumData.releaseYear" required>
+                <option value="2016">2016</option>
                 <option value="2015">2015</option>
                 <option value="2014">2014</option>
                 <option value="2013">2013</option>
@@ -75,11 +75,12 @@
             </select>
 
             <br>
-            <br>
 
-            <strong> Sello discográfico(*): </strong>
-            <input type="text" class="form-control" name="label" ng-model="vm.newAlbumData.label" placeholder="Sello discográfico" ng-maxlength="300">
+            <strong> *Sello discográfico: </strong>
+            <input type="text" class="form-control" name="label" ng-model="newAlbumData.label" placeholder="Sello discográfico" ng-maxlength="300">
             <p ng-show="newAlbumForm.label.$error.maxlength" class="help-block">Sello discográfico muy largo</p>
+
+            <br>
 
             <fieldset class="separate-bottom" data-ng-repeat="song in songs">
                <legend>Canción:</legend>
@@ -97,6 +98,7 @@
                 <label class="radio-inline">
                     <input type="radio" name="{{song.version}}" ng-model="song.isLife" value="false"> Estudio
                 </label>
+
                 <br/>
                 <br/>
 
@@ -114,12 +116,11 @@
                 <br/>
                 <br/>
 
-                <button class="btn btn-remove " ng-show="$last" ng-click="removeChoice()" ng-disabled="songs.length==1">Borrar Campo</button>
+                <button class="btn btn-remove " ng-show="$last" ng-click="removeChoice()" ng-disabled="songs.length==1">Eliminar canción</button>
             </fieldset>
 
-            <button class="btn btn-add" ng-click="addNewChoice()">Añadir Campo</button>
-            <div ng-hide=true>{{vm.newAlbumData.songs=songs}}</div>
-
+            <button class="btn btn-add" ng-click="addNewChoice()">Añadir canción</button>
+          <!--  <div ng-hide=true>{{newAlbumData.songs=songs}}</div> -->
         </form>
     </div>
 </div>

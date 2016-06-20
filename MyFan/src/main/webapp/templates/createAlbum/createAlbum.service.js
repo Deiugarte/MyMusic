@@ -10,26 +10,24 @@
   /* @ngInject */
   function CreateAlbumSrv($http) {
     var vm = this;
-    vm.postCompanyInfo = postCompanyInfo;
-    vm.getUserData = getUserData;
-    vm.getGenresData = getGenresData;
-    vm.getUbicationsList = getUbicationsList;
+    vm.postCreateNewAlbum = postCreateNewAlbum;
+    vm.postCreateNewSong = postCreateNewSong;
+    vm.getGenresList = getGenresList;
 
-    function postCompanyInfo(data) {
-      return $http.post('http://localhost:8000/rest/v1/company/register', data);
+    function postCreateNewAlbum(data) {
+      var url = 'http://localhost:8000/rest/v1/disc/addDisc';
+      return $http.post(url, data);
     }
 
-    function getUserData(data) {
-      var url = 'http://localhost:8000/rest/v1/resources/userdata/11';
-      return $http.get(url, data);
+    function postCreateNewSong(data) {
+      var url = 'http://localhost:8000/rest/v1/disc/addSong';
+      return $http.post(url, data);
     }
-    function getGenresData(data) {
+
+    function getGenresList(data) {
       var url = 'http://localhost:8000/rest/v1/resources/genreslist';
       return $http.get(url, data);
     }
-    function getUbicationsList(data) {
-      var url = 'http://localhost:8000/rest/v1/resources/ubicationslist';
-      return $http.get(url, data);
-    }
+
   }
 })();

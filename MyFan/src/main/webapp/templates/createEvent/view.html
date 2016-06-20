@@ -6,16 +6,14 @@
     <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6">
         <form name="newEventForm">
             <strong> Título: </strong>
-            <input type="text" class="form-control" name="eventTitle" ng-model="vm.newEventData.eventTitle" placeholder="Título" ng-minlength="1" ng-maxlength="30" required>
+            <input type="text" class="form-control" name="titleEvent" ng-model="newEventData.titleEvent" placeholder="Título" ng-minlength="1" ng-maxlength="30" required>
             <p ng-show="newEventForm.eventTitle.$error.maxlength" class="help-block">Título muy largo</p>
             <br>
-
-
             <div>
                 <strong> Fecha: </strong>
                 <p class="input-group">
-                    <input type="text" class="form-control" name="date" placeholder="Fecha de evento"
-                    uib-datepicker-popup="dd-MM-yyyy" ng-model="vm.newEventData.date"
+                    <input type="text" class="form-control" name="dateEvent" placeholder="Fecha de evento"
+                    uib-datepicker-popup="dd-MM-yyyy" ng-model="newEventData.dateEvent"
                     is-open="isCalendarOpen" datepicker-options="dateOptions" ng-required="true"
                    close-text="Cerrar" alt-input-formats="altInputFormats" />
                     <span class="input-group-btn">
@@ -23,30 +21,27 @@
             ng-click="isCalendarOpen = !isCalendarOpen"><i class="fa fa-calendar"></i></button>
           </span>
                 </p>
-                <div ng-messages="newEventForm.date.$error" ng-if="newEventForm.date.$submitted || newEventForm.date.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                <div ng-messages="newEventForm.dateEvent.$error" ng-if="newEventForm.dateEvent.$submitted || newEventForm.dateEvent.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
                     <div ng-message="required" class="message slide-left">No se han introducido datos</div>
                 </div>
             </div>
             <br>
-            <!-- EVENTO EN PROSA
 
-            <strong>Ubicación: </strong>
-            <textarea rows="4" placeholder="Ubicación del evento" class="form-control" name="newPassword" ng-model="vm.newEventData.password" ng-maxlength="300" required /></textarea>
-            <p ng-show="newEventForm.name.$error.maxlength" class="help-block">Ubicación muy larga</p>
--->
             <label for="countrySelect"> Ubicación: </label>
-            <select name="countrySelect" id="countrySelect" ng-model="vm.newEventData.location" required>
-                <option ng-repeat="country in vm.ubications" value="{{country.name}}">{{country.name}}</option>
+            <select name="countrySelect" id="countrySelect" class="form-control" ng-model="newEventData.ubicationEvent" required>
+                <option ng-repeat="country in ubications" value="{{country.name}}">{{country.name}}</option>
             </select>
+            <br/>
             <div ng-messages="newEventForm.countrySelect.$error" ng-if="newEventForm.$submitted || newEventForm.countrySelect.$pristine" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
                 <div ng-message="required" class="message slide-left">No se ha introducido el pais</div>
             </div>
 
             <br/>
+            <br/>
 
             <strong>Contenido: </strong>
-            <textarea rows="4" placeholder="Contenido" class="form-control" name="newEventContent" ng-model="vm.newEventData.content" ng-maxlength="300" required /> </textarea>
-            <p ng-show="newEventForm.name.$error.maxlength" class="help-block">Contenido muy largo</p>
+            <textarea rows="4" placeholder="Contenido" class="form-control" name="contentEvent" ng-model="newEventData.contentEvent" ng-maxlength="300" required /> </textarea>
+            <p ng-show="newEventForm.contentEvent.$error.maxlength" class="help-block">Contenido muy largo</p>
 
             <br/>
 
@@ -54,10 +49,10 @@
                 <strong>Tipo de evento: </strong>
             </label>
             <label class="radio-inline">
-                <input type="radio" name="genderRadio" ng-model="vm.newEventData.isConcert" value="true"> Concierto
+                <input type="radio" name="isConcert" ng-model="newEventData.isConcert" value=true required> Concierto
             </label>
             <label class="radio-inline">
-                <input type="radio" name="genderRadio" ng-model="vm.newEventData.isConcert" value="false"> Otro
+                <input type="radio" name="isConcert" ng-model="newEventData.isConcert" value=false required> Otro
             </label>
         </form>
     </div>

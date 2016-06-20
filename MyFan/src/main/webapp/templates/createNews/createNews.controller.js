@@ -7,17 +7,22 @@
     createNewsCtrl.$inject = ['CreateNewsSrv', 'currentUser', '$uibModalInstance', '$state', '$window', '$scope'];
 
     function createNewsCtrl(CreateNewsSrv, currentUser, $uibModalInstance, $state, $window, $scope) {
-        $scope.currentUser = currentUser;
-        $scope.isCalendarOpen = false;
-        $scope.selected = {
-            currentUser: $scope.currentUser[0]
+      $scope.newNewsData = {};
+      $scope.newNewsData.idUser = 11;
+      $scope.isCalendarOpen = false;
+
+        $scope.ok = function() { //método que se llama cuando se le da OK en el modal de crear noticia
+          console.log($scope.newNewsData);
+            CreateNewsSrv.postCreateNewNews($scope.newNewsData)
+                .then(function(data) {
+                    $uibModalInstance.close();
+                })
+                .catch(function(error) {
+                    $window.alert("No se pudo crear la noticia, intente de nuevo.");
+                });
         };
 
-        $scope.ok = function() {
-            $uibModalInstance.close($scope.selected.currentUser);
-        };
-
-        $scope.cancel = function() {
+        $scope.cancel = function() { //método que se llama cuando se le da cancelar en el modal de crear noticia
             $uibModalInstance.dismiss('cancel');
         };
     }
