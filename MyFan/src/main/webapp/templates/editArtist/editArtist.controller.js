@@ -14,7 +14,7 @@
           birthday: "",
           password: "",
           countryLocation: "",
-          identificationNumber: 12,
+          identificationNumber: 11,
           gender: ""
         };
         $scope.newUserUpdateData.musisicalGenres = [];

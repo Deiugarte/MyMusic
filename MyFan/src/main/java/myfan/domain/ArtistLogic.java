@@ -48,7 +48,7 @@ public class ArtistLogic extends UserLogic {
 	public Response updateArtist(UpdateProfileUserRequest dataArtist, String pathProfilePicture) {
 		String response = USER_IDENTIFIER_STATUS;
 		updateUser(dataArtist, pathProfilePicture);
-		response = String.format(response, dataArtist.getIdentificationNumber(), "OK");
+		response = String.format(response, dataArtist.getIdentificationNumber(), "artist","OK");
 		return Response.status(Status.OK).entity(response).build();
 
 	}
