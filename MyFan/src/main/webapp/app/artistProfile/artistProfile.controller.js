@@ -190,7 +190,7 @@
 
             });
             modalInstance.result.then(function(selectedItem) {
-                $scope.selected = selectedItem;
+                vm.getDiscography();
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());
             });

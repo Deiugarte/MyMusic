@@ -97,8 +97,9 @@
                 </label>
                 <label class="radio-inline">
                     <input type="radio" name="{{song.version}}" ng-model="song.isLife" value="false"> Estudio
+                    <p> {{song.isLimitEdition}} aaa </p>
                 </label>
-
+                <p> {{song.isLife}} aa </p>
                 <br/>
                 <br/>
 
@@ -107,10 +108,13 @@
                 </label>
                 <label class="radio-inline">
                     <input type="radio" name="{{song.edition}}" ng-model="song.isLimitEdition" ng-value="true"> Limitada
+
                 </label>
                 <label class="radio-inline">
                     <input type="radio" name="{{song.edition}}" ng-model="song.isLimitEdition" ng-value="false"> Normal
+                    <p> {{song.isLimitEdition}} aaa </p>
                 </label>
+
               </form>
 
                 <br/>

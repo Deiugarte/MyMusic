@@ -60,7 +60,7 @@ public class FacadeLogicTest {
     addSongRequest.setIdDisc(1);
     addSongRequest.setDurationSong("00:05:10");
     addSongRequest.setIsLimitEdition(true);
-    addSongRequest.setLife(true);
+    addSongRequest.setIsLife(true);
     addSongRequest.setNameSong("Test");
     addSongRequest.setVideoLink("https://www.youtube.com/watch?v=jgpJVI3tDbY");
     assertEquals(1, facadeLogic.addSong(addSongRequest));

@@ -8,6 +8,7 @@ public class AddSongRequest {
 	private String videoLink;
 	private boolean isLife;
 	
+	
 	public int getIdDisc() {
 		return idDisc;
 	}
@@ -23,7 +24,7 @@ public class AddSongRequest {
 	public String getVideoLink() {
 		return videoLink;
 	}
-	public boolean isLife() {
+	public boolean getIsLife() {
 		return isLife;
 	}
 	public void setIdDisc(int idDisc) {
@@ -35,13 +36,13 @@ public class AddSongRequest {
 	public void setDurationSong(String durationSong) {
 		this.durationSong = durationSong;
 	}
-	public void setIsLimitEdition(Boolean isLimitEdition) {
+	public void setIsLimitEdition(boolean isLimitEdition) {
 		this.isLimitEdition = isLimitEdition;
 	}
 	public void setVideoLink(String videoLink) {
 		this.videoLink = videoLink;
 	}
-	public void setLife(boolean isLife) {
+	public void setIsLife(boolean isLife) {
 		this.isLife = isLife;
 	}
 	
