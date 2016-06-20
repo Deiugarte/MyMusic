@@ -3,6 +3,6 @@
 
   angular
     .module('refiereApp.artistProfile', [
-      'refiereApp.chore','ngMessages','ngPassword','ui.bootstrap','ngAnimate', 'ngYoutubeEmbed'
+      'refiereApp.chore','ngMessages','ngPassword','ui.bootstrap','ngAnimate', 'ngYoutubeEmbed','ngCookies'
     ]);
 })();

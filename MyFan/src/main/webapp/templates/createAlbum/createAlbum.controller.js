@@ -9,7 +9,7 @@
     function createAlbumCtrl(CreateAlbumSrv, currentUser, $uibModalInstance, $state, $window, $scope) {
         $scope.currentUser = currentUser;
         $scope.newAlbumData = {};
-        $scope.newAlbumData.idUser = "11";
+        $scope.newAlbumData.idUser =$cookies.get("idArtist");
         $scope.newAlbumData.releaseYear = "2016";
         $scope.discID = 0;
         $scope.songs = [{}];

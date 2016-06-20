@@ -8,7 +8,7 @@
 
     function createNewsCtrl(CreateNewsSrv, currentUser, $uibModalInstance, $state, $window, $scope) {
       $scope.newNewsData = {};
-      $scope.newNewsData.idUser = 11;
+      $scope.newNewsData.idUser =$cookies.get("idArtist");
       $scope.isCalendarOpen = false;
 
         $scope.ok = function() { //método que se llama cuando se le da OK en el modal de crear noticia

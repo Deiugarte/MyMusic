@@ -10,7 +10,7 @@
         var vm = this;
         $scope.newEventData = {};
         $scope.ubications = [];
-        $scope.newEventData.idUser = 11;
+        $scope.newEventData.idUser = $cookies.getObject('userInfo').idUser;
         $scope.isCalendarOpen = false;
 
         $scope.ok = function() { //método que se llama cuando se le da OK en el modal de crear evento

@@ -5,10 +5,10 @@
     .module('refiereApp.login')
     .controller('LoginCtrl', LoginCtrl);
 
-  LoginCtrl.$inject = ['$state', 'LoginSrv', '$window','$log', 'UserDataService'];
+  LoginCtrl.$inject = ['$state', 'LoginSrv', '$window','$log', 'UserDataService','$cookies','$cookieStore'];
 
   /* @ngInject */
-  function LoginCtrl($state, LoginSrv, $window,$log,UserDataService) {
+  function LoginCtrl($state, LoginSrv, $window,$log,UserDataService,$cookies,$cookieStore) {
     var vm = this;
 
     vm.loginData = {};

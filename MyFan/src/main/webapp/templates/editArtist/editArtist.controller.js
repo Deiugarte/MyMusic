@@ -14,7 +14,7 @@
           birthday: "",
           password: "",
           countryLocation: "",
-          identificationNumber: 11,
+          identificationNumber: $cookies.get("idArtist"),
           gender: ""
         };
         $scope.newUserUpdateData.musisicalGenres = [];
