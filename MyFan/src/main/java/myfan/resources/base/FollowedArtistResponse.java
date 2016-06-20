@@ -10,8 +10,16 @@ public class FollowedArtistResponse {
 	private List<String> genres;
 	private String image;
 	private int rankingOfArtist;
+	private int artistId;
 	
-	public String getNameArtist() {
+	
+	public int getArtistId() {
+    return artistId;
+  }
+  public void setArtistId(int artistId) {
+    this.artistId = artistId;
+  }
+  public String getNameArtist() {
 		return nameArtist;
 	}
 	public String getUbicationArtist() {

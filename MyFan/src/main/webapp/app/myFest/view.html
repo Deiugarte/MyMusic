@@ -4,7 +4,6 @@
                     <button class="col-md-3 col-md-offset-3 btn btn-default btn-lg"> Estadísticas </button>
                     <button class="col-md-3 btn btn-default btn-lg"> Búsqueda Inteligente </button>
                 </div>
-
                 <div id="myFestSearchContainer" class="row">
                     <div id="myFestSearchInputContainer" class="col-xs-2 col-xs-offset-2 col-md-2 col-md-offset-2">
                         <input type="search" class="form-control input-sm" name="myFestSearch" placeholder="Buscar" ng-model="myFestSearch" id="myFestSearch"/>
@@ -16,12 +15,12 @@
                     <div ng-hide="filtersInvisible" class="col-xs-4 col-md-4 form-inline">
                         <label>Género: </label>
                         <select class=" form-control input-sm myFestComboBox">
-                            <option ng-repeat="genre in vm.genresList" value="{{genre.name}}" >{{genre.name}}</option>
+                            <option ng-repeat="genre in vm.genresList" value="{{genre.dataResponse}}" >{{genre.dataResponse}}</option>
                             <!--  <option ng-repeat="x in genres" value="{{x.genreValue}">{{x.genreName}}</option>  -->
                         </select>
                         <label>País: </label>
                         <select class="form-control input-sm myFestComboBox">
-                            <option ng-repeat="country in vm.countriesList" value="{{country.name}}">{{country.name}}</option>
+                            <option ng-repeat="country in vm.countriesList" value="{{country.dataResponse}}">{{country.dataResponse}}</option>
                             <!--  <option ng-repeat="x in countries" value="{{x.countryValue}">{{x.countryName}}</option>  -->
                         </select>
 
