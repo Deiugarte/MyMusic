@@ -18,6 +18,7 @@
         vm.countriesList = {};
         vm.timelineParameters = {};
         vm.timeline = [];
+        vm.artistList=[];
         vm.userData = $cookies.getObject('userInfo');
         vm.timelineParameters.offset = '0';
 
@@ -89,7 +90,6 @@
             FanaticSrv.getUserData(vm.userData)
                 .then(function(info) {
                     vm.newUser = info.data;
-
                 })
         }
 
@@ -130,51 +130,17 @@
                 });
         }
 
+          vm.getFollowedArtist = function () {
+            vm.artistList=[];
+            vm.timelineParameters.idUser = vm.userData.UserId;
+            FanaticSrv.getFollowedArtist(vm.timelineParameters)
+                .then(function(followedArtitsData) {
+                    for (var i = 0; i < followedArtitsData.data.length; i++) {
+                        vm.artistList.push(followedArtitsData.data[i]);
+                    }
+                });
+        }
 
-        vm.artistList = {
-            artists: [{
-                name: "Red Hot Chili Peppers",
-                photo: "",
-                country: "Estados Unidos",
-                albumsAmount: 20,
-                stars: 5,
-                genres: [
-                    "Rock",
-                    "Pop",
-                    "Funk",
-                    "Alternativo"
-                ],
-                nextEvent: "Se presentan el 20 de octubre, en el Super Rock Festival",
-            }, {
-                name: "Bob Marley",
-                photo: "",
-                country: "Jamaica",
-                albumsAmount: 5,
-                stars: 3,
-                genres: [
-                    "Reggae",
-                    "Ska",
-                    "Funk",
-                    "Dub",
-                    "Quinto"
-                ],
-                nextEvent: "No tiene eventos próximos",
-            }, {
-                name: "Gorillaz",
-                photo: "",
-                country: "Estados Unidos",
-                albumsAmount: 20,
-                stars: 5,
-                genres: [
-                    "Rock alt",
-                    "Rock electronico",
-                    "Hip Hop",
-                    "Alternativo",
-                    "Dub"
-                ],
-                nextEvent: "Se presentarán en diciembre en el London UFK Festival",
-            }, ]
-        };
 
 
 

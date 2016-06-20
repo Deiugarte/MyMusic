@@ -42,4 +42,13 @@ public class UtilitiesResource {
     FacadeLogic facadeLogic = new FacadeLogic();
     return facadeLogic.getPersonalInformationOfFanatic(username);
     }
+  
+  @GET
+  @Path("/followedArtits/{username}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public String getArtistsByFanatics(@PathParam("username") int username) {
+    FacadeLogic facadeLogic = new FacadeLogic();
+    return facadeLogic.getFollowedArtist(username);
+    }
+  
 }
