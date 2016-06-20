@@ -53,7 +53,7 @@ public class EventsLogic {
 		newEvent.setEventDate(dateFabrication.getDateFromString(events.getDateEvent()));
 		newEvent.setCreationDate(dateFabrication.getCurrentDate());
 		newEvent.setTittle(events.getTitleEvent());
-		newEvent.setType(events.isConcert());
+		newEvent.setType(events.getIsConcert());
 		Ubications ubications = facadeDAO.findUbicationsByName(events.getUbicationEvent());
 		newEvent.setUbications(ubications);
 		facadeDAO.saveEvent(newEvent);
