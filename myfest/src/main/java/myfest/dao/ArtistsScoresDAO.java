@@ -5,7 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import myfest.models.ArtistsScores;
+import myfest.models.Artistsscores;
 import myfest.utils.HibernateUtil;
 
 
@@ -24,25 +24,25 @@ public class ArtistsScoresDAO extends ArtistsscoresHome {
       }
   }
   
-  public void save(ArtistsScores ArtistsScores){
+  public void save(Artistsscores Artistsscores){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      merge(ArtistsScores);
+      merge(Artistsscores);
       trans.commit();
   }
 
-  public ArtistsScores getArtistsScoreById(int idArtist) {
+  public Artistsscores getArtistsScoreById(int idArtist) {
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      ArtistsScores instance = findById(idArtist);
+      Artistsscores instance = findById(idArtist);
       trans.commit();
       return instance;
   }
 
-  public void deleteArtists(ArtistsScores ArtistsScores) {
+  public void deleteArtists(Artistsscores Artistsscores) {
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      delete(ArtistsScores);
+      delete(Artistsscores);
       trans.commit();
   }
 }

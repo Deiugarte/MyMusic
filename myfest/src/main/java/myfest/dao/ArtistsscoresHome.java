@@ -8,13 +8,13 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
 
-import myfest.models.ArtistsScores;
+import myfest.models.Artistsscores;
 
 import static org.hibernate.criterion.Example.create;
 
 /**
- * Home object for domain model class ArtistsScores.
- * @see myfest.models.ArtistsScores
+ * Home object for domain model class Artistsscores.
+ * @see myfest.models.Artistsscores
  * @author Hibernate Tools
  */
 public class ArtistsscoresHome {
@@ -32,8 +32,8 @@ public class ArtistsscoresHome {
     }
   }
 
-  public void persist(ArtistsScores transientInstance) {
-    log.debug("persisting ArtistsScores instance");
+  public void persist(Artistsscores transientInstance) {
+    log.debug("persisting Artistsscores instance");
     try {
       sessionFactory.getCurrentSession().persist(transientInstance);
       log.debug("persist successful");
@@ -43,8 +43,8 @@ public class ArtistsscoresHome {
     }
   }
 
-  public void attachDirty(ArtistsScores instance) {
-    log.debug("attaching dirty ArtistsScores instance");
+  public void attachDirty(Artistsscores instance) {
+    log.debug("attaching dirty Artistsscores instance");
     try {
       sessionFactory.getCurrentSession().saveOrUpdate(instance);
       log.debug("attach successful");
@@ -54,8 +54,8 @@ public class ArtistsscoresHome {
     }
   }
 
-  public void attachClean(ArtistsScores instance) {
-    log.debug("attaching clean ArtistsScores instance");
+  public void attachClean(Artistsscores instance) {
+    log.debug("attaching clean Artistsscores instance");
     try {
       sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
       log.debug("attach successful");
@@ -65,8 +65,8 @@ public class ArtistsscoresHome {
     }
   }
 
-  public void delete(ArtistsScores persistentInstance) {
-    log.debug("deleting ArtistsScores instance");
+  public void delete(Artistsscores persistentInstance) {
+    log.debug("deleting Artistsscores instance");
     try {
       sessionFactory.getCurrentSession().delete(persistentInstance);
       log.debug("delete successful");
@@ -76,10 +76,10 @@ public class ArtistsscoresHome {
     }
   }
 
-  public ArtistsScores merge(ArtistsScores detachedInstance) {
-    log.debug("merging ArtistsScores instance");
+  public Artistsscores merge(Artistsscores detachedInstance) {
+    log.debug("merging Artistsscores instance");
     try {
-      ArtistsScores result = (ArtistsScores) sessionFactory.getCurrentSession().merge(detachedInstance);
+      Artistsscores result = (Artistsscores) sessionFactory.getCurrentSession().merge(detachedInstance);
       log.debug("merge successful");
       return result;
     } catch (RuntimeException re) {
@@ -88,10 +88,10 @@ public class ArtistsscoresHome {
     }
   }
 
-  public ArtistsScores findById(int id) {
-    log.debug("getting ArtistsScores instance with id: " + id);
+  public Artistsscores findById(int id) {
+    log.debug("getting Artistsscores instance with id: " + id);
     try {
-      ArtistsScores instance = (ArtistsScores) sessionFactory.getCurrentSession().get("myfest.models.ArtistsScores",
+      Artistsscores instance = (Artistsscores) sessionFactory.getCurrentSession().get("myfest.models.Artistsscores",
           id);
       if (instance == null) {
         log.debug("get successful, no instance found");
@@ -105,11 +105,11 @@ public class ArtistsscoresHome {
     }
   }
 
-  public List<ArtistsScores> findByExample(ArtistsScores instance) {
-    log.debug("finding ArtistsScores instance by example");
+  public List<Artistsscores> findByExample(Artistsscores instance) {
+    log.debug("finding Artistsscores instance by example");
     try {
-      List<ArtistsScores> results = (List<ArtistsScores>) sessionFactory.getCurrentSession()
-          .createCriteria("myfest.models.ArtistsScores").add(create(instance)).list();
+      List<Artistsscores> results = (List<Artistsscores>) sessionFactory.getCurrentSession()
+          .createCriteria("myfest.models.Artistsscores").add(create(instance)).list();
       log.debug("find by example successful, result size: " + results.size());
       return results;
     } catch (RuntimeException re) {

@@ -13,7 +13,7 @@ import myfest.models.Musicalgenres;
 import myfest.models.Twittermentions;
 import myfest.models.Artists;
 import myfest.models.Artistsgenres;
-import myfest.models.ArtistsScores;
+import myfest.models.Artistsscores;
 import myfest.models.Concertsscores;
 import myfest.models.Discsscores;
 
@@ -33,6 +33,7 @@ public class FacadeDB {
 		artistsScoresDAO = new ArtistsScoresDAO();
 		concertsscoresDAO = new ConcertScoresDAO();
 		discsScoresDAO = new DiscsScoresDAO();
+		twitterMentionsDAO= new TwitterMentionsDAO();
 	}
 
 	// country search
@@ -80,7 +81,7 @@ public class FacadeDB {
 
 	// Get artistsScores by id
 
-	public ArtistsScores getArtistsscoresByID( int artistID) {
+	public Artistsscores getArtistsscoresByID( int artistID) {
 		return artistsScoresDAO.getArtistsScoreById(artistID);
 	}
 
