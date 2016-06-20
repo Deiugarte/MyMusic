@@ -10,7 +10,7 @@ import java.util.Set;
 public class Artists implements java.io.Serializable {
 
   private int artistId;
-  private ArtistsScores artistsScores;
+  private Artistsscores artistsscores;
   private Concertsscores concertsscores;
   private Discsscores discsscores;
   private String artistName;
@@ -23,10 +23,10 @@ public class Artists implements java.io.Serializable {
   public Artists() {
   }
 
-  public Artists(int artistId, ArtistsScores artistsScores, Concertsscores concertsscores, Discsscores discsscores,
+  public Artists(int artistId, Artistsscores artistsscores, Concertsscores concertsscores, Discsscores discsscores,
       String artistName, int followersAmount, String ubication) {
     this.artistId = artistId;
-    this.artistsScores = artistsScores;
+    this.artistsscores = artistsscores;
     this.concertsscores = concertsscores;
     this.discsscores = discsscores;
     this.artistName = artistName;
@@ -34,11 +34,11 @@ public class Artists implements java.io.Serializable {
     this.ubication = ubication;
   }
 
-  public Artists(int artistId, ArtistsScores artistsScores, Concertsscores concertsscores, Discsscores discsscores,
+  public Artists(int artistId, Artistsscores artistsscores, Concertsscores concertsscores, Discsscores discsscores,
       String artistName, int followersAmount, String ubication, String image, Set<Artistsgenres> artistsgenreses,
       Set<Twittermentions> twittermentionses) {
     this.artistId = artistId;
-    this.artistsScores = artistsScores;
+    this.artistsscores = artistsscores;
     this.concertsscores = concertsscores;
     this.discsscores = discsscores;
     this.artistName = artistName;
@@ -57,12 +57,12 @@ public class Artists implements java.io.Serializable {
     this.artistId = artistId;
   }
 
-  public ArtistsScores getArtistsscores() {
-    return this.artistsScores;
+  public Artistsscores getArtistsscores() {
+    return this.artistsscores;
   }
 
-  public void setArtistsscores(ArtistsScores artistsScores) {
-    this.artistsScores = artistsScores;
+  public void setArtistsscores(Artistsscores artistsscores) {
+    this.artistsscores = artistsscores;
   }
 
   public Concertsscores getConcertsscores() {

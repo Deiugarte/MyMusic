@@ -12,10 +12,10 @@
                 <column name="GendeId" />
             </key-property>
         </composite-id>
-        <many-to-one name="artists" class="myfest.models.Artists" update="false" insert="false" fetch="select">
+        <many-to-one name="artists" class="myfest.models.Artists" update="false" insert="false" fetch="join">
             <column name="ArtistId" not-null="true" />
         </many-to-one>
-        <many-to-one name="musicalgenres" class="myfest.models.Musicalgenres" update="false" insert="false" fetch="select">
+        <many-to-one name="musicalgenres" class="myfest.models.Musicalgenres" update="false" insert="false" fetch="join">
             <column name="GendeId" not-null="true" />
         </many-to-one>
     </class>
