@@ -8,8 +8,6 @@
 
     function myFestCtrl(MyFestSrv, $log, $uibModal, $state, $window, $scope) {
         var vm = this;
-
-
         $scope.data = {
                    dataset0: [
                        {

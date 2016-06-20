@@ -10,6 +10,10 @@
         var vm = this;
         vm.currentUser = {};
         vm.currentEvent = {};
+
+        vm.agregarGenero = function () {
+          console.log("agregando nuevo genero...");
+        }
       }
 
 })();

@@ -29,20 +29,20 @@
                         <br/> (opcional) </div>
                 </div>
                 <div id="ratingInputsCol" class="col-xs-6 col-md-5">
-                    <uib-rating class="ratingStar pull-left" ng-model="albumStarRating" max="5" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
-                    <b>({{albumStarRating}})</b>
-                    <textarea rows="5" id="artistCommentReview" ng-model="albumCommentRating" class="form-control"></textarea>
+                    <uib-rating class="ratingStar pull-left" ng-model="albumRating.qualification" max="5" on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
+                    <b>({{albumRating.qualification}})</b>
+                    <textarea rows="5" id="artistCommentReview" ng-model="albumRating.comment" class="form-control"></textarea>
                 </div>
                 <div id="reviewBtnCol" class="col-xs-2 col-md-3">
-                    <input id="sendReviewBtn" class="btn btn-default btn-sm" type="submit" value="¡Calificar!" />
+                  <button type="button" ng-click="sendRateAlbum()" id="sendReviewBtn" class="btn btn-default input-sm"> ¡Calificar! </button>
                 </div>
             </form>
         </div>
         <div id="artistCommentsContainer">
             <div id="artistComments">
                 <ul class="commentsList">
-                    <div id="commentSectionHeader">Comentarios ({{albumComments.totalOfComments}})</div>
-                    <li ng-repeat:"comment in albumComments.comments"class="commentContainer">
+                    <div id="commentSectionHeader">Comentarios ({{albumComments.totalOfComents}})</div>
+                    <li ng-repeat="comment in albumComments.coments"class="commentContainer">
                         <header class="commentHeader">
                             <div class="commentAuthor">{{comment.reviewer}}
                                 <div class="commentStarsContainer pull-right">

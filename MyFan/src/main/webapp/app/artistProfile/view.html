@@ -65,7 +65,7 @@
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title">{{publication.title}}
-                                                 <div ng-if="publication.concert===true" ng-click="vm.openEventModal('lg', publication.title, publication.content, publication.averageCalificationsConcerts, publication.commentsAmount, publication.eventId)" class="eventReview pull-right">
+                                                 <div ng-if="publication.concert===true" ng-click="vm.openEventModal('lg', publication.title, publication.content, publication.averageCalificationsConcerts, publication.commentsAmount, publication.date, publication.eventId)" class="eventReview pull-right">
                                                    <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="publication.averageCalificationsConcerts"  max="5"  aria-labelledby="default-rating"></uib-rating>
                                                          <i ng-if="vm.currentUser.type=='artist'" class="fa fa-times pull-right artistCog"></i>
                                                      </div>
@@ -109,7 +109,7 @@
                                 <uib-accordion-heading>
                                     <div class="albumTitle">
                                         {{album.title}}
-                                        <div class="pull-right albumStars" ng-click="vm.openAlbumModal('lg', album.title, album.description, album.genre, album.songsAmount, album.year, album.recordLabel)">
+                                        <div class="pull-right albumStars" ng-click="vm.openAlbumModal('lg', album.title, album.description, album.genre, album.songsAmount, album.year, album.recordLabel, album.idDisc)">
                                             <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="album.stars" max="5" on-hover="hoveringOver(value)" aria-labelledby="default-rating"></uib-rating>
                                         </div>
                                     </div>
@@ -170,20 +170,20 @@
                                     <br/> (opcional) </div>
                             </div>
                             <div id="ratingInputsCol" class="col-xs-6 col-md-5">
-                                <uib-rating class="ratingStar pull-left" ng-model="artistStarRating" max="5" aria-labelledby="default-rating"></uib-rating>
-                                <b>({{artistStarRating}})</b>
-                                <textarea rows="5" ng-model="artistCommentRating" id="artistCommentReview" class="form-control"></textarea>
+                                <uib-rating class="ratingStar pull-left" ng-model="artistRating.qualification" max="5" aria-labelledby="default-rating"></uib-rating>
+                                <b>({{artistRating.qualification}})</b>
+                                <textarea rows="5" ng-model="artistRating.comment" id="artistCommentReview" class="form-control"></textarea>
                             </div>
                             <div id="reviewBtnCol" class="col-xs-2 col-md-3">
-                                <input id="sendReviewBtn" class="btn btn-default btn-sm" type="submit" value="¡Calificar!" />
+                              <button type="button" ng-click="sendRateArtist()" id="sendReviewBtn" class="btn btn-default input-sm"> ¡Calificar! </button>
                             </div>
                         </form>
                     </div>
                     <div id="artistCommentsContainer">
                         <div id="artistComments">
                             <ul class="commentsList">
-                              <div id="commentSectionHeader">Comentarios ({{artistComments.totalOfComments}})</div>
-                              <li ng-repeat:"comment in artistComments.comments"class="commentContainer">
+                              <div id="commentSectionHeader">Comentarios ({{artistComments.totalOfComents}})</div>
+                              <li ng-repeat="comment in artistComments.comments"class="commentContainer">
                                   <header class="commentHeader">
                                       <div class="commentAuthor">{{comment.reviewer}}
                                           <div class="commentStarsContainer pull-right">

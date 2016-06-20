@@ -31,17 +31,10 @@
           })
           .catch(function(error) {
             console.log(error);
-            $window.alert('¡El usuario ya existe, intentelo con otro usuario!');
+            $window.alert('No se pudo calificar el evento :(');
           });
 
         }
-
-
-
-
-
-
-
         $scope.selected = {
             currentEvent: $scope.currentEvent[0]
         };
