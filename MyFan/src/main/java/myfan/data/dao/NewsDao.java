@@ -9,10 +9,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
+import myfan.comunicacion.comunicacion.resources.HibernateUtil;
 import myfan.data.models.FanaticsArtists;
 import myfan.data.models.News;
 import myfan.data.models.Ubications;
-import myfan.resources.util.HibernateUtil;
 
 public class NewsDao extends NewsHome {
 

@@ -10,12 +10,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
+import myfan.comunicacion.comunicacion.resources.HibernateUtil;
 import myfan.data.models.Events;
 import myfan.data.models.FanaticsArtists;
 import myfan.data.models.Users;
 import myfan.data.models.UsersGenres;
 import myfan.data.models.UsersRoles;
-import myfan.resources.util.HibernateUtil;
 
 public class FanaticsArtistsDao extends FanaticsArtistsHome {
 
