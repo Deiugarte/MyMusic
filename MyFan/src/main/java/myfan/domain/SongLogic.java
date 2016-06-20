@@ -29,7 +29,7 @@ public class SongLogic {
 		newSong.setDuration(song.getDurationSong());
 		newSong.setLimitation(song.getIsLimitEdition());
 		newSong.setName(song.getNameSong());
-		newSong.setState(song.isLife());
+		newSong.setState(song.getIsLife());
 		newSong.setVideoLink(song.getVideoLink());
 		facadeDAO.saveSong(newSong);
 		

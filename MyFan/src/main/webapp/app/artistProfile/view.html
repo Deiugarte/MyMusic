@@ -143,8 +143,10 @@
                                             </div>
                                             <div class="songRightInfo">
                                                 <div class="songInfo pull-left">
-                                                    {{song.type}}, versión {{song.version}}
-                                                </div>
+                                                  <span ng-if="song.type==true">En vivo &nbsp;</span>
+                                                  <span ng-if="song.type==false">Estudio &nbsp;</span>
+                                                  <span ng-if="song.version==true">- versión limitada </span>
+                                                  <span ng-if="song.version==false">- versión normal </span>                                                </div>
                                                 <div class="videoInfo pull-left">
                                                     Video: {{song.video}}
                                                 </div>
