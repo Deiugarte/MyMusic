@@ -1,11 +1,14 @@
 package myfan.resources;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import myfan.domain.facade.FacadeLogic;
+import myfan.resources.base.FindArtistRequest;
+import myfan.resources.base.FindArtistRequest;
 
 @Path("v1/resources")
 public class UtilitiesResource {
@@ -41,9 +44,7 @@ public class UtilitiesResource {
   public String getUserData(@PathParam("username") int username) {
     FacadeLogic facadeLogic = new FacadeLogic();
     return facadeLogic.getPersonalInformationOfFanatic(username);
-    }
-  
-  
+    }  
   
   @GET
   @Path("/followedArtits/{username}")
@@ -52,4 +53,13 @@ public class UtilitiesResource {
     FacadeLogic facadeLogic = new FacadeLogic();
     return facadeLogic.getFollowedArtist(username);
     }
+  
+  @POST
+  @Path("/searchData")
+  @Produces(MediaType.APPLICATION_JSON)
+  public String getSearchData(FindArtistRequest findArtistRequest){
+    FacadeLogic facadeLogic = new FacadeLogic();
+    return facadeLogic.searchArtist(findArtistRequest);
+    
+  }
 }
