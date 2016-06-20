@@ -18,15 +18,29 @@
         $scope.link = 'https://www.youtube.com/watch?v=mGNRAzW0BdI';
         $scope.artist = {};
         $scope.artist.id = "11";
-
+        $scope.artist.idArtist = "11";
 
         getArtistComments();
         function getArtistComments(){
-
-          ArtistSrv.getArtistComments($scope.artist.id)
+          ArtistSrv.getArtistComments($scope.currentAlbumInfo)
           .then(function(commentsData){
               $scope.artistComments = commentsData.data;
+              console.log(commentsData.data);
+              console.log("arriba comments de Artist");
           });
+        }
+
+        $scope.sendRateArtist = function(){
+          console.log($scope.artistRating);
+          ArtistSrv.postRateArtist($scope.artistRating)
+          .then(function(data){
+            console.log(data);
+          })
+          .catch(function(error) {
+            console.log(error);
+            $window.alert('No se pudo calificar artista :( ');
+          });
+
         }
 
         vm.currentUser ={
@@ -82,11 +96,12 @@
 
                 })
         }
-        vm.openEventModal = function(size, title, body, stars, commentsAmount, id) {
+        vm.openEventModal = function(size, title, body, stars, commentsAmount, date, id) {
             vm.currentEvent.title = title;
             vm.currentEvent.body = body;
             vm.currentEvent.stars = stars;
             vm.currentEvent.commentsAmount = commentsAmount;
+            vm.currentEvent.date = date;
             vm.currentEvent.id = id;
             console.log(vm.currentEvent);
             var modalInstance = $uibModal.open({
@@ -109,14 +124,14 @@
             });
         };
 
-        vm.openAlbumModal = function(size, title, desc, genre, year, songsNum, label) {
+        vm.openAlbumModal = function(size, title, desc, genre, year, songsNum, label, id) {
             vm.currentAlbumInfo.title = title;
             vm.currentAlbumInfo.desc = desc;
             vm.currentAlbumInfo.genre = genre;
             vm.currentAlbumInfo.year = year;
             vm.currentAlbumInfo.songsNum = songsNum;
             vm.currentAlbumInfo.label = label;
-
+            vm.currentAlbumInfo.idDisc = id;
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
                 templateUrl: '/templates/modalAlbum/view.html',

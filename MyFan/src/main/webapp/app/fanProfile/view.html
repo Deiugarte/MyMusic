@@ -51,7 +51,7 @@
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title">{{publication.title}}
-                                               <div ng-if="publication.concert==true" ng-click="vm.open('lg', publication.title, publication.content, publication.stars, publication.commentsAmount, publication.eventId)" class="eventReview pull-right">
+                                               <div ng-if="publication.concert==true" ng-click="vm.open('lg', publication.title, publication.content, publication.stars, publication.commentsAmount, publication.date, publication.eventId)" class="eventReview pull-right">
                                                  <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="publication.averageCalificationsConcerts"  max='5'   aria-labelledby="default-rating"></uib-rating>
                                                    </div>
                                                    </h4>
