@@ -45,7 +45,7 @@ public class ArtistLogic extends UserLogic {
 		return Response.status(Status.OK).entity(response).build();
 	}
 
-	public Response updateFanatic(UpdateProfileUserRequest dataArtist, String pathProfilePicture) {
+	public Response updateArtist(UpdateProfileUserRequest dataArtist, String pathProfilePicture) {
 		String response = USER_IDENTIFIER_STATUS;
 		updateUser(dataArtist, pathProfilePicture);
 		response = String.format(response, dataArtist.getIdentificationNumber(), "artist","OK");
@@ -57,7 +57,6 @@ public class ArtistLogic extends UserLogic {
 		Members members = new Members();
 		members.setArtists(artist);
 		for (int i = 0; i < membersList.size(); i++) {
-			System.out.println("---->" + membersList.get(i).getName());
 			members.setInstrument(membersList.get(i).getInstrument());
 			members.setName(membersList.get(i).getName());
 			facadeDAO.saveMembersArtist(members);

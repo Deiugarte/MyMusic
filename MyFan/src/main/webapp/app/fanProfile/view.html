@@ -68,7 +68,7 @@
                 <uib-tab ng-click="vm.getFollowedArtist()" index="1" heading="Mis Artistas">
                     <div id="myArtistsListContainer">
                         <div id="myArtistsListHeader">
-                            <div id="myArtistsFollowsCounter">¡Sigues a X artistas!</div>
+                            <div id="myArtistsFollowsCounter">¡Sigues a {{vm.artistList.length}} artistas!</div>
                             <div id="myArtistsFilter">
                                 <input class="form-control input-sm inputClass" type="text" placeholder="filtrar mis artistas" ng-model="artistsFilter">
                             </div>

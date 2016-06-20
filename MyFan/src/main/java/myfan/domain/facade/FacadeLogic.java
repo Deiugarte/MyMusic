@@ -166,10 +166,10 @@ public class FacadeLogic {
 	}
 
 	public Response modifyDataArtist(UpdateProfileUserRequest modifiedDataUsers, InputStream profilePicture,
-			FormDataContentDisposition fileDetail) {
+	 FormDataContentDisposition fileDetail) {
 		String pathProfilePicture = userLogic.saveProfilePictureFile(profilePicture, fileDetail);
-		return artistLogic.updateFanatic(modifiedDataUsers, pathProfilePicture);
-	}
+		return artistLogic.updateArtist(modifiedDataUsers, pathProfilePicture);
+		}
 
 	public Response addGenre(AdminGenresRequest musicalGenres) {
 		return genresLogic.addNewGenres(musicalGenres);

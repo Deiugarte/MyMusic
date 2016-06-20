@@ -1,7 +1,9 @@
 package myfan.resources;
 
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -37,4 +39,12 @@ public class DiscResource {
     FacadeLogic facadeLogic = new FacadeLogic();
     return facadeLogic.deleteNews(deleteNewsRequest);
   }
+  
+  @GET
+  @Path("/discography/{username}")
+  @Produces(MediaType.APPLICATION_JSON)
+  public String getDiscography(@PathParam("username") int username) {
+    FacadeLogic facadeLogic = new FacadeLogic();
+    return facadeLogic.getDiscography(username);
+    }
 }

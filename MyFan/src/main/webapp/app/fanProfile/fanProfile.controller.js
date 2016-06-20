@@ -64,6 +64,7 @@
 
             });
             modalInstance.result.then(function(selectedItem) {
+              getUserData();
                 $scope.selected = selectedItem;
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());

@@ -37,6 +37,8 @@ public class DiscographyLogic {
 			disc.setSongsAmount(calculateTotalOfSongs(discs.get(i).getDiscId()));
 			disc.setCommentsAmount(calculateTotalOfComments(discs.get(i).getDiscId()));
 			disc.setSongs( findSongByIdDisc(discs.get(i).getDiscId()));
+			disc.setDescription(discs.get(i).getDescription());
+			disc.setTitle(discs.get(i).getName());
 			discsResponse.add(disc);
 		}
 		discographyResponse.setDiscs(discsResponse);
@@ -81,7 +83,9 @@ public class DiscographyLogic {
 		for (int i = 0; i < discsCalifications.size(); i++) {
 			sumCalifications += discsCalifications.get(i).getCalification();
 		}
+		if(discsCalifications.size()!=0){
 		average = (sumCalifications / discsCalifications.size());
+		}
 		return average;
 
 	}
