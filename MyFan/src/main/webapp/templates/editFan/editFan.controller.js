@@ -13,7 +13,7 @@
           birthday: "",
           password: "",
           countryLocation: "",
-          identificationNumber: $cookies.getObject('userInfo').UserId;,
+          identificationNumber: $cookies.getObject('userInfo').UserId,
           gender: ""
         };
         $scope.newUserUpdateData.musisicalGenres = [];
