@@ -59,6 +59,7 @@ public class FacadeDAO {
 	private DiscsCalificationsDao discsCalificationsDao;
 
 
+
 	public FacadeDAO() {
 		usersDao = new UsersDao();
 		ubicationsDao = new UbicationsDao();
@@ -76,6 +77,7 @@ public class FacadeDAO {
 		songsDao = new SongsDao();
 		artistsCalificationsDao = new ArtistsCalificationsDao();
 		discsCalificationsDao= new DiscsCalificationsDao();
+	
 	
 	}
 
@@ -165,12 +167,20 @@ public class FacadeDAO {
 	
 	public Discs findDiscByArtistAndName(int artist,String name) {
 	  return discsDao.getDiscsByArtistAndName(artist,name);
-    
   }
+	public List<Discs> findDiscByArtistId(int artist) {
+		  return discsDao.getDiscsByIdArtist(artist);
+	  }
 
 	/*-----------------------------------------GET-------------------------------------*/
 	/*-----------------------------------------GET-------------------------------------*/
 
+	 public List<Songs> getSongsByIdDisc(int idDisc) {
+		 return songsDao.getSongsByIdDisc(idDisc);
+	 }
+	 public List<DiscsCalifications> getCalificationsOfDiscs(int idDisc) {
+		return  discsCalificationsDao.getCalificationsOfDiscs(idDisc);
+	 }
 	public  List<ArtistsCalifications> getArtistCalificationByIdArtist(int idArtist){
 		return artistsCalificationsDao.getArtistCalificationByIdArtist(idArtist);	
 	}
