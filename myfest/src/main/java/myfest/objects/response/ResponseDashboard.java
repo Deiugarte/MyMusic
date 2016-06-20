@@ -3,74 +3,63 @@ package myfest.objects.response;
 import java.util.List;
 
 public class ResponseDashboard {
-	private String 				 name;
-	private String  		     picture;
-	private int					 followersAmount;
-	private List<Unique> artistGenders;
-	private Scores 		 concertScore;
-	private Scores 	     discScore;
-	private Scores 		 artistScore;
-	private int          		 twitterMentionsAmount;
-	
-	public ResponseDashboard(){
-		name 				  = "";
-		picture 			  = "";
-		followersAmount 	  = 0;
-		artistGenders 		  = null;
-		concertScore 		  = null;
-		discScore 			  = null;
-		artistScore 		  = null;
-		twitterMentionsAmount = 0;
-	}
+	private String name;
+	private String picture;
+	private int followersAmount;
+	private int concertScore;
+	private int discScore;
+	private int artistScore;
+	private int twitterMentionsAmount;
+	private List<String> artistGenders;
 	
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
 	public String getPicture() {
 		return picture;
-	}
-	public void setImage(String picture) {
-		this.picture = picture;
 	}
 	public int getFollowersAmount() {
 		return followersAmount;
 	}
-	public void setFollowersAmount(int followersAmount) {
-		this.followersAmount = followersAmount;
-	}
-	public List<Unique> getArtistGenders() {
+	public List<String> getArtistGenders() {
 		return artistGenders;
 	}
-	public void setArtistGenders(List<Unique> artistGenders) {
-		this.artistGenders = artistGenders;
-	}
-	public Scores getConcertScore() {
+	public int getConcertScore() {
 		return concertScore;
 	}
-	public void setConcertScore(Scores concertScore) {
-		this.concertScore = concertScore;
-	}
-	public Scores getDiscScore() {
+	public int getDiscScore() {
 		return discScore;
 	}
-	public void setDiscScore(Scores discScore) {
-		this.discScore = discScore;
-	}
-	public Scores getArtistScore() {
+	public int getArtistScore() {
 		return artistScore;
-	}
-	public void setArtistScore(Scores artistScore) {
-		this.artistScore = artistScore;
 	}
 	public int getTwitterMentionsAmount() {
 		return twitterMentionsAmount;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+	public void setFollowersAmount(int followersAmount) {
+		this.followersAmount = followersAmount;
+	}
+	public void setArtistGenders(List<String> artistGenders) {
+		this.artistGenders = artistGenders;
+	}
+	public void setConcertScore(int concertScore) {
+		this.concertScore = concertScore;
+	}
+	public void setDiscScore(int discScore) {
+		this.discScore = discScore;
+	}
+	public void setArtistScore(int artistScore) {
+		this.artistScore = artistScore;
 	}
 	public void setTwitterMentionsAmount(int twitterMentionsAmount) {
 		this.twitterMentionsAmount = twitterMentionsAmount;
 	}
 	
-	
+
 }

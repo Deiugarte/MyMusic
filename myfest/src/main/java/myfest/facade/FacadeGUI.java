@@ -4,7 +4,8 @@ import myfest.logic.Dashboard;
 import myfest.logic.ListGenresUbications;
 import myfest.logic.SearchData;
 import myfest.objects.request.General;
-import myfest.objects.request.Specific;
+import myfest.objects.request.PersonalDataArtist;
+
 
 public class FacadeGUI {
 	private Dashboard  dashboard;
@@ -19,8 +20,8 @@ public class FacadeGUI {
 	
 	// ****************** DASHBOARD ***************
 	// Dashboard
-	public String getSearchArtistData(Specific searchValue){
-		return dashboard.getDataArtist(searchValue);
+	public String getSearchArtistData(int  idArtist){
+		return dashboard.getDataArtist(idArtist);
 	}
 	
 	// ****************** INITIAL ****************

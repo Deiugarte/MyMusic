@@ -1,9 +1,9 @@
 package myfest.objects.response;
 
-public class Unique {
+public class ArtistGenres {
 	private String dataResponse;
 	
-	public Unique(){
+	public ArtistGenres(){
 		dataResponse = "";
 	}
 
