@@ -317,7 +317,7 @@ public class UserLogic {
   protected void updateUser(UpdateProfileUserRequest dataUser, String pathProfilePicture) {
     Users user = facadeDAO.findUserById(dataUser.getIdentificationNumber());
     if(dataUser.getNameUser()!=""){
-      user.setName(dataUser.getNameUser());
+      user.setName(dataUser.getNameUser()); 
     }
     if(dataUser.getBirthday()!=""){
       user.setBirthday(date.getDateFromString(dataUser.getBirthday()));
@@ -329,7 +329,8 @@ public class UserLogic {
       Ubications ubication = checkUbication(dataUser.getCountryLocation());
       user.setUbications(ubication);
     }
-    if(pathProfilePicture!=""){
+    if(pathProfilePicture!=null){
+      System.out.println(pathProfilePicture);
       user.setImage(pathProfilePicture);
     }    
     facadeDAO.saveUser(user);

@@ -31,7 +31,7 @@ public class FanaticsDao extends FanaticsHome {
   public void save(Fanatics Fanatics){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      persist(Fanatics);
+      merge(Fanatics);
       trans.commit();
   }
 
