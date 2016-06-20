@@ -2,15 +2,25 @@ package myfan.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+
 import myfan.data.facade.FacadeDAO;
+import myfan.data.models.Artists;
+import myfan.data.models.Fanatics;
+import myfan.data.models.FanaticsArtists;
 import myfan.data.models.Genres;
 import myfan.data.models.Ubications;
+import myfan.data.models.Users;
+import myfan.resources.base.FollowArtistRequest;
 import myfan.resources.base.GenresResponse;
 import myfan.resources.base.UbicationsResponse;
 
 public class UtilsLogic {
   private FacadeDAO facadeDAO;
   private JSONFabrication jSONFabrication;
+  private final String FOLLOWING_STATUS = "{\"following\": \"%s\", \"status\":\"%s\"}";
 
   public UtilsLogic() {
     facadeDAO = new FacadeDAO();
@@ -39,6 +49,21 @@ public class UtilsLogic {
 	    return jSONFabrication.jsonConverter(ubicationResponse);
 	  }
   
+  public Response isFollowing(FollowArtistRequest followArtistRequest){
+	  String response = FOLLOWING_STATUS;
+	  String existRelation="";
+	  	Artists artist= facadeDAO.findArtistByUserId(followArtistRequest.getIdUserArtist());
+	  	Fanatics fanatic= facadeDAO.findFanaticByUserId(followArtistRequest.getIdUserFanatic());
+	    FanaticsArtists fanaticsArtists=facadeDAO.findByIdArtistAndIdFanatic(artist.getArtistId(),fanatic.getFanaticId());
+	    if (fanaticsArtists!=null){
+	    	existRelation="true";
+	    }else {
+	    	existRelation="false";
+	    }
+	    response = String.format(response,existRelation, "OK");
+	    return Response.status(Status.OK).entity(response).build();
+	  
+  }
 
 
 }

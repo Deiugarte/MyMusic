@@ -218,14 +218,18 @@ public class FacadeLogic {
 	public Response rateEvent(RateConcertRequest eventQualification) {
 		return actionsUser.rateConcert(eventQualification);									
 	}
+	
+	public Response Following(FollowArtistRequest followArtistRequest){
+		return utilsLogic.isFollowing(followArtistRequest);
+	}
 
 
-	// public void deleteDisc(Object disc){}
+	 public void deleteDisc(Object disc){}
 
-	// public void disableGenre(Object genre){}
+	 public void disableGenre(Object genre){}
 
-	// public void enableGenre(Object genre){}
+	 public void enableGenre(Object genre){}
 
-	// public void deleteSong(Object song){}
+	 public void deleteSong(Object song){}
 
 }
