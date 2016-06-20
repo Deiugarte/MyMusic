@@ -80,7 +80,9 @@ public class FacadeDAO {
 
 	/*-----------------------------------------FIND-------------------------------------*/
 	/*-----------------------------------------FIND-------------------------------------*/
-
+	public FanaticsArtists findByIdArtistAndIdFanatic(int artistId, int fanaticId) {
+		return fanaticsArtistsDao.findByIdArtistAndIdFanatic(artistId, fanaticId);
+	}
 	public Users findUserByLogin(String userName) {
 		return usersDao.findByusername(userName);
 	}
