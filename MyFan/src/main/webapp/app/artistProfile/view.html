@@ -85,7 +85,7 @@
                         </ul>
                     </div>
                 </uib-tab>
-                <uib-tab index="1" ng-click="switchContent(true)" heading="Discografía">
+                <uib-tab index="1" ng-click="vm.getDiscography()" heading="Discografía">
                     <div id="accordionContainer">
                         <script type="text/ng-template" id="group-template.html">
                             <div class="panel {{panelClass || 'panel-default'}}">
@@ -106,7 +106,7 @@
                         </script>
 
                         <uib-accordion close-others="true">
-                            <uib-accordion-group ng-repeat="album in vm.discography.albums" template-url="group-template.html">
+                            <uib-accordion-group ng-repeat="album in vm.discography.discs" template-url="group-template.html">
                                 <uib-accordion-heading>
                                     <div class="albumTitle">
                                         {{album.title}}
@@ -118,10 +118,6 @@
                                 </uib-accordion-heading>
                                 <div class="albumContainer">
                                     <div class="albumHeader">
-                                        <div class="albumImageContainer">
-                                            <img src="assets/images/albumImage.jpg" class="albumImage" alt="Album Image">
-
-                                        </div>
                                         <div class="albumRightContent">
                                             <div class="albumTop">
                                                 <div class="albumDescriptionName">

@@ -13,6 +13,7 @@
     vm.getTimelineNews = getTimelineNews;
     vm.getTimelineEvents = getTimelineEvents;
     vm.getUserData=getUserData;
+    vm.getDiscography = getDiscography;
     function getTimelineNews(data){
       var url = 'http://localhost:8000/rest/v1/news/getRecent'
       return $http.post(url,data);
@@ -27,5 +28,11 @@
       var url = 'http://localhost:8000/rest/v1/resources/artistData/'+data.UserId;
       return $http.get(url, data);
     }
+
+    function getDiscography(data) {
+      var url = 'http://localhost:8000/rest/v1/disc/discography/'+ data.UserId;
+      return $http.get(url, data);
+    }
+
   }
 })();

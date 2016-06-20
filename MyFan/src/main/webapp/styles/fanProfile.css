@@ -360,7 +360,7 @@ html, body{
 
 
 .artistProfileLeftInfo{
-    width: 30%;
+    width: 50%;
     vertical-align: top;
     text-align: center;
     font-size: 1.4vw;
@@ -376,7 +376,7 @@ html, body{
 }
 
 .artistProfileCenterInfo{
-    width: 35%;
+    width: 50%;
     border-bottom: none;
 }
 
@@ -466,7 +466,7 @@ html, body{
     height: auto;
 }
 #hiddenFiltersInputs{
-    padding-left: 10%;
+    padding-left: 15%;
 }
 
 #hiddenFiltersDescription{
@@ -475,8 +475,7 @@ html, body{
 .comboBox{
      font-size: 1vw;
      margin: 0 6%;
-     width: auto;
-     padding: 0;
+    padding: 0;
 }
 
 .inputClass{

@@ -14,11 +14,23 @@
         vm.timeline=[];
         vm.timelineParameters = {};
         vm.timelineParameters.offset = '0';
+
+
         vm.currentUser ={
           type: "fanatic",
           id: "101",
           userName: "Alejandro22",
           name: "Alejandro",
+        }
+
+
+        vm.getDiscography = function(){
+          switchContent(true);
+          vm.timelineParameters.idUser = '11';
+          ArtistSrv.getDiscography(vm.timelineParameters)
+              .then(function(discographyData) {
+                  vm.discography = discographyData.data;
+              });
         }
 
         getTimelineNews();
@@ -191,70 +203,7 @@
           id: "101",
           userName: "Alejandro22",
           name: "Alejandro",
-        }
-
-
-        vm.discography = {
-            albums: [{
-                title: "Legend",
-                description: "Legend es un álbum de grandes éxitos de Bob Marley and the Wailers publicado el 8 de mayo de 1984 a través de Island Records.",
-                albumImage: "",
-                genre: "Reggae",
-                commentsAmount: 24,
-                songsAmount: 10,
-                stars: 3,
-                recordLabel: "Island Records",
-                year: 1986,
-                songs: [{
-                    name: "Is This Love",
-                    duration: "3:52",
-                    version: "normal",
-                    type: "Estudio",
-                    video: "link"
-                }, {
-                    name: "No Woman, No Cry",
-                    duration: "7:10",
-                    version: "normal",
-                    type: "En vivo",
-                    video: "link"
-                }, {
-                    name: "Could you be loved",
-                    duration: "3:52",
-                    version: "limitada",
-                    type: "En vivo",
-                    video: "Sí"
-                }, ]
-            }, {
-                title: "Uprising",
-                description: "Uprising is a 1980 reggae album by Bob Marley and the Wailers. Marley died the following year.",
-                albumImage: "",
-                genre: "Reggae",
-                commentsAmount: 48,
-                songsAmount: 12,
-                stars: 5,
-                recordLabel: "Tuff Gong/Island",
-                year: 1980,
-                songs: [{
-                    name: "Coming in from the Cold",
-                    duration: "3:40",
-                    version: "normal",
-                    type: "En vivo",
-                    video: "No"
-                }, {
-                    name: "We and Dem",
-                    duration: "2:40",
-                    version: "normal",
-                    type: "En vivo",
-                    video: "Sí"
-                }, {
-                    name: "Real Situation",
-                    duration: "3:08",
-                    version: "limitada",
-                    type: "Estudio",
-                    video: "No"
-                }, ]
-            }]
-        }
+        }        
 
         vm.artistCommentsList = {
             comments: [{
