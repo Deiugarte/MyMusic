@@ -13,6 +13,7 @@
       'refiereApp.artistProfile',
       'refiereApp.myFest',
       'refiereApp.modalEvent',
+      'refiereApp.modalAlbum',
       'refiereApp.editFan',
       'refiereApp.editArtist',
       'refiereApp.createEvent',

@@ -30,6 +30,30 @@
                 }
 
             });
+
+            modalInstance.result.then(function(selectedItem) {
+                $scope.selected = selectedItem;
+            }, function() {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
+
+        };
+
+        vm.openAlbumModal = function(size) {
+            var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: '/templates/modalAlbum/view.html',
+                controller: 'modalAlbumCtrl',
+                size: size,
+                resolve: {
+                    currentEvent: function() {
+                        return vm.currentEvent;
+                    }
+                }
+
+            });
+
             modalInstance.result.then(function(selectedItem) {
                 $scope.selected = selectedItem;
             }, function() {

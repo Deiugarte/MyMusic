@@ -1,29 +1,7 @@
 <div class="modal-header">
-    <h3 class="modal-title">Evento</h3>
+    <h3 class="modal-title">Legend</h3>
 </div>
 <div class="modal-body">
-    <ul class="timeline">
-        <li>
-            <div class="timeline-badge warning">
-                <i style="vertical-align:baseline;" class="fa fa-calendar-check-o"></i>
-            </div>
-            <!-- evento  !-->
-            <div class="timeline-panel">
-                <div class="timeline-heading">
-                    <h4 class="timeline-title">{{currentEvent.title}}
-                    <div class="eventReview pull-right">
-                      <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="currentEvent.stars"  max="currentEvent.stars"  on-hover="hoveringOver(value)" on-leave="overStar = null" titles="['one','two','three']" aria-labelledby="default-rating"></uib-rating>
-                            <span class="eventComment">({{currentEvent.commentsAmount}})</span>
-                    </div>
-                </h4>
-                </div>
-                <div class="timeline-body clearfix">
-                    <p>{{currentEvent.body}}</p>
-                </div>
-                <span class="pull-right"><small class="text-muted"><i class="glyphicon glyphicon-time"></i> {{currentEvent.date}}</small></span>
-            </div>
-        </li>
-        </ul>
         <div id="artistRatingFormContainer">
             <form>
                 <div id="descriptionTextCol" class="col-xs-3 col-md-4">
