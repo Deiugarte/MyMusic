@@ -292,4 +292,7 @@ insert into events_califications(event,calification,reviewer) values (1,4,1)
 
 insert into artists_califications(artist,calification,comment,reviewer) values (1,4,'testComment',1)
 
+insert into discs(discId, artist, name, description, genre, releaseYear, label) values (1, 10, 'D1', 'DES', 17, '2016-02-02', 'Lab')
+insert into discs(discId, artist, name, description, genre, releaseYear, label) values (2, 10, 'D2', 'DES', 11, '2016-02-02', 'Lab')
 
+--insert into discs_califications(disc, calification, comment, reviewer) values (2, 100, 'NC', 10)

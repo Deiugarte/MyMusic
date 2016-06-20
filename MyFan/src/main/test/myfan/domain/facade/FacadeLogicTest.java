@@ -13,6 +13,7 @@ import myfan.resources.base.AddEventRequest;
 import myfan.resources.base.AddNewsRequest;
 import myfan.resources.base.AddSongRequest;
 import myfan.resources.base.DisableAccountRequest;
+import myfan.resources.base.FindArtistRequest;
 import myfan.resources.base.FollowArtistRequest;
 import myfan.resources.base.LoginRequest;
 import myfan.resources.base.RegisterNewArtistRequest;
@@ -21,12 +22,66 @@ import myfan.resources.base.util.Member;
 
 public class FacadeLogicTest {
   FacadeLogic facadeLogic = new FacadeLogic();
+  
+  @Test
+  public void getAllGenders(){
+	  String genders = facadeLogic.getAllGenders();
+	  System.out.println(genders);;
+  }
+  
+  
+  @Test
+  public void getCalificationOfArtist(){
+	  String calification = facadeLogic.getCalificationsOfArtist(11);
+	  System.out.println(calification);
+  }
+  
+  
+  @Test
+  public void searchArtist(){
+	  FindArtistRequest  artist = new FindArtistRequest();
+	  artist.setName("javesp");
+	  artist.setNameGenre("Pop");
+	  artist.setNameUbication("Zambia");
+	  String searchArtist = facadeLogic.searchArtist(artist);
+	  System.out.println(searchArtist);
+  }
+  
+  @Test
+  public void getPersonalInformationOfArtist(){
+	  String personalInformation = facadeLogic.getPersonalInformationOfArtist(11);
+	  System.out.println(personalInformation);
+  }
+  
+  @Test
+  public void getPersonalInformationOfFanatic(){
+	  String personalInformation = facadeLogic.getPersonalInformationOfFanatic(11);
+	  System.out.println(personalInformation);
+  }
+  
+  @Test
+  public void getAllUbications(){
+	  String getAllUbicationsTest = facadeLogic.getAllUbications();
+	  System.out.println(getAllUbicationsTest);
+  }
 
   @Test
   public void getRecentNews() { 
     String newsArtistTest = facadeLogic.getRecentNews(12, 0);
     System.out.println(newsArtistTest);
   //  assertEquals(2, newsArtistTest);
+  }
+  
+  @Test
+  public void getRecentEvents(){
+	  String getRecentEventsTest = facadeLogic.getRecentEvents(11, 0);
+	  System.out.println(getRecentEventsTest);
+  }
+  
+  @Test
+  public void getDiscography(){
+	  String getDiscographyTest = facadeLogic.getDiscography(11);
+	  System.out.println(getDiscographyTest);
   }
 
   @Test
@@ -121,16 +176,7 @@ public class FacadeLogicTest {
     addSongRequest.setNameSong("Test");
     addSongRequest.setVideoLink("https://www.youtube.com/watch?v=jgpJVI3tDbY");
   //  assertEquals(1, facadeLogic.addSong(addSongRequest));
-  }
-  
-  @Test
-  public void followArtist() {
-    FollowArtistRequest followArtistRequest = new FollowArtistRequest();
-    followArtistRequest.setIdUserArtist(11);
-    followArtistRequest.setIdUserFanatic(12);
-   // assertEquals(1, facadeLogic.followArtist(followArtistRequest));
-  }
-  
+  } 
 
 
 }

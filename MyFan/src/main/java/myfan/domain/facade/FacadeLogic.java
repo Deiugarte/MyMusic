@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
+import myfan.data.models.Artists;
 import myfan.domain.ActionsUser;
 import myfan.domain.ArtistLogic;
 import myfan.domain.CommentsConcert;
