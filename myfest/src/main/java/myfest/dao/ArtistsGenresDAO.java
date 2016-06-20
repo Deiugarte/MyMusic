@@ -9,9 +9,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
+import myfest.datasource.databaseconection.HibernateUtil;
 import myfest.models.Artistsgenres;
 import myfest.models.ArtistsgenresId;
-import myfest.utils.HibernateUtil;
 
 
 public class ArtistsGenresDAO extends ArtistsgenresHome {

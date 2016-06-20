@@ -1,12 +1,11 @@
-package myfest.logic;
+package myfest.dominio.gestionarlogicamyfest.dashboard;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import myfest.facade.FacadeDB;
+import myfest.controldomain.response.JSonConverter;
+import myfest.datasource.facade.FacadeDB;
 import myfest.models.Musicalgenres;
-import myfest.objects.response.ArtistGenres;
-import myfest.utils.JSonConverter;
 
 public class ListGenresUbications {
 	private FacadeDB facadeDB;

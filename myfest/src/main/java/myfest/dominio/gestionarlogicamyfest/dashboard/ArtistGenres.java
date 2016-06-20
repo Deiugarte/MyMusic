@@ -1,4 +1,4 @@
-package myfest.objects.response;
+package myfest.dominio.gestionarlogicamyfest.dashboard;
 
 public class ArtistGenres {
 	private String dataResponse;

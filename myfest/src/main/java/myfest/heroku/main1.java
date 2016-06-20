@@ -1,6 +1,6 @@
 package myfest.heroku;
 
-import myfest.facade.FacadeGUI;
+import myfest.dominio.facade.FacadeGUI;
 
 public class main1 {
 

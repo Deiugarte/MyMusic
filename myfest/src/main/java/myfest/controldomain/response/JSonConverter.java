@@ -1,4 +1,4 @@
-package myfest.utils;
+package myfest.controldomain.response;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
