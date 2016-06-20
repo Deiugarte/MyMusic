@@ -1,6 +1,7 @@
 package myfan.resources.base;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ArtistProfileResponse {
 	private String nameUser;
@@ -14,7 +15,21 @@ public class ArtistProfileResponse {
 	private int totalOfCalifications;
 	private int averageOfArtist;
 	private String bibliography;
+	private String birthday ;
+	private List <String> members;
 	
+	public String getBirthday() {
+		return birthday;
+	}
+	public List<String> getMembers() {
+		return members;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+	public void setMembers(List<String> list) {
+		this.members = list;
+	}
 	public int getAverageOfArtist() {
 		return averageOfArtist;
 	}

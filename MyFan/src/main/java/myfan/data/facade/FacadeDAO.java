@@ -154,6 +154,10 @@ public class FacadeDAO {
 	public List<Genres> findAllGenres() {
 		return genresDao.findAll();
 	}
+	
+	public List<Members> findMemersByIdArtist(int idArtist) {
+		return memberDao.getArtistsByUserId(idArtist);
+	}
 
 	public Ubications findUbicationsByName(String nameUbication) {
 		return ubicationsDao.findByName(nameUbication);

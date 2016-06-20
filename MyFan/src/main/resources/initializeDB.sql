@@ -290,4 +290,6 @@ insert into events(artist,tittle,content,eventdate,creationdate,ubication,type,c
 
 insert into events_califications(event,calification,reviewer) values (1,4,1) 
 
+insert into artists_califications(artist,calification,comment,reviewer) values (1,4,'testComment',1)
+
 
