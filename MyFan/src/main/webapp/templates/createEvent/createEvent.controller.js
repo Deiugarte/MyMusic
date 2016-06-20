@@ -4,9 +4,9 @@
         .module('refiereApp.createEvent')
         .controller('createEventCtrl', createEventCtrl);
 
-    createEventCtrl.$inject = ['CreateEventSrv', 'currentUser', '$uibModalInstance', '$state', '$window', '$scope'];
+    createEventCtrl.$inject = ['CreateEventSrv', 'currentUser', '$uibModalInstance', '$state', '$window', '$scope','$cookies','$cookieStore'];
 
-    function createEventCtrl(CreateEventSrv, currentUser, $uibModalInstance, $state, $window, $scope) {
+    function createEventCtrl(CreateEventSrv, currentUser, $uibModalInstance, $state, $window, $scope,$cookies,$cookieStore) {
         var vm = this;
         $scope.newEventData = {};
         $scope.ubications = [];

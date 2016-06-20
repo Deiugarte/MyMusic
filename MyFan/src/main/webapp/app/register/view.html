@@ -1,10 +1,10 @@
 <!-- Header -->
 <section id="top" class="header_ladingpage_register">
-    <div class="col-xs-2 col-sm-4 col-md-4 col-lg-4"></div>
-    <div class="col-xs-10 col-sm-8 col-md-8 col-lg-8">
-        <h1><b>Bienvenido a Myfan</b></h1>
-        <h4><i>La red social que te acerca a tus artistas!</i></h4>
-    </div>
+  <div class="col-xs-2 col-sm-4 col-md-4 col-lg-4" ></div>
+  <div class="col-xs-10 col-sm-8 col-md-8 col-lg-8">
+    <h1><b>Bienvenido a Myfan</b></h1>
+    <h4><i>La red social que te acerca a tus artistas!</i></h4>
+  </div>
     <div class="text-vertical-center">
         <div class="col-xs-1 col-sm-3 col-md-3 col-lg-3"></div>
         <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6">
@@ -81,44 +81,49 @@
                     <ui-select-choices repeat="genre.name as genre in vm.genres | filter: {name: $select.search}">
                         <div ng-bind-html="genre.name | highlight: $select.search"></div>
                         <small>
-                            {{genre.name}}
-                        </small>
-                        <strong>Ingrese su foto de Perfil:</strong>
-                        <input type="file" ngf-select="" ng-model="vm.picfile" name="file" ngf-accept="'image/*'">
-                        <img ngf-src="vm.picfile" class="thumb">
-                        <span class="progress" ng-show="vm.picfile.progress >= 0">
+            {{genre.name}}
+          </small>
+                    </ui-select-choices>
+                </ui-select>
+
+              
+
+                <strong>Ingrese su foto de Perfil:</strong>
+                <input type="file" ngf-select="" ng-model="vm.picfile" name="file" ngf-accept="'image/*'">
+                <img ngf-src="vm.picfile" class="thumb">
+                <span class="progress" ng-show="vm.picfile.progress >= 0">
                        <div style="width:{{vm.picfile.progress}}%" ng-bind="vm.picfile.progress + '%'" class="ng-binding"></div>
                    </span>
-                        <span ng-show="vm.picfile.result">Imagen actualizada</span>
-                        <br>
-                        <fieldset class="separate-bottom" data-ng-repeat="member in members" ng-if="vm.type=='artist'">
-                            <input type="text" ng-model="member.name" name="" placeholder="Nombre del Miembro" class="form-control separate-bottom form-inline" required>
-                            <input type="text" ng-model="member.instrument" name="" placeholder="Instrumento" class="form-control separate-bottom form-inline" required>
-                            <button class="btn btn-remove " ng-show="$last" ng-click="removeChoice()" ng-disabled="members.length==1">Borrar Campo</button>
-                        </fieldset>
-                        <button class="btn btn-add" ng-show="vm.type=='artist'" ng-click="addNewChoice()">Añadir Campo</button>
-                        <div ng-hide=true>{{vm.newUserData.members=members}}</div>
-                        <div ng-if="vm.type=='artist'">
-                            <strong> Ingrese la biografia: </strong>
-                            <textarea ng-model="vm.newUserData.biographyArtist" class="form-control" required=""></textarea>
-                        </div>
-                        <div>
-                            <div ng-if="vm.type=='fanatic'">
-                                <button type="button" class="btn btn-primary btn-block button-block btn-margin" ng-click="vm.registerNewUser()" ng-disabled="newUserForm.$invalid ">
-                                    Crear Fanatico
-                                </button>
-                            </div>
-                            <div ng-if="vm.type=='artist'">
-                                <button type="button" class="btn btn-primary btn-block button-block btn-margin" ng-click="vm.registerNewArtist()" ng-disabled="newUserForm.$invalid ">
-                                    Crear Artista
-                                </button>
-                            </div>
-                            <br>
-                            <a ui-sref="login" type="button" class="btn btn-primary btn-block">Cancelar</a>
+                <span ng-show="vm.picfile.result">Imagen actualizada</span>
+                <br>
+                <fieldset class="separate-bottom" data-ng-repeat="member in members" ng-if="vm.type=='artist'">
+                    <input type="text" ng-model="member.name" name="" placeholder="Nombre del Miembro" class="form-control separate-bottom form-inline" required>
+                    <input type="text" ng-model="member.instrument" name="" placeholder="Instrumento" class="form-control separate-bottom form-inline" required>
+                    <button class="btn btn-remove " ng-show="$last" ng-click="removeChoice()" ng-disabled="members.length==1">Borrar Campo</button>
+                </fieldset>
+                <button class="btn btn-add" ng-show="vm.type=='artist'" ng-click="addNewChoice()">Añadir Campo</button>
+                <div ng-hide=true>{{vm.newUserData.members=members}}</div>
+                <div ng-if="vm.type=='artist'">
+                <strong> Ingrese la biografia: </strong>
+                <textarea ng-model="vm.newUserData.biographyArtist" class="form-control" required=""></textarea>
+              </div>
+                <div>
+                <div ng-if="vm.type=='fanatic'">
+                    <button type="button" class="btn btn-primary btn-block button-block btn-margin" ng-click="vm.registerNewUser()" ng-disabled="newUserForm.$invalid ">
+                        Crear Fanatico
+                    </button>
+                </div>
+                <div ng-if="vm.type=='artist'">
+                    <button type="button" class="btn btn-primary btn-block button-block btn-margin" ng-click="vm.registerNewArtist()" ng-disabled="newUserForm.$invalid ">
+                        Crear Artista
+                    </button>
+                </div>
+                <br>
+                <a ui-sref="login" type="button" class="btn btn-primary btn-block">Cancelar</a>
             </form>
-            </div>
-            <div class="col-xs-1 col-sm-3 col-md-3"></div>
         </div>
+        <div class="col-xs-1 col-sm-3 col-md-3"></div>
+    </div>
 </section>
 
 <!-- Footer -->

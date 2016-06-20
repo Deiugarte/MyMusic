@@ -21,12 +21,15 @@
 
           var userInfo = data.data;
           UserDataService.setUserInfoData(userInfo);
-
+          console.log(userInfo);
           if (data.status === 200){
             if(userInfo.RoleIdentifier=='fanatic'){
               $state.go('fanProfile');
             }
             if(userInfo.RoleIdentifier=='artist'){
+              $cookies.put("idArtist",userInfo.UserId);
+
+                console.log($cookies.get('idArtist'));
               $state.go('artistProfile');
             }
             if(userInfo.RoleIdentifier=='admin'){
