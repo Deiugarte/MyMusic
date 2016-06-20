@@ -12,6 +12,7 @@ import myfan.resources.base.AddDiscRequest;
 import myfan.resources.base.AddEventRequest;
 import myfan.resources.base.AddNewsRequest;
 import myfan.resources.base.AddSongRequest;
+import myfan.resources.base.DisableAccountRequest;
 import myfan.resources.base.FollowArtistRequest;
 import myfan.resources.base.LoginRequest;
 import myfan.resources.base.RegisterNewArtistRequest;
@@ -50,6 +51,7 @@ public class FacadeLogicTest {
 	  facadeLogic.registerNewFanatic(fanaticRequest, null, null);  
   } 
   
+  @Test
   public void registerArtist(){
 	  RegisterNewArtistRequest artistRequest = new RegisterNewArtistRequest();
 	  artistRequest.setBiographyArtist("Test");
@@ -68,6 +70,12 @@ public class FacadeLogicTest {
 	  artistRequest.setMembers(members);
 	  artistRequest.setPassword("Test");
 	  facadeLogic.registerNewArtist(artistRequest, null, null);
+  }
+  @Test
+  public void disableProfile(){
+	  DisableAccountRequest accountRequest = new DisableAccountRequest();
+	  accountRequest.setLogin("javesp");
+	  facadeLogic.disableProfile(accountRequest);
   }
   @Test
   public void createNews() {
