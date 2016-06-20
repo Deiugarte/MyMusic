@@ -24,7 +24,7 @@ public class AddEventRequest {
 	public String getUbicationEvent() {
 		return ubicationEvent;
 	}
-	public boolean isConcert() {
+	public boolean getIsConcert() {
 		return isConcert;
 	}
 	public String getCreationDate() {
