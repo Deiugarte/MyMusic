@@ -31,7 +31,7 @@ public class DiscsDao extends DiscsHome {
   public void save(Discs Discs){
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
-      persist(Discs);
+      merge(Discs);
       trans.commit();
   }
 
@@ -43,6 +43,14 @@ public class DiscsDao extends DiscsHome {
       return instance;
   }
 
+  public Discs getDiscsByDisc(Discs discs) {
+    Session session = sessionFactory.getCurrentSession();
+    org.hibernate.Transaction trans= session.beginTransaction();
+    Discs instance = (Discs) findByExample(discs);
+    trans.commit();
+    return instance;
+}
+  
   public void deleteDiscs(Discs Discs) {
       Session session = sessionFactory.getCurrentSession();
       org.hibernate.Transaction trans= session.beginTransaction();
@@ -68,4 +76,24 @@ public class DiscsDao extends DiscsHome {
 	        throw re;
 	    }
 	}
+
+  public Discs getDiscsByArtistAndName(int artist, String name) {
+    try {
+      Session session = sessionFactory.openSession();
+      org.hibernate.Transaction trans= session.beginTransaction();
+      if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+          log.debug(" >>> Transaction close.");
+      Query query = session.createQuery("from Discs where artist = :idArtist and name= :name");
+      query.setParameter("idArtist", artist);
+      query.setParameter("name", name);
+      java.util.List<Discs> results = query.list();
+      System.out.println("Result list: " + results.size());
+      trans.commit();
+      log.debug("get successful, instance found");
+      return results.get(0);
+  } catch (RuntimeException re) {
+      log.error("get failed", re);
+      throw re;
+  }
+  }
 }

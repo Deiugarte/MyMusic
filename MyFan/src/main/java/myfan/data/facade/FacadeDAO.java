@@ -162,6 +162,11 @@ public class FacadeDAO {
 	public Ubications findUbicationsByName(String nameUbication) {
 		return ubicationsDao.findByName(nameUbication);
 	}
+	
+	public Discs findDiscByArtistAndName(int artist,String name) {
+	  return discsDao.getDiscsByArtistAndName(artist,name);
+    
+  }
 
 	/*-----------------------------------------GET-------------------------------------*/
 	/*-----------------------------------------GET-------------------------------------*/
