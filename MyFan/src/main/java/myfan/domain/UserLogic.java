@@ -36,7 +36,7 @@ public class UserLogic {
   private final int DISABLE = 13;
   private ImageFabrication imageFabrication;
   protected JSONFabrication jSONFabrication;
-  private DateFabrication date;
+  protected DateFabrication date;
 
   protected FacadeDAO facadeDAO;
 

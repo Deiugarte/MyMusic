@@ -49,7 +49,7 @@ public class FacadeLogicTest {
     addDiscRequest.setReleaseYear("2016-02-02");
     addDiscRequest.setDescriptionDisc("Creacion Disco Test");
     addDiscRequest.setLabel("Test");
-    addDiscRequest.setIdGenre(11);
+    addDiscRequest.setIdGenre("Rock");
     addDiscRequest.setNameDisc("Test Disc");
     assertEquals(1, facadeLogic.addDisc(addDiscRequest));
   }

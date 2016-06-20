@@ -33,7 +33,7 @@ public class DiscLogic {
 		newDisc.setDescription(disc.getDescriptionDisc());
 		newDisc.setReleaseYear(dateFabrication.getDateFromString(disc.getReleaseYear()));
 		newDisc.setLabel(disc.getLabel());
-		Genres genres = facadeDAO.findGenderById(disc.getIdGenre());
+		Genres genres = facadeDAO.findGenderByName(disc.getNameDisc());
 		newDisc.setGenres(genres);
 		facadeDAO.saveDisc(newDisc);
 		

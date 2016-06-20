@@ -6,7 +6,6 @@ import java.util.List;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import myfan.data.models.Artists;
-import myfan.data.models.ArtistsCalifications;
 import myfan.data.models.Genres;
 import myfan.data.models.Members;
 import myfan.data.models.Ubications;
@@ -19,90 +18,82 @@ import myfan.resources.base.util.Member;
 
 public class ArtistLogic extends UserLogic {
 
-  public Response registerNewArtist(RegisterNewArtistRequest dataArtist, String pathProfilePicture) {
+	public Response registerNewArtist(RegisterNewArtistRequest dataArtist, String pathProfilePicture) {
 
-    String response = USER_IDENTIFIER_STATUS;
-    Users user = facadeDAO.findUserByLogin(dataArtist.getLogin());
-    if (existUser(user)) {
-      return responseBuilder(ERROR_USER_FOUND);
-    }
-    Ubications ubication = checkUbication(dataArtist.getCountryLocation());
-    ArrayList<Genres> genders = checkGenres(dataArtist.getMusicalGenres());
-    UsersRoles usersRoles = facadeDAO.getArtistRole();
-    
-    createUser(pathProfilePicture, ubication, usersRoles, dataArtist.getNameUser(), dataArtist.getPassword(),
-        dataArtist.getLogin(), dataArtist.getBirthDate());
+		String response = USER_IDENTIFIER_STATUS;
+		Users user = facadeDAO.findUserByLogin(dataArtist.getLogin());
+		if (existUser(user)) {
+			return responseBuilder(ERROR_USER_FOUND);
+		}
+		Ubications ubication = checkUbication(dataArtist.getCountryLocation());
+		ArrayList<Genres> genders = checkGenres(dataArtist.getMusicalGenres());
+		UsersRoles usersRoles = facadeDAO.getArtistRole();
 
-    Artists artist = new Artists();
-    user = facadeDAO.findUserByLogin(dataArtist.getLogin());
-    artist.setBio(dataArtist.getBiographyArtist());
-    artist.setUsers(user);
+		createUser(pathProfilePicture, ubication, usersRoles, dataArtist.getNameUser(), dataArtist.getPassword(),
+				dataArtist.getLogin(), dataArtist.getBirthDate());
 
-    facadeDAO.saveArtist(artist);
-    saveMembers(artist, dataArtist.getMembers());
-    saveGenres(user, genders);
-    
-    response = String.format(response, user.getUserId().toString(),"artist", "OK");
-    return Response.status(Status.OK).entity(response).build();
-  }
-  
-	public Response updateFanatic(UpdateProfileUserRequest dataArtist, String pathProfilePicture ){
+		Artists artist = new Artists();
+		user = facadeDAO.findUserByLogin(dataArtist.getLogin());
+		artist.setBio(dataArtist.getBiographyArtist());
+		artist.setUsers(user);
+
+		facadeDAO.saveArtist(artist);
+		saveMembers(artist, dataArtist.getMembers());
+		saveGenres(user, genders);
+
+		response = String.format(response, user.getUserId().toString(), "artist", "OK");
+		return Response.status(Status.OK).entity(response).build();
+	}
+
+	public Response updateFanatic(UpdateProfileUserRequest dataArtist, String pathProfilePicture) {
 		String response = USER_IDENTIFIER_STATUS;
 		updateUser(dataArtist, pathProfilePicture);
 		response = String.format(response, dataArtist.getIdentificationNumber(), "OK");
 		return Response.status(Status.OK).entity(response).build();
-		
+
 	}
 
-  private void saveMembers(Artists artist, ArrayList<Member> membersList) {
-    Members members = new Members();
-    members.setArtists(artist);
-    for (int i = 0; i < membersList.size(); i++) {
-      System.out.println("---->"+membersList.get(i).getName());
-      members.setInstrument(membersList.get(i).getInstrument());
-      members.setName(membersList.get(i).getName());
-      facadeDAO.saveMembersArtist(members);
-    }
-  }
-  
-  public String getPersonalInformationOfArtist(int idUser) {
-	    ArtistProfileResponse artistProfileResponse = new ArtistProfileResponse();
-	    Users user = facadeDAO.findUserById(idUser);
-	    Artists artist= facadeDAO.findArtistByUserId(idUser);
-	    artistProfileResponse.setAgeUser(calculadeAge(user.getBirthday()));
-	    Ubications ubications = user.getUbications();
-	    ubications = facadeDAO.findUbicationsById(ubications.getUbicationId());
-	    artistProfileResponse.setCountryLocation(ubications.getName());
-	    artistProfileResponse.setLoginUser(user.getUsername());
-	    artistProfileResponse.setNameUser(user.getName());
-	    artistProfileResponse.setMusicalGenres(getGenresByUser(idUser));
-	    artistProfileResponse.setImageProfile(user.getImage());
-	    artistProfileResponse.setIdentificationNumber(idUser);
-	    artistProfileResponse.setBibliography(artist.getBio());
-	    artistProfileResponse.setNumberOfFollowers(artist.getFollowers());
-	    artistProfileResponse.setTotalOfCalifications(calculateTotalOfCalifications(artist.getArtistId()));
-	    artistProfileResponse.setAverageOfArtist(calculateRankingArtist(artist.getArtistId()));
-	    return jSONFabrication.jsonConverter(artistProfileResponse);
-	  }
-  
-	private int calculateRankingArtist(int idArtist){
-		//Artists artists = facadeDAO.findArtistById(idArtist);
-		List<ArtistsCalifications> artistsCalifications= facadeDAO.getArtistCalificationByIdArtist(idArtist);
-		int sumOfCalifications=0;
-		int average=0;
-		if ( artistsCalifications.size()!=0){
-		for (int i = 0; i < artistsCalifications.size(); i++) {
-			sumOfCalifications += artistsCalifications.get(i).getCalification();
+	private void saveMembers(Artists artist, ArrayList<Member> membersList) {
+		Members members = new Members();
+		members.setArtists(artist);
+		for (int i = 0; i < membersList.size(); i++) {
+			System.out.println("---->" + membersList.get(i).getName());
+			members.setInstrument(membersList.get(i).getInstrument());
+			members.setName(membersList.get(i).getName());
+			facadeDAO.saveMembersArtist(members);
 		}
-			average= (sumOfCalifications/artistsCalifications.size())*100; 
-		}
-		return average;
 	}
-	
-	private int calculateTotalOfCalifications(int idArtist){
-		List<ArtistsCalifications> artistsCalifications= facadeDAO.getArtistCalificationByIdArtist(idArtist);
-		return artistsCalifications.size(); 
-		
+
+	public String getPersonalInformationOfArtist(int idUser) {
+		ArtistProfileResponse artistProfileResponse = new ArtistProfileResponse();
+		OptionsArtist optionsArtist = new OptionsArtist();
+		Users user = facadeDAO.findUserById(idUser);
+		Artists artist = facadeDAO.findArtistByUserId(idUser);
+		artistProfileResponse.setAgeUser(calculadeAge(user.getBirthday()));
+		Ubications ubications = user.getUbications();
+		ubications = facadeDAO.findUbicationsById(ubications.getUbicationId());
+		artistProfileResponse.setCountryLocation(ubications.getName());
+		artistProfileResponse.setLoginUser(user.getUsername());
+		artistProfileResponse.setNameUser(user.getName());
+		artistProfileResponse.setMusicalGenres(getGenresByUser(idUser));
+		artistProfileResponse.setImageProfile(user.getImage());
+		artistProfileResponse.setIdentificationNumber(idUser);
+		artistProfileResponse.setBibliography(artist.getBio());
+		artistProfileResponse.setNumberOfFollowers(artist.getFollowers());
+		artistProfileResponse
+				.setTotalOfCalifications(optionsArtist.calculateTotalOfCalifications(artist.getArtistId()));
+		artistProfileResponse.setAverageOfArtist(optionsArtist.calculateRankingArtist(artist.getArtistId()));
+		artistProfileResponse.setBirthday(artist.getUsers().getBirthday().toString());
+		artistProfileResponse.setMembers(findMembers(artist.getArtistId()));
+		return jSONFabrication.jsonConverter(artistProfileResponse);
+	}
+
+	private List<String> findMembers(int idArtist) {
+		List<Members> members = facadeDAO.findMemersByIdArtist(idArtist);
+		List<String> nameMembers = new ArrayList<String>();
+		for (int i = 0; i < members.size(); i++) {
+			nameMembers.add(members.get(i).getName());
+		}
+		return nameMembers;
 	}
 }
-

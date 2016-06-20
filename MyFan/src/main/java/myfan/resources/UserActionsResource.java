@@ -16,7 +16,6 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 import myfan.domain.facade.FacadeLogic;
 import myfan.resources.base.DisableAccountRequest;
 import myfan.resources.base.FollowArtistRequest;
-import myfan.resources.base.GetNewsRequest;
 import myfan.resources.base.UpdateProfileUserRequest;
 
 @Path("v1/userActions")

@@ -4,7 +4,7 @@ public class AddDiscRequest {
 	private int idUser;
 	private String nameDisc;
 	private String descriptionDisc;
-	private int idGenre;
+	private String nameGenre;
 	private String releaseYear;
 	private String label;
 	
@@ -18,8 +18,8 @@ public class AddDiscRequest {
 	public String getDescriptionDisc() {
 		return descriptionDisc;
 	}
-	public int getIdGenre() {
-		return idGenre;
+	public String getNameGenre() {
+		return nameGenre;
 	}
 	public String getReleaseYear() {
 		return releaseYear;
@@ -36,8 +36,8 @@ public class AddDiscRequest {
 	public void setDescriptionDisc(String descriptionDisc) {
 		this.descriptionDisc = descriptionDisc;
 	}
-	public void setIdGenre(int idGenre) {
-		this.idGenre = idGenre;
+	public void setIdGenre(String nameGenre) {
+		this.nameGenre = nameGenre;
 	}
 	public void setReleaseYear(String releaseYear) {
 		this.releaseYear = releaseYear;
