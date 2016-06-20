@@ -1,10 +1,4 @@
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 html, body{
     height: 100%;
 }
@@ -213,7 +207,7 @@ html, body{
     font-size: 1vw;
 }
 .timeline-title{
-    font-size: 1.5vw;
+    font-size: 1.3vw;
 }
 .timeline-panel{
     font-size: 0.8vw;
@@ -575,6 +569,7 @@ form.tab-form-demo .tab-pane {
      width: 100%;
      height: 200px;
      position: relative;
+     margin: 4%;
  }
 
 
@@ -587,7 +582,7 @@ form.tab-form-demo .tab-pane {
      padding-top: 3%;
  }
 
- #descriptionText{
+ .descriptionText{
      padding-bottom: 6%;
      text-align: center;
      font-size: 1.5vw;

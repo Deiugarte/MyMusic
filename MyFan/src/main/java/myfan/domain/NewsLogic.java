@@ -73,16 +73,18 @@ public class NewsLogic {
 		if (isArtist(idUser)) {
 			newsList = getNewsArtist(idUser, offset);
 		} else {
+		  System.out.println("entre");
 			newsList = getNewsFanatics(idUser, offset);
 		}
 		ArrayList<RecentNewsResponse> listResponse = new ArrayList<RecentNewsResponse>();
 		for (int i = 0; i < newsList.size(); i++) {
 			RecentNewsResponse recentNewsResponse = new RecentNewsResponse();
-			recentNewsResponse.setContentNews(newsList.get(i).getContent());
+			recentNewsResponse.setContent(newsList.get(i).getContent());
 			recentNewsResponse.setCreationDate(newsList.get(i).getCreationDate().toString());
-			recentNewsResponse.setDateOfNews(newsList.get(i).getDate().toString());
+			recentNewsResponse.setDate(newsList.get(i).getDate().toString());
 			recentNewsResponse.setIdNews(newsList.get(i).getNewsId());
-			recentNewsResponse.setTitleNews(newsList.get(i).getTittle());
+			recentNewsResponse.setTitle(newsList.get(i).getTittle());
+			recentNewsResponse.setType("news");
 			listResponse.add(recentNewsResponse);
 		}
 		return jSONFabrication.jsonConverter(listResponse);

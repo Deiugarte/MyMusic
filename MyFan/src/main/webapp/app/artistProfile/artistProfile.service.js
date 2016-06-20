@@ -9,16 +9,18 @@
 
   /* @ngInject */
   function ArtistSrv($http) {
+    var vm= this;
+    vm.getTimelineNews = getTimelineNews;
+    vm.getTimelineEvents = getTimelineEvents;
 
-    this.postCompanyInfo = postCompanyInfo;
-    this.getPlansFromServer = getPlansFromServer;
-
-    function postCompanyInfo(data) {
-      return $http.post('http://localhost:8000/rest/v1/company/register', data);
+    function getTimelineNews(data){
+      var url = 'http://localhost:8000/rest/v1/news/getRecent'
+      return $http.post(url,data);
     }
 
-    function getPlansFromServer(data) {
-      return $http.get('http://localhost:8000/rest/v1/plan/all', data);
+    function getTimelineEvents(data){
+      var url = 'http://localhost:8000/rest/v1/events/getRecent'
+      return $http.post(url,data);
     }
   }
 })();

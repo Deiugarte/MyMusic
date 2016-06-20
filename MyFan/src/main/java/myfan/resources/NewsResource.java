@@ -19,7 +19,8 @@ public class NewsResource {
   @Produces(MediaType.APPLICATION_JSON)
   public String getRecentNewsList(GetNewsRequest getNewsRequest) {
     FacadeLogic facadeLogic = new FacadeLogic();
-    return facadeLogic.getRecentNews(getNewsRequest.getIdUser(), getNewsRequest.getOffset());    
+    System.out.println(getNewsRequest.getIdUser()+"   "+ getNewsRequest.getOffset());
+    return facadeLogic.getRecentNews(getNewsRequest.getIdUser(), getNewsRequest.getOffset());
   }
   
   @POST

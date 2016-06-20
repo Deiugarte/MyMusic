@@ -1,5 +1,10 @@
 <!-- Header -->
-<section id="top" class="header_ladingpage">
+<section id="top" class="header_ladingpage_register">
+  <div class="col-xs-2 col-sm-4 col-md-4 col-lg-4" ></div>
+  <div class="col-xs-10 col-sm-8 col-md-8 col-lg-8">
+    <h1><b>Bienvenido a Myfan</b></h1>
+    <h4><i>La red social que te acerca a tus artistas!</i></h4>
+  </div>
     <div class="text-vertical-center">
         <div class="col-xs-1 col-sm-3 col-md-3 col-lg-3"></div>
         <div class="col-xs-10 col-sm-6 col-md-6 col-lg-6">
@@ -46,8 +51,8 @@
                 <p ng-show="newUserForm.username.$error.maxlength" class="help-block">Nombre de usuario muy largo</p>
                 <strong>Ingrese su contraseña: </strong>
                 <input type="password" placeholder="Introduzca su contraseña" class="form-control" name="newPassword" ng-model="vm.newUserData.password" ng-minlength="4" ng-maxlength="8" required/>
-                <p ng-show="newUserForm.password.$error.minlength" class="help-block">Contraseña muy corta</p>
-                <p ng-show="newUserForm.password.$error.maxlength" class="help-block">Contraseña muy larga</p>
+                <p ng-show="newUserForm.newPassword.$error.minlength" class="help-block">Contraseña muy corta</p>
+                <p ng-show="newUserForm.newPassword.$error.maxlength" class="help-block">Contraseña muy larga</p>
                 <div class="clearfix">
                     <div ng-messages="newUserForm.newPassword.$error" ng-if="newUserForm.$submitted || newUserForm.newPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
                         <div ng-message="required" class="message slide-left">No se han introducido datos</div>
@@ -63,7 +68,7 @@
                     </div>
                 </div>
                 <label for="countrySelect"> Seleccione su pais: </label>
-                <select name="countrySelect" id="countrySelect" ng-model="vm.newUserData.countryLocation" required>
+                <select class="form-control" name="countrySelect" id="countrySelect" ng-model="vm.newUserData.countryLocation" required>
                     <option ng-repeat="country in vm.ubications" value="{{country.name}}">{{country.name}}</option>
                 </select>
                 <div ng-messages="newUserForm.countrySelect.$error" ng-if="newUserForm.$submitted || newUserForm.countrySelect.$pristine" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
@@ -97,7 +102,7 @@
                 <div ng-hide=true>{{vm.newUserData.members=members}}</div>
                 <div ng-if="vm.type=='artist'">
                 <strong> Ingrese la biografia: </strong>
-                <textarea ng-model="vm.newUserData.biographyArtist" class="form-control" ></textarea>
+                <textarea ng-model="vm.newUserData.biographyArtist" class="form-control" required=""></textarea>
               </div>
                 <div>
                 <div ng-if="vm.type=='fanatic'">

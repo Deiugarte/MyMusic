@@ -1,65 +1,71 @@
 package myfan.resources.base;
 
 public class RecentEventsResponse {
-		private int eventId;
-		private String titleEvent;
-		private String contentEvent;
-		private String dateEvent;
-		private String creationDate;
-		private boolean isConcert;
-		private String ubicationEvent;
-		private double AverageCalificationsConcerts;
-		
-		
-		public double getAverageCalificationsConcerts() {
-			return AverageCalificationsConcerts;
-		}
-		public void setAverageCalificationsConcerts(double averageCalificationsConcerts) {
-			AverageCalificationsConcerts = averageCalificationsConcerts;
-		}
-		
-		public int getEventId() {
-			return eventId;
-		}
-		public String getTitleEvent() {
-			return titleEvent;
-		}
-		public String getContentEvent() {
-			return contentEvent;
-		}
-		public String getDateEvent() {
-			return dateEvent;
-		}
-		public String getCreationDate() {
-			return creationDate;
-		}
-		public boolean isConcert() {
-			return isConcert;
-		}
-		public String getUbicationEvent() {
-			return ubicationEvent;
-		}
-		public void setEventId(int eventId) {
-			this.eventId = eventId;
-		}
-		public void setTitleEvent(String titleEvent) {
-			this.titleEvent = titleEvent;
-		}
-		public void setContentEvent(String contentEvent) {
-			this.contentEvent = contentEvent;
-		}
-		public void setDateEvent(String dateEvent) {
-			this.dateEvent = dateEvent;
-		}
-		public void setCreationDate(String creationDate) {
-			this.creationDate = creationDate;
-		}
-		public void setConcert(boolean isConcert) {
-			this.isConcert = isConcert;
-		}
-		public void setUbicationEvent(String ubicationEvent) {
-			this.ubicationEvent = ubicationEvent;
-		}
-		
-		
+  private int eventId;
+  private String title;
+  private String content;
+  private String date;
+  private String creationDate;
+  private boolean isConcert;
+  private String ubication;
+  private double AverageCalificationsConcerts;
+  private String type;
+  
+  
+  public String getType() {
+    return type;
+  }
+  public void setType(String type) {
+    this.type = type;
+  }
+  public int getEventId() {
+    return eventId;
+  }
+  public void setEventId(int eventId) {
+    this.eventId = eventId;
+  }
+  public String getTitle() {
+    return title;
+  }
+  public void setTitle(String title) {
+    this.title = title;
+  }
+  public String getContent() {
+    return content;
+  }
+  public void setContent(String content) {
+    this.content = content;
+  }
+  public String getDate() {
+    return date;
+  }
+  public void setDate(String date) {
+    this.date = date;
+  }
+  public String getCreationDate() {
+    return creationDate;
+  }
+  public void setCreationDate(String creationDate) {
+    this.creationDate = creationDate;
+  }
+  public boolean isConcert() {
+    return isConcert;
+  }
+  public void setConcert(boolean isConcert) {
+    this.isConcert = isConcert;
+  }
+  public String getUbication() {
+    return ubication;
+  }
+  public void setUbication(String ubication) {
+    this.ubication = ubication;
+  }
+  public double getAverageCalificationsConcerts() {
+    return AverageCalificationsConcerts;
+  }
+  public void setAverageCalificationsConcerts(double averageCalificationsConcerts) {
+    AverageCalificationsConcerts = averageCalificationsConcerts;
+  }
+
+  
 }
