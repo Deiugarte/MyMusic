@@ -6,7 +6,7 @@
     <class name="myfest.models.Musicalgenres" table="musicalgenres" catalog="myfest" optimistic-lock="version">
         <id name="musicalGenreId" type="int">
             <column name="MusicalGenreId" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="genreName" type="string">
             <column name="GenreName" length="45" not-null="true" unique="true" />

@@ -1,9 +1,13 @@
 package myfest.dao;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import myfest.models.Twittermentions;
 import myfest.utils.HibernateUtil;
@@ -29,6 +33,25 @@ public class TwitterMentionsDAO extends TwittermentionsHome {
       org.hibernate.Transaction trans= session.beginTransaction();
       persist(Twittermentions);
       trans.commit();
+  }
+  
+  public List<Twittermentions> getTwitterMentionsByID(String artistID){
+	  String idQuery = "FROM Twittermentions WHERE artistId = " + artistID;
+	  try {
+	        Session session = sessionFactory.openSession();
+	        org.hibernate.Transaction trans= session.beginTransaction();
+	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+	            log.debug(" >>> Transaction close.");
+	        Query query = session.createQuery(idQuery);
+	        java.util.List results = query.list();
+	        System.out.println("Result list: " + results.size());
+	        trans.commit();
+	        log.debug("get successful, instance found");
+	        return results;
+	    } catch (RuntimeException re) {
+	        log.error("get failed", re);
+	        throw re;
+	    }
   }
 
   public Twittermentions getArtistsById(int id) {

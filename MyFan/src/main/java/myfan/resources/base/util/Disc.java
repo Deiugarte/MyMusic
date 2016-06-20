@@ -13,9 +13,16 @@ public class Disc {
   private List<Song> songs;
   private String title;
   private String description;
+  private int idDisc;
   
   
 
+public int getIdDisc() {
+    return idDisc;
+  }
+public void setIdDisc(int idDisc) {
+    this.idDisc = idDisc;
+  }
 public String getTitle() {
     return title;
   }
