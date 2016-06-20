@@ -86,7 +86,7 @@
                <legend>Canción:</legend>
                 <input type="text" ng-model="song.nameSong" name="" placeholder="Nombre de canción" class="form-control separate-bottom form-inline" required />
                 <input type="text" ng-model="song.durationSong" name="" placeholder="Duración" class="form-control separate-bottom form-inline" required />
-                <input type="text" ng-model="song.videoLink" name="" placeholder="Link de video(*)" class="form-control separate-bottom form-inline" />
+                <input type="text" ng-model="song.videoLink" name="" placeholder="*Link de video" class="form-control separate-bottom form-inline" />
 
                 <form>
                 <label style="padding-left:0%" class="radio-inline">
@@ -97,9 +97,7 @@
                 </label>
                 <label class="radio-inline">
                     <input type="radio" name="{{song.version}}" ng-model="song.isLife" value="false"> Estudio
-                    <p> {{song.isLimitEdition}} aaa </p>
                 </label>
-                <p> {{song.isLife}} aa </p>
                 <br/>
                 <br/>
 
@@ -112,7 +110,6 @@
                 </label>
                 <label class="radio-inline">
                     <input type="radio" name="{{song.edition}}" ng-model="song.isLimitEdition" ng-value="false"> Normal
-                    <p> {{song.isLimitEdition}} aaa </p>
                 </label>
 
               </form>
@@ -120,7 +117,7 @@
                 <br/>
                 <br/>
 
-                <button class="btn btn-remove " ng-show="$last" ng-click="removeChoice()" ng-disabled="songs.length==1">Eliminar canción</button>
+                <button class="btn btn-remove " ng-show="$last" ng-click="removeChoice()" ng-disabled="songs.length==1">Eliminar última canción</button>
             </fieldset>
 
             <button class="btn btn-add" ng-click="addNewChoice()">Añadir canción</button>

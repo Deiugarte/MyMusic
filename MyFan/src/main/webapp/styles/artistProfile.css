@@ -414,7 +414,7 @@ cursor: pointer;
     height: 100%;
     width: 20%;
     text-align: center;
-    font-size: 55%;
+    font-size: 65%;
     font-weight: bold;
     position: relative;
     top: 60%;
@@ -428,10 +428,9 @@ cursor: pointer;
     width: 80%;
     padding: 0.1% 1%;
     text-align: justify;
-    font-size: 40%;
+    font-size: 50%;
     position:relative;
 }
-
 
 
 .albumBottom{
@@ -443,7 +442,7 @@ cursor: pointer;
 .albumBottomTxt{
     float:left;
     position: relative;
-    font-size: 65%;
+    font-size: 80%;
     padding-top: 0.5%;
     width: 50%;
     height: 50%;
