@@ -19,8 +19,8 @@
             <br>
 
 
-            <strong>Género: {{newAlbumData.idGenre}}</strong>
-            <select class="form-control" name="idGenre" ng-model="newAlbumData.idGenre" required>
+            <strong>Género: {{newAlbumData.nameGenre}}</strong>
+            <select class="form-control" name="nameGenre" ng-model="newAlbumData.nameGenre" required>
               <option ng-repeat="genre in genres" value="{{genre.name}}">{{genre.name}}</option>
             </select>
 
