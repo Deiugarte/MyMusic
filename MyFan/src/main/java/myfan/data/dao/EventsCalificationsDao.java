@@ -56,7 +56,7 @@ public class EventsCalificationsDao extends EventsCalificationsHome {
 	        org.hibernate.Transaction trans= session.beginTransaction();
 	        if(trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
 	            log.debug(" >>> Transaction close.");
-	        Query query = session.createQuery("from EventsCalifications where eventcalificationid = :idEvent");
+	        Query query = session.createQuery("from EventsCalifications where event = :idEvent");
 	        query.setParameter("idEvent", idEvent);
 	        java.util.List<EventsCalifications> results = query.list();
 	        System.out.println("Result list: " + results.size());

@@ -36,7 +36,7 @@ public class CommnetsArtist {
 		 List<ArtistsCalifications> artistsCalifications = facadeDAO.getArtistCalificationByIdArtist(idArtist);
 			for (int i = 0; i < artistsCalifications.size(); i++) {
 				if(!artistsCalifications.get(i).getComment().equals("") || artistsCalifications.get(i).getComment()!=null ){
-					if (artistsCalifications.get(i).getFanatics().getUsers().getUsersRoles().getUsersRolesId() == DISABLE_ROLE) {
+					if (artistsCalifications.get(i).getFanatics().getUsers().getUsersRoles().getUsersRolesId() != DISABLE_ROLE) {
 					Comments comment = new Comments();
 					comment.setCalification(artistsCalifications.get(i).getCalification());
 					comment.setComment(artistsCalifications.get(i).getComment());

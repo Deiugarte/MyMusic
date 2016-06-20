@@ -4,26 +4,30 @@
         .module('refiereApp.modalEvent')
         .controller('ModalInstanceCtrl', ModalInstanceCtrl);
 
-    ModalInstanceCtrl.$inject = ['EventSrv', 'currentEvent', '$uibModalInstance', '$state', '$window', '$scope'];
+    ModalInstanceCtrl.$inject = ['EventSrv', 'currentEvent', '$uibModalInstance', '$state', '$window', '$scope','$log'];
 
-    function ModalInstanceCtrl(EventSrv, currentEvent, $uibModalInstance, $state, $window, $scope) {
+    function ModalInstanceCtrl(EventSrv, currentEvent, $uibModalInstance, $state, $window, $scope,$log) {
         $scope.currentEvent = currentEvent;
         $scope.eventRating = {};
         $scope.eventRating.idEvent = $scope.currentEvent.id;
-        $scope.eventRating.idUserFanatic = 11;
+        $scope.eventRating.idUserFanatic = 12;
 
         getEventComments();
         function getEventComments(){
-          EventSrv.getEventComments($scope.currentEvent.id)
+          EventSrv.getEventComments($scope.currentEvent)
           .then(function(commentsData){
               $scope.eventComments = commentsData.data;
+              console.log(commentsData.data);
+              console.log("este");
+              console.log($scope.eventComments);
           });
         }
 
         $scope.sendRateEvent = function(){
+          console.log($scope.eventRating);
           EventSrv.postRateEvent($scope.eventRating)
           .then(function(data){
-              $scope.eventComments = commentsData.data;
+            console.log(data);
           })
           .catch(function(error) {
             console.log(error);
