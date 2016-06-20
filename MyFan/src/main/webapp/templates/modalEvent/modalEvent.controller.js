@@ -10,7 +10,7 @@
         $scope.currentEvent = currentEvent;
         $scope.eventRating = {};
         $scope.eventRating.idEvent = $scope.currentEvent.id;
-        $scope.eventRating.idUserFanatic = 12;
+        $scope.eventRating.idUserFanatic = $cookies.getObject('userInfo').UserId;
 
         getEventComments();
         function getEventComments(){

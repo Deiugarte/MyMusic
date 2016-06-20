@@ -17,10 +17,8 @@
         vm.artistList=[];
         vm.userData = $cookies.getObject('userInfo');
         vm.timelineParameters.offset = '0';
-
-
         vm.unfollowParameters = {};
-        vm.unfollowParameters.idUserFanatic = 12;
+        vm.unfollowParameters.idUserFanatic = vm.userData.UserId;
 
         vm.searchParameters={
           name:"",
@@ -28,17 +26,8 @@
           nameUbication:""
         };
 
-        vm.currentUser ={
-          rol: "fanatic",
-          id: 10
-        };
-
-
-
         vm.searchResults={};
-
         permissions();
-
         vm.open = function(size, title, body, stars, commentsAmount, date, id) {
             vm.currentEvent.title = title;
             vm.currentEvent.body = body;
@@ -65,8 +54,6 @@
             });
         };
 
-
-
         vm.openEditFan= function(size) {
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
@@ -89,7 +76,6 @@
 
 
         };
-
 
         function permissions(){
           if( vm.userData==null){
@@ -146,6 +132,13 @@
                         vm.timeline.push(eventsData.data[i]);
                     }
                 });
+        }
+
+        vm.goToArtistProfile=function(data){
+          $cookies.put("idArtist",data);
+          console.log(data);
+          console.log($cookies.get("idArtist"));
+          $state.go("artistProfile")
         }
 
           vm.getFollowedArtist = function () {

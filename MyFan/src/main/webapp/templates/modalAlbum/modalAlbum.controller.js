@@ -11,7 +11,7 @@
         $scope.albumCommentRating = "";
         $scope.albumRating = {};
         $scope.albumRating.idDisc = $scope.currentAlbumInfo.idDisc;
-        $scope.albumRating.idUserFanatic = 12;
+        $scope.albumRating.idUserFanatic = $cookies.getObject('userInfo').UserId;
 
         getAlbumComments();
         function getAlbumComments(){
