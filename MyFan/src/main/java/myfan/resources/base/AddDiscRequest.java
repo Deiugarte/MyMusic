@@ -36,7 +36,7 @@ public class AddDiscRequest {
 	public void setDescriptionDisc(String descriptionDisc) {
 		this.descriptionDisc = descriptionDisc;
 	}
-	public void setIdGenre(String nameGenre) {
+	public void setNameGenre(String nameGenre) {
 		this.nameGenre = nameGenre;
 	}
 	public void setReleaseYear(String releaseYear) {

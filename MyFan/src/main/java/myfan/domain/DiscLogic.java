@@ -33,10 +33,11 @@ public class DiscLogic {
 		newDisc.setDescription(disc.getDescriptionDisc());
 		newDisc.setReleaseYear(dateFabrication.getDateFromString(disc.getReleaseYear()));
 		newDisc.setLabel(disc.getLabel());
-		Genres genres = facadeDAO.findGenderByName(disc.getNameDisc());
+		Genres genres = facadeDAO.findGenderByName(disc.getNameGenre());
+		System.out.println(genres.getName());
 		newDisc.setGenres(genres);
-		facadeDAO.saveDisc(newDisc);
-		
+		facadeDAO.saveDisc(newDisc); 
+		newDisc = facadeDAO.findDiscByArtistAndName(artist.getArtistId(), disc.getNameDisc());
 		response = String.format(response, newDisc.getDiscId(), "OK");
 		return Response.status(Status.OK).entity(response).build();
 	}

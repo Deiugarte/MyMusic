@@ -53,7 +53,7 @@ public class GenresDao extends GenresHome {
 	        query.setParameter("genderName", genderName);
 	        java.util.List results = query.list();
 	        System.out.println("Result list: " + results.size());
-	        Genres instance = (results != null && results.size() == 1) ? (Genres) results.get(0) : null;
+	        Genres instance = (results != null ) ? (Genres) results.get(0) : null; 
 	        trans.commit();
 	        log.debug("get successful, instance found");
 	        return instance;
