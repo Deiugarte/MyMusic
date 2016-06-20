@@ -10,9 +10,16 @@
         var vm = this;
         vm.currentUser = {};
         vm.currentEvent = {};
+        vm.userData={};
         vm.timeline=[];
         vm.timelineParameters = {};
         vm.timelineParameters.offset = '0';
+        vm.currentUser ={
+          type: "fanatic",
+          id: "101",
+          userName: "Alejandro22",
+          name: "Alejandro",
+        }
 
         getTimelineNews();
         function getTimelineNews() {
@@ -36,6 +43,15 @@
                         vm.timeline.push(eventsData.data[i]);
                     }
                 });
+        }
+        getUserData();
+        function getUserData() {
+          vm.userData.UserId='11';
+            ArtistSrv.getUserData(vm.userData)
+                .then(function(info) {
+                    vm.artistProfile = info.data;
+
+                })
         }
         vm.openEventModal = function(size, title, body, stars, commentsAmount) {
             vm.currentEvent.title = title;
@@ -145,21 +161,7 @@
         };
 
 
-        vm.artistProfile = {
-            name: 'Bob Maryley',
-            followers: 2001,
-            members: [
-                "Solista"
-            ],
-            sex: 'Masculino',
-            genres: ['Dub',
-                'Reggae',
-                'Ska'
-            ],
-            country: 'Costa Rica',
-            year: 1980,
-            stars: 5,
-        };
+
         vm.currentUser ={
           type: "artist",
           id: "101",

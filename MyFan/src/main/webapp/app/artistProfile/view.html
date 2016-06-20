@@ -3,16 +3,15 @@
         <div id="artistInfoContainer" class="row contentArea center-blocks">
             <div id="artistTopInfo">
                 <div id="artistFollowers">
-                    <p>¡2101 seguidores!</p>
+                    <p>¡{{vm.artistProfile.numberOfFollowers}} seguidores!</p>
                 </div>
                 <div id="artistReview">
                     <p style="vertical-align: baseline;">
-                        <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star" ng-model="vm.artistProfile.stars" max="vm.artistProfile.stars" aria-labelledby="default-rating"></uib-rating>
-                        <span>(0)</span>
+                        <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star" ng-model="vm.artistProfile.averageOfArtist" max="5" aria-labelledby="default-rating"></uib-rating>
                     </p>
                 </div>
             </div>
-            <div ng-if="vm.currentUser.type=='fan'" id="artistImageContainer">
+            <div ng-if="vm.currentUser.type=='fanatic'" id="artistImageContainer">
                 <div id="artistImageFrame">
                     <img src="http://i.imgur.com/hfH9CiC.png" id="userProfileImage" alt="artist Profile Image" />
                 </div>
@@ -36,22 +35,17 @@
 
                 </div>
             </div>
-            <div ng-if="vm.currentUser.type=='fan'" id="artistName">
-                <strong> {{vm.artistProfile.name}} </strong>
+            <div  id="artistName">
+                <strong> {{vm.artistProfile.nameUser}} </strong>
             </div>
-
-            <div ng-if="vm.currentUser.type=='artist'" id="artistAsArtistName">
-                <strong> ¡Bienvenido {{vm.currentUser.userName}} ! </strong>
-            </div>
-
 
             <div id="artistDataContainer">
                 <span> Géneros:</span>
-                <span ng-repeat="genre in vm.artistProfile.genres">{{genre}} <br /> </span>
+                <span ng-repeat="genre in vm.artistProfile.musicalGenres">{{genre.name}} <br /> </span>
                 <!-- usar ng-repeat aquí con <br/> para el salto de linea -->
                 <span> Integrantes:</span>
                 <br />
-                <span> {{vm.artistProfile.country}}</span>
+                <span> {{vm.artistProfile.countryLocation}}</span>
                 <br />
                 <span> {{vm.artistProfile.year}} </span>
             </div>
@@ -170,7 +164,7 @@
                     </div>
                 </uib-tab>
                 <uib-tab index="2" ng-click="switchContent(false)" heading="Calificaciones">
-                    <div ng-if="vm.currentUser.type=='fan'" id="artistRatingFormContainer">
+                    <div ng-if="vm.currentUser.type=='fanatic'" id="artistRatingFormContainer">
                         <form>
                             <div id="descriptionTextCol" class="col-xs-3 col-md-4">
 
@@ -232,18 +226,15 @@
 
         <div ng-show="!showVid" id="artistProfileRightContent" class="row contentArea center-blocks">
             <div id="rightButtonsContainer" class="text-center">
-                <button ng-if="vm.currentUser.type=='fan'" class="btn btn-primary btn-block b" ng-click="goBackToProfile()">Volver a Mi Perfil</button>
-                <button ng-if="vm.currentUser.type=='fan'" class="btn btn-primary btn-block b" ng-click="toggleFollowing()">{{following}}</button>
+                <button ng-if="vm.currentUser.type=='fanatic'" class="btn btn-primary btn-block b" ng-click="goBackToProfile()">Volver a Mi Perfil</button>
+                <button ng-if="vm.currentUser.type=='fanatic'" class="btn btn-primary btn-block b" ng-click="toggleFollowing()">{{following}}</button>
                 <button ng-if="vm.currentUser.type=='artist'" class="btn btn-primary btn-block b" ng-click="vm.createEventModal('lg')">Crear evento</button>
                 <button ng-if="vm.currentUser.type=='artist'" class="btn btn-primary btn-block b" ng-click="vm.createNewsModal('lg')">Crear noticia</button>
             </div>
             <div id="artistBiography" class="effect8">
                 <div id="biographyTitle"><strong>Biografía</strong>
                 </div>
-                <div id="biographyContent">La historia musical de los Red Hot Chili Peppers comienza en en Los Angeles, en 1982, cuando varios amigos se unen para formar una banda y tocar en locales nocturnos. Los cuatro amigos eran: Michael (Flea), en el bajo, Hillel (guitarra),
-                    Jack (batería) y Anthony Keidis como vocalista.
-                    <br />
-                    <br /> Su primer gran show fue en un concierto, que les dio una tremenda publicidad en Los Angeles y les valió para firmar un contrato con una gran discográfica. </div>
+                <div id="biographyContent"> {{vm.artistProfile.bibliography}}</div>
             </div>
         </div>
     </div>

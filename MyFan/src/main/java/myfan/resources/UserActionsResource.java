@@ -26,7 +26,7 @@ public class UserActionsResource {
   @Produces(MediaType.APPLICATION_JSON)
   public Response disableUser(DisableAccountRequest disableAccountRequest) {
     FacadeLogic facadeLogic = new FacadeLogic();
-    return facadeLogic.disableProfile(disableAccountRequest);    
+    return facadeLogic.disableProfile(disableAccountRequest);
   }
   
   @POST
