@@ -2,14 +2,14 @@ package myfan.resources.base;
 
 public class FindArtistRequest {
 	private String name;
-	private String nameGenere;
+	private String nameGenre;
 	private String nameUbication;
 	
 	public String getName() {
 		return name;
 	}
-	public String getNameGenere() {
-		return nameGenere;
+	public String getNameGenre() {
+		return nameGenre;
 	}
 	public String getNameUbication() {
 		return nameUbication;
@@ -17,8 +17,8 @@ public class FindArtistRequest {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public void setNameGenere(String nameGenere) {
-		this.nameGenere = nameGenere;
+	public void setNameGenre(String nameGenere) {
+		this.nameGenre = nameGenere;
 	}
 	public void setNameUbication(String nameUbication) {
 		this.nameUbication = nameUbication;

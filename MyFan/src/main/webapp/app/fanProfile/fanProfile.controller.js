@@ -21,6 +21,13 @@
         vm.artistList=[];
         vm.userData = $cookies.getObject('userInfo');
         vm.timelineParameters.offset = '0';
+        vm.searchParameters={
+          name:"",
+          nameGenre:"",
+          nameUbication:""
+        };
+
+        vm.searchResults={};
 
         permissions();
 
@@ -142,7 +149,12 @@
                 });
         }
 
-
+        vm.search = function(){
+          FanaticSrv.searchData(vm.searchParameters)
+              .then(function(searchData) {
+                vm.searchResults=searchData.data;
+              });
+        }
 
 
 

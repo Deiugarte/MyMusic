@@ -60,5 +60,8 @@ public class UserActionsResource {
     FacadeLogic facadeLogic = new FacadeLogic();
     return facadeLogic.followArtist(followArtistRequest);    
   }
+  
+  
+  
 
 }

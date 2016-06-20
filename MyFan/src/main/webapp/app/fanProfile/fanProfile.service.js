@@ -16,6 +16,12 @@
     vm.getTimelineNews = getTimelineNews;
     vm.getTimelineEvents = getTimelineEvents;
     vm.getFollowedArtist = getFollowedArtist;
+    vm.searchData = searchData;
+
+    function searchData(data){
+      var url = 'http://localhost:8000/rest/v1/resources/searchData'
+      return $http.post(url,data);
+    }
 
 
     function getFollowedArtist(data){
