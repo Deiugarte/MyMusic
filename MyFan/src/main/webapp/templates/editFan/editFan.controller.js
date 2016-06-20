@@ -7,8 +7,17 @@
     editFanCtrl.$inject = ['EditFanSrv', 'currentUser', '$uibModalInstance', '$state', '$window', '$scope'];
 
     function editFanCtrl(EditFanSrv, currentUser, $uibModalInstance, $state, $window, $scope) {
-        $scope.currentUser = currentUser;
-
+        $scope.newUserUpdateData ={};
+        $scope.newUserUpdateData ={
+          nameUser: "",
+          birthday: "",
+          password: "",
+          countryLocation: "",
+          identificationNumber: 12,
+          gender: ""
+        };
+        $scope.newUserUpdateData.musisicalGenres = [];
+        $scope.isCalendarOpen = false;
 
         getGenresList();
         getUbicationsList();
@@ -28,7 +37,25 @@
         }
 
         $scope.ok = function() {
-            $uibModalInstance.close($scope.selected.currentUser);
+          console.log($scope.newUserUpdateData);
+          EditFanSrv.postUpdateFanatic($scope.newUserUpdateData,$scope.picfile)
+            .then(function(data) {
+              if (data.status === 200){
+                $window.alert("Datos actualizados con éxito");
+                $uibModalInstance.close();
+              }
+              else if (data.status === 404){
+                $window.alert('Por favor ingrese los datos correctos.');
+              }
+              else{
+                $window.alert('Ocurrió un error con la conexión');
+              }
+            })
+            .catch(function(error) {
+              console.log(error);
+              $window.alert('¡El usuario ya existe, intentelo con otro usuario!');
+            });
+
         };
 
         $scope.cancel = function() {

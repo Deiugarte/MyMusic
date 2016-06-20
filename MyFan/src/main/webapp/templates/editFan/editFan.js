@@ -3,6 +3,6 @@
 
   angular
     .module('refiereApp.editFan', [
-      'refiereApp.chore','ngMessages','ngPassword','ui.bootstrap','ngAnimate'
+      'refiereApp.chore','ngMessages','ngPassword','ui.select','ui.bootstrap','ngAnimate'
     ]);
 })();

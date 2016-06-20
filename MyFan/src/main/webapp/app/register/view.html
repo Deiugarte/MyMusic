@@ -76,8 +76,8 @@
                 </div>
                 <br>
                 <strong>Seleccione sus generos favoritos:</strong>
-                <ui-select multiple ng-model="vm.newUserData.musicalGenres" limit="5" close-on-select="true" title="Elige tus generos musicales" required>
-                    <ui-select-match placeholder="Elige tus generos musicales">{{$item.name}} </ui-select-match>
+                <ui-select multiple ng-model="vm.newUserData.musicalGenres" limit="5" close-on-select="false" title="Elige tus generos musicales" required>
+                    <ui-select-match placeholder="Elige tus generos musicales"> {{$item.name}} </ui-select-match>
                     <ui-select-choices repeat="genre.name as genre in vm.genres | filter: {name: $select.search}">
                         <div ng-bind-html="genre.name | highlight: $select.search"></div>
                         <small>
@@ -85,6 +85,17 @@
           </small>
                     </ui-select-choices>
                 </ui-select>
+
+                <ui-select multiple ng-model="vm.newUserData.musicalGenres" limit="5" close-on-select="false" title="Elige tus generos musicales" required>
+                    <ui-select-match placeholder="Elige tus generos musicales"> {{$item.name}} </ui-select-match>
+                    <ui-select-choices repeat="genre.name as genre in vm.genres | filter: {name: $select.search}">
+                        <div ng-bind-html="genre.name | highlight: $select.search"></div>
+                        <small>
+                {{genre.name}}
+                </small>
+                    </ui-select-choices>
+                </ui-select>
+
                 <strong>Ingrese su foto de Perfil:</strong>
                 <input type="file" ngf-select="" ng-model="vm.picfile" name="file" ngf-accept="'image/*'">
                 <img ngf-src="vm.picfile" class="thumb">
