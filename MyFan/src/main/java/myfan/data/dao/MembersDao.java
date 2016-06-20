@@ -10,9 +10,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
+import myfan.comunicacion.comunicacion.resources.HibernateUtil;
 import myfan.data.models.Artists;
 import myfan.data.models.Members;
-import myfan.resources.util.HibernateUtil;
 
 public class MembersDao extends MembersHome {
 

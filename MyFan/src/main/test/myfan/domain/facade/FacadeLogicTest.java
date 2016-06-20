@@ -7,19 +7,19 @@ import java.util.List;
 
 import org.junit.Test;
 
+import myfan.controller.request.AddDiscRequest;
+import myfan.controller.request.AddEventRequest;
+import myfan.controller.request.AddNewsRequest;
+import myfan.controller.request.AddSongRequest;
+import myfan.controller.request.DisableAccountRequest;
+import myfan.controller.request.FindArtistRequest;
+import myfan.controller.request.FollowArtistRequest;
+import myfan.controller.request.LoginRequest;
+import myfan.controller.request.RegisterNewArtistRequest;
+import myfan.controller.request.RegisterNewFanaticRequest;
+import myfan.controller.request.UpdateProfileUserRequest;
+import myfan.controller.request.utils.Member;
 import myfan.data.models.Members;
-import myfan.resources.base.AddDiscRequest;
-import myfan.resources.base.AddEventRequest;
-import myfan.resources.base.AddNewsRequest;
-import myfan.resources.base.AddSongRequest;
-import myfan.resources.base.DisableAccountRequest;
-import myfan.resources.base.FindArtistRequest;
-import myfan.resources.base.FollowArtistRequest;
-import myfan.resources.base.LoginRequest;
-import myfan.resources.base.RegisterNewArtistRequest;
-import myfan.resources.base.RegisterNewFanaticRequest;
-import myfan.resources.base.UpdateProfileUserRequest;
-import myfan.resources.base.util.Member;
 
 public class FacadeLogicTest {
   FacadeLogic facadeLogic = new FacadeLogic();
