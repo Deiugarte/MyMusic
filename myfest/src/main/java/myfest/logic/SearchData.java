@@ -31,10 +31,10 @@ public class SearchData {
 		String genreSearch   = searchValue.getGenre();
 		String nameSearch    = searchValue.getName();
 		
-		if((countrySearch.equals("false"))){
-			if (genreSearch.equals("false"))
+		if((countrySearch.equals(""))){
+			if (genreSearch.equals(""))
 				return json.jsonConverter(getSearchNames(searchValue));
-			else if (nameSearch.equals("false"))
+			else if (nameSearch.equals(""))
 				return json.jsonConverter(getSearchGenres(searchValue));
 			else{
 				List<Search> aux = new ArrayList<Search>();
@@ -49,10 +49,10 @@ public class SearchData {
 				}
 				return json.jsonConverter(aux);
 			}
-		}else if(nameSearch.equals("false")){
-			if(genreSearch.equals("false"))
+		}else if(nameSearch.equals("")){
+			if(genreSearch.equals(""))
 				return json.jsonConverter(getSearchCountries(searchValue));
-			else if(countrySearch.equals("false"))
+			else if(countrySearch.equals(""))
 				return json.jsonConverter(getSearchGenres(searchValue));
 			else{
 				List<Search> aux = new ArrayList<Search>();
@@ -67,10 +67,10 @@ public class SearchData {
 				}
 				return json.jsonConverter(aux);
 			}
-		}else if(genreSearch.equals("false")){
-			if(nameSearch.equals("false"))
+		}else if(genreSearch.equals("")){
+			if(nameSearch.equals(""))
 				return json.jsonConverter(getSearchCountries(searchValue));
-			else if(countrySearch.equals("false"))
+			else if(countrySearch.equals(""))
 				return json.jsonConverter(getSearchNames(searchValue));
 			else{
 				List<Search> aux = new ArrayList<Search>();
@@ -114,7 +114,7 @@ public class SearchData {
 	 */
 	
 	private List<Search> getSearchNames(General searchValue) {		
-		amountSearch = Integer.parseInt(searchValue.getResultsAmount());
+		amountSearch = Integer.parseInt(searchValue.getAmount());
 		List<Artists> searchName = facadeDB.getSearchName(searchValue.getName());
 		List<Search> nameSearch = new ArrayList<Search>();
 		for (int countryIterator = 0; countryIterator < searchName.size(); countryIterator++){
@@ -137,7 +137,7 @@ public class SearchData {
 	 * @return
 	 */
 	private List<Search> getSearchCountries (General searchValue){
-		amountSearch = Integer.parseInt(searchValue.getResultsAmount());
+		amountSearch = Integer.parseInt(searchValue.getAmount());
 		List<Artists> country = facadeDB.getSearchCountry(searchValue.getCountry());
 		List<Search> countriesSearch = new ArrayList<Search>();
 		for (int countryIterator = 0; countryIterator < country.size(); countryIterator++){
@@ -160,7 +160,7 @@ public class SearchData {
 	 */
 	private List<Search> getSearchGenres(General searchValue){
 		List<Search> genresSearch = new ArrayList<Search>();
-		amountSearch = Integer.parseInt(searchValue.getResultsAmount());
+		amountSearch = Integer.parseInt(searchValue.getAmount());
 		int idGenreList = (Integer) facadeDB.getIdGenre(searchValue.getGenre());
 		List<Artistsgenres> listArtistId = facadeDB.getArtistId(Integer.toString(idGenreList));
 		for (int iterator = 0; iterator < listArtistId.size(); iterator ++){

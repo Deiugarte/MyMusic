@@ -5,17 +5,7 @@ public class General{
 	private String genre;
 	private String country;
 	private String name;
-	
-	public General(){
-		amount  = "0";
-		genre   = "false";
-		country = "false";
-		name    = "false";
-	}
-	
-	public String getResultsAmount() {
-		return amount;
-	}
+
 
 	public String getAmount() {
 		return amount;
