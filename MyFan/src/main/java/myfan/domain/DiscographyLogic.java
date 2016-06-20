@@ -39,6 +39,7 @@ public class DiscographyLogic {
 			disc.setSongs( findSongByIdDisc(discs.get(i).getDiscId()));
 			disc.setDescription(discs.get(i).getDescription());
 			disc.setTitle(discs.get(i).getName());
+			disc.setIdDisc((discs.get(i).getDiscId()));
 			discsResponse.add(disc);
 		}
 		discographyResponse.setDiscs(discsResponse);
