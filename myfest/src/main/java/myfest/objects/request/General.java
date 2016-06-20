@@ -1,12 +1,12 @@
-package myfest.objects.delivery;
+package myfest.objects.request;
 
-public class DeliveryGeneral{
+public class General{
 	private String amount;
 	private String genre;
 	private String country;
 	private String name;
 	
-	public DeliveryGeneral(){
+	public General(){
 		amount  = "0";
 		genre   = "false";
 		country = "false";

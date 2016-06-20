@@ -1,9 +1,9 @@
 package myfest.objects.response;
 
-public class ResponseUnique {
+public class Unique {
 	private String dataResponse;
 	
-	public ResponseUnique(){
+	public Unique(){
 		dataResponse = "";
 	}
 

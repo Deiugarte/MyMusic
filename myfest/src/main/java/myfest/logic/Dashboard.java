@@ -11,10 +11,10 @@ import myfest.models.Concertsscores;
 import myfest.models.Discsscores;
 import myfest.models.Musicalgenres;
 import myfest.models.Twittermentions;
-import myfest.objects.delivery.DeliverySpecific;
+import myfest.objects.request.Specific;
 import myfest.objects.response.ResponseDashboard;
-import myfest.objects.response.ResponseScores;
-import myfest.objects.response.ResponseUnique;
+import myfest.objects.response.Scores;
+import myfest.objects.response.Unique;
 import myfest.utils.JSonConverter;
 
 public class Dashboard {
@@ -26,7 +26,7 @@ public class Dashboard {
 		json     = new JSonConverter();
 	}
 
-	public String getDataArtist(DeliverySpecific artistID){
+	public String getDataArtist(Specific artistID){
 		ResponseDashboard artistDashboard = new ResponseDashboard();		
 		
 		Artists artist = facadeDB.getArtistById(Integer.parseInt(artistID.getValueSearch()));
@@ -34,18 +34,18 @@ public class Dashboard {
 		artistDashboard.setName(artist.getArtistName());
 		artistDashboard.setFollowersAmount(artist.getFollowersAmount());
 		// sublist of genders name
-		List<ResponseUnique> artistGenres = new ArrayList<ResponseUnique>();
+		List<Unique> artistGenres = new ArrayList<Unique>();
 		List<Artistsgenres> genresOfArtist = facadeDB.getGenresByArtistID(artistID.getValueSearch());
 		for (int i = 0; i < genresOfArtist.size(); i++){
 		    int musicalGenreId = genresOfArtist.get(i).getId().getGendeId();
 			Musicalgenres musicalgenres = facadeDB.getMusicalGenreByID(musicalGenreId);
-			ResponseUnique genre = new ResponseUnique();
+			Unique genre = new Unique();
 			genre.setDataResponse(musicalgenres.getGenreName());
 			artistGenres.add(genre);
 		}
 		artistDashboard.setArtistGenders(artistGenres);
 		// Artist Score
-		ResponseScores artistsScore = new ResponseScores();
+		Scores artistsScore = new Scores();
 		Artistsscores scoreArtist = facadeDB.getArtistsScoresByID(Integer.parseInt(artistID.getValueSearch()));
 		artistsScore.setCommentsAmount(scoreArtist.getCommentAmount());
 		artistsScore.setScore(scoreArtist.getScore());
@@ -53,7 +53,7 @@ public class Dashboard {
 		artistDashboard.setArtistScore(artistsScore);
 		
 		// Concert Score
-		ResponseScores concertsScore = new ResponseScores();
+		Scores concertsScore = new Scores();
 		Concertsscores scoreConcert = facadeDB.getConcertsScoresByID(Integer.parseInt(artistID.getValueSearch()));
 		concertsScore.setScore(scoreConcert.getScore());
 		concertsScore.setVoters(scoreConcert.getVoters());
@@ -61,7 +61,7 @@ public class Dashboard {
 		artistDashboard.setConcertScore(concertsScore);
 		
 		// Disc Score
-		ResponseScores discsScore = new ResponseScores();
+		Scores discsScore = new Scores();
 		Discsscores discscores = facadeDB.getDiscScoresByID(Integer.parseInt(artistID.getValueSearch()));
 		discsScore.setScore(discscores.getScore());
 		discsScore.setVoters(discscores.getVoters());

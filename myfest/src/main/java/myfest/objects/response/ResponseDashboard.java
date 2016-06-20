@@ -6,10 +6,10 @@ public class ResponseDashboard {
 	private String 				 name;
 	private String  		     picture;
 	private int					 followersAmount;
-	private List<ResponseUnique> artistGenders;
-	private ResponseScores 		 concertScore;
-	private ResponseScores 	     discScore;
-	private ResponseScores 		 artistScore;
+	private List<Unique> artistGenders;
+	private Scores 		 concertScore;
+	private Scores 	     discScore;
+	private Scores 		 artistScore;
 	private int          		 twitterMentionsAmount;
 	
 	public ResponseDashboard(){
@@ -41,28 +41,28 @@ public class ResponseDashboard {
 	public void setFollowersAmount(int followersAmount) {
 		this.followersAmount = followersAmount;
 	}
-	public List<ResponseUnique> getArtistGenders() {
+	public List<Unique> getArtistGenders() {
 		return artistGenders;
 	}
-	public void setArtistGenders(List<ResponseUnique> artistGenders) {
+	public void setArtistGenders(List<Unique> artistGenders) {
 		this.artistGenders = artistGenders;
 	}
-	public ResponseScores getConcertScore() {
+	public Scores getConcertScore() {
 		return concertScore;
 	}
-	public void setConcertScore(ResponseScores concertScore) {
+	public void setConcertScore(Scores concertScore) {
 		this.concertScore = concertScore;
 	}
-	public ResponseScores getDiscScore() {
+	public Scores getDiscScore() {
 		return discScore;
 	}
-	public void setDiscScore(ResponseScores discScore) {
+	public void setDiscScore(Scores discScore) {
 		this.discScore = discScore;
 	}
-	public ResponseScores getArtistScore() {
+	public Scores getArtistScore() {
 		return artistScore;
 	}
-	public void setArtistScore(ResponseScores artistScore) {
+	public void setArtistScore(Scores artistScore) {
 		this.artistScore = artistScore;
 	}
 	public int getTwitterMentionsAmount() {

@@ -1,25 +1,25 @@
 package myfest.facade;
 
 import myfest.logic.Dashboard;
-import myfest.logic.GetListGenresUbications;
-import myfest.logic.GetSearchData;
-import myfest.objects.delivery.DeliveryGeneral;
-import myfest.objects.delivery.DeliverySpecific;
+import myfest.logic.ListGenresUbications;
+import myfest.logic.SearchData;
+import myfest.objects.request.General;
+import myfest.objects.request.Specific;
 
 public class FacadeGUI {
 	private Dashboard  dashboard;
-	private GetListGenresUbications listData;
-	private GetSearchData searchData;
+	private ListGenresUbications listData;
+	private SearchData searchData;
 	
 	public FacadeGUI(){
 		dashboard  = new Dashboard();
-		listData   = new GetListGenresUbications();
-		searchData = new GetSearchData();
+		listData   = new ListGenresUbications();
+		searchData = new SearchData();
 	}
 	
 	// ****************** DASHBOARD ***************
 	// Dashboard
-	public String getSearchArtistData(DeliverySpecific searchValue){
+	public String getSearchArtistData(Specific searchValue){
 		return dashboard.getDataArtist(searchValue);
 	}
 	
@@ -36,7 +36,7 @@ public class FacadeGUI {
 	
 	// ******************** SEARCH *****************
 	
-	public String getSearch(DeliveryGeneral searchValue){
+	public String getSearch(General searchValue){
 		return searchData.getSearch(searchValue);
 	}
 	// Search Names

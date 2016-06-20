@@ -1,11 +1,11 @@
 package myfest.objects.response;
 
-public class ResponseScores {
+public class Scores {
 	private int score;
 	private int voters;
 	private int commentsAmount;
 	
-	public ResponseScores(){
+	public Scores(){
 		score  			= 0;
 		voters 			= 0;
 		commentsAmount 	= 0;

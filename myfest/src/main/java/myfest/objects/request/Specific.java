@@ -1,9 +1,9 @@
-package myfest.objects.delivery;
+package myfest.objects.request;
 
-public class DeliverySpecific {
+public class Specific {
 	private String valueSearch;
 	
-	public DeliverySpecific(String valueData){
+	public Specific(String valueData){
 		valueSearch = valueData;
 	}
 

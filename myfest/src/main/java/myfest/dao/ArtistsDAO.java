@@ -11,7 +11,7 @@ import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import myfest.models.Artists;
 import myfest.models.Musicalgenres;
-import myfest.objects.delivery.DeliverySpecific;
+import myfest.objects.request.Specific;
 import myfest.utils.HibernateUtil;
 
 
@@ -31,7 +31,7 @@ public class ArtistsDAO extends ArtistsHome {
   }
 
   //revisar query
-  public List<String> getArtistData(DeliverySpecific guiObject){
+  public List<String> getArtistData(Specific guiObject){
 	  String name = guiObject.getValueSearch();
 	  try {
 	        Session session = sessionFactory.openSession();

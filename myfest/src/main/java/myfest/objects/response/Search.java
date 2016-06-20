@@ -1,8 +1,8 @@
 package myfest.objects.response;
 
-public class ResponseSearch extends ResponseUnique{
+public class Search extends Unique{
 	private String artistID;
-	public ResponseSearch(){
+	public Search(){
 		super();
 	}
 	public String getArtistID() {

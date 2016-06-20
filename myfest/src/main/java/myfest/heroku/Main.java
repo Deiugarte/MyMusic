@@ -10,8 +10,8 @@ import myfest.facade.FacadeGUI;
 import myfest.models.Artists;
 import myfest.models.Artistsscores;
 import myfest.models.Musicalgenres;
-import myfest.objects.delivery.DeliveryGeneral;
-import myfest.objects.delivery.DeliverySpecific;
+import myfest.objects.request.General;
+import myfest.objects.request.Specific;
 
 public class Main {
 
@@ -26,12 +26,12 @@ public class Main {
     
     FacadeGUI facade = new FacadeGUI();
     // Objetos de búsqueda
-    DeliveryGeneral general = new DeliveryGeneral();
+    General general = new General();
     general.setAmount("10");
     general.setName("W");
     general.setGenre("Salsa");
     general.setCountry("Francia");
-    DeliverySpecific spec   = new DeliverySpecific("1");
+    Specific spec   = new Specific("1");
     
     // Busqueda inicial
     String genres = facade.getListGenres();

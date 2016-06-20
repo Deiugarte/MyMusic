@@ -5,14 +5,14 @@ import java.util.List;
 
 import myfest.facade.FacadeDB;
 import myfest.models.Musicalgenres;
-import myfest.objects.response.ResponseUnique;
+import myfest.objects.response.Unique;
 import myfest.utils.JSonConverter;
 
-public class GetListGenresUbications {
+public class ListGenresUbications {
 	private FacadeDB facadeDB;
 	private JSonConverter json;
 	
-	public GetListGenresUbications(){
+	public ListGenresUbications(){
 		facadeDB = new FacadeDB();
 		json = new JSonConverter();
 	}	
@@ -23,10 +23,10 @@ public class GetListGenresUbications {
 	 */
 	public String getListUbications(){
 	    List<String> ubications = facadeDB.getUbicationsArtists();
-	    List<ResponseUnique> listUbications = new ArrayList<ResponseUnique>();
+	    List<Unique> listUbications = new ArrayList<Unique>();
 	    int amountUbications = ubications.size();
 	    for (int ubicationIterator = 0; ubicationIterator < amountUbications; ubicationIterator++){
-	    	ResponseUnique ubicationObject = new ResponseUnique();
+	    	Unique ubicationObject = new Unique();
 	    	ubicationObject.setDataResponse(ubications.get(ubicationIterator));
 	    	listUbications.add(ubicationObject);
 	    }
@@ -40,10 +40,10 @@ public class GetListGenresUbications {
 	 */
 	public String getListGenres(){
 		List<Musicalgenres> genres = facadeDB.getGenres();
-	    List<ResponseUnique> listGenres = new ArrayList<ResponseUnique>();
+	    List<Unique> listGenres = new ArrayList<Unique>();
 	    int amountGenres = genres.size();
 	    for (int genreIterator = 0; genreIterator < amountGenres; genreIterator++){
-	    	ResponseUnique ubicationObject = new ResponseUnique();
+	    	Unique ubicationObject = new Unique();
 	    	ubicationObject.setDataResponse(genres.get(genreIterator).getGenreName());
 	    	listGenres.add(ubicationObject);
 	    }

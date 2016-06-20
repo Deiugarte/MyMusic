@@ -3,25 +3,25 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="myfest.logic.Dashboard" project="myfest" 
     file="/myfest/src/main/java/myfest/logic/Dashboard.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="135" width="206" x="121" y="281"/>    
+    <position height="-1" width="-1" x="254" y="256"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="myfest.logic.GetListGenresUbications" project="myfest" 
-    file="/myfest/src/main/java/myfest/logic/GetListGenresUbications.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="153" width="165" x="367" y="281"/>    
+  <class id="2" language="java" name="myfest.logic.ListGenresUbications" project="myfest" 
+    file="/myfest/src/main/java/myfest/logic/ListGenresUbications.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="479" y="265"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="myfest.logic.GetSearchData" project="myfest" 
-    file="/myfest/src/main/java/myfest/logic/GetSearchData.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="189" width="230" x="572" y="281"/>    
+  <class id="3" language="java" name="myfest.logic.SearchData" project="myfest" 
+    file="/myfest/src/main/java/myfest/logic/SearchData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="763" y="292"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
