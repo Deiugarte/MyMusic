@@ -121,16 +121,18 @@
             </div>
             <div ng-hide="filtersInvisible" class="row" id="searchHiddenFiltersContainer">
                 <div id="hiddenFiltersDescription" class="col-xs-1 col-md-4">
-                    <p class="descriptionText">Género: </p>
-                    <p class="descriptionText">País: </p>
+                    <p style="font-size:1.2vw; margin-bottom:39px;">Género: </p>
+                    <p style="font-size:1.2vw;">País: </p>
                 </div>
                 <div id="hiddenFiltersInputs" class="col-xs-3 col-md-8">
                     <select class=" input-sm form-control comboBox">
+                      <option value="">Ninguno</option>
                         <option ng-repeat="genre in vm.genresList" value="{{genre.name}">{{genre.name}}</option>
                         <!--  <option ng-repeat="x in genres" value="{{x.genreValue}">{{x.genreName}}</option>  -->
                     </select>
                     <br/>
                     <select class="input-sm form-control comboBox">
+                      <option value="">Ninguno</option>
                         <option ng-repeat="country in vm.countriesList" value="{{country.name}">{{country.name}}</option>
                         <!--  <option ng-repeat="x in countries" value="{{x.countryValue}">{{x.countryName}}</option>  -->
                     </select>

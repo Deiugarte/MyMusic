@@ -30,7 +30,7 @@
             </label>
             <label class="radio-inline">
                 <input type="radio" name="genderRadio" id="genderWomen" ng-model="newUserUpdateData.gender" value="true"> Mujer
-            </label>            
+            </label>
 
             <br/>
 
@@ -51,7 +51,7 @@
                 </div>
             </div>
             <label for="countrySelect"> País: </label>
-            <select name="countrySelect" id="countrySelect" ng-model="newUserUpdateData.countryLocation" >
+            <select name="countrySelect" id="countrySelect" class="form-control" ng-model="newUserUpdateData.countryLocation" >
                 <option ng-repeat="country in ubications" value="{{country.name}}">{{country.name}}</option>
             </select>
             <div ng-messages="newUserForm.countrySelect.$error" ng-if="newUserForm.$submitted || newUserForm.countrySelect.$pristine" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">

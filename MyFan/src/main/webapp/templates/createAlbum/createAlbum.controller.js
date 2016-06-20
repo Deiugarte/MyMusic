@@ -48,9 +48,10 @@
                       row.idDisc = $scope.discID;
                         CreateAlbumSrv.postCreateNewSong(row)
                             .then(function(dataSong) {
-                                console.log("se agrego cancion con exito");
+                                console.log("se agregaron canciones con exito");
+                                $uibModalInstance.close();
                             }).catch(function(error) {
-                                $window.alert("No se pudo crear la noticia, intente de nuevo.");
+                                $window.alert("No se pudo crear la canción(es), intente de nuevo.");
                             });
                     });
                 })

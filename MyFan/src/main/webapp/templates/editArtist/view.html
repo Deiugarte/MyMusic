@@ -43,8 +43,8 @@
                 </div>
             </div>
             <label for="countrySelect"> País: </label>
-            <select name="countrySelect" id="countrySelect" ng-model="newUserUpdateData.countryLocation" required>
-                <option ng-repeat="country in vm.ubications" value="{{country.name}}">{{country.name}}</option>
+            <select name="countrySelect" id="countrySelect" class="form-control" ng-model="newUserUpdateData.countryLocation" required>
+                <option ng-repeat="country in ubications" value="{{country.name}}">{{country.name}}</option>
             </select>
             <div ng-messages="newUserForm.countrySelect.$error" ng-if="newUserForm.$submitted || newUserForm.countrySelect.$pristine" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
                 <div ng-message="required" class="message slide-left">No se ha introducido el pais</div>
@@ -53,7 +53,7 @@
             <strong>Géneros favoritos:</strong>
             <ui-select multiple ng-model="newUserUpdateData.musisicalGenres" limit="5" close-on-select="true" title="Elige tus generos musicales" required>
                 <ui-select-match placeholder="Elige tus generos musicales">{{$item.name}} </ui-select-match>
-                <ui-select-choices repeat="genre.name as genre in vm.genres | filter: {name: $select.search}">
+                <ui-select-choices repeat="genre.name as genre in genres | filter: {name: $select.search}">
                     <div ng-bind-html="genre.name | highlight: $select.search"></div>
                     <small>
       {{genre.name}}
