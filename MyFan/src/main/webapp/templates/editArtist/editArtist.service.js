@@ -32,5 +32,20 @@
       var url = 'http://localhost:8000/rest/v1/resources/ubicationslist';
       return $http.get(url, data);
     }
+
+    function postUpdateArtist(data, file) {
+        var jsonData = JSON.stringify(data);
+        console.log(jsonData);
+        var fd = new FormData();
+        fd.append('file', file);
+        fd.append('data', jsonData);
+        var url = 'http://localhost:8000/rest/v1/userActions/modifyArtist';
+        return $http.post(url, fd, {
+            transformRequest: angular.identity,
+            headers: {
+                'Content-Type': undefined
+            }
+        });
+    }
   }
 })();

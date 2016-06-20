@@ -63,9 +63,6 @@
             <strong>Foto de Perfil:</strong>
             <input type="file" ngf-select="" ng-model="picfile" name="file" ngf-accept="'image/*'">
             <img ngf-src="picfile" class="thumb">
-            <span class="progress" ng-show="picfile.progress >= 0">
-                 <div style="width:{{picfile.progress}}%" ng-bind="picfile.progress + '%'" class="ng-binding"></div>
-             </span>
             <span ng-show="picfile.result">Imagen actualizada</span>
             <br>
         </form>

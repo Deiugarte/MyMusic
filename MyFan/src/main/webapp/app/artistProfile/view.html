@@ -13,12 +13,12 @@
             </div>
             <div ng-if="vm.currentUser.type=='fanatic'" id="artistImageContainer">
                 <div id="artistImageFrame">
-                    <img src="http://i.imgur.com/hfH9CiC.png" id="userProfileImage" alt="artist Profile Image" />
+                    <img ng-src="/{{vm.artistProfile.image}}" id="userProfileImage" alt="artist Profile Image" />
                 </div>
             </div>
             <div ng-if="vm.currentUser.type=='artist'" id="artistAsArtistImageContainer">
                 <div id="artistAsArtistImageFrame">
-                    <img src="http://i.imgur.com/hfH9CiC.png" id="userProfileImage" alt="artist Profile Image" />
+                    <img ng-src="/{{vm.artistProfile.imageProfile}}" id="userProfileImage" alt="artist Profile Image" />
                 </div>
                 <div id="artistCogContainer">
                     <span uib-dropdown>
