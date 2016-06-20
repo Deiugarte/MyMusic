@@ -111,7 +111,7 @@
                                     <div class="albumTitle">
                                         {{album.title}}
                                         <div class="pull-right albumStars" ng-click="vm.openAlbumModal('lg')">
-                                            <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="album.stars" max="album.stars" on-hover="hoveringOver(value)" aria-labelledby="default-rating"></uib-rating>
+                                            <uib-rating style="font-size: 1.2vw; color:#f9f014;" read-only="true" class="star pull-left" ng-model="album.stars" max="5" on-hover="hoveringOver(value)" aria-labelledby="default-rating"></uib-rating>
                                             <span id="artistReviewComment">({{album.commentsAmount}})</span>
                                         </div>
                                     </div>

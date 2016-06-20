@@ -30,7 +30,7 @@
     }
 
     function getDiscography(data) {
-      var url = 'http://localhost:8000/rest/v1/disc/discography/'+ data.UserId;
+      var url = 'http://localhost:8000/rest/v1/disc/discography/'+ data.idUser;
       return $http.get(url, data);
     }
 

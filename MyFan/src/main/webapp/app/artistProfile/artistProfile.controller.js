@@ -25,7 +25,7 @@
 
 
         vm.getDiscography = function(){
-          switchContent(true);
+          $scope.switchContent(true);
           vm.timelineParameters.idUser = '11';
           ArtistSrv.getDiscography(vm.timelineParameters)
               .then(function(discographyData) {
@@ -203,7 +203,7 @@
           id: "101",
           userName: "Alejandro22",
           name: "Alejandro",
-        }        
+        }
 
         vm.artistCommentsList = {
             comments: [{
