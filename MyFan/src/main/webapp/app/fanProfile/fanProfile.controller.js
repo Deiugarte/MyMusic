@@ -20,7 +20,7 @@
 
 
         vm.unfollowParameters = {};
-        vm.unfollowParameters.idUserFanatic = 11;
+        vm.unfollowParameters.idUserFanatic = 12;
 
         vm.searchParameters={
           name:"",
@@ -161,6 +161,7 @@
 
         vm.unfollowArtist = function (artistId) {
           vm.unfollowParameters.idUserArtist = artistId;
+          console.log(vm.unfollowParameters);
           FanaticSrv.postUnfollowStatus(vm.unfollowParameters)
           .then(function(unfollowData){
               console.log("unfollow exitoso");

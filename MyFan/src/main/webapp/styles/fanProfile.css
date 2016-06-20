@@ -30,6 +30,20 @@ html, body{
 
 }
 
+.searchResult{
+  text-align: center;
+  font-weight: bold;
+  margin-left: 4%;
+  margin-top: 20px;;
+  border-style: inset;
+  padding-top: 6%;
+  border: 1px dashed #ddd;
+ box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
+  width: 90%;
+  height: 50px;
+  cursor: pointer;
+}
+
 
 #fanImageContainer{
     position: relative;
@@ -435,6 +449,8 @@ html, body{
     margin-left: 1%;
     position: relative;
     top: 100px;
+    height: auto;
+    padding-bottom: 10px;
 }
 
 #searchInputContainer{

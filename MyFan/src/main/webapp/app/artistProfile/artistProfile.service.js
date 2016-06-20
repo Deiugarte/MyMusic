@@ -16,6 +16,8 @@
     vm.getDiscography = getDiscography;
     vm.getArtistComments = getArtistComments;
     vm.postRateArtist = postRateArtist;
+    vm.postFollowStatus = postFollowStatus;
+    vm.postUnfollowStatus = postUnfollowStatus;
 
     function getArtistComments(data){
       var url = 'http://localhost:8000/rest/v1/comments/getArtistComments/' + data.idArtist;
@@ -44,6 +46,16 @@
 
     function postRateArtist(data){
       var url = 'http://localhost:8000/rest/calificate/artist';
+      return $http.post(url, data);
+    }
+
+    function postFollowStatus(data){
+      var url = 'http://localhost:8000/rest/v1/userActions/followArtist';
+      return $http.post(url, data);
+    }
+
+    function postUnfollowStatus(data){
+      var url = 'http://localhost:8000/rest/v1/userActions/unfollowArtist';
       return $http.post(url, data);
     }
 

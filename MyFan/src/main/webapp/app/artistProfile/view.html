@@ -218,7 +218,8 @@
         <div ng-show="!showVid" id="artistProfileRightContent" class="row contentArea center-blocks">
             <div id="rightButtonsContainer" class="text-center">
                 <button ng-if="vm.currentUser.type=='fanatic'" class="btn btn-primary btn-block b" ng-click="goBackToProfile()">Volver a Mi Perfil</button>
-                <button ng-if="vm.currentUser.type=='fanatic'" class="btn btn-primary btn-block b" ng-click="toggleFollowing()">{{following}}</button>
+                <button ng-if="vm.currentUser.type=='fanatic'" class="btn btn-primary btn-block b" ng-show="following" ng-click="vm.followArtist()">¡Seguir artista!</button>
+                <button ng-if="vm.currentUser.type=='fanatic'" class="btn btn-primary btn-block b" ng-show="!following" ng-click="vm.unfollowArtist()">¡Dejar de seguir artista!</button>
                 <button ng-if="vm.currentUser.type=='artist'" class="btn btn-primary btn-block b" ng-click="vm.createEventModal('lg')">Crear evento</button>
                 <button ng-if="vm.currentUser.type=='artist'" class="btn btn-primary btn-block b" ng-click="vm.createNewsModal('lg')">Crear noticia</button>
             </div>
