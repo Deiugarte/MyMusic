@@ -6,28 +6,29 @@ import java.util.List;
 import myfan.data.facade.FacadeDAO;
 import myfan.data.models.Artists;
 import myfan.data.models.ArtistsCalifications;
-import myfan.resources.base.ArtistCalificationsResponse;
+import myfan.resources.base.CalificationsResponse;
 import myfan.resources.base.util.Comments;
 
-public class OptionsArtist {
+public class CommnetsArtist {
 
+	private final int DISABLE_ROLE = 13;
 	private final int ONE_COMMENT = 1;
 	private FacadeDAO facadeDAO;
 	private JSONFabrication jSONFabrication;
 
-	public OptionsArtist() {
+	public CommnetsArtist() {
 		facadeDAO = new FacadeDAO();
 		jSONFabrication = new JSONFabrication();
 	}
 
 	public String getCalificationsOfArtist(int idUser){
 		Artists artists = facadeDAO.findArtistByUserId(idUser);
-		ArtistCalificationsResponse artistCalificationsResponse = new ArtistCalificationsResponse();
-		artistCalificationsResponse.setAverageOfCalifications(calculateRankingArtist(artists.getArtistId()));
-		artistCalificationsResponse.setTotalOfCalifications(calculateTotalOfCalifications(artists.getArtistId()));
-		artistCalificationsResponse.setTotalOfComents(calculateTotalOfComments(artists.getArtistId()));
-		artistCalificationsResponse.setComents(getCommentForArtist(artists.getArtistId()));
-		return jSONFabrication.jsonConverter(artistCalificationsResponse);
+		CalificationsResponse calificationsResponse = new CalificationsResponse();
+		calificationsResponse.setAverageOfCalifications(calculateRankingArtist(artists.getArtistId()));
+		calificationsResponse.setTotalOfCalifications(calculateTotalOfCalifications(artists.getArtistId()));
+		calificationsResponse.setTotalOfComents(calculateTotalOfComments(artists.getArtistId()));
+		calificationsResponse.setComents(getCommentForArtist(artists.getArtistId()));
+		return jSONFabrication.jsonConverter(calificationsResponse);
 	}
 	
 	private List<Comments> getCommentForArtist(int idArtist){
@@ -35,12 +36,13 @@ public class OptionsArtist {
 		 List<ArtistsCalifications> artistsCalifications = facadeDAO.getArtistCalificationByIdArtist(idArtist);
 			for (int i = 0; i < artistsCalifications.size(); i++) {
 				if(!artistsCalifications.get(i).getComment().equals("") || artistsCalifications.get(i).getComment()!=null ){
+					if (artistsCalifications.get(i).getFanatics().getUsers().getUsersRoles().getUsersRolesId() == DISABLE_ROLE) {
 					Comments comment = new Comments();
 					comment.setCalification(artistsCalifications.get(i).getCalification());
 					comment.setComment(artistsCalifications.get(i).getComment());
 					comment.setReviewer(artistsCalifications.get(i).getFanatics().getUsers().getName());
 					comments.add(comment);
-				}
+				}}
 			}
 		 return comments;
 	}
@@ -63,7 +65,7 @@ public class OptionsArtist {
 			for (int i = 0; i < artistsCalifications.size(); i++) {
 				sumOfCalifications += artistsCalifications.get(i).getCalification();
 			}
-			average = (sumOfCalifications / artistsCalifications.size()) * 100;
+			average = (sumOfCalifications / artistsCalifications.size());
 		}
 		return average;
 	}
@@ -74,9 +76,6 @@ public class OptionsArtist {
 
 	}
 
-	public int calculateTotalOfDisc(int idArtist) {
-		return facadeDAO.getDiscsByIdArtist(idArtist).size();
-	}
-	
+
 
 }

@@ -1,10 +1,16 @@
 package myfan.data.dao;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
+import myfan.data.models.Discs;
 import myfan.data.models.Songs;
 import myfan.resources.util.HibernateUtil;
 
@@ -44,4 +50,26 @@ public class SongsDao extends SongsHome {
       delete(Songs);
       trans.commit();
   }
+  
+  public List<Songs> getSongsByIdDisc(int idDisc) {
+		try {
+			Session session = sessionFactory.openSession();
+			org.hibernate.Transaction trans = session.beginTransaction();
+			if (trans.getStatus().equals(TransactionStatus.NOT_ACTIVE))
+				log.debug(" >>> Transaction close.");
+			Query query = session.createQuery("from Songs where disc = :idDisc");
+			query.setParameter("idDisc", idDisc);
+			java.util.List<Songs> results = query.list();
+			for (int i = 0; i < results.size(); i++) {
+				Hibernate.initialize(results.get(i));
+			}
+			System.out.println("Result list: " + results.size());
+			trans.commit();
+			log.debug("get successful, instance found");
+			return results;
+		} catch (RuntimeException re) {
+			log.error("get failed", re);
+			throw re;
+		}
+	}
 }

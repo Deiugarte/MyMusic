@@ -11,6 +11,8 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
 import myfan.domain.ActionsUser;
 import myfan.domain.ArtistLogic;
+import myfan.domain.CommentsConcert;
+import myfan.domain.CommentsDisc;
 import myfan.domain.DiscLogic;
 import myfan.domain.DiscographyLogic;
 import myfan.domain.EventsLogic;
@@ -18,7 +20,7 @@ import myfan.domain.FanaticLogic;
 import myfan.domain.FollowedArtist;
 import myfan.domain.GenresLogic;
 import myfan.domain.NewsLogic;
-import myfan.domain.OptionsArtist;
+import myfan.domain.CommnetsArtist;
 import myfan.domain.Search;
 import myfan.domain.SongLogic;
 import myfan.domain.UserLogic;
@@ -58,8 +60,10 @@ public class FacadeLogic {
 	private ActionsUser actionsUser;
 	private Search search;
 	private FollowedArtist  followedArtist;
-	private OptionsArtist optionsArtist;
+	private CommnetsArtist commentsArtist;
 	private DiscographyLogic discographyLogic;
+	private CommentsDisc commentsDisc;
+	private CommentsConcert commentsConcert;
 
 	public FacadeLogic() {
 		userLogic = new UserLogic();
@@ -74,8 +78,10 @@ public class FacadeLogic {
 		actionsUser = new ActionsUser();
 		search = new Search();
 		followedArtist = new FollowedArtist();
-		optionsArtist = new OptionsArtist();
+		commentsArtist = new CommnetsArtist();
 		discographyLogic = new DiscographyLogic();
+		commentsDisc= new CommentsDisc();
+		commentsConcert=new CommentsConcert();
 	}
 
 	/*************************************** RESPONSE ******************************************************/
@@ -91,7 +97,15 @@ public class FacadeLogic {
 	}
 	
 	public String getCalificationsOfArtist(int idUser){
-		return optionsArtist.getCalificationsOfArtist(idUser);
+		return commentsArtist.getCalificationsOfArtist(idUser);
+	}
+	
+	public String getCalificationsOfDisc(int idDisc){
+		return commentsDisc.getCalificationsOfDisc(idDisc);
+	}
+	
+	public String getCalificationsOfConcert(int idEvent){
+		return commentsConcert.getCalificationsOfConcert(idEvent);
 	}
 
 	public String searchArtist(FindArtistRequest artist) {

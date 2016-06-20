@@ -58,7 +58,6 @@ public class FacadeDAO {
 	private ArtistsCalificationsDao artistsCalificationsDao;
 	private DiscsCalificationsDao discsCalificationsDao;
 
-
 	public FacadeDAO() {
 		usersDao = new UsersDao();
 		ubicationsDao = new UbicationsDao();
@@ -75,8 +74,8 @@ public class FacadeDAO {
 		discsDao = new DiscsDao();
 		songsDao = new SongsDao();
 		artistsCalificationsDao = new ArtistsCalificationsDao();
-		discsCalificationsDao= new DiscsCalificationsDao();
-	
+		discsCalificationsDao = new DiscsCalificationsDao();
+
 	}
 
 	/*-----------------------------------------FIND-------------------------------------*/
@@ -98,10 +97,10 @@ public class FacadeDAO {
 		return discsDao.getDiscsById(idDisc);
 	}
 
-	public Events findEventById(int idEvent ){
+	public Events findEventById(int idEvent) {
 		return eventsDao.getEventsById(idEvent);
 	}
-	
+
 	public Ubications findUbicationsById(int ubicationName) {
 		return ubicationsDao.getUbicationsById(ubicationName);
 
@@ -122,7 +121,7 @@ public class FacadeDAO {
 	public List<UsersGenres> findGenresByUsersId(int idUser) {
 		return usersGenresDao.findGenresByUsersId(idUser);
 	}
-	
+
 	public List<UsersGenres> findGenresByGenreId(int idGenre) {
 		return usersGenresDao.findGenresByGenreId(idGenre);
 	}
@@ -154,7 +153,7 @@ public class FacadeDAO {
 	public List<Genres> findAllGenres() {
 		return genresDao.findAll();
 	}
-	
+
 	public List<Members> findMemersByIdArtist(int idArtist) {
 		return memberDao.getArtistsByUserId(idArtist);
 	}
@@ -162,33 +161,46 @@ public class FacadeDAO {
 	public Ubications findUbicationsByName(String nameUbication) {
 		return ubicationsDao.findByName(nameUbication);
 	}
-	
-	public Discs findDiscByArtistAndName(int artist,String name) {
-	  return discsDao.getDiscsByArtistAndName(artist,name);
-    
-  }
 
-	/*-----------------------------------------GET-------------------------------------*/
-	/*-----------------------------------------GET-------------------------------------*/
-
-	public  List<ArtistsCalifications> getArtistCalificationByIdArtist(int idArtist){
-		return artistsCalificationsDao.getArtistCalificationByIdArtist(idArtist);	
+	public Discs findDiscByArtistAndName(int artist, String name) {
+		return discsDao.getDiscsByArtistAndName(artist, name);
 	}
-	
-	public  List<Discs> getDiscsByIdArtist(int idArtist){
+
+	public List<Discs> findDiscByArtistId(int artist) {
+		return discsDao.getDiscsByIdArtist(artist);
+	}
+
+	/*-----------------------------------------GET-------------------------------------*/
+	/*-----------------------------------------GET-------------------------------------*/
+
+	public List<Songs> getSongsByIdDisc(int idDisc) {
+		return songsDao.getSongsByIdDisc(idDisc);
+	}
+
+	public List<DiscsCalifications> getCalificationsOfDiscs(int idDisc) {
+		return discsCalificationsDao.getCalificationsOfDiscs(idDisc);
+	}
+
+	public List<ArtistsCalifications> getArtistCalificationByIdArtist(int idArtist) {
+		return artistsCalificationsDao.getArtistCalificationByIdArtist(idArtist);
+	}
+
+	public List<Discs> getDiscsByIdArtist(int idArtist) {
 		return discsDao.getDiscByIdArtist(idArtist);
 	}
-	
-	public List<Users> getArtistsByUbication(int idUbication){
+
+	public List<Users> getArtistsByUbication(int idUbication) {
 		return artistsDao.getArtistsByUbication(idUbication);
 	}
+
 	public List<Users> getArtistByName(String nameArtist) {
 		return artistsDao.getArtistsByName(nameArtist);
 	}
-	
-	public List<Users> getArtistsByNameAndUbication(String nameArtist,int idUbication) {
+
+	public List<Users> getArtistsByNameAndUbication(String nameArtist, int idUbication) {
 		return artistsDao.getArtistsByNameAndUbication(nameArtist, idUbication);
 	}
+
 	public UsersRoles getFanaticRole() {
 		return usersRolesDao.findByRoleName(FANATIC_ROLE_NAME);
 	}
@@ -273,15 +285,15 @@ public class FacadeDAO {
 	public void saveCommentsForArtist(ArtistsCalifications artistsCalifications) {
 		artistsCalificationsDao.save(artistsCalifications);
 	}
-	
+
 	public void saveCommentsForDisc(DiscsCalifications artistsCalifications) {
 		discsCalificationsDao.save(artistsCalifications);
 	}
-	
+
 	public void saveCommentsForConcert(EventsCalifications concertCalifications) {
 		eventsCalificationsDao.save(concertCalifications);
 	}
-	
+
 	/*-----------------------------------------	DELETE-------------------------------------*/
 	/*-----------------------------------------	DELETE-------------------------------------*/
 

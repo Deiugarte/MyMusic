@@ -3,7 +3,7 @@ package myfan.resources.base.util;
 import java.util.List;
 
 public class Disc {
-  private String  albumImage;
+
   private String  genre;
   private int  commentsAmount;
   private int  songsAmount;
@@ -13,9 +13,7 @@ public class Disc {
   private List<Song> songs;
   
   
-public String getAlbumImage() {
-	return albumImage;
-}
+
 public String getGenre() {
 	return genre;
 }
@@ -37,9 +35,7 @@ public String getYear() {
 public List<Song> getSongs() {
 	return songs;
 }
-public void setAlbumImage(String albumImage) {
-	this.albumImage = albumImage;
-}
+
 public void setGenre(String genre) {
 	this.genre = genre;
 }
